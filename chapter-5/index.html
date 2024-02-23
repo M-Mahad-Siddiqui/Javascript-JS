@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body{
+            line-height: 30px;
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Mathimatical Operations</h1>
+    <h3></h3>
+  </body>
+  <script>
+    num1 = prompt("Enter first number");
+    num2 = prompt("Enter second number");
+    var h3Element = document.getElementsByTagName("h3")[0];
+    h3Element.innerHTML =
+      num1 +
+      " + " +
+      num2 +
+      " = " +
+      (num1 + num2) +
+      "<br>" +
+      num1 +
+      " - " +
+      num2 +
+      " = " +
+      (num1 - num2) +
+      "<br>" +
+      num1 +
+      " * " +
+      num2 +
+      " = " +
+      num1 * num2 +
+      "<br>" +
+      num1 +
+      " / " +
+      num2 +
+      " = " +
+      num1 / num2 +
+      "<br>" +
+      num1 +
+      " % " +
+      num2 +
+      " = " +
+      num1 % num2;
+      
+      qty = prompt("tell me how many tickets you want");
+      total = qty * 600;
+      h3Element.innerHTML = h3Element.innerHTML + "<br>you buy " + qty + " tickets and one ticket price is 600 so your total amount is " + total;
+
+      table = prompt("Enter a Number to see the multiplication table");
+      for (i = 1; i <= 10; i++) {
+        h3Element.innerHTML = h3Element.innerHTML + "<br>" + table + " * " + i + " = " + table * i;
+      }
+  </script>
+</html>
