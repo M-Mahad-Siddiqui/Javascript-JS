@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>
+       var a = 2, b = 1;<br>
+       var result = --a - --b + ++b + b--; <br>
+       <p></p>
+       
+       --a;<br>
+       --a - --b;<br>
+       --a - --b + ++b;<br>
+       --a - --b + ++b + b--; <br>
+       <p></p>
+    </h2>
+
+    <script>
+        var a = 2, b = 1;
+        var result = --a - --b + ++b + b--;
+        document.getElementsByTagName("p")[0].innerHTML ="RESULT :"+ result;
+
+        //----------------------------------------------------------
+        --a;
+        --a - --b;
+        --a - --b + ++b;
+        --a - --b + ++b + b--;
+        document.getElementsByTagName("p")[1].innerHTML ="RESULT :"+ result;
+    </script>
+</body>
+</html>

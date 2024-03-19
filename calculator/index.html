@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <h3></h3>
+    <p></p>
+    <script>
+    let a = +prompt("Enter first number");
+    let b = +prompt("Enter second number");
+    let opt = prompt("Enter operator + - * /");
+    switch(opt){
+        case '+':
+            alert("addition of two number is :" + (a+b));
+            break;
+        case '-':
+            alert("subtraction of two number is :" + (a-b));
+            break;
+        case '*':
+            alert("multiplication of two number is :" + (a*b));
+            break;
+        case '/':
+            alert("division of two number is :" + (a/b));
+            break;
+        default:
+            alert("Invalid Operator");
+            break;
+    }
+
+    let table  = +prompt("enter a number to see the multiplication table :");
+    let multiplicationTable = "";
+    for(let i = 1; i < 11; i++){
+        multiplicationTable += table + " * " + i + " = " + table * i + "<br>";
+    }
+    document.getElementsByTagName('h3')[0].innerHTML = multiplicationTable;
+     
+    let age = +prompt("Enter your year of birth");
+    document.getElementsByTagName('p')[0].innerHTML = "Your age is: " + (2024 - age);
+    </script>
+</body>
+</html>

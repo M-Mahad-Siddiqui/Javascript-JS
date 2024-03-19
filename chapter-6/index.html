@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Result :</h2>
+    <h4></h4>
+    <script>
+        let num = +prompt("Enter any number");
+        let result = "the value of a is : " + num + "<br>"
+                   + "the value of ++a is : " + (++num) + "<br>" + " Now the value of a is : " + num + "<br>"
+                   + "the value of a++ is : " + (num++) + "<br>" + " Now the value of a is : " + num + "<br>"
+                   + "the value of --a is : " + (--num) + "<br>" + " Now the value of a is : " + num + "<br>"
+                   + "the value of a-- is : " + (num--) + "<br>" + " Now the value of a is : " + num + "<br>";
+        document.getElementsByTagName("h4")[0].innerHTML = result;
+    </script>
+</body>
+</html>

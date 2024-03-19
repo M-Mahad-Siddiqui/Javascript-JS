@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            //------------------------input character types checker-------------------------------------
+            let char = prompt("Enter any character");
+        if(char >= 'a' && char <= 'z' ){
+            alert("you entered a small letter");
+        }else if( char >= 'A' && char <= 'Z'){
+            alert("you entered a capital letter");
+        }else if(char >= '0' && char <= '9'){
+            alert("you entered a number");
+        }else{
+            alert("you entered a special character");
+        }
+        //------------------------------------greater nummber or negative number checker-------------------------------
+        let one = +prompt("Enter frist any negative or positive number");
+        let two = +prompt("Enter second any negative or positive number");
+        if(one > two){
+            alert("first number is greater " + one);
+        }else{
+            alert("Second number is greater " + two);
+        }
+
+        if(one < 0 ){
+            alert("you enter a negative number " + one)
+        }
+        if(two < 0 ){
+            alert("you enter a negative number " + two)
+        }
+    </script>
+</body>
+</html>

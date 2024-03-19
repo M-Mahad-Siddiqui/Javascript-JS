@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+        }
+        table{
+            padding: 20px;
+            border: 2px solid black;
+            margin: 0 auto;
+            font-size: large;
+        }
+        td{
+            padding: 5px 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Subject Total marks Obtained marks in percentages</h2>
+    <table>
+        <tr>
+            <td>Math</td><td>100</td><td id="fm"></td><td id="fp"></td>
+        </tr>
+        <tr>
+            <td>English</td><td>100</td><td id="sm"></td><td id="sp"></td>
+        </tr>
+        <tr>
+            <td>Urdu</td><td>100</td><td id="tm"></td><td id="tp"></td>
+        </tr>
+        <tr>
+            <td>Total</td><td>300</td><td id="TotalMarks"></td><td id="TotalPercentage"></td>
+        </tr>
+    </table>
+
+    <script>
+        let math = +prompt("Enter math marks");
+        let english = +prompt("Enter english marks");
+        let urdu = +prompt("Enter urdu marks");
+
+        let total = math + english + urdu;
+        let percentage = (total / 300) * 100;
+        document.getElementById("fm").innerHTML = math;
+        document.getElementById("fp").innerHTML = math + "%";
+        document.getElementById("sm").innerHTML = english;
+        document.getElementById("sp").innerHTML = english + "%";
+        document.getElementById("tm").innerHTML = urdu;
+        document.getElementById("tp").innerHTML = urdu + "%";
+        document.getElementById("TotalMarks").innerHTML = total;
+        document.getElementById("TotalPercentage").innerHTML = percentage + "%";
+
+    </script>
+</body>
+</html>
