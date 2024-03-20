@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <h2>Events Numbers </h2>
+    <p id="evenNumbers"></p>
+    
+    <h2>Odd Numbers </h2>
+    <p id="oddNumbers"></p>
+    
+    <h2>5 Factorial Print  </h2>
+    <p id="factorial"></p>
+
+    <h2>7 multiplication table  </h2>
+    <p id="multiplicationTable"></p>
+
+    <h2>Fibonacci Series</h2>
+    <p id="fibonacciSeries"></p>
+
+    
+    <h2>Sum of Numbers</h2>
+    <p id="sum"></p>
+
+    <h2>Reverse String </h2>
+    <p id="reverse"></p>
+
+    <h2>Largest Elements </h2>
+    <p id="largest"></p>
+
+    <script>
+
+        // 1 Even Numbers
+        for(var i = 0 ; i<=20; i++){
+            if(i%2==0){
+                document.getElementById("evenNumbers").innerHTML +=( i+  "<br>");
+            }
+        }
+        // 2 Odd Numbers
+        for(var i = 0 ; i<=20; i++){
+            if(i%2==1){
+                document.getElementById("oddNumbers").innerHTML +=( i+  "<br>");
+            }
+        }
+        // 5 Factorial
+        var fac = 1;
+        for(var i=1; i<=5; i++){
+            fac = fac *i;            
+        }
+        document.getElementById("factorial").innerHTML +=( fac + "<br>");
+     
+        // 7 multiplication table
+        for(var t = 1; t<= 10; t++){
+            document.getElementById("multiplicationTable").innerHTML +=(" 7 * " + t + " = " + (7 * t) +  "<br>");
+        }
+        // Fibonacci series
+        var fibArray = [];
+        var n1 = 0, n2 = 1, nextTerm;
+
+        for(var i = 1; i <= 10; i++) {
+            fibArray.push(n1);
+            nextTerm = n1 + n2;
+            n1 = n2;
+            n2 = nextTerm;
+        }
+        document.getElementById("fibonacciSeries").innerHTML = fibArray.join(", ");
+
+        // Sum of Numbers
+        var sum = 0;
+        for(var i = 1; i <= 10; i++){
+            sum = sum + i;
+        }
+        document.getElementById("sum").innerHTML = sum;
+
+        // Reverse String
+        var str = "Hello";
+        for(var i = str.length-1; i>=0; i--){
+            document.getElementById("reverse").innerHTML +=(str[i]);
+        }
+
+        // Largest Elements
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        for(var i = 0; i < arr.length; i++){
+            let larg = arr[0];
+            if(arr[i] > larg){
+                larg = arr[i];
+                document.getElementById("largest").innerHTML = larg;
+            }
+        }
+    </script>
+</body>
+</html>
