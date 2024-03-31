@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Loops</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding-left: 100px;
+      }
+      h2 {
+        color: #333;
+      }
+      ol {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      p {
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JavaScript Loops Examples</h1>
+    <ol>
+      <li>
+        <h2>for loop</h2>
+        <p id="for-loop"></p>
+      </li>
+      <li>
+        <h2>while loop</h2>
+        <p id="while-loop"></p>
+      </li>
+      <li>
+        <h2>do...while loop</h2>
+        <p id="do-while-loop"></p>
+      </li>
+      <li>
+        <h2>for...in loop</h2>
+        <p id="for-in-loop"></p>
+      </li>
+      <li>
+        <h2>for...of loop</h2>
+        <p id="for-of-loop"></p>
+      </li>
+      <li>
+        <h2>forEach loop</h2>
+        <p id="forEach-loop"></p>
+      </li>
+      <li>
+        <h2>map loop</h2>
+        <p id="map-loop"></p>
+      </li>
+    </ol>
+
+    <script>
+      // Initialize example data
+      const arr = [10, 20, 30, 40, 50];
+      const colors = ["red", "green", "blue"];
+      const numbers = [1, 2, 3, 4, 5];
+      const Person = {
+        name: "John",
+        age: 30,
+        city: "New York",
+      };
+
+      // for loop
+      const forLoopOutput = document.getElementById("for-loop");
+      for (let i = 0; i < arr.length; i++) {
+        forLoopOutput.innerHTML += `Index ${i}: ${arr[i]}<br>`;
+      }
+
+      // while loop
+      const whileLoopOutput = document.getElementById("while-loop");
+      let j = 0;
+      while (j < arr.length) {
+        whileLoopOutput.innerHTML += `Index ${j}: ${arr[j]}<br>`;
+        j++;
+      }
+
+      // do...while loop
+      const doWhileLoopOutput = document.getElementById("do-while-loop");
+      let k = 0;
+      do {
+        doWhileLoopOutput.innerHTML += `Index ${k}: ${arr[k]}<br>`;
+        k++;
+      } while (k < arr.length);
+
+      // for...in loop
+      const forInLoopOutput = document.getElementById("for-in-loop");
+      const person = { name: "John", age: 30, city: "New York" };
+      for (let key in person) {
+        forInLoopOutput.innerHTML += `${key}: ${person[key]}<br>`;
+      }
+
+      // for...of loop
+      const forOfLoopOutput = document.getElementById("for-of-loop");
+      for (const value of arr) {
+        forOfLoopOutput.innerHTML += `${value}<br>`;
+      }
+
+      // forEach loop
+      const forEachLoopOutput = document.getElementById("forEach-loop");
+      colors.forEach((color) => {
+        forEachLoopOutput.innerHTML += `${color}<br>`;
+      });
+
+      // map loop
+      const mapLoopOutput = document.getElementById("map-loop");
+      const squared = numbers.map((num) => num * num);
+      squared.forEach((square) => {
+        mapLoopOutput.innerHTML += `${square}<br>`;
+      });
+    </script>
+  </body>
+</html>
