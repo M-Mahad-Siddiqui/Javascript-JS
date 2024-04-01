@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simple Calculator</title>
-<style>
-  
-    .calculator {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Calculator</title>
+    <style>
+      .calculator {
         width: 300px;
         margin: 0 auto;
         padding: 20px;
         background-color: #a09c9c;
         border-radius: 10px;
         margin-top: 100px;
-    }
-    .display {
+      }
+      .display {
         height: 50px;
         margin-bottom: 12px;
         padding: 10px;
@@ -23,8 +22,8 @@
         border: 1px solid #e60f0f;
         border-radius: 7px;
         background-color: #fff;
-    }
-    .button {
+      }
+      .button {
         width: 60px;
         height: 50px;
         margin: 5px;
@@ -32,149 +31,111 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-    }
-    .button.operator {
-        background-color: #FF5733;
+      }
+      .button.operator {
+        background-color: #ff5733;
         color: #fff;
         font-weight: bold;
         font-size: larger;
-    }
-    .button.equal {
-        background-color: #4CAF50;
+      }
+      .button.equal {
+        background-color: #4caf50;
         font-weight: bold;
         color: #fff;
         font-size: larger;
-    }
-</style>
-</head>
-<body>
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <div class="display" id="display">0</div>
+      <button class="button" onclick="appendToDisplay('7')">7</button>
+      <button class="button" onclick="appendToDisplay('8')">8</button>
+      <button class="button" onclick="appendToDisplay('9')">9</button>
+      <button class="button operator" onclick="appendToDisplay('+')">+</button>
+      <br />
+      <button class="button" onclick="appendToDisplay('4')">4</button>
+      <button class="button" onclick="appendToDisplay('5')">5</button>
+      <button class="button" onclick="appendToDisplay('6')">6</button>
+      <button class="button operator" onclick="appendToDisplay('-')">-</button>
+      <br />
+      <button class="button" onclick="appendToDisplay('1')">1</button>
+      <button class="button" onclick="appendToDisplay('2')">2</button>
+      <button class="button" onclick="appendToDisplay('3')">3</button>
+      <button class="button operator" onclick="appendToDisplay('*')">*</button>
+      <br />
+      <button class="button" onclick="appendToDisplay('0')">0</button>
+      <button class="button" onclick="clearDisplay()">C</button>
+      <button class="button equal" onclick="calculate()">=</button>
+      <button class="button operator" onclick="appendToDisplay('/')">/</button>
+    </div>
 
-<div class="calculator">
-    <div class="display" id="display">0</div>
-    <button class="button" onclick="appendToDisplay('7')">7</button>
-    <button class="button" onclick="appendToDisplay('8')">8</button>
-    <button class="button" onclick="appendToDisplay('9')">9</button>
-    <button class="button operator" onclick="appendToDisplay('+')">+</button>
-    <br>
-    <button class="button" onclick="appendToDisplay('4')">4</button>
-    <button class="button" onclick="appendToDisplay('5')">5</button>
-    <button class="button" onclick="appendToDisplay('6')">6</button>
-    <button class="button operator" onclick="appendToDisplay('-')">-</button>
-    <br>
-    <button class="button" onclick="appendToDisplay('1')">1</button>
-    <button class="button" onclick="appendToDisplay('2')">2</button>
-    <button class="button" onclick="appendToDisplay('3')">3</button>
-    <button class="button operator" onclick="appendToDisplay('*')">*</button>
-    <br>
-    <button class="button" onclick="appendToDisplay('0')">0</button>
-    <button class="button" onclick="clearDisplay()">C</button>
-    <button class="button equal" onclick="calculate()">=</button>
-    <button class="button operator" onclick="appendToDisplay('/')">/</button>
-</div>
+    <script>
+      // Function to append value to the display
+      function appendToDisplay(value) {
+        // Get the display element by its ID
+        document.getElementById("display").innerText += value;
+      }
 
-<script>
-    // function appendToDisplay(value) {
-    //     document.getElementById('display').innerText += value;
-    // }
+      function clearDisplay() {
+        var display = document.getElementById("display");
+        display.innerText = "0";
+        // document.getElementById('display').innerText = '0';
+      }
 
-    // function clearDisplay() {
-    //     document.getElementById('display').innerText = '0';
-    // }
-
-    // function calculate() {
-    //     const display = document.getElementById('display');
-    //     try {
-    //         display.innerText = eval(display.innerText);
-    //     } catch (error) {
-    //         display.innerText = 'Error';
-    //     }
-    // }
-
-    //---------------------------------------------------------------
-
-    // // Function to append value to the display
-    // function appendToDisplay(value) {
-    //     // Get the display element by its ID
-    //     var display = document.getElementById('display');
-    //     // Append the passed value to the display's text content
-    //     display.innerText += value;
-    // }
-
-    // // Function to clear the display
-    // function clearDisplay() {
-    //     // Get the display element by its ID
-    //     var display = document.getElementById('display');
-    //     // Set the display's text content to '0' to clear it
-    //     display.innerText = '0';
-    // }
-
-    // // Function to perform calculation
-    // function calculate() {
-    //     // Get the display element by its ID
-    //     var display = document.getElementById('display');
-    //     try {
-    //         // Use the eval() function to evaluate the expression entered in the display
-    //         display.innerText = eval(display.innerText);
-    //     } catch (error) {
-    //         // If an error occurs during evaluation, display 'Error' on the display
-    //         display.innerText = 'Error';
-    //     }
-    // }
-
-
-//---------------------------------------------------------------------------------------------
-function appendToDisplay(value) {
-        document.getElementById('display').innerText += value;
-    }
-
-    function clearDisplay() {
-        document.getElementById('display').innerText = '0';
-    }
-
-    function calculate() {
-        const display = document.getElementById('display');
-        let expression = display.innerText;
-        
-        // Regular expression to match mathematical operators
-        const operators = /[*/+-]/;
-
-        // Split the expression into operands and operators
-        const parts = expression.split(operators);
-
-        // Convert string operands to numbers
-        const num1 = parseFloat(parts[0]);
-        const num2 = parseFloat(parts[1]);
-
-        // Get the operator
-        const operator = expression.match(operators);
-
-        // Perform calculation based on operator
-        let result;
-        switch (operator[0]) {
-            case '+':
-                result = num1 + num2;
-                break;
-            case '-':
-                result = num1 - num2;
-                break;
-            case '*':
-                result = num1 * num2;
-                break;
-            case '/':
-                if (num2 !== 0) {
-                    result = num1 / num2;
-                } else {
-                    result = 'Error: Division by zero';
-                }
-                break;
-            default:
-                result = 'Error: Invalid expression';
+      function calculate() {
+        var display = document.getElementById("display");
+        try {
+          // Use the eval() function to evaluate the expression entered in the display
+          display.innerText = eval(display.innerText);
+        } catch (error) {
+          display.innerText = "Error";
         }
+      }
 
-        // Display the result
-        display.innerText = result;
-    }
-</script>
+      // function calculate() {
+      //     const display = document.getElementById('display');
+      //     let expression = display.innerText;
 
-</body>
+      //     // Regular expression to match mathematical operators
+      //     const operators = /[*/+-]/;
+
+      //     // Split the expression into operands and operators
+      //     const parts = expression.split(operators);
+
+      //     // Convert string operands to numbers
+      //     const num1 = parseFloat(parts[0]);
+      //     const num2 = parseFloat(parts[1]);
+
+      //     // Get the operator
+      //     const operator = expression.match(operators);
+
+      //     // Perform calculation based on operator
+      //     let result;
+      //     switch (operator[0]) {
+      //         case '+':
+      //             result = num1 + num2;
+      //             break;
+      //         case '-':
+      //             result = num1 - num2;
+      //             break;
+      //         case '*':
+      //             result = num1 * num2;
+      //             break;
+      //         case '/':
+      //             if (num2 !== 0) {
+      //                 result = num1 / num2;
+      //             } else {
+      //                 result = 'Error: Division by zero';
+      //             }
+      //             break;
+      //         default:
+      //             result = 'Error: Invalid expression';
+      //     }
+
+      //     // Display the result
+      //     display.innerText = result;
+      // }
+    </script>
+  </body>
 </html>

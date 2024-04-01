@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .calculator{
+        background: rgb(7, 183, 121);
+        margin: 0 auto;
+        max-width: 380px;
+        margin-top: 100px;
+        border-radius: 7px;
+        padding: 15px 0;
+        text-align: center;
+    }
+    .display{
+        border: 2px solid black;
+        background: rgb(216, 218, 174);
+        text-align: right;
+        padding: 20px 20px;
+        margin: 20px;
+        border-radius: 7px;
+        font-size:x-large;
+        font-weight: normal;
+    }
+    .btn{
+        width: 80px;
+        height: 80px;
+        font-size: x-large;
+        margin-bottom: 3px;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: antiquewhite;
+    }
+    .opt{
+        background-color: rgb(197, 142, 40);
+        font-size: x-large;
+        font-weight: bold;
+    }
+    .ac{
+        background-color: green;
+    }
+
+</style>
+</head>
+<body>
+    
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <button class="btn" onclick="show('7')" >7</button>
+        <button class="btn" onclick="show('8')" >8</button>
+        <button class="btn" onclick="show('9')" >9</button>
+        <button class="btn opt" onclick="show('*')" >*</button>
+        <br>
+        <button class="btn" onclick="show('4')" >4</button>
+        <button class="btn" onclick="show('5')" >5</button>
+        <button class="btn" onclick="show('6')" >6</button>
+        <button class="btn opt" onclick="show('-')" >-</button>
+        <br>
+        <button class="btn" onclick="show('1')" >1</button>
+        <button class="btn" onclick="show('2')" >2</button>
+        <button class="btn" onclick="show('3')" >3</button>
+        <button class="btn opt" onclick="show('+')" >+</button>
+        <br>
+        <button class="btn ac" onclick="clearDisplay()" >AC</button>
+        <button class="btn" onclick="show('8')" >0</button>
+        <button class="btn" onclick="show('9')" >.</button>
+        <button class="btn opt" onclick="calculate()" >=</button>
+        <br>
+    </div>
+
+    <script>
+        function show(num){
+            document.getElementById("display").innerText += num;   
+        }
+        function clearDisplay(){
+            document.getElementById('display').innerText = "0";
+        }
+        function calculate(){
+            let dis = document.getElementById('display');
+            try{
+                dis.innerText = eval(dis.innerText);
+            }catch(error){
+                dis.innerText = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
