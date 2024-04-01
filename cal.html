@@ -63,7 +63,7 @@
         <button class="btn" onclick="show('3')" >3</button>
         <button class="btn opt" onclick="show('+')" >+</button>
         <br>
-        <button class="btn ac" onclick="clearDisplay()" >AC</button>
+        <button class="btn ac" onclick="cleardisplay()" >AC</button>
         <button class="btn" onclick="show('8')" >0</button>
         <button class="btn" onclick="show('9')" >.</button>
         <button class="btn opt" onclick="calculate()" >=</button>
@@ -74,7 +74,7 @@
         function show(num){
             document.getElementById("display").innerText += num;   
         }
-        function clearDisplay(){
+        function cleardisplay(){
             document.getElementById('display').innerText = "0";
         }
         function calculate(){
@@ -88,3 +88,4 @@
     </script>
 </body>
 </html>
+
