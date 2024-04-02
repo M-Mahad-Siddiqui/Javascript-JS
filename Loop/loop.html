@@ -133,8 +133,8 @@
       fruits.forEach(function (fruit, index) {
         console.log(`Fruit at index ${index}: ${fruit}`);
       }); // Fruit at index 0: Apple
-         // Fruit at index 1: Banana
-        // Fruit at index 2: Orange
+      // Fruit at index 1: Banana
+      // Fruit at index 2: Orange
 
       //--------------Example 3: Modifying the Original Array-------------------------------
       const counts = [1, 2, 3, 4, 5];
@@ -146,7 +146,24 @@
 
       console.log(doubledNumbers);
 
-   
+      //---------------Example 4: Accessing all Parameters----------------------------------------------
+      const num1 = [1, 2, 3, 4, 5];
+
+      num1.forEach(function (currentValue, index, array) {
+        console.log(`Value at index ${index}: ${currentValue}`);
+        console.log(`Array: ${array}`);
+      });
+      // Value at index 0: 1
+      // Array: 1,2,3,4,5
+      // Value at index 1: 2
+      // Array: 1,2,3,4,5
+      // Value at index 2: 3
+      // Array: 1,2,3,4,5
+      // Value at index 3: 4
+      // Array: 1,2,3,4,5
+      // Value at index 4: 5
+      // Array: 1,2,3,4,5
+
       // map loop
       // The map loop in JavaScript is used to transform each element of an array into a new array.
       // It takes a callback function as an argument, which is executed for each element in the original array.

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Arrow Functions</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding-left: 100px;
+      }
+      h2 {
+        color: #333;
+      }
+      ol {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      p {
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JavaScript Arrow Functions</h1>
+    <ol>
+      <li>
+        <h2>Basic Arrow Function</h2>
+        <p id="basic-arrow"></p>
+      </li>
+      <li>
+        <h2>Arrow Function with Parameters</h2>
+        <p id="arrow-params"></p>
+      </li>
+      <li>
+        <h2>Arrow Function with Implicit Return</h2>
+        <p id="arrow-implicit"></p>
+      </li>
+      <li>
+        <h2>Arrow Function with Object Literals</h2>
+        <p id="arrow-object"></p>
+      </li>
+      <li>
+        <h2>Arrow Function in Array Methods</h2>
+        <p id="arrow-array-method"></p>
+      </li>
+    </ol>
+
+    <script>
+      // 1. Basic Arrow Function
+      const basicArrowOutput = document.getElementById("basic-arrow");
+      // Example 1: Basic Arrow Function
+      const greetArrow = () => "Hello from arrow function!";
+      basicArrowOutput.textContent += `Arrow Function: ${greetArrow()}\n`;
+      // Example 1: Basic Function Expression
+      function greetNormal() {
+        return "Hello from normal function!";
+      }
+      basicArrowOutput.textContent += `Normal Function: ${greetNormal()}`;
+
+      // 2. Arrow Function with Parameters
+      const arrowParamsOutput = document.getElementById("arrow-params");
+      // Example 1: Arrow Function with Parameters
+      const addArrow = (a, b) => a + b;
+      arrowParamsOutput.textContent += `Arrow Function: ${addArrow(3, 4)}\n`;
+      // Example 1: Normal Function with Parameters
+      function addNormal(a, b) {
+        return a + b;
+      }
+      arrowParamsOutput.textContent += `Normal Function: ${addNormal(3, 4)}`;
+
+      // 3. Arrow Function with Implicit Return
+      const arrowImplicitOutput = document.getElementById("arrow-implicit");
+      // Example 1: Arrow Function with Implicit Return
+      const multiplyArrow = (a, b) => a * b;
+      arrowImplicitOutput.textContent += `Arrow Function: ${multiplyArrow(
+        4,
+        6
+      )}\n`;
+      // Example 1: Normal Function with Implicit Return
+      function multiplyNormal(a, b) {
+        return a * b;
+      }
+      arrowImplicitOutput.textContent += `Normal Function: ${multiplyNormal(
+        4,
+        6
+      )}`;
+
+      // 4. Arrow Function with Object Literals
+      const arrowObjectOutput = document.getElementById("arrow-object");
+      // Example 1: Arrow Function with Object Literals
+      const createPersonArrow = (name, age) => ({ name, age });
+      const personArrow = createPersonArrow("John", 30);
+      arrowObjectOutput.textContent += `Arrow Function: ${JSON.stringify(
+        personArrow
+      )}\n`;
+
+      // Example 1: Normal Function with Object Literals
+      function createPersonNormal(name, age) {
+        return { name: name, age: age };
+      }
+      const personNormal = createPersonNormal("John", 30);
+      arrowObjectOutput.textContent += `Normal Function: ${JSON.stringify(
+        personNormal
+      )}`;
+
+      // 5. Arrow Function in Array Methods
+      const arrowArrayMethodOutput = document.getElementById(
+        "arrow-array-method"
+      );
+      // Example 1: Using Arrow Function in Array.map()
+      const numbers = [1, 2, 3, 4, 5];
+      const squaredNumbersArrow = numbers.map((num) => num ** 2);
+      arrowArrayMethodOutput.textContent += `Arrow Function (map): Squared Numbers: ${squaredNumbersArrow}\n`;
+      // Example 1: Using Normal Function in Array.map()
+      const squaredNumbersNormal = numbers.map(function (num) {
+        return num ** 2;
+      });
+      arrowArrayMethodOutput.textContent += `Normal Function (map): Squared Numbers: ${squaredNumbersNormal}`;
+
+      //2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+      const bubbleSort = (arr) => {
+        const len = arr.length;
+        let swapped;
+        do {
+          swapped = false;
+          for (let i = 0; i < len - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+              [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+              swapped = true;
+            }
+          }
+        } while (swapped);
+        return arr;
+      };
+
+      // Example usage:
+      const unsortedArray = [5, 3, 8, 1, 4];
+      document.write("Unsorted Array: " + unsortedArray + "<br>");
+      const sortedArray = bubbleSort(unsortedArray);
+      document.write("Sorted Array: " + sortedArray + "<br><br>"); // Prints: [1, 3, 4, 5, 8]
+
+      //--------------------------------------------------------
+      // Syntax: Arrow functions have a more concise syntax compared to regular functions.
+      // this binding: Arrow functions do not have their own this context. Instead, they inherit the this value from the enclosing lexical context.
+      // arguments object: Arrow functions do not have their own arguments object. They inherit arguments from the enclosing lexical context.
+      // Cannot be used as constructors: Arrow functions cannot be used as constructors with the new keyword. They lack the [[Construct]] internal method and will throw an error if attempted to be used with new.
+
+      //Regular Function:   ----------------------1
+      function regularFunction(a, b) {
+        return a + b;
+      }
+      //Arrow Function:
+      const arrowFunction = (a, b) => {
+        return a + b;
+      };
+      //Regular Function:this Binding:  ----------2
+      const obj = {
+        name: "Regular",
+        regularFunction: function () {
+          console.log(this.name); // 'Regular'
+        },
+      };
+      //Arrow Function:this Binding:
+      const obje = {
+        name: "Arrow",
+        arrowFunction: () => {
+          console.log(this.name); // undefined (Arrow functions do not have their own 'this', so it inherits from the enclosing lexical context)
+        },
+      };
+
+      //Regular Function:arguments object  --------3
+      function regularFunction() {
+        console.log(arguments); // Available
+      }
+
+      //Arrow Function:arguments object
+      const arrowFunctio = () => {
+        console.log(arguments); // Error: 'arguments' is not defined (Arrow functions do not have their own 'arguments')
+      };
+
+      //Regular Function:Constructor Usage: -------4
+      function RegularObject(value) {
+        this.value = value;
+      }
+      const regularInstance = new RegularObject(10); // Works fine
+
+      //Arrow Function:Cannot be used as constructors
+      const ArrowObject = (value) => {
+        this.value = value;
+      };
+      const arrowInstance = new ArrowObject(10); // Error: Arrow functions cannot be used as constructors
+       
+      //These examples should help illustrate the basic differences between regular functions and arrow functions in JavaScript.
+    </script>
+  </body>
+</html>
