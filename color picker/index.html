@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            margin-top: 2rem;
+            color: rgb(152, 5, 106);
+        }
+
+        #box {
+            width: 24rem;
+            height: 24rem;
+            border-radius: 50%;
+            margin: 0 auto;
+            margin-top: 2rem;
+            border: 2px dotted gray;
+        }
+
+        #ele {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        button {
+            font-size: large;
+            font-weight: bold;
+            margin-top: 1rem;
+            padding: 0.7rem 1rem;
+            border-radius: 0.4rem;
+            background-color: rgb(7, 183, 121);
+            color: aliceblue;
+            border: none;
+        }
+
+        button:hover {
+            background-color: rgb(24, 140, 32);
+        }
+
+        input {
+            margin-top: 1rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 0.4rem;
+            border: 1px solid gray;
+            font-size: large;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pick your Colour</h1>
+    <div id="box"></div>
+    <div id="ele">
+        <input type="text"
+               placeholder="Enter a color code to see ">
+        <button onclick="changeColor()"> Change Color</button>
+    </div>
+</body>
+
+<script>
+    let box = document.getElementById("box");
+
+    function changeColor() {
+        let input = document.querySelector("input").value;
+        let sanitizedInput = input.replace(/[^0-9a-fA-F]/g, ''); // Sanitize input to remove non-hex characters
+        if (sanitizedInput.length === 3 || sanitizedInput.length === 6) { // Check if input is a valid hex color code
+            let x, y, z;
+            if (sanitizedInput.length === 3) {
+                x = sanitizedInput[0] + sanitizedInput[0];
+                y = sanitizedInput[1] + sanitizedInput[1];
+                z = sanitizedInput[2] + sanitizedInput[2];
+            } else {
+                x = sanitizedInput.slice(0, 2);
+                y = sanitizedInput.slice(2, 4);
+                z = sanitizedInput.slice(4, 6);
+            }
+            box.style.backgroundColor = `rgb(${parseInt(x, 16)},${parseInt(y, 16)},${parseInt(z, 16)})`;
+        } else {
+            alert("Please enter a valid 3 or 6 digit hex color code.");
+        }
+    }
+</script>
+
+</html>

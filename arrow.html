@@ -149,7 +149,7 @@
       // arguments object: Arrow functions do not have their own arguments object. They inherit arguments from the enclosing lexical context.
       // Cannot be used as constructors: Arrow functions cannot be used as constructors with the new keyword. They lack the [[Construct]] internal method and will throw an error if attempted to be used with new.
 
-      //Regular Function:   ----------------------1
+      //Regular Function:   -----------------------1
       function regularFunction(a, b) {
         return a + b;
       }
@@ -157,7 +157,7 @@
       const arrowFunction = (a, b) => {
         return a + b;
       };
-      //Regular Function:this Binding:  ----------2
+      //Regular Function:this Binding:  -----------2
       const obj = {
         name: "Regular",
         regularFunction: function () {
