@@ -1,12 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    body {
+        padding: 0%;
+        margin: 0%;
+        background-image: url('dice.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: sans-serif;
+        text-align: center;
+        color: rgb(121, 212, 139);
+        font-weight: bold;
+        user-select: none;
+    }
+
+    h1 {
+        font-size: 4rem;
+    }
+
+    p {
+        font-size: 2rem;
+    }
+
+    #text {
+        margin-top: 2rem;
+        font-size: 3rem;
+        font-weight: bold;
+        flex-wrap: wrap;
+        background-color: rgba(161, 198, 26, 0.5);
+        margin: 2rem 5rem;
+        border-radius: 20px;
+
+    }
+
+
+    .container {
+        grid-template-columns: repeat(3, 1fr);
+        display: grid;
+        gap: 1rem;
+        border: 8px solid rgba(230, 234, 10, 0.757);
+        padding: 1rem;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        background-color: rgba(161, 198, 26, 0.5);
+        border: none;
+    }
+
+    @media (max-width: 600px) {
+
+        body {
+            background-size: cover;
+            background-position: 50% 50%;
+            background-repeat: repeat;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+
+        .box {
+            font-size: 1rem;
+            width: 70px;
+            height: 70px;
+        }
+
+        .text {
+            font-size: 0.5rem;
+            font-weight: bold;
+            flex-wrap: wrap;
+            background-color: rgba(161, 198, 26, 0.5);
+            margin: 2rem 5rem;
+        }
+    }
+</style>
+
 <body>
-    
-    <h1>dice Game</h1>
+
+    <h1> <span id="count"></span> Welcome to the Dice Game!</h1>
+    <p>Take a chance, roll the dice, and let's begin the game!</p>
+    <span style="color: red; font-size: 2rem; ">Your score: <span id="score">0</span></span>
+
+    <div class="main">
+        <div class="container">
+            <div class="box"
+                 onclick="test(1)">ONE</div>
+            <div class="box"
+                 onclick="test(2)">TWO</div>
+            <div class="box"
+                 onclick="test(3)">THREE</div>
+            <div class="box"
+                 onclick="test(4)">FOUR</div>
+            <div class="box"
+                 onclick="test(5)">FIVE</div>
+            <div class="box"
+                 onclick="test(6)">SIX</div>
+        </div>
+        <div id="text"></div>
+    </div>
 </body>
+
+<script>
+    let count = 0, s = 0;
+
+    function test(num) {
+        let random = Math.floor(Math.random() * 6) + 1;
+        let score = document.getElementById("score");
+        count++;
+        if (num == random) {
+            document.getElementById("text").innerText = "Congratulations you won the game";
+            document.getElementById("text").style.color = "green";
+            s += 20;
+            score.innerText = s;
+        } else {
+            document.getElementById("text").innerText = `oops sorry you lost. the correct number is :${random}`;
+            document.getElementById("text").style.color = "red";
+        }
+        document.getElementById("count").innerText = count;
+        checkGameOver(); // Call function to check if the game is over after each play
+    }
+
+    function checkGameOver() {
+        if (count > 5) {
+            alert("you lost the game");
+            location.reload();
+        }
+    }
+</script>
+
 </html>
