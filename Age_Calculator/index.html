@@ -1,3 +1,45 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+</head>
+
+<body>
+    <h1>Age Calculator</h1>
+    <p>Enter your date of birth:</p>
+    <input type="date"
+           id="dobInput"
+           placeholder="Enter your date of birth">
+    <button onclick="calculateAge()">Calculate Age</button>
+    <h2 id="ageOutput"></h2>
+
+    <script>
+        function calculateAge() {
+            let dobInput = document.getElementById("dobInput").value;
+            let birthDate = new Date(dobInput);
+            let today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            let m = today.getMonth() - birthDate.getMonth();
+
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            if (isNaN(age)) {
+                document.getElementById("ageOutput").innerText = "Please enter a valid date.";
+            } else {
+                document.getElementById("ageOutput").innerText = "Your age is: " + age;
+            }
+        }
+    </script>
+</body>
+
+</html> -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +48,25 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>ages calculator</h1>
+    <input type="date">
+    <input type="button" value="calculateAge" onclick="calculateAge()">
+    <h1>s</h1>
+
+    <script>
+
+        function calculateAge() {
+
+    let dop = document.getElementbyQuerySelector('input').value;
+    let birth = new Date(dop)
+    let date = Date();
+
+    let year = date.getFullYear() - birth.getFullYear() 
+    let month = date.getMonth() - birth.getMonth()
+
+    document.getElementsByTagName('h1')[0].innerHTML = "your date of birth is ",year,' : ',month
+
+
+        }
+    </script>
 </body>
 </html>

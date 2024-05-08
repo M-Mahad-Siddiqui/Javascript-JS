@@ -1,0 +1,173 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Current Date and Time:</h1>
+    <p id="currentDateTime"></p>
+    <h2>Date Components:</h2>
+    <ul>
+        <li>Year: <span id="year"></span></li>
+        <li>Month: <span id="month"></span></li>
+        <li>Date: <span id="date"></span></li>
+        <li>Day: <span id="day"></span></li>
+        <li>Hours: <span id="hours"></span></li>
+        <li>Minutes: <span id="minutes"></span></li>
+        <li>Seconds: <span id="seconds"></span></li>
+        <li>Milliseconds: <span id="milliseconds"></span></li>
+    </ul>
+    <h2>Updated Date:</h2>
+    <p id="updatedDate"></p>
+    <h2>Formatted Dates:</h2>
+    <ul>
+        <li>Date to String: <span id="dateToString"></span></li>
+        <li>Date to Date String: <span id="dateToDateString"></span></li>
+        <li>Date to Time String: <span id="dateToTimeString"></span></li>
+        <li>Date to Locale String: <span id="dateToLocaleString"></span></li>
+        <li>Date to ISO String: <span id="dateToISOString"></span></li>
+    </ul>
+    <h2>Future Date:</h2>
+    <p id="futureDate"></p>
+    <h2>Date Comparison:</h2>
+    <p id="dateComparison"></p>
+
+    <script>
+        let currentDate = new Date();
+
+        document.getElementById("currentDateTime").innerText = currentDate.toString();
+
+        let year = currentDate.getFullYear();
+        let month = currentDate.getMonth() + 1; // Adding 1 to match human-readable month representation
+        let date = currentDate.getDate();
+        let day = currentDate.getDay(); // Note: Day is 0 for Sunday, 1 for Monday, ..., 6 for Saturday
+        let hours = currentDate.getHours();
+        let minutes = currentDate.getMinutes();
+        let seconds = currentDate.getSeconds();
+        let milliseconds = currentDate.getMilliseconds();
+
+        document.getElementById("year").innerText = year;
+        document.getElementById("month").innerText = month;
+        document.getElementById("date").innerText = date;
+        document.getElementById("day").innerText = day;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+        document.getElementById("milliseconds").innerText = milliseconds;
+
+        currentDate.setFullYear(2023);
+        currentDate.setMonth(11); // December (0-indexed)
+        currentDate.setDate(25);
+        currentDate.setHours(10);
+        currentDate.setMinutes(30);
+        currentDate.setSeconds(0);
+        currentDate.setMilliseconds(0);
+
+        document.getElementById("updatedDate").innerText = currentDate.toString();
+
+        document.getElementById("dateToString").innerText = currentDate.toString();
+        document.getElementById("dateToDateString").innerText = currentDate.toDateString();
+        document.getElementById("dateToTimeString").innerText = currentDate.toTimeString();
+        document.getElementById("dateToLocaleString").innerText = currentDate.toLocaleString();
+        document.getElementById("dateToISOString").innerText = currentDate.toISOString();
+
+        let futureDate = new Date(currentDate.getTime());
+        futureDate.setDate(futureDate.getDate() + 7); // Add 7 days to the current date
+
+        document.getElementById("futureDate").innerText = futureDate.toString();
+
+        let comparisonResult = "";
+        if (currentDate < futureDate) {
+            comparisonResult = "Current date is before future date";
+        } else if (currentDate > futureDate) {
+            comparisonResult = "Current date is after future date";
+        } else {
+            comparisonResult = "Both dates are equal";
+        }
+
+        document.getElementById("dateComparison").innerText = comparisonResult;
+    </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // Create a new Date object for the current date and time
+        let currentDate = new Date();
+
+        // Display the current date and time
+        console.log("Current Date and Time:", currentDate.toString());
+
+        // Get and display individual date components
+        let year = currentDate.getFullYear();
+        let month = currentDate.getMonth(); // Note: Month is 0-indexed (0 for January)
+        let date = currentDate.getDate();
+        let day = currentDate.getDay(); // Note: Day is 0 for Sunday, 1 for Monday, ..., 6 for Saturday
+        let hours = currentDate.getHours();
+        let minutes = currentDate.getMinutes();
+        let seconds = currentDate.getSeconds();
+        let milliseconds = currentDate.getMilliseconds();
+
+        console.log("Year:", year);
+        console.log("Month:", month + 1); // Adding 1 to match human-readable month representation
+        console.log("Date:", date);
+        console.log("Day:", day);
+        console.log("Hours:", hours);
+        console.log("Minutes:", minutes);
+        console.log("Seconds:", seconds);
+        console.log("Milliseconds:", milliseconds);
+
+        // Set date components to a specific date
+        currentDate.setFullYear(2023);
+        currentDate.setMonth(11); // December (0-indexed)
+        currentDate.setDate(25);
+        currentDate.setHours(10);
+        currentDate.setMinutes(30);
+        currentDate.setSeconds(0);
+        currentDate.setMilliseconds(0);
+
+        // Display the updated date
+        console.log("Updated Date:", currentDate.toString());
+
+        // Format date using various methods
+        console.log("Date to String:", currentDate.toString());
+        console.log("Date to Date String:", currentDate.toDateString());
+        console.log("Date to Time String:", currentDate.toTimeString());
+        console.log("Date to Locale String:", currentDate.toLocaleString());
+        console.log("Date to ISO String:", currentDate.toISOString());
+
+        // Perform date arithmetic and comparison
+        let futureDate = new Date(currentDate.getTime());
+        futureDate.setDate(futureDate.getDate() + 7); // Add 7 days to the current date
+
+        console.log("Future Date:", futureDate.toString());
+
+        if (currentDate < futureDate) {
+            console.log("Current date is before future date");
+        } else if (currentDate > futureDate) {
+            console.log("Current date is after future date");
+        } else {
+            console.log("Both dates are equal");
+        }
+
+    </script>
+
+</body>
+</html>
