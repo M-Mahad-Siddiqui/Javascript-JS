@@ -1,11 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    * {
+        background-color: rgb(123, 123, 237);
+    }
+
+    .container {
+        border: none;
+        border-radius: 5px;
+        width: 700px;
+        height: 300px;
+        justify-content: center;
+        align-items: center;
+        margin: 0px auto;
+        display: flex;
+        flex-direction: column;
+        margin-top: 100px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background-color: #fff;
+    }
+
+    #display {
+        margin-bottom: 20px;
+        font-size: 75px;
+        font-style: italic;
+        color: blue;
+        border: none;
+        padding: 2rem 4.5rem;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(22, 73, 190, 0.645);
+    }
+
+    span {
+        background-color: #fff;
+    }
+
+    #buttons {
+        background-color: #fff;
+        display: flex;
+        justify-content: space-around;
+        width: 70%;
+        margin: 20px 10px
+    }
+
+    button {
+        width: 100px;
+        font-size: 20px;
+        border-radius: 3px;
+        border: none;
+        color: white;
+        padding: 8px 25px;
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+        font-weight: bold;
+        letter-spacing: 1px;
+        display: flex;
+        justify-content: center;
+    }
+
+    button:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(22, 73, 190, 0.645);
+    }
+
+    #pause {
+        background-color: rgb(45, 45, 223);
+    }
+
+    #start {
+        background-color: rgb(22, 140, 22);
+    }
+
+    #reset {
+        background-color: rgb(223, 22, 22);
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            width: 75%;
+        }
+
+        #display {
+            font-size: 50px;
+            padding: 1.8rem 2rem;
+        }
+
+    }
+
+    @media (max-width: 570px) {
+        .container {
+            width: 90%;
+            height: 200px
+        }
+
+        #display {
+            font-size: 27px;
+            padding: 1rem 3.5rem;
+        }
+
+        button {
+            font-size: 12px;
+            padding: 5px 15px;
+            width: 70px;
+        }
+
+    }
+</style>
+
 <body>
-    <h1>stopwatch</h1>
+
+    <div class="container">
+        <div id="display">
+            <span>00 :</span>
+            <span>00 :</span>
+            <span>00 :</span>
+            <span>00 </span>
+        </div>
+        <div id="buttons">
+            <button id="pause"
+                    onclick="pause()">Pause</button>
+            <button id="start"
+                    onclick="start()">Start</button>
+            <button id="reset"
+                    onclick="reset()">Reset</button>
+        </div>
+    </div>
+    <!-- <script>
+    let time = document.querySelectorAll("span");
+    let interval;
+    let tens = 0;
+    let seconds = 0;
+    let minutes = 0;
+    let hours = 0;
+
+    function start() {
+        clearInterval(interval);
+        interval = setInterval(startTimer, 10);
+    }
+
+    function startTimer() {
+        tens++;
+        if (tens >= 100) {
+            tens = 0;
+            seconds++;
+            if (seconds >= 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes >= 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+        }
+        updateDisplay();
+    }
+
+    function updateDisplay() {
+        time[0].textContent = pad(hours);
+        time[1].textContent = pad(minutes);
+        time[2].textContent = pad(seconds);
+        time[3].textContent = pad(tens);
+    }
+
+    function pad(value) {
+        return value < 10 ? "0" + value : value;
+    }
+
+    function pause() {
+        clearInterval(interval);
+    }
+
+    function reset() {
+        clearInterval(interval);
+        tens = seconds = minutes = hours = 0;
+        updateDisplay();
+    }
+</script> -->
+    <script>
+        let time = document.querySelectorAll("span");
+        let interval;
+        let tens = 0;
+        let seconds = 0;
+        let minutes = 0;
+        let hours = 0;
+
+        function start() {
+            clearInterval(interval);
+            interval = setInterval(startTimer, 10);
+        }
+
+        function startTimer() {
+            tens++;
+            if (tens >= 100) {
+                tens = 0;
+                seconds++;
+                if (seconds >= 60) {
+                    seconds = 0;
+                    minutes++;
+                    if (minutes >= 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            time[0].textContent = pad(hours) + " :";
+            time[1].textContent = pad(minutes) + " :";
+            time[2].textContent = pad(seconds) + " :";
+            time[3].textContent = pad(tens);
+        }
+
+        function pad(value) {
+            return value < 10 ? "0" + value : value;
+        }
+
+        function pause() {
+            clearInterval(interval);
+        }
+
+        function reset() {
+            clearInterval(interval);
+            tens = seconds = minutes = hours = 0;
+            updateDisplay();
+        }
+    </script>
 </body>
+
 </html>
