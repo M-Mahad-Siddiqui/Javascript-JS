@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        width: 400px;
+        height: 100px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 60px;
+    }
+
+    span {
+        font-size: 70px;
+        color: red;
+    }
+
+    #buttons {
+        width: 300px;
+        padding: 30px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    button {
+        font-size: larger;
+        padding: 10px 20px;
+        border-radius: 10px;
+        background-color: chocolate;
+        border: 0cap;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <span>00</span><span>00</span><span>00</span><span>00</span>
+
+    </div>
+    <div id="buttons">
+        <button onclick="start()">start</button>
+        <button onclick="stop()">stop</button>
+        <button onclick="reset()">reset</button>
+    </div>
+
+</body>
+
+<script>
+    let time = document.querySelectorAll('span');
+    let ten = 0
+    let seconds = 0
+    let minutes = 0
+    let hours = 0
+    let interval;
+
+    function start() {
+        clearInterval(interval)
+        interval = setInterval(startTimer, 10)
+    }
+    function startTimer() {
+        ten++
+        if (ten >= 100) {
+            ten = 0
+            seconds++
+
+            if (seconds >= 60) {
+                seconds = 0
+                minutes++
+
+                if (minutes > 60) {
+                    minutes = 0
+                    hours++
+                }
+            }
+        }
+        displayTime();
+    }
+    function displayTime() {
+        time[0].textContent = pad(ten)
+        time[1].textContent = pad(seconds)
+        time[2].textContent = pad(minutes)
+        time[3].textContent = pad(hours)
+    }
+    function pad(value){
+        return value < 10 ? '0' + value : value;
+    }
+    function stop() {
+        clearInterval(interval)
+    }
+    function reset() {
+        clearInterval(interval)
+        ten = 0
+        seconds = 0
+        minutes = 0
+        hours = 0
+        displayTime()
+    }
+
+</script>
+
+</html>
