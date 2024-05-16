@@ -1,499 +1,234 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <title>Analog Clock</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-
-        .clock {
-            width: 200px;
-            height: 200px;
-            border: 10px solid #333;
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .hour,
-        .minute,
-        .second {
-            position: absolute;
-            width: 50%;
-            height: 2px;
-            background-color: #000;
-            top: 50%;
-            transform-origin: 100%;
-            transform: rotate(90deg);
-        }
-
-        .hour {
-            background-color: #000;
-            transform: rotate(90deg);
-        }
-
-        .minute {
-            background-color: #000;
-            transform: rotate(90deg);
-        }
-
-        .second {
-            background-color: red;
-            transform: rotate(90deg);
-        }
-
-        .center {
-            width: 10px;
-            height: 10px;
-            background-color: #000;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
-</head>
-
-<body>
-    <div class="clock">
-        <div class="hour"
-             id="hour"></div>
-        <div class="minute"
-             id="minute"></div>
-        <div class="second"
-             id="second"></div>
-        <div class="center"></div>
-    </div>
-
-    <script>
-        function updateClock() {
-            const now = new Date();
-            const hour = now.getHours();
-            const minute = now.getMinutes();
-            const second = now.getSeconds();
-
-            const hourDegree = (hour % 12) * 30 + minute / 2;
-            const minuteDegree = minute * 6 + second / 10;
-            const secondDegree = second * 6;
-
-            document.getElementById('hour').style.transform = `rotate(${hourDegree}deg)`;
-            document.getElementById('minute').style.transform = `rotate(${minuteDegree}deg)`;
-            document.getElementById('second').style.transform = `rotate(${secondDegree}deg)`;
-        }
-
-        setInterval(updateClock, 1000);
-        updateClock(); // To prevent delay on initial load
-    </script>
-</body>
-
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        /*Analog Clock Style */
-.container {
-  position: relative;
-  background: #2f363e;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+<style>
+    /*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #000;
+  --secondary-color: #fff;
+  --accent-color: #a876aa;
+  --main-transition: all 0.5s ease-in;
+}
+
+body.dark {
+  --primary-color: #fff;
+  --secondary-color: #181625;
+}
+
+body.dark {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  transition: var(--main-transition);
+}
+
+.toggle {
+  color: var(--primary-color);
+  background-color: transparent;
+  font-size: 25px;
+  border: 0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: var(--main-transition), scale 0.2s ease;
+}
+
+.toggle:hover {
+  scale: 1.2;
+}
+
+.toggle:focus {
+  outline: none;
+}
+
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .clock {
   position: relative;
-  width: 450px;
-  height: 450px;
-  background: #2f363e;
+  width: 250px;
+  height: 250px;
+  box-shadow: var(--accent-color) 0px 0px 50px;
   border-radius: 50%;
-  box-shadow: 10px 50px 70px rgba(0, 0, 0, 0.25),
-    inset 5px 5px 10px rgba(0, 0, 0, 0.5),
-    inset 5px 5px 20px rgba(255, 255, 255, 0.2),
-    inset -5px -5px 15px rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: center;
+  margin: 70px 0;
+}
+
+.needle {
+  background-color: var(--primary-color);
+  box-shadow: var(--accent-color) 0px 0px 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 65px;
+  width: 3px;
+  transform-origin: bottom center;
+  transition: var(--main-transition), transform 0s;
+}
+
+.needle.hour {
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+
+.needle.minute {
+  transform: translate(-50%, -100%) rotate(0deg);
+  height: 100px;
+}
+
+.needle.second {
+  transform: translate(-50%, -100%) rotate(0deg);
+  height: 100px;
+  background-color: var(--accent-color);
+}
+
+.center-point {
+  background-color: var(--primary-color);
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  transition: var(--main-transition);
+}
+
+.time {
+  font-size: 60px;
+}
+
+.date {
+  color: #aaa;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.date .circle {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  font-size: 12px;
+  display: inline-flex;
   align-items: center;
-}
-
-.clock::before {
-  content: '';
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: #2f363e;
-  border: 3px solid #fff;
-  border-radius: 50%;
-  z-index: 100000;
-}
-
-.clock span {
-  position: absolute;
-  inset: 20px;
-  color: #fff;
-  text-align: center;
-  transform: rotate(calc(30deg * var(--i)));
-  /*360 / 12 = 30deg */
-}
-
-.clock span b {
-  font-size: 2em;
-  opacity: 0.25;
-  font-weight: 600;
-  display: inline-block;
-  transform: rotate(calc(-30deg * var(--i)));
-}
-
-.circle {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border: 2px solid rgba(0, 0, 0, 0.25);
-  border-radius: 50%;
-  display: flex;
   justify-content: center;
-  align-items: flex-start;
-  z-index: 10;
+  line-height: 18px;
+  transition: var(--main-transition);
 }
-
-.circle i {
-  position: absolute;
-  width: 6px;
-  height: 50%;
-  background: var(--clr);
-  opacity: 0.75;
-  transform-origin: bottom;
-  transform: scaleY(0.5);
-}
-
-.circle:nth-child(1) i {
-  width: 2px;
-}
-
-.circle:nth-child(2) i {
-  width: 6px;
-}
-
-.circle2 {
-  width: 240px;
-  height: 240px;
-  z-index: 9;
-}
-
-.circle3 {
-  width: 180px;
-  height: 180px;
-  z-index: 8;
-}
-
-.circle::before {
-  content: '';
-  position: absolute;
-  top: -8.5px;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: var(--clr);
-  box-shadow: 0 0 10px var(--clr),
-    0 0 40px var(--clr);
-}
-
-/* digital clock style */
-
-#time {
-  margin-bottom: -80px;
-  display: flex;
-  transform: translateY(15px);
-  padding: 10px 10px;
-  font-size: 2em;
-  font-weight: 600;
-  border: 2px solid rgba(0, 0, 0, 0.5);
-  border-radius: 40px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5),
-    inset 5px 5px 20px rgba(255, 255, 255, 0.2),
-    inset -5px -5px 15px rgba(0, 0, 0, 0.75);
-  margin-left: 15px;
-}
-
-#time div {
-  position: relative;
-  width: 60px;
-  text-align: center;
-  font-weight: 500;
-  color: var(--clr);
-}
-
-#time div:nth-child(1)::after,
-#time div:nth-child(2)::after {
-  content: ':';
-  position: absolute;
-  right: -4px;
-}
-
-#time div:last-child {
-  font-size: 0.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-}
-
-#time div:nth-child(2)::after {
-  animation: animate 1s steps(1) infinite;
-}
-
-@keyframes animate {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
-}
-
-/* Make Responsive */
-
-@media screen and (max-width: 768px) {
-  .container {
-    border-radius: 10px;
-  }
-
-  .clock {
-    width: 300px;
-    height: 300px;
-  }
-
-  .clock span {
-    inset: 15px;
-  }
-
-  .clock span b {
-    font-size: 1.5em;
-  }
-
-  .circle {
-    width: 200px;
-    height: 200px;
-  }
-
-  .circle i {
-    height: 40%;
-  }
-
-  .circle:nth-child(1) i {
-    width: 1px;
-  }
-
-  .circle:nth-child(2) i {
-    width: 3px;
-  }
-
-  .circle2 {
-    width: 150px;
-    height: 150px;
-  }
-
-  .circle3 {
-    width: 100px;
-    height: 100px;
-  }
-
-  .circle::before {
-    top: -6.5px;
-    width: 10px;
-    height: 10px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .container {
-    border-radius: 0;
-  }
-
-  .clock {
-    width: 200px;
-    height: 200px;
-  }
-
-  .clock span {
-    inset: 10px;
-  }
-
-  .clock span b {
-    font-size: 1em;
-  }
-
-  .circle {
-    width: 120px;
-    height: 120px;
-  }
-
-  .circle i {
-    height: 30%;
-  }
-
-  .circle:nth-child(1) i {
-    width: 1px;
-  }
-
-  .circle:nth-child(2) i {
-    width: 2px;
-  }
-
-  .circle2 {
-    width: 80px;
-    height: 80px;
-  }
-
-  .circle3 {
-    width: 60px;
-    height: 60px;
-  }
-
-  .circle::before {
-    top: -4.5px;
-    width: 8px;
-    height: 8px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  #time {
-    font-size: 1.5em;
-    padding: 5px 5px;
-    margin-left: 10px;
-  }
-
-  #time div {
-    width: 50px;
-  }
-
-  #time div:last-child {
-    font-size: 0.4em;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  #time {
-    font-size: 1em;
-    padding: 2px 2px;
-    margin-left: 5px;
-  }
-
-  #time div {
-    width: 40px;
-  }
-
-  #time div:last-child {
-    font-size: 0.3em;
-  }
-}
-    </style>
-</head>
+</style>
+        </head>
 <body>
-    <div class="container">
+    <section class="dark">
+        <button class="toggle"><i class="fa-regular fa-lightbulb"></i></button>
+        <div class="clock-container">
+            <div class="clock">
+                <div class="needle hour"></div>
+                <div class="needle minute"></div>
+                <div class="needle second"></div>
+                <div class="center-point"></div>
+            </div>
     
-        <!--Analog Clock-->
-        <div class="clock">
-    
-            <div class="circle"
-                 id="sc"
-                 style="--clr:#04fc43;"><i></i></div>
-            <div class="circle circle2"
-                 id="mn"
-                 style="--clr:#fee800;"><i></i></div>
-            <div class="circle circle3"
-                 id="hr"
-                 style="--clr:#ff2972;"><i></i></div>
-    
-            <span style="--i:1;"><b>1</b></span>
-            <span style="--i:2;"><b>2</b></span>
-            <span style="--i:3;"><b>3</b></span>
-            <span style="--i:4;"><b>4</b></span>
-            <span style="--i:5;"><b>5</b></span>
-            <span style="--i:6;"><b>6</b></span>
-            <span style="--i:7;"><b>7</b></span>
-            <span style="--i:8;"><b>8</b></span>
-            <span style="--i:9;"><b>9</b></span>
-            <span style="--i:10;"><b>10</b></span>
-            <span style="--i:11;"><b>11</b></span>
-            <span style="--i:12;"><b>12</b></span>
-    
+            <div class="time"></div>
+            <div class="date">
+                <span class="circle"></span>
+            </div>
         </div>
     
-        <!--digital clock-->
-        <div id="time">
-    
-            <div id="hours"
-                 style="--clr:#ff2972;">00</div>
-            <div id="minutes"
-                 style="--clr:#fee800;">00</div>
-            <div id="seconds"
-                 style="--clr:#04fc43;">00</div>
-            <div id="ampm">AM</div>
-    
-        </div>
-    
-    </div>
-    <script>
-        //Analog Clock
-            let hr = document.querySelector('#hr');
-            let mn = document.querySelector('#mn');
-            let sc = document.querySelector('#sc');
-
-            setInterval(() => {
-                let day = new Date();
-                let hh = day.getHours() * 30;
-                let mm = day.getMinutes() * 6;
-                let ss = day.getSeconds() * 6;
-
-                hr.style.transform = `rotateZ(${hh + (mm / 12)}deg)`;
-                mn.style.transform = `rotateZ(${mm}deg)`;
-                sc.style.transform = `rotateZ(${ss}deg)`;
-
-
-
-                //Digital clock
-                let h = new Date().getHours();
-                let m = new Date().getMinutes();
-                let s = new Date().getSeconds();
-
-                let am = h >= 12 ? "PM" : "AM";
-
-                //convert 24hr clock to 12hr clock
-
-                if (h > 12) {
-                    h = h - 12;
-                }
-
-                //add zero before single digit number
-
-                h = (h < 10) ? "0" + h : h;
-                m = (m < 10) ? "0" + m : m;
-                s = (s < 10) ? "0" + s : s;
-
-                hours.innerHTML = h;
-                minutes.innerHTML = m;
-                seconds.innerHTML = s;
-                ampm.innerHTML = am;
-
-            });
-    </script>
+    </section>
 </body>
+<script>
+    const hourEl = document.querySelector(".hour");
+        const minuteEl = document.querySelector(".minute");
+        const secondEl = document.querySelector(".second");
+        const timeEl = document.querySelector(".time");
+        const dateEl = document.querySelector(".date");
+        const toggle = document.querySelector(".toggle");
+
+        const days = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        ];
+
+        const months = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+        ];
+
+        toggle.addEventListener("click", (e) => {
+            const body = document.querySelector("body");
+            if (body.classList.contains("dark")) {
+                body.classList.remove("dark");
+            } else {
+                body.classList.add("dark");
+            }
+        });
+
+        function setTime() {
+            const time = new Date();
+            const month = time.getMonth();
+            const day = time.getDay();
+            const date = time.getDate();
+            const hours = time.getHours();
+            const hoursForClock = hours % 12;
+            const minutes = time.getMinutes();
+            const seconds = time.getSeconds();
+
+            hourEl.style.transform = `translate(-50%, -100%) rotate(${((hoursForClock / 12) * 100 * 360) / 100
+                }deg)`;
+
+            minuteEl.style.transform = `translate(-50%, -100%) rotate(${((minutes / 60) * 100 * 360) / 100
+                }deg)`;
+
+            secondEl.style.transform = `translate(-50%, -100%) rotate(${((seconds / 60) * 100 * 360) / 100
+                }deg)`;
+
+            timeEl.innerHTML = `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
+            dateEl.innerHTML = `${days[day]}, ${months[month]} ${date}`;
+        }
+
+        setTime();
+
+        setInterval(setTime, 1000);
+</script>
 </html>
