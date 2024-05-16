@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #main {
+        margin: 5px;
+        display: flex-inline-block;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+        width: 700px;
+    }
+
+    .big {
+        border: 2px solid black;
+        width: 700px;
+        height: 500px;
+        margin-bottom: 5px;
+        background-image: url("experience.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .smallImg {
+        border: 2px solid black;
+        width: 150px;
+        height: 150px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        cursor: pointer;
+    }
+
+    .container {
+        display: flex;
+        gap: 10px;
+    }
+
+    #one {
+        background-image: url("github.png");
+    }
+
+    #two {
+        background-image: url("email.png")
+    }
+
+    #three {
+        background-image: url("education.png");
+    }
+
+    #four {
+        background-image: url("checkmark.png");
+    }
+
+    #five {
+        background-image: url("arrow.png");
+    }
+</style>
+
+<body>
+    <div id="main">
+        <div class="big"
+             id="previewImg"></div>
+
+        <div class="container">
+            <div id="one"
+                 class="smallImg"></div>
+            <div id="two"
+                 class="smallImg"></div>
+            <div id="three"
+                 class="smallImg"></div>
+            <div id="four"
+                 class="smallImg"></div>
+            <div id="five"
+                 class="smallImg"></div>
+        </div>
+    </div>
+
+    <script>
+        // var box1 = document.getElementById('one');
+        // var box2 = document.getElementById('two');
+        // var box3 = document.getElementById('three');
+        // var box4 = document.getElementById('four');
+        // var box5 = document.getElementById('five');
+        // var preview = document.getElementById('previewImg');
+
+        // box1.addEventListener('click', function () {
+        //     var backgroundImage = getComputedStyle(this).backgroundImage;
+        //     preview.style.backgroundImage = backgroundImage;
+        // });
+        //    //this is works only when inline CSS used not work on different style block
+        // //  box1.addEventListener('click', function () {
+        // //         preview.style.backgroundImage = this.style.backgroundImage
+        // //     })
+
+        // box2.addEventListener('click', function () {
+        //     var backgroundImage = getComputedStyle(this).backgroundImage;
+        //     preview.style.backgroundImage = backgroundImage;
+        // });
+
+        // box3.addEventListener('click', function () {
+        //     var backgroundImage = getComputedStyle(this).backgroundImage;
+        //     preview.style.backgroundImage = backgroundImage;
+        // });
+
+        // box4.addEventListener('click', function () {
+        //     var backgroundImage = getComputedStyle(this).backgroundImage;
+        //     preview.style.backgroundImage = backgroundImage;
+        // });
+
+        // box5.addEventListener('click', function () {
+        //     var backgroundImage = getComputedStyle(this).backgroundImage;
+        //     preview.style.backgroundImage = backgroundImage;
+        // });
+
+        var boxes = document.querySelectorAll('.smallImg');
+        var boxess = document.getElementsByClassName('smallImg');
+        var preview = document.getElementById('previewImg');
+
+        boxes.forEach(function (box) {
+            box.addEventListener('click', function () {
+                var bg = getComputedStyle(this).backgroundImage;
+                preview.style.backgroundImage = bg;
+            });
+        });
+
+        // or
+        for (i = 0; i < boxes.length; i++) {
+            boxess[i].addEventListener('click', function () {
+                preview.style.backgroundImage = getComputedStyle(this).backgroundImage;
+            });
+            boxess[i].addEventListener('mouseover', function () {
+                this.style.border = '3px solid red'
+            })
+            boxess[i].addEventListener('mouseout', function () {
+                this.style.border = '3px solid transparent'
+            })
+        }
+    </script>
+
+</body>
+
+</html>

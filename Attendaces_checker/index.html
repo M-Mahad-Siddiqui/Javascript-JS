@@ -1,199 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        body {
-            font-family: "Trebuchet MS", sans-serif;
-            background-image: url("https://media.licdn.com/dms/image/C5612AQHU1BWIRuYg-g/article-inline_image-shrink_1500_2232/0/1526955022947?e=1718236800&v=beta&t=b5EysbFTtO1iPP1fM7iFeVJLyviZRGDXIR0rMhybEOA");
-            image-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
+      body {
+        font-family: "Trebuchet MS", sans-serif;
+        background-image: url("https://media.licdn.com/dms/image/C5612AQHU1BWIRuYg-g/article-inline_image-shrink_1500_2232/0/1526955022947?e=1718236800&v=beta&t=b5EysbFTtO1iPP1fM7iFeVJLyviZRGDXIR0rMhybEOA");
+        image-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
 
-        #container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 3px solid grey;
-            padding: 10px;
-            margin: 50px auto;
-            width: 420px;
-            height: 320px;
-            border-radius: 10px;
-        }
+      #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid grey;
+        padding: 10px;
+        margin: 50px auto;
+        width: 420px;
+        height: 320px;
+        border-radius: 10px;
+      }
 
-        h1 {
-            color: blue;
-        }
+      h1 {
+        color: blue;
+      }
 
-        span {
-            color: rgb(11, 95, 184);
-            font-size: large;
-        }
+      span {
+        color: rgb(11, 95, 184);
+        font-size: large;
+      }
 
-        input {
-            width: 300px;
-            height: 30px;
-            margin-bottom: 10px;
-            font-size: large;
-            margin: 10px;
-            border: 1px solid black;
-            border-radius: 5px;
-            padding: 7px;
-        }
+      input {
+        width: 300px;
+        height: 30px;
+        margin-bottom: 10px;
+        font-size: large;
+        margin: 10px;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 7px;
+      }
 
-        input:focus {
-            outline: none;
-        }
+      input:focus {
+        outline: none;
+      }
 
-        button {
-            font-weight: bold;
-            font-size: large;
-            width: 310px;
-            height: 45px;
-            margin-bottom: 10px;
-            background-color: green;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+      button {
+        font-weight: bold;
+        font-size: large;
+        width: 310px;
+        height: 45px;
+        margin-bottom: 10px;
+        background-color: green;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
-        button:hover {
-            background-color: red;
-        }
+      button:hover {
+        background-color: red;
+      }
 
-        h1 {
-            text-align: center;
-        }
+      h1 {
+        text-align: center;
+      }
 
-        #attendanceList {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: none;
-            max-width: 1000px;
-            margin: 10px auto;
-            padding: 10px;
-            border-radius: 10px;
-            background-color: rgba(119, 171, 46, 0.5);
-        }
+      #attendanceList {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: none;
+        max-width: 1000px;
+        margin: 10px auto;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgba(119, 171, 46, 0.5);
+      }
 
-        .attendance-item {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            margin-bottom: 5px;
-        }
+      .attendance-item {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin-bottom: 5px;
+      }
 
-        .attendance-item>span {
-            font-weight: 600;
-            color: rgb(11, 95, 184);
-            font-size: large;
-        }
+      .attendance-item > span {
+        font-weight: 600;
+        color: rgb(11, 95, 184);
+        font-size: large;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="container">
-        <h1>Attendances Checker</h1>
-        <span>Enter your name:</span>
-        <input type="text"
-               id="name"
-               placeholder="enter your name"
-               required /><br />
-        <span>Enter your current time </span>
-        <input type="time"
-               id="time"
-               required /><br />
-        <button id="submit"
-                onclick="checkAttendance()">Check Attendance</button>
+      <h1>Attendances Checker</h1>
+      <span>Enter your name:</span>
+      <input
+        type="text"
+        id="name"
+        placeholder="enter your name"
+        required
+      /><br />
+      <span>Enter your current time </span>
+      <input type="time" id="time" required /><br />
+      <button id="submit" onclick="checkAttendance()">Check Attendance</button>
     </div>
 
     <h1>Attendance List</h1>
     <div id="attendanceList">
-        <div class="attendance-item">
-            <span>S no.</span>
-            <span>Name</span>
-            <span>Time</span>
-            <span>Status</span>
-            <span>Date</span>
-        </div>
+      <div class="attendance-item">
+        <span>S no.</span>
+        <span>Name</span>
+        <span>Time</span>
+        <span>Status</span>
+        <span>Date</span>
+      </div>
     </div>
 
     <script>
-        let count = 0;
+      let count = 0;
 
-        function checkAttendance() {
-            const name = document.getElementById("name").value;
-            const time = document.getElementById("time").value;
-            const attendanceList = document.getElementById("attendanceList");
-            const attendanceItem = document.createElement("div");
-            attendanceItem.classList.add("attendance-item");
-            const current_time = new Date();
+      function checkAttendance() {
+        const name = document.getElementById("name").value;
+        const time = document.getElementById("time").value;
+        const attendanceList = document.getElementById("attendanceList");
+        const attendanceItem = document.createElement("div");
+        attendanceItem.classList.add("attendance-item");
+        const current_time = new Date();
 
+        if (name != "" && time != "") {
+          const serialNumber = document.createElement("span");
+          // serialNumber.textContent = attendanceList.childElementCount;
+          count = count + 1;
+          serialNumber.textContent = count;
+          attendanceItem.appendChild(serialNumber);
 
-            if (name != "" && time != "") {
-                const serialNumber = document.createElement("span");
-                // serialNumber.textContent = attendanceList.childElementCount;
-                count = count + 1;
-                serialNumber.textContent = count;
-                attendanceItem.appendChild(serialNumber);
+          const nameElement = document.createElement("span");
+          nameElement.textContent = name;
+          attendanceItem.appendChild(nameElement);
 
-                const nameElement = document.createElement("span");
-                nameElement.textContent = name;
-                attendanceItem.appendChild(nameElement);
+          const timeElement = document.createElement("span");
+          const inputTime = new Date();
+          const [hour, minute] = time.split(":");
+          inputTime.setHours(hour, minute); // Set the input time
 
-                const timeElement = document.createElement("span");
-                const inputTime = new Date();
-                const [hour, minute] = time.split(":");
-                inputTime.setHours(hour, minute); // Set the input time
+          if (inputTime < current_time) {
+            alert("Please enter a time after the current time.");
+            return; // Exit the function if the input time is before the current time
+          }
+          timeElement.textContent = time;
+          attendanceItem.appendChild(timeElement);
 
-                if (inputTime < current_time) {
-                    alert("Please enter a time after the current time.");
-                    return; // Exit the function if the input time is before the current time
-                }
-                timeElement.textContent = time;
-                attendanceItem.appendChild(timeElement);
+          const statusElement = document.createElement("span");
+          const officeTime = new Date();
+          officeTime.setHours(9, 0, 0, 0); // Set the office time to 9:00 AM
+          if (inputTime > officeTime) {
+            statusElement.textContent = "Late";
+            statusElement.style.color = "red"; // Set style directly on the element, not on its text content
+          } else {
+            statusElement.textContent = "On Time";
+            statusElement.style.color = "green";
+          }
+          attendanceItem.appendChild(statusElement);
 
-                const statusElement = document.createElement("span");
-                const officeTime = new Date();
-                officeTime.setHours(9, 0, 0, 0); // Set the office time to 9:00 AM
-                if (inputTime > officeTime) {
-                    statusElement.textContent = "Late";
-                    statusElement.style.color = "red"; // Set style directly on the element, not on its text content
-                } else {
-                    statusElement.textContent = "On Time";
-                    statusElement.style.color = "green";
-                }
-                attendanceItem.appendChild(statusElement);
+          const dateElement = document.createElement("span");
+          dateElement.textContent = current_time.toLocaleDateString();
+          attendanceItem.appendChild(dateElement);
 
-                const dateElement = document.createElement("span");
-                dateElement.textContent = current_time.toLocaleDateString();
-                attendanceItem.appendChild(dateElement);
-
-                attendanceList.appendChild(attendanceItem);
-            } else {
-                alert("Please First Enter Name and Time");
-                return;
-            }
-
-            // Clear input fields
-            document.getElementById("name").value = "";
-            document.getElementById("time").value = "";
-            document.getElementById("name").focus();
-            // document.getElementById('submit').disabled = true
-
+          attendanceList.appendChild(attendanceItem);
+        } else {
+          alert("Please First Enter Name and Time");
+          return;
         }
-    </script>
-</body>
 
+        // Clear input fields
+        document.getElementById("name").value = "";
+        document.getElementById("time").value = "";
+        document.getElementById("name").focus();
+        // document.getElementById('submit').disabled = true
+      }
+    </script>
+  </body>
 </html>

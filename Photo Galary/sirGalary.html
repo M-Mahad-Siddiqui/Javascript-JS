@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .container {
+            height: 400px;
+            width: 400px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+        }
+
+        .previewImg {
+            height: 320px;
+            width: 400px;
+            background-color: cadetblue;
+            transition: 1s ease-in all;
+
+        }
+
+        .small_div_container {
+            height: 80px;
+            display: flex;
+        }
+
+        .box {
+            flex-grow: 1;
+            margin: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.8s ease-in all;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="previewImg"
+             class="previewImg"></div>
+
+        <div class="small_div_container">
+            <div id="box1"
+                 style="background-color: rgb(239, 235, 244);"
+                 class="box"></div>
+
+            <div id="box2"
+                 class="box"
+                 style="background-color: rgb(213, 184, 242);"></div>
+
+            <div id="box3"
+                 class="box"
+                 style="background-color: rgb(167, 120, 208);"></div>
+
+            <div id="box4"
+                 class="box"
+                 style="background-color: rgb(140, 60, 215);"></div>
+
+            <div id="box5"
+                 class="box"
+                 style="background-color: rgb(116, 8, 233);"></div>
+        </div>
+    </div>
+
+    <script>
+        var preview = document.getElementById('previewImg')
+        var allBoxes = document.getElementsByClassName('box')
+
+
+        var selected = 0
+        preview.style.backgroundColor = allBoxes[selected].style.backgroundColor
+        allBoxes[selected].style.border = '2px solid purple'
+
+        var timer = setInterval(() => {
+            allBoxes[selected++].style.border = '2px solid transparent'
+            if (selected == 5) selected = 0
+            preview.style.backgroundColor = allBoxes[selected].style.backgroundColor
+            allBoxes[selected].style.border = '2px solid purple'
+
+        }, 1000);
+
+
+    </script>
+</body>
+
+</html>

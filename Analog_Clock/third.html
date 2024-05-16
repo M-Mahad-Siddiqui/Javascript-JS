@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Analog Clock</title>
+    <!-- Stylesheet-->
+    <style>
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        #2987e4 50%,
+        #16191e 50%
+    );
+}
+.clock{
+    background: #16191e;
+    height: 320px;
+    width: 320px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    box-sizing: content-box;
+    border-radius: 50%;
+    border: 15px solid #242931;
+    box-shadow: 15px 15px 35px rgba(0,0,0,0.2),
+    inset 0 0 30px rgba(0,0,0,0.4);
+}
+img{
+    position: relative;
+}
+.hand{
+    position: absolute;
+    background-color: #ffffff;
+    margin: auto;
+    left: 0;
+    right: 0;
+    border-radius: 5px;
+    transform-origin: bottom;
+}
+.hour{
+    height: 60px;
+    width: 10px;
+    top: 100px;
+}
+.minute{
+    height: 80px;
+    width: 5px;
+    top: 80px;
+}
+.seconds{
+    height: 90px;
+    width: 3px;
+    top: 70px;
+    background-color: #2987e4;
+}
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <div class="hour hand"
+             id="hour"></div>
+        <div class="minute hand"
+             id="minute"></div>
+        <div class="seconds hand"
+             id="seconds"></div>
+        <img src="clock template.svg"
+             alt="clock">
+    </div>
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+ <script>
+    let hour = document.getElementById("hour");
+        let minute = document.getElementById("minute");
+        let seconds = document.getElementById("seconds");
+
+        let set_clock = setInterval(() => {
+            let date_now = new Date();
+
+            let hr = date_now.getHours();
+            let min = date_now.getMinutes();
+            let sec = date_now.getSeconds();
+
+            let calc_hr = (hr * 30) + (min / 2);
+            let calc_min = (min * 6) + (sec / 10);
+            let calc_sec = sec * 6;
+
+            hour.style.transform = `rotate(${calc_hr}deg)`;
+            minute.style.transform = `rotate(${calc_min}deg)`;
+            seconds.style.transform = `rotate(${calc_sec}deg)`;
+        }, 1000);
+ </script>
+</html>
