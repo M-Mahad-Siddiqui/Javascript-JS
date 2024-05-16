@@ -18,14 +18,14 @@
     }
 
     .big {
-        border: 2px solid black;
         width: 700px;
         height: 500px;
         margin-bottom: 5px;
-        background-image: url("experience.png");
+        background-image: url("images/cow2.jpg");
         background-repeat: no-repeat;
         background-position: center;
-        background-size: cover;
+        background-size:contain;
+
     }
 
     .smallImg {
@@ -36,6 +36,8 @@
         background-repeat: no-repeat;
         background-size: contain;
         cursor: pointer;
+        border-radius: 9
+        px;
     }
 
     .container {
@@ -44,23 +46,23 @@
     }
 
     #one {
-        background-image: url("github.png");
+        background-image: url("images/cow1.webp");
     }
 
     #two {
-        background-image: url("email.png")
+        background-image: url("images/cow6.jpg");
     }
 
     #three {
-        background-image: url("education.png");
+        background-image: url("images/cow3.jpg");
     }
 
     #four {
-        background-image: url("checkmark.png");
+        background-image: url("images/cow4.webp");
     }
 
     #five {
-        background-image: url("arrow.png");
+        background-image: url("images/cow5.jpg");
     }
 </style>
 
@@ -120,16 +122,18 @@
         //     preview.style.backgroundImage = backgroundImage;
         // });
 
-        var boxes = document.querySelectorAll('.smallImg');
-        var boxess = document.getElementsByClassName('smallImg');
-        var preview = document.getElementById('previewImg');
+                    
+       var boxes = document.querySelectorAll('.smallImg');
+       var boxess = document.getElementsByClassName('smallImg');
+       var preview = document.getElementById('previewImg');
 
-        boxes.forEach(function (box) {
-            box.addEventListener('click', function () {
-                var bg = getComputedStyle(this).backgroundImage;
-                preview.style.backgroundImage = bg;
-            });
-        });
+           //OR
+      //  boxes.forEach(function (box) {
+        //    box.addEventListener('click', function () {
+          //      var bg = getComputedStyle(this).backgroundImage;
+                // preview.style.backgroundImage = bg;
+          //  });
+       // });
 
         // or
         for (i = 0; i < boxes.length; i++) {
