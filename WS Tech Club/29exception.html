@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>ERROR HANDLING</title>
+</head>
+<body>
+    <button onclick="test()">click</button>
+    <h3 id="res"></h3>
+</body>
+<script>
+    function test(){
+        try{
+var num = 5;
+document.getElementById('res').innerText = num.toUpperCase();
+        }
+        catch(err){
+            document.getElementById('res').innerText = err;
+        }
+    }
+</script>
+</html>

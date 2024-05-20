@@ -1,0 +1,143 @@
+<html lang="en">
+<head>
+    <title>MY FIRST CALCULATOR</title>
+<style>
+    .button{
+        margin: auto;
+        width: 300px;   
+      height: 340px; 
+      background-color: rgb(243, 212, 167); 
+    }
+    
+    #result{
+        width: 300px;
+        height: 60px;
+        background-color: rgb(0, 154, 57);
+        color: aliceblue;
+        border-top-left-radius: 10px;
+        
+    }
+    .btn{
+        height:50px;
+        width: 70px;
+        font-size: 30px;
+        border-bottom-left-radius: 10px;
+    }
+    #equal{
+        height: 220px;
+        background-color: rgb(235, 113, 0);
+    }
+    #plus,#minues,#multiply,#divide{
+        background-color: grey;
+    }
+</style>
+
+
+
+</head>
+    
+    <body>
+        <h2 align="center">DIGITAL CALCULATOR</h2><br><br>
+        <div class="button">
+            <input type="text" id="result" readonly>
+            <table border="0">
+                <tr>
+                    <td><button class="btn" onclick="appendValue('+')" id="plus">+</button></td>
+                    <td><button class="btn" onclick="appendValue('-')" id="minues">-</button></td>
+                    <td><button class="btn" onclick="appendValue('*')" id="multiply">*</button></td>
+                    <td><button class="btn" onclick="appendValue('/')" id="divide">/</button></td>
+                </tr>
+                <tr>
+                    <td><button class="btn" onclick="appendValue('7')" id="seven">7</button></td>
+                    <td><button class="btn" onclick="appendValue('8')" id="eight">8</button></td>
+                    <td><button class="btn" onclick="appendValue('9')" id="nine">9</button></td>
+                    <td rowspan="4"><button class="btn" onclick="calculate()" id="equal">=</button></td>
+                </tr>
+                <tr>
+                    <td><button class="btn" onclick="appendValue('4')" id="four">4</button></td>
+                    <td><button class="btn" onclick="appendValue('5')" id="five">5</button></td>
+                    <td><button class="btn" onclick="appendValue('6')" id="six">6</button></td>
+                </tr>
+                <tr>
+                    <td><button class="btn" onclick="appendValue('1')" id="one">1</button></td>
+                    <td><button class="btn" onclick="appendValue('2')" id="two">2</button></td>
+                    <td><button class="btn" onclick="appendValue('3')" id="three">3</button></td>
+                </tr>
+                <tr>
+                    <td><button class="btn" onclick="appendValue('0')" id="zero">0</button></td>
+                    <td><button class="btn" onclick="appendValue('.')" id="dot">.</button></td>
+                    <td><button class="btn" onclick="clearValue()" id="ac">AC</button></td>
+                </tr>
+            </table>
+        </div>
+    
+ <script>
+    // Function to append a value to the calculator display
+    function appendValue(value) {
+        document.getElementById('result').value += value;
+    }
+
+    // Function to perform the calculation and display the result
+    function calculate() {
+        var result = eval(document.getElementById('result').value);
+        document.getElementById('result').value = result;
+    }
+
+    // Function to clear the calculator display
+    function clearValue() {
+        document.getElementById('result').value = '';
+    }
+
+</script>
+  
+
+
+<!-- <script>
+    // Get references to the elements
+    const numInput = document.getElementById('result');
+    const buttons = document.querySelectorAll('.btn');
+    const equalButton = document.getElementById('equal');
+    const acButton = document.getElementById('ac');
+
+    let expression = ''; // Store the full expression entered by the user
+
+    // Add event listeners to the number buttons
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const value = button.textContent;
+
+            // Ignore clicks on the equal and AC buttons
+            if (value === '=' || value === 'AC') {
+                return;
+            }
+
+            // Append the clicked number to the current input and expression
+            expression += value;
+            numInput.value = expression;
+        });
+    });
+
+    // Add event listener to the equal button
+    equalButton.addEventListener('click', () => {
+        try {
+            // Evaluate the expression
+            const result = eval(expression);
+            numInput.value = result;
+        } catch (error) {
+            // Handle any errors
+            numInput.value = 'Error';
+        }
+
+        // Reset the expression
+        expression = '';
+    });
+
+    // Add event listener to the AC button
+    acButton.addEventListener('click', () => {
+        // Clear the input and reset the variables
+        numInput.value = '';
+        expression = '';
+    });
+</script> -->
+
+</html>

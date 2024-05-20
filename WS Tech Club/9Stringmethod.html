@@ -1,0 +1,68 @@
+ String Methods used:
+
+charAt()
+charCodeAt()
+concat()
+endsWith()
+includes()
+indexOf()
+toLowerCase()
+toUpperCase()
+trim()
+split()
+substring()
+replace()
+slice()
+startsWith()
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String Methods Example</title>
+</head>
+<body>
+    <h1>String Methods Example</h1>
+    
+    <label for="inputString">Enter a string: </label>
+    <input type="text" id="inputString">
+    <button onclick="applyStringMethods()">Apply String Methods</button>
+    
+    <div id="output">
+        <h2>Results:</h2>
+        <p id="charAtIndex"></p>
+        <p id="charCodeAtIndex"></p>
+        <p id="concatenatedString"></p>
+        <p id="endsWithResult"></p>
+        <p id="includesResult"></p>
+        <p id="indexOfResult"></p>
+        <p id="toLowerCaseResult"></p>
+        <p id="toUpperCaseResult"></p>
+        <p id="trimmedString"></p>
+        <p id="splitArray"></p>
+        <p id="substringResult"></p>
+        <p id="replacedString"></p>
+        <p id="slicedString"></p>
+        <p id="startsWithResult"></p>
+    </div>
+
+    <script>
+        function applyStringMethods() {
+            const inputString = document.getElementById('inputString').value;
+            
+            document.getElementById('charAtIndex').textContent = `Character at index 2: ${inputString.charAt(2)}`;
+            document.getElementById('charCodeAtIndex').textContent = `Character code at index 2: ${inputString.charCodeAt(2)}`;
+            document.getElementById('concatenatedString').textContent = `Concatenated with ' - Hello': ${inputString.concat(' - Hello')}`;
+            document.getElementById('endsWithResult').textContent = `Ends with 'World': ${inputString.endsWith('World')}`;
+            document.getElementById('includesResult').textContent = `Includes 'Hello': ${inputString.includes('Hello')}`;
+            document.getElementById('indexOfResult').textContent = `Index of 'o': ${inputString.indexOf('o')}`;
+            document.getElementById('toLowerCaseResult').textContent = `Lowercase: ${inputString.toLowerCase()}`;
+            document.getElementById('toUpperCaseResult').textContent = `Uppercase: ${inputString.toUpperCase()}`;
+            document.getElementById('trimmedString').textContent = `Trimmed: ${inputString.trim()}`;
+            document.getElementById('splitArray').textContent = `Split by ' ': ${JSON.stringify(inputString.split(' '))}`;
+            document.getElementById('substringResult').textContent = `Substring from index 3 to 7: ${inputString.substring(3, 7)}`;
+            document.getElementById('replacedString').textContent = `Replace 'World' with 'Universe': ${inputString.replace('World', 'Universe')}`;
+            document.getElementById('slicedString').textContent = `Slice from index 2 to 6: ${inputString.slice(2, 6)}`;
+            document.getElementById('startsWithResult').textContent = `Starts with 'Hello': ${inputString.startsWith('Hello')}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+  <head></head>
+  <body>
+    <h1 id="h1"></h1>
+    <button onclick="start()">START</button>
+
+    <button onclick="stop()">STOP</button>
+
+    <script>
+      var c = 0;
+      let started;
+      start = () => {
+        started = setInterval(() => {
+          document.getElementById("h1").innerText = c;
+          c++;
+        }, 100);
+      };
+      function stop() {
+        clearInterval(started);
+      }
+    </script>
+  </body>
+</html>

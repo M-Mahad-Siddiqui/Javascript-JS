@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        background-color: #ffffff;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        padding: 30px;
+        width: 510px;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: #333;
+        text-transform: uppercase;
+      }
+
+      label {
+        display: block;
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #555;
+        text-align: left;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 90%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+
+      #submit {
+        background-color: #3498db;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+      }
+
+      #submit:hover {
+        background-color: #1c8e13;
+      }
+
+      /* Added style for displaying error message in red */
+      #alert {
+        color: red;
+        font-size: 14px;
+        margin-top: 1px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to Tech Websites Registration Form</h1>
+      <form onsubmit="return validate()">
+        <label for="name">Username:</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter your username"
+        /><br />
+
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          id="password"
+        /><br />
+
+        <label for="confirm">Confirm Password:</label>
+        <input
+          type="password"
+          name="confirm"
+          placeholder="Confirm your password"
+          onkeyup="check(this)"
+        /><br />
+        <p id="alert"></p>
+        <input type="submit" id="submit" value="SUBMIT" />
+      </form>
+    </div>
+
+    <script>
+      var Password = document.getElementById("password");
+
+      function check(elem) {
+        var alertMessage = document.getElementById("alert");
+        if (elem.value.length > 0) {
+          if (elem.value !== Password.value) {
+            alertMessage.innerText = "Passwords do not match!";
+          } else {
+            alertMessage.innerText = "";
+          }
+        } else {
+          alertMessage.innerText = "Please enter Confirm Password";
+        }
+      }
+
+      function validate() {
+        var alertMessage = document.getElementById("alert");
+        if (alertMessage.innerText === "") {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>

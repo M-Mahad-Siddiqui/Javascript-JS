@@ -1,0 +1,17 @@
+<html>
+  <head></head>
+  <body>
+    <h1></h1>
+    <h2>First</h2>
+    <button onclick="window.history.forward();">Forward</button> <br /><br />
+    <button onclick="window.history.back();">Back</button> <br />
+    <br />
+    <button onclick="window.history.go(-1);">Go</button>
+
+    <script>
+      var c = window.history.length;
+      document.getElementsByTagName("h1")[0].innerText = c;
+    </script>
+  </body>
+</html>
+<!-- make atLeast three same pages -->

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <button onclick="getRandomNumber()">Random Number</button>
+    <button onclick="getSquareRoot()">Square Root</button>
+    <button onclick="getCeilValue()">Ceil Value</button>
+    <button onclick="getFloorValue()">Floor Value</button>
+    <button onclick="getMaxValue()">Maximum Value</button>
+    <button onclick="getMinValue()">Minimum Value</button>
+    <button onclick="getAbsoluteValue()">Absolute Value</button>
+    <button onclick="getPower()">Power</button>
+    <button onclick="getRoundedNumber()">Round Number</button>
+    <button onclick="getTrigonometricValue()">Trigonometric Value</button>
+    <button onclick="getRandomInt()">Random Integer</button>
+    <button onclick="getSine()">Sine Value</button>
+  </body>
+  <script>
+    function getRandomNumber() {
+      var random = Math.random();
+      alert("Random Number between 0 and 1: " + random);
+    }
+
+    function getSquareRoot() {
+      var number = 16;
+      var squareRoot = Math.sqrt(number);
+      alert("Square Root of " + number + ": " + squareRoot);
+    }
+
+    function getCeilValue() {
+      var number = 3.14;
+      var ceilValue = Math.ceil(number);
+      alert("Ceil Value of " + number + ": " + ceilValue);
+    }
+
+    function getFloorValue() {
+      var number = 3.14;
+      var floorValue = Math.floor(number);
+      alert("Floor Value of " + number + ": " + floorValue);
+    }
+
+    function getMaxValue() {
+      var max = Math.max(5, 8, 2, 10, 4);
+      alert("Maximum Value: " + max);
+    }
+
+    function getMinValue() {
+      var min = Math.min(5, 8, 2, 10, 4);
+      alert("Minimum Value: " + min);
+    }
+
+    function getAbsoluteValue() {
+      var number = -5;
+      var absoluteValue = Math.abs(number);
+      alert("Absolute Value of " + number + ": " + absoluteValue);
+    }
+
+    function getPower() {
+      var base = 2;
+      var exponent = 3;
+      var result = Math.pow(base, exponent);
+      alert(base + " raised to the power of " + exponent + ": " + result);
+    }
+
+    function getRoundedNumber() {
+      var number = 3.75;
+      var roundedNumber = Math.round(number);
+      alert("Rounded Value of " + number + ": " + roundedNumber);
+    }
+
+    function getTrigonometricValue() {
+      var angleInDegrees = 45;
+      var radians = (angleInDegrees * Math.PI) / 180;
+      alert("Sine of " + angleInDegrees + " degrees: " + Math.sin(radians));
+    }
+
+    function getRandomInt() {
+      var randomInt = Math.floor(Math.random() * 100) + 1; // Generates a random integer between 1 and 100
+      alert("Random Integer between 1 and 100: " + randomInt);
+    }
+
+    function getSine() {
+      var angleInDegrees = 30;
+      var radians = (angleInDegrees * Math.PI) / 180;
+      alert("Sine of " + angleInDegrees + " degrees: " + Math.sin(radians));
+    }
+  </script>
+</html>

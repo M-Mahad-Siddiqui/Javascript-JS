@@ -1,0 +1,19 @@
+<html>
+  <head> </head>
+  <body>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+  </body>
+  <script>
+    var my;
+
+    function start() {
+      my = setTimeout(function () {
+        document.write("<h1> hello World!</h1>");
+      }, 2000);
+    }
+    function stop() {
+      clearTimeout(my);
+    }
+  </script>
+</html>

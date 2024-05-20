@@ -1,0 +1,159 @@
+array methods are used: push() pop() shift() unshift() concat() join() reverse()
+sort() slice() splice() filter() map() reduce() forEach() some() every() find()
+findIndex() indexOf() lastIndexOf() isArray() valueOf()
+
+<html>
+  <head>
+    <title>Array Methods Example</title>
+  </head>
+  <body>
+    <h1>Array Methods Example</h1>
+
+    <script>
+      // Define an array
+      var fruits = ["apple", "banana", "cherry"];
+
+      // Push an element to the end of the array
+      fruits.push("date");
+      document.write(
+        "<b>Pushed 'date' to the end : </b> " + fruits.join("---") + "<br>"
+      );
+
+      // Pop an element from the end of the array
+      var popped = fruits.pop();
+      document.write(
+        "<b>Popped '" +
+          popped +
+          "' from the end :</b> " +
+          fruits.join("---") +
+          "<br>"
+      );
+
+      // Shift an element from the beginning of the array
+      var shifted = fruits.shift();
+      document.write(
+        "<b>Shifted '" +
+          shifted +
+          "' from the beginning : </b> " +
+          fruits.join("---") +
+          "<br>"
+      );
+
+      // Unshift elements to the beginning of the array
+      fruits.unshift("grape", "kiwi");
+      document.write(
+        "<b>Unshift 'grape' and 'kiwi' to the beginning : </b> " +
+          fruits.join("---") +
+          "<br>"
+      );
+
+      // Concatenate two arrays
+      var moreFruits = ["lemon", "orange"];
+      var combinedFruits = fruits.concat(moreFruits);
+      document.write(
+        "<b>Concatenated with ['lemon', 'orange'] : </b>" +
+          combinedFruits.join("---") +
+          "<br>"
+      );
+
+      // Reverse the array
+      var reversedFruits = combinedFruits.reverse();
+      document.write(
+        "<b> Reversed : </b> " + reversedFruits.join("---") + "<br>"
+      );
+
+      // Sort the array
+      var sortedFruits = reversedFruits.sort();
+      document.write("<b> Sorted : </b>" + sortedFruits.join("---") + "<br>");
+
+      // Slice a portion of the array
+      var slicedFruits = sortedFruits.slice(1, 4);
+      document.write(
+        "<b>Sliced from index 1 to 4 : </b>" + slicedFruits.join("---") + "<br>"
+      );
+
+      // Splice the array to remove and replace elements
+      var splicedFruits = sortedFruits.splice(2, 2, "grapefruit", "mango");
+      document.write(
+        "<b>pliced from index 2, removed 2 items, added 'grapefruit' and 'mango' : </b>" +
+          sortedFruits.join("--") +
+          "<br>"
+      );
+
+      // Filter elements that contain the letter 'a'
+      var filteredFruits = sortedFruits.filter(function (fruit) {
+        return fruit.indexOf("a") !== -1;
+      });
+      document.write(
+        "<b>Filtered elements containing 'a' : </b>" +
+          filteredFruits.join(", ") +
+          "<br>"
+      );
+
+      // Map to uppercase
+      var mappedFruits = sortedFruits.map(function (fruit) {
+        return fruit.toUpperCase();
+      });
+      document.write(
+        "<b>Mapped to uppercase : </b>" + mappedFruits.join("---") + "<br>"
+      );
+
+      // Reduce to a single string
+      var reducedString = sortedFruits.reduce(function (accumulator, current) {
+        return accumulator + ", " + current;
+      });
+      document.write(
+        "<b> Reduced to a single string : </b>" + reducedString + "<br>"
+      );
+
+      // Use forEach to print each element
+      document.write("<b>Using forEach : </b>");
+      sortedFruits.forEach(function (fruit) {
+        document.write(fruit + " ");
+      });
+      document.write("<br>");
+
+      // Check if some elements contain 'grape'
+      var hasGrape = sortedFruits.some(function (fruit) {
+        return fruit === "grape";
+      });
+      document.write(
+        "<b>Some elements contain 'grape' : </b>" + hasGrape + "<br>"
+      );
+
+      // Check if all elements contain 'apple'
+      var allApples = sortedFruits.every(function (fruit) {
+        return fruit === "apple";
+      });
+      document.write(
+        "<b> All elements are 'apple' : </b>" + allApples + "<br>"
+      );
+
+      // Find the first element starting with 'm'
+      var foundFruit = sortedFruits.find(function (fruit) {
+        return fruit.startsWith("m");
+      });
+      document.write(
+        "<b>First fruit starting with 'm' : </b>" + foundFruit + "<br>"
+      );
+
+      // Find the index of 'orange'
+      var indexOfOrange = sortedFruits.indexOf("orange");
+      document.write("<b> Index of 'orange' : </b>" + indexOfOrange + "<br>");
+
+      // Find the last index of 'apple'
+      var lastIndexOfApple = sortedFruits.lastIndexOf("apple");
+      document.write(
+        "<b> Last index of 'apple' : </b>" + lastIndexOfApple + "<br>"
+      );
+
+      // Check if the variable fruits is an array
+      var isFruitsArray = Array.isArray(fruits);
+      document.write("<b> fruits is an array : </b>" + isFruitsArray + "<br>");
+
+      // Use valueOf to get the primitive value of the array
+      var fruitsValue = fruits.valueOf();
+      document.write("<b> Value of fruits : </b>" + fruitsValue + "<br>");
+    </script>
+  </body>
+</html>

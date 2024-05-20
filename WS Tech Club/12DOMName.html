@@ -1,0 +1,16 @@
+<html>
+    <head></head>
+    <body>
+        <input type="" name="nam">
+        <button onclick = "getName()">Submit</button>
+        <h1></h1>
+    </body>
+
+    <script>
+        function getName(){
+            var name = document.getElementsByName("nam")[0].value;
+            document.getElementsByName("nam")[0].value = " ";   //for clear input box
+            document.getElementsByTagName("h1")[0].innerHTML = name;//.value
+        }
+    </script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    Please Enter a number :<br />
+    <input type="text" onkeyup="val(this)" />
+    <div id="res"></div>
+  </body>
+  <script>
+    document.getElementById("res").style.color = "red";
+
+    function val(elem) {
+      let message = "";
+      if (isNaN(elem.value)) {
+        message = "Please enter a number!";
+      } else if (elem.value.length > 11) {
+        message = "Please enter only 11 numbers!";
+      }
+      document.getElementById("res").innerText = message;
+    }
+
+    // function val(elem) {
+    //   if (isNaN(elem.value)) {
+    //     document.getElementById("res").innerText = "Please enter a number !";
+    //   } else if (elem.value.length > 11) {
+    //     document.getElementById("res").innerText =
+    //       "Please enter only 11 numbers";
+    //   } else {
+    //     document.getElementById("res").innerText = "";
+    //   }
+    // }
+  </script>
+</html>

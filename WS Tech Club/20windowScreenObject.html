@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <button onclick="getAvailableHeight()">Available Height</button>
+    <button onclick="getAvailableWidth()">Available Width</button>
+    <button onclick="getScreenHeight()">Screen Height</button>
+    <button onclick="getScreenWidth()">Screen Width</button>
+    <button onclick="getColorDepth()">Color Depth</button>
+    <button onclick="getPixelDepth()">Pixel Depth</button>
+  </body>
+  <script>
+    function getAvailableHeight() {
+      var height = screen.availHeight;
+      alert("Available Height: " + height + " pixels");
+    }
+
+    function getAvailableWidth() {
+      var width = screen.availWidth;
+      alert("Available Width: " + width + " pixels");
+    }
+
+    function getScreenHeight() {
+      var height = screen.height;
+      alert("Screen Height: " + height + " pixels");
+    }
+
+    function getScreenWidth() {
+      var width = screen.width;
+      alert("Screen Width: " + width + " pixels");
+    }
+
+    function getColorDepth() {
+      var colorDepth = screen.colorDepth;
+      alert("Color Depth: " + colorDepth + " bits per pixel");
+    }
+
+    function getPixelDepth() {
+      var pixelDepth = screen.pixelDepth;
+      alert("Pixel Depth: " + pixelDepth + " bits per pixel");
+    }
+  </script>
+</html>

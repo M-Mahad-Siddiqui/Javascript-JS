@@ -1,0 +1,69 @@
+//regex101.com
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Regex Functions Demo</title>
+    </head>
+    <body>
+        <h1>Regex Functions Demo</h1>
+        <p>Enter a text to perform regex operations:</p>
+        <input type="text" id="textInput" placeholder="Enter text">
+        <button onclick="performRegexOperations()">Perform Operations</button>
+
+        <!-- Results section -->
+        <h2>Results:</h2>
+        <ul>
+            <li>
+                <strong>exec():</strong>
+                <span id="execResult"></span>
+            </li>
+            <li>
+                <strong>test():</strong>
+                <span id="testResult"></span>
+            </li>
+            <li>
+                <strong>toString():</strong>
+                <span id="toStringResult"></span>
+            </li>
+            <li>
+                <strong>match():</strong>
+                <span id="matchResult"></span>
+            </li>
+            <li>
+                <strong>replace():</strong>
+                <span id="replaceResult"></span>
+            </li>
+        </ul>
+
+        <script>
+            function performRegexOperations() { // Get the user input from the text field
+                const textInput = document.getElementById('textInput').value;
+
+                // Define a regular expression pattern (\b\w+\b matches words)
+                const regexPattern = /(\b\w+\b)/g;
+
+                // exec(): Execute the regex pattern and get the first match
+                const execResult = regexPattern.exec(textInput);
+                document.getElementById('execResult').textContent = execResult ? execResult[0] : 'No match';
+
+                // test(): Test if the input text matches the regex pattern
+                const testResult = regexPattern.test(textInput);
+                document.getElementById('testResult').textContent = testResult;
+
+                // toString(): Convert the regex pattern to a string
+                const regexString = regexPattern.toString();
+                document.getElementById('toStringResult').textContent = regexString;
+
+                // match(): Find all matches of the regex pattern in the input text
+                const matchResult = textInput.match(regexPattern);
+                document.getElementById('matchResult').textContent = matchResult ? matchResult.join(', ') : 'No match';
+
+                // replace(): Replace all matches with "REPLACED"
+                const replaceResult = textInput.replace(regexPattern, 'REPLACED');
+                document.getElementById('replaceResult').textContent = replaceResult;
+            }
+        </script>
+    </body>
+</html>

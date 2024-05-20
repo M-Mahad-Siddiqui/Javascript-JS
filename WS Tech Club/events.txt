@@ -1,0 +1,62 @@
+JavaScript supports a wide range of events that can be used to trigger code execution
+ in response to user actions or other interactions. Here's a list of common events in
+ JavaScript:
+
+**Mouse Events:**
+
+1. `click`: Occurs when a mouse click is detected.
+2. `dblclick`: Occurs when a mouse double-click is detected.
+3. `mousedown`: Occurs when a mouse button is pressed down.
+4. `mouseup`: Occurs when a mouse button is released.
+5. `mousemove`: Occurs when the mouse pointer moves.
+6. `mouseover`: Occurs when the mouse pointer enters an element.
+7. `mouseout`: Occurs when the mouse pointer leaves an element.
+8. `mouseenter`: Similar to `mouseover`, but doesn't bubble.
+9. `mouseleave`: Similar to `mouseout`, but doesn't bubble.
+10. `contextmenu`: Occurs when the right mouse button is clicked.
+
+**Keyboard Events:**
+
+11. `keydown`: Occurs when a key is pressed down.
+12. `keyup`: Occurs when a key is released.
+13. `keypress`: Occurs when a key is pressed and released (for printable characters).
+
+**Form Events:**
+
+14. `submit`: Occurs when a form is submitted.
+15. `reset`: Occurs when a form is reset.
+16. `change`: Occurs when the value of an input element changes.
+17. `input`: Occurs when the content of an input element changes.
+18. `focus`: Occurs when an element gains focus.
+19. `blur`: Occurs when an element loses focus.
+20. `select`: Occurs when text is selected in an input element.
+21. `keydown` and `keyup`: Also work with form elements for keyboard input.
+    --invalid
+    --search
+
+**Window and Document Events:**
+
+22. `load`: Occurs when a page finishes loading.
+23. `unload`: Occurs when a page is about to be unloaded (not commonly used).
+24. `resize`: Occurs when the browser window is resized.
+25. `scroll`: Occurs when the document is scrolled.
+26. `DOMContentLoaded`: Occurs when the DOM is fully loaded (before images and
+ other external resources).
+
+**Event-Related Events:**
+
+27. `focus`: Occurs when an element receives focus.
+28. `blur`: Occurs when an element loses focus.
+29. `error`: Occurs when an error is encountered (e.g., loading a resource fails).
+30. `online`: Occurs when the browser goes online.
+31. `offline`: Occurs when the browser goes offline.
+32. `hashchange`: Occurs when the URL hash (fragment identifier) changes.
+33. `popstate`: Occurs when the browser's history changes.
+
+**Custom Events:**
+
+34. You can also create and dispatch custom events using the `CustomEvent` constructor.
+
+These are some of the most commonly used events in JavaScript.
+ Event handling is a fundamental part of web development, and you can
+ use these events to make your web applications interactive and responsive.

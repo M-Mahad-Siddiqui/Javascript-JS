@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    please enter a number between 5 to 10 :<br />
+    <input type="" id="num" /><br />
+    <button onclick="test()">click</button>
+
+    <h1 id="res"></h1>
+  </body>
+  <script>
+    var num = document.getElementById("num");
+    function test() {
+      var data = num.value;
+      try {
+        if (isNaN(data)) {
+          throw "this is not a number :";
+        } else {
+          if (data < 5 || data > 10) {
+            throw "number is out of range";
+          } else {
+            throw "";
+          }
+        }
+      } catch (errMess) {
+        document.getElementById("res").innerText = errMess;
+      } finally {
+        num.value = "";
+      }
+    }
+  </script>
+</html>

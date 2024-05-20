@@ -1,0 +1,95 @@
+<!-- ------------------------------------------------------------------ -->
+<!-- <html>
+  <body>
+    <script>
+      let data = ["liza", 21, "male", 5.1, "bachelor", "karachi"];
+      //by using arrow function
+      data.forEach(
+        fun = (e, i) => {
+          document.write(i + " => " + e + "<br>");
+        }
+      );
+    </script>
+  </body>
+</html> -->
+
+<!-- 
+0 => liza
+1 => 21
+2 => male
+3 => 5.1
+4 => bachelor
+5 => karachi -->
+
+<!-- ----------------------------------------------------------------------- -->
+<!-- <html>
+  <body>
+    <script>
+      const colors = ["red", "green", "blue"];
+      colors.forEach(function (cr, ind) {
+        document.write(ind + " => " + cr + "<br>");
+      });
+    </script>
+  </body>
+</html> -->
+
+<!--  red
+      green
+      blue    -->
+
+<!-- ----------------------------------------------------------------------- -->
+<!-- <html>
+  <body>
+    <script>
+      const numbers = [1, 2, 3, 4, 5];
+      numbers.forEach(function (number, index, array) {
+        array[index] = number * number;
+      });
+      document.write( numbers );
+
+      // for new lines square
+    //    // Create a string with each squared number on a new line
+    //   const number = numbers.join("<br>");
+
+    //   // Display the squared numbers using document.write
+    //   document.write(number);
+
+    </script>
+  </body>
+</html> -->
+
+<!-- 1,4,9,16,25 -->
+
+<!-- <html>
+  <head>
+    <title>forEach Example</title>
+  </head>
+  <body>
+    <button class="clickable">Button 1</button>
+    <button class="clickable">Button 2</button>
+    <button class="clickable">Button 3</button>
+    <script>
+      const buttons = document.querySelectorAll(".clickable");
+
+      buttons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          alert("Clicked: " + button.textContent);
+        });
+      });
+    </script>
+  </body>
+</html> -->
+
+<html>
+  <body>
+    <script>
+      let info = ["liza", "20", "female"];
+
+      info.forEach(
+        (fun = (value, index, sub) => {
+          document.write(index + " " + value + " " + sub + "<br>");
+        })
+      );
+    </script>
+  </body>
+</html>

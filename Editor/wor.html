@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>MS Word Home Tab GUI</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .toolbar-section {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+
+        .toolbar-section h3 {
+            margin: 0;
+            font-size: 14px;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .toolbar-section button,
+        .toolbar-section select,
+        .toolbar-section input {
+            display: block;
+            margin-bottom: 5px;
+            padding: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .toolbar-section select,
+        .toolbar-section input {
+            width: 100%;
+        }
+
+        .toolbar-section .icon {
+            font-size: 18px;
+        }
+
+        .toolbar-section button {
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        .toolbar-section button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .content {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 300px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toolbar">
+        <!-- Clipboard Section -->
+        <div class="toolbar-section">
+            <h3>Clipboard</h3>
+            <button><span class="icon">📋</span> Paste</button>
+            <button><span class="icon">🔁</span> Cut</button>
+            <button><span class="icon">🗐</span> Copy</button>
+            <button><span class="icon">🧽</span> Format Painter</button>
+        </div>
+        <!-- Font Section -->
+        <div class="toolbar-section">
+            <h3>Font</h3>
+            <select>
+                <option>Arial</option>
+                <option>Calibri</option>
+                <option>Times New Roman</option>
+            </select>
+            <select>
+                <option>10</option>
+                <option>12</option>
+                <option>14</option>
+                <option>16</option>
+                <option>18</option>
+                <option>20</option>
+                <option>24</option>
+                <option>28</option>
+                <option>32</option>
+                <option>36</option>
+                <option>48</option>
+                <option>72</option>
+            </select>
+            <div style="display: flex;">
+                <button><span class="icon">B</span></button>
+                <button><span class="icon">I</span></button>
+                <button><span class="icon">U</span></button>
+                <button><span class="icon">abc</span></button>
+                <button><span class="icon">A</span></button>
+                <button><span class="icon">a</span></button>
+            </div>
+            <div style="display: flex;">
+                <button><span class="icon">A↑</span></button>
+                <button><span class="icon">A↓</span></button>
+                <button><span class="icon">✎</span></button>
+            </div>
+            <div style="display: flex;">
+                <button><span class="icon">🖌</span></button>
+                <button><span class="icon">📝</span></button>
+            </div>
+        </div>
+        <!-- Paragraph Section -->
+        <div class="toolbar-section">
+            <h3>Paragraph</h3>
+            <div style="display: flex;">
+                <button><span class="icon">🔢</span></button>
+                <button><span class="icon">🔤</span></button>
+            </div>
+            <div style="display: flex;">
+                <button><span class="icon">⬅️</span></button>
+                <button><span class="icon">⬆️</span></button>
+                <button><span class="icon">➡️</span></button>
+                <button><span class="icon">➡️⬅️</span></button>
+                <button><span class="icon">➡️➡️</span></button>
+                <button><span class="icon">⬅️⬅️</span></button>
+            </div>
+            <div style="display: flex;">
+                <button><span class="icon">🔲</span></button>
+                <button><span class="icon">↔️</span></button>
+                <button><span class="icon">↕️</span></button>
+            </div>
+            <div style="display: flex;">
+                <button><span class="icon">🔳</span></button>
+                <button><span class="icon">⚫</span></button>
+            </div>
+        </div>
+        <!-- Styles Section -->
+        <div class="toolbar-section">
+            <h3>Styles</h3>
+            <select>
+                <option>Normal</option>
+                <option>Heading 1</option>
+                <option>Heading 2</option>
+                <option>Heading 3</option>
+                <option>Title</option>
+                <option>Subtitle</option>
+                <option>Quote</option>
+                <option>Intense Quote</option>
+            </select>
+        </div>
+        <!-- Editing Section -->
+        <div class="toolbar-section">
+            <h3>Editing</h3>
+            <button><span class="icon">🔍</span> Find</button>
+            <button><span class="icon">🔄</span> Replace</button>
+            <button><span class="icon">🔍➕</span> Select</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content"
+             contenteditable="true">
+            <p>Start writing here...</p>
+        </div>
+    </div>
+</body>
+
+</html>

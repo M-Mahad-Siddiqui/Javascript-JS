@@ -1,0 +1,40 @@
+<html>
+  <head></head>
+  <body>
+    <button onclick="openWin()">open window</button>
+    <button onclick="closeWin()">close window</button>
+  </body>
+  <script>
+    var win;
+    function openWin() {
+      win = window.open(
+        "https://www.wscubetech.com",
+        "width=500px",
+        "height=1500px"
+      );
+    }
+    function closeWin() {
+      win.close();
+    }
+  </script>
+</html>
+
+<!-- <html>
+  <head></head>
+  <body>
+    <button onclick="openWin()">Open Window</button>
+    <button onclick="closeWin()">Close Window</button>
+    <script>
+      var win;
+      function openWin() {
+        win = window.open("about:blank", "_blank");
+        win.document.write("<h1>Hello, new window!</h1>");
+      }
+      function closeWin() {
+        if (win) {
+          win.close();
+        }
+      }
+    </script>
+  </body>
+</html> -->

@@ -1,0 +1,89 @@
+Certainly! Here's a list of widely used JavaScript methods categorized by the 
+types of objects they are typically used with:
+
+**String Methods:**
+
+1. `charAt()`
+2. `charCodeAt()`
+3. `concat()`
+4. `endsWith()`
+5. `includes()`
+6. `indexOf()`
+7. `toLowerCase()`
+8. `toUpperCase()`
+9. `trim()`
+10. `split()`
+11. `substring()`
+12. `replace()`
+13. `slice()`
+14. `startsWith()`
+
+**Array Methods:**
+
+15. `push()`
+16. `pop()`
+17. `shift()`
+18. `unshift()`
+19. `concat()`
+20. `join()`
+21. `reverse()`
+22. `sort()`
+23. `slice()`
+24. `splice()`
+25. `filter()`
+26. `map()`
+27. `reduce()`
+28. `forEach()`
+29. `some()`
+30. `every()`
+31. `find()`
+32. `findIndex()`
+33. `indexOf()`
+34. `lastIndexOf()`
+-- reverse()
+
+**Object Methods:**
+
+35. `Object.keys()`
+36. `Object.values()`
+37. `Object.entries()`
+38. `Object.assign()`
+
+**Number Methods:**
+
+39. `parseInt()`
+40. `parseFloat()`
+41. `toFixed()`
+42. `toPrecision()`
+
+**Date Methods:**
+
+  --Date()
+  --getDay()
+  --getMonth()
+  --getDate()
+  --getMillosecond()
+  --getTime()
+
+43. `Date.now()`
+44. `new Date()`
+45. `getHours()`
+46. `getMinutes()`
+47. `getSeconds()`
+48. `getMonth()`
+49. `getFullYear()`
+
+**Math Methods:**
+
+50. `Math.abs()`
+51. `Math.ceil()`
+52. `Math.floor()`
+53. `Math.round()`
+54. `Math.max()`
+55. `Math.min()`
+56. `Math.random()`
+
+These methods are commonly used for various operations in JavaScript when 
+working with strings, arrays, objects, numbers, dates, and performing
+ mathematical calculations. Understanding these methods is crucial for 
+effective JavaScript programming.

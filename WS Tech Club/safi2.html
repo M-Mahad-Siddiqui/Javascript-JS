@@ -1,0 +1,1191 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script>window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"NRJS-22e464f74cb6a20afec","applicationID":"704028275","transactionName":"dwkKEhMMWAgGEEpCUUYPARVOEVEDChERVEZrEg0FCgZA","queueTime":0,"applicationTime":390,"agent":""}</script>
+<script>(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]}};(window.NREUM||(NREUM={})).loader_config={licenseKey:"NRJS-22e464f74cb6a20afec",applicationID:"704028275"};;/*! For license information please see nr-loader-rum-1.241.0.min.js.LICENSE.txt */
+(()=>{"use strict";var e,t,n={5763:(e,t,n)=>{n.d(t,{P_:()=>g,Mt:()=>h,C5:()=>s,DL:()=>b,OP:()=>E,lF:()=>k,Yu:()=>w,Dg:()=>p,CX:()=>c,GE:()=>y,sU:()=>j});var r=n(8632),i=n(9567);const a={beacon:r.ce.beacon,errorBeacon:r.ce.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0},o={};function s(e){if(!e)throw new Error("All info objects require an agent identifier!");if(!o[e])throw new Error("Info for ".concat(e," was never set"));return o[e]}function c(e,t){if(!e)throw new Error("All info objects require an agent identifier!");o[e]=(0,i.D)(t,a),(0,r.Qy)(e,o[e],"info")}var u=n(7056);const d=()=>{const e={block_selector:"[data-nr-block]",mask_input_options:{password:!0}};return{proxy:{assets:void 0,beacon:void 0},privacy:{cookies_enabled:!0},ajax:{deny_list:void 0,block_internal:!0,enabled:!0,harvestTimeSeconds:10,autoStart:!0},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},session:{domain:void 0,expiresMs:u.oD,inactiveMs:u.Hb},ssl:void 0,obfuscate:void 0,jserrors:{enabled:!0,harvestTimeSeconds:10,autoStart:!0},metrics:{enabled:!0,autoStart:!0},page_action:{enabled:!0,harvestTimeSeconds:30,autoStart:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,harvestTimeSeconds:30,long_task:!1,autoStart:!0},session_trace:{enabled:!0,harvestTimeSeconds:10,autoStart:!0},harvest:{tooManyRequestsDelay:60},session_replay:{autoStart:!0,enabled:!1,harvestTimeSeconds:60,sampling_rate:50,error_sampling_rate:50,mask_text_selector:"*",mask_all_inputs:!0,get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){e.block_selector+=",".concat(t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){e.mask_input_options={...t,password:!0}}},spa:{enabled:!0,harvestTimeSeconds:10,autoStart:!0}}},l={},f="All configuration objects require an agent identifier!";function g(e){if(!e)throw new Error(f);if(!l[e])throw new Error("Configuration for ".concat(e," was never set"));return l[e]}function p(e,t){if(!e)throw new Error(f);l[e]=(0,i.D)(t,d()),(0,r.Qy)(e,l[e],"config")}function h(e,t){if(!e)throw new Error(f);var n=g(e);if(n){for(var r=t.split("."),i=0;i<r.length-1;i++)if("object"!=typeof(n=n[r[i]]))return;n=n[r[r.length-1]]}return n}const v={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0},m={};function b(e){if(!e)throw new Error("All loader-config objects require an agent identifier!");if(!m[e])throw new Error("LoaderConfig for ".concat(e," was never set"));return m[e]}function y(e,t){if(!e)throw new Error("All loader-config objects require an agent identifier!");m[e]=(0,i.D)(t,v),(0,r.Qy)(e,m[e],"loader_config")}const w=(0,r.mF)().o;var A=n(385),x=n(6818);const _={buildEnv:x.Re,customTransaction:void 0,disabled:!1,distMethod:x.gF,isolatedBacklog:!1,loaderType:void 0,maxBytes:3e4,offset:Math.floor(A._A?.performance?.timeOrigin||A._A?.performance?.timing?.navigationStart||Date.now()),onerror:void 0,origin:""+A._A.location,ptid:void 0,releaseIds:{},session:void 0,xhrWrappable:"function"==typeof A._A.XMLHttpRequest?.prototype?.addEventListener,version:x.q4,denyList:void 0},D={};function E(e){if(!e)throw new Error("All runtime objects require an agent identifier!");if(!D[e])throw new Error("Runtime for ".concat(e," was never set"));return D[e]}function j(e,t){if(!e)throw new Error("All runtime objects require an agent identifier!");D[e]=(0,i.D)(t,_),(0,r.Qy)(e,D[e],"runtime")}function k(e){return function(e){try{const t=s(e);return!!t.licenseKey&&!!t.errorBeacon&&!!t.applicationID}catch(e){return!1}}(e)}},9567:(e,t,n)=>{n.d(t,{D:()=>i});var r=n(50);function i(e,t){try{if(!e||"object"!=typeof e)return(0,r.Z)("Setting a Configurable requires an object as input");if(!t||"object"!=typeof t)return(0,r.Z)("Setting a Configurable requires a model to set its initial properties");const n=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),a=0===Object.keys(n).length?e:n;for(let o in a)if(void 0!==e[o])try{"object"==typeof e[o]&&"object"==typeof t[o]?n[o]=i(e[o],t[o]):n[o]=e[o]}catch(e){(0,r.Z)("An error occurred while setting a property of a Configurable",e)}return n}catch(e){(0,r.Z)("An error occured while setting a Configurable",e)}}},6818:(e,t,n)=>{n.d(t,{Re:()=>i,gF:()=>a,q4:()=>r});const r="1.241.0",i="PROD",a="CDN"},385:(e,t,n)=>{n.d(t,{Nk:()=>d,Tt:()=>s,_A:()=>a,cv:()=>l,iS:()=>o,il:()=>r,ux:()=>c,v6:()=>i,w1:()=>u});const r="undefined"!=typeof window&&!!window.document,i="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),a=r?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),o=Boolean("hidden"===a?.document?.visibilityState),s=(a?.location,/iPad|iPhone|iPod/.test(a.navigator?.userAgent)),c=s&&"undefined"==typeof SharedWorker,u=((()=>{const e=a.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Boolean(r&&window.document.documentMode)),d=!!a.navigator?.sendBeacon,l=Math.floor(a?.performance?.timeOrigin||a?.performance?.timing?.navigationStart||Date.now())},1117:(e,t,n)=>{n.d(t,{w:()=>a});var r=n(50);const i={agentIdentifier:"",ee:void 0};class a{constructor(e){try{if("object"!=typeof e)return(0,r.Z)("shared context requires an object as input");this.sharedContext={},Object.assign(this.sharedContext,i),Object.entries(e).forEach((e=>{let[t,n]=e;Object.keys(i).includes(t)&&(this.sharedContext[t]=n)}))}catch(e){(0,r.Z)("An error occured while setting SharedContext",e)}}}},8e3:(e,t,n)=>{n.d(t,{L:()=>d,R:()=>c});var r=n(8325),i=n(1284),a=n(4322),o=n(3325);const s={};function c(e,t){const n={staged:!1,priority:o.p[t]||0};u(e),s[e].get(t)||s[e].set(t,n)}function u(e){e&&(s[e]||(s[e]=new Map))}function d(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"feature";if(u(e),!e||!s[e].get(t))return o(t);s[e].get(t).staged=!0;const n=[...s[e]];function o(t){const n=e?r.ee.get(e):r.ee,o=a.X.handlers;if(n.backlog&&o){var s=n.backlog[t],c=o[t];if(c){for(var u=0;s&&u<s.length;++u)l(s[u],c);(0,i.D)(c,(function(e,t){(0,i.D)(t,(function(t,n){n[0].on(e,n[1])}))}))}delete o[t],n.backlog[t]=null,n.emit("drain-"+t,[])}}n.every((e=>{let[t,n]=e;return n.staged}))&&(n.sort(((e,t)=>e[1].priority-t[1].priority)),n.forEach((t=>{let[n]=t;s[e].delete(n),o(n)})))}function l(e,t){var n=e[1];(0,i.D)(t[n],(function(t,n){var r=e[0];if(n[0]===r){var i=n[1],a=e[3],o=e[2];i.apply(a,o)}}))}},8325:(e,t,n)=>{n.d(t,{A:()=>c,ee:()=>u});var r=n(8632),i=n(2210),a=n(5763);class o{constructor(e){this.contextId=e}}var s=n(3117);const c="nr@context:".concat(s.a),u=function e(t,n){var r={},s={},d={},f=!1;try{f=16===n.length&&(0,a.OP)(n).isolatedBacklog}catch(e){}var g={on:h,addEventListener:h,removeEventListener:function(e,t){var n=r[e];if(!n)return;for(var i=0;i<n.length;i++)n[i]===t&&n.splice(i,1)},emit:function(e,n,r,i,a){!1!==a&&(a=!0);if(u.aborted&&!i)return;t&&a&&t.emit(e,n,r);for(var o=p(r),c=v(e),d=c.length,l=0;l<d;l++)c[l].apply(o,n);var f=b()[s[e]];f&&f.push([g,e,n,o]);return o},get:m,listeners:v,context:p,buffer:function(e,t){const n=b();if(t=t||"feature",g.aborted)return;Object.entries(e||{}).forEach((e=>{let[r,i]=e;s[i]=t,t in n||(n[t]=[])}))},abort:l,aborted:!1,isBuffering:function(e){return!!b()[s[e]]},debugId:n,backlog:f?{}:t&&"object"==typeof t.backlog?t.backlog:{}};return g;function p(e){return e&&e instanceof o?e:e?(0,i.X)(e,c,(()=>new o(c))):new o(c)}function h(e,t){r[e]=v(e).concat(t)}function v(e){return r[e]||[]}function m(t){return d[t]=d[t]||e(g,t)}function b(){return g.backlog}}(void 0,"globalEE"),d=(0,r.fP)();function l(){u.aborted=!0,u.backlog={}}d.ee||(d.ee=u)},5546:(e,t,n)=>{n.d(t,{E:()=>r,p:()=>i});var r=n(8325).ee.get("handle");function i(e,t,n,i,a){a?(a.buffer([e],i),a.emit(e,t,n)):(r.buffer([e],i),r.emit(e,t,n))}},4322:(e,t,n)=>{n.d(t,{X:()=>a});var r=n(5546);a.on=o;var i=a.handlers={};function a(e,t,n,a){o(a||r.E,i,e,t,n)}function o(e,t,n,i,a){a||(a="feature"),e||(e=r.E);var o=t[a]=t[a]||{};(o[n]=o[n]||[]).push([e,i])}},3239:(e,t,n)=>{n.d(t,{bP:()=>s,iz:()=>c,m$:()=>o});var r=n(385);let i=!1,a=!1;try{const e={get passive(){return i=!0,!1},get signal(){return a=!0,!1}};r._A.addEventListener("test",null,e),r._A.removeEventListener("test",null,e)}catch(e){}function o(e,t){return i||a?{capture:!!e,passive:i,signal:t}:!!e}function s(e,t){let n=arguments.length>2&&void 0!==arguments[2]&&arguments[2],r=arguments.length>3?arguments[3]:void 0;window.addEventListener(e,t,o(n,r))}function c(e,t){let n=arguments.length>2&&void 0!==arguments[2]&&arguments[2],r=arguments.length>3?arguments[3]:void 0;document.addEventListener(e,t,o(n,r))}},3117:(e,t,n)=>{n.d(t,{a:()=>r});const r=(0,n(4402).Rl)()},4402:(e,t,n)=>{n.d(t,{Rl:()=>o,ky:()=>s});var r=n(385);const i="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";function a(e,t){return e?15&e[t]:16*Math.random()|0}function o(){const e=r._A?.crypto||r._A?.msCrypto;let t,n=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(31))),i.split("").map((e=>"x"===e?a(t,++n).toString(16):"y"===e?(3&a()|8).toString(16):e)).join("")}function s(e){const t=r._A?.crypto||r._A?.msCrypto;let n,i=0;t&&t.getRandomValues&&(n=t.getRandomValues(new Uint8Array(31)));const o=[];for(var s=0;s<e;s++)o.push(a(n,++i).toString(16));return o.join("")}},7056:(e,t,n)=>{n.d(t,{Bq:()=>r,Hb:()=>a,oD:()=>i});const r="NRBA",i=144e5,a=18e5},7894:(e,t,n)=>{function r(){return Math.round(performance.now())}n.d(t,{z:()=>r})},50:(e,t,n)=>{function r(e,t){"function"==typeof console.warn&&(console.warn("New Relic: ".concat(e)),t&&console.warn(t))}n.d(t,{Z:()=>r})},2587:(e,t,n)=>{n.d(t,{N:()=>c,T:()=>u});var r=n(8325),i=n(5546),a=n(3325);const o={stn:[a.D.sessionTrace],err:[a.D.jserrors,a.D.metrics],ins:[a.D.pageAction],spa:[a.D.spa],sr:[a.D.sessionReplay,a.D.sessionTrace]},s=new Set;function c(e,t){const n=r.ee.get(t);e&&"object"==typeof e&&(s.has(t)||Object.entries(e).forEach((e=>{let[t,r]=e;o[t]?o[t].forEach((e=>{r?(0,i.p)("feat-"+t,[],void 0,e,n):(0,i.p)("block-"+t,[],void 0,e,n),(0,i.p)("rumresp-"+t,[Boolean(r)],void 0,e,n)})):r&&(0,i.p)("feat-"+t,[],void 0,void 0,n),u[t]=Boolean(r)})),Object.keys(o).forEach((e=>{void 0===u[e]&&(o[e]?.forEach((t=>(0,i.p)("rumresp-"+e,[!1],void 0,t,n))),u[e]=!1)})),s.add(t))}const u={}},2210:(e,t,n)=>{n.d(t,{X:()=>i});var r=Object.prototype.hasOwnProperty;function i(e,t,n){if(r.call(e,t))return e[t];var i=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},1284:(e,t,n)=>{n.d(t,{D:()=>r});const r=(e,t)=>Object.entries(e||{}).map((e=>{let[n,r]=e;return t(n,r)}))},4351:(e,t,n)=>{n.d(t,{P:()=>a});var r=n(8325);const i=()=>{const e=new WeakSet;return(t,n)=>{if("object"==typeof n&&null!==n){if(e.has(n))return;e.add(n)}return n}};function a(e){try{return JSON.stringify(e,i())}catch(e){try{r.ee.emit("internal-error",[e])}catch(e){}}}},3960:(e,t,n)=>{n.d(t,{K:()=>o,b:()=>a});var r=n(3239);function i(){return"undefined"==typeof document||"complete"===document.readyState}function a(e,t){if(i())return e();(0,r.bP)("load",e,t)}function o(e){if(i())return e();(0,r.iz)("DOMContentLoaded",e)}},8632:(e,t,n)=>{n.d(t,{EZ:()=>u,Qy:()=>c,ce:()=>a,fP:()=>o,gG:()=>d,mF:()=>s});var r=n(7894),i=n(385);const a={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function o(){return i._A.NREUM||(i._A.NREUM={}),void 0===i._A.newrelic&&(i._A.newrelic=i._A.NREUM),i._A.NREUM}function s(){let e=o();return e.o||(e.o={ST:i._A.setTimeout,SI:i._A.setImmediate,CT:i._A.clearTimeout,XHR:i._A.XMLHttpRequest,REQ:i._A.Request,EV:i._A.Event,PR:i._A.Promise,MO:i._A.MutationObserver,FETCH:i._A.fetch}),e}function c(e,t,n){let i=o();const a=i.initializedAgents||{},s=a[e]||{};return Object.keys(s).length||(s.initializedAt={ms:(0,r.z)(),date:new Date}),i.initializedAgents={...a,[e]:{...s,[n]:t}},i}function u(e,t){o()[e]=t}function d(){return function(){let e=o();const t=e.info||{};e.info={beacon:a.beacon,errorBeacon:a.errorBeacon,...t}}(),function(){let e=o();const t=e.init||{};e.init={...t}}(),s(),function(){let e=o();const t=e.loader_config||{};e.loader_config={...t}}(),o()}},7956:(e,t,n)=>{n.d(t,{N:()=>i});var r=n(3239);function i(e){let t=arguments.length>1&&void 0!==arguments[1]&&arguments[1],n=arguments.length>2?arguments[2]:void 0,i=arguments.length>3?arguments[3]:void 0;(0,r.iz)("visibilitychange",(function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)}),n,i)}},3081:(e,t,n)=>{n.d(t,{gF:()=>a,mY:()=>i,t9:()=>r,vz:()=>s,xS:()=>o});const r=n(3325).D.metrics,i="sm",a="cm",o="storeSupportabilityMetrics",s="storeEventMetrics"},7633:(e,t,n)=>{n.d(t,{t:()=>r});const r=n(3325).D.pageViewEvent},9251:(e,t,n)=>{n.d(t,{t:()=>r});const r=n(3325).D.pageViewTiming},5938:(e,t,n)=>{n.d(t,{W:()=>a});var r=n(5763),i=n(8325);class a{constructor(e,t,n){this.agentIdentifier=e,this.aggregator=t,this.ee=i.ee.get(e,(0,r.OP)(this.agentIdentifier).isolatedBacklog),this.featureName=n,this.blocked=!1}}},7530:(e,t,n)=>{n.d(t,{j:()=>b});var r=n(3325),i=n(5763),a=n(5546),o=n(8325),s=n(7894),c=n(8e3),u=n(3960),d=n(385),l=n(50),f=n(3081),g=n(8632);function p(){const e=(0,g.gG)();["setErrorHandler","finished","addToTrace","inlineHit","addRelease","addPageAction","setCurrentRouteName","setPageViewName","setCustomAttribute","interaction","noticeError","setUserId","setApplicationVersion","start"].forEach((t=>{e[t]=function(){for(var n=arguments.length,r=new Array(n),i=0;i<n;i++)r[i]=arguments[i];return function(t){for(var n=arguments.length,r=new Array(n>1?n-1:0),i=1;i<n;i++)r[i-1]=arguments[i];let a=[];return Object.values(e.initializedAgents).forEach((e=>{e.exposed&&e.api[t]&&a.push(e.api[t](...r))})),a.length>1?a:a[0]}(t,...r)}}))}var h=n(2587);const v=e=>{n.p=e};let m=!1;function b(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},b=arguments.length>2?arguments[2]:void 0,y=arguments.length>3?arguments[3]:void 0,{init:w,info:A,loader_config:x,runtime:_={loaderType:b},exposed:D=!0}=t;const E=(0,g.gG)();A||(w=E.init,A=E.info,x=E.loader_config),(0,i.Dg)(e,w||{}),(0,i.GE)(e,x||{}),A.jsAttributes??={},d.v6&&(A.jsAttributes.isWorker=!0),(0,i.CX)(e,A);const j=(0,i.P_)(e),k=[A.beacon,A.errorBeacon];m||(m=!0,j.proxy.assets&&(v(j.proxy.assets+"/"),k.push(j.proxy.assets)),j.proxy.beacon&&k.push(j.proxy.beacon)),_.denyList=[...j.ajax.deny_list||[],...j.ajax.block_internal?k:[]],(0,i.sU)(e,_),p();const T=function(e,t){t||(0,c.R)(e,"api");const g={};var p=o.ee.get(e),h=p.get("tracer"),v="api-",m=v+"ixn-";function b(t,n,r,a){const o=(0,i.C5)(e);return null===n?delete o.jsAttributes[t]:(0,i.CX)(e,{...o,jsAttributes:{...o.jsAttributes,[t]:n}}),A(v,r,!0,a||null===n?"session":void 0)(t,n)}function y(){}["setErrorHandler","finished","addToTrace","inlineHit","addRelease"].forEach((e=>{g[e]=A(v,e,!0,"api")})),g.addPageAction=A(v,"addPageAction",!0,r.D.pageAction),g.setCurrentRouteName=A(v,"routeName",!0,r.D.spa),g.setPageViewName=function(t,n){if("string"==typeof t)return"/"!==t.charAt(0)&&(t="/"+t),(0,i.OP)(e).customTransaction=(n||"http://custom.transaction")+t,A(v,"setPageViewName",!0)()},g.setCustomAttribute=function(e,t){let n=arguments.length>2&&void 0!==arguments[2]&&arguments[2];if("string"==typeof e){if(["string","number"].includes(typeof t)||null===t)return b(e,t,"setCustomAttribute",n);(0,l.Z)("Failed to execute setCustomAttribute.\nNon-null value must be a string or number type, but a type of <".concat(typeof t,"> was provided."))}else(0,l.Z)("Failed to execute setCustomAttribute.\nName must be a string type, but a type of <".concat(typeof e,"> was provided."))},g.setUserId=function(e){if("string"==typeof e||null===e)return b("enduser.id",e,"setUserId",!0);(0,l.Z)("Failed to execute setUserId.\nNon-null value must be a string type, but a type of <".concat(typeof e,"> was provided."))},g.setApplicationVersion=function(e){if("string"==typeof e||null===e)return b("application.version",e,"setApplicationVersion",!1);(0,l.Z)("Failed to execute setApplicationVersion. Expected <String | null>, but got <".concat(typeof e,">."))},g.start=e=>{try{const t=e?"defined":"undefined";(0,a.p)(f.xS,["API/start/".concat(t,"/called")],void 0,r.D.metrics,p);const n=Object.values(r.D);if(void 0===e)e=n;else{if((e=Array.isArray(e)&&e.length?e:[e]).some((e=>!n.includes(e))))return(0,l.Z)("Invalid feature name supplied. Acceptable feature names are: ".concat(n));e.includes(r.D.pageViewEvent)||e.push(r.D.pageViewEvent)}e.forEach((e=>{p.emit("".concat(e,"-opt-in"))}))}catch(e){(0,l.Z)("An unexpected issue occurred",e)}},g.interaction=function(){return(new y).get()};var w=y.prototype={createTracer:function(e,t){var n={},i=this,o="function"==typeof t;return(0,a.p)(m+"tracer",[(0,s.z)(),e,n],i,r.D.spa,p),function(){if(h.emit((o?"":"no-")+"fn-start",[(0,s.z)(),i,o],n),o)try{return t.apply(this,arguments)}catch(e){throw h.emit("fn-err",[arguments,this,e],n),e}finally{h.emit("fn-end",[(0,s.z)()],n)}}}};function A(e,t,n,i){return function(){return(0,a.p)(f.xS,["API/"+t+"/called"],void 0,r.D.metrics,p),i&&(0,a.p)(e+t,[(0,s.z)(),...arguments],n?null:this,i,p),n?void 0:this}}function x(){n.e(75).then(n.bind(n,7438)).then((t=>{let{setAPI:n}=t;n(e),(0,c.L)(e,"api")})).catch((()=>(0,l.Z)("Downloading runtime APIs failed...")))}return["actionText","setName","setAttribute","save","ignore","onEnd","getContext","end","get"].forEach((e=>{w[e]=A(m,e,void 0,r.D.spa)})),g.noticeError=function(e,t){"string"==typeof e&&(e=new Error(e)),(0,a.p)(f.xS,["API/noticeError/called"],void 0,r.D.metrics,p),(0,a.p)("err",[e,(0,s.z)(),!1,t],void 0,r.D.jserrors,p)},d.il?(0,u.b)((()=>x()),!0):x(),g}(e,y);return(0,g.Qy)(e,T,"api"),(0,g.Qy)(e,D,"exposed"),(0,g.EZ)("activatedFeatures",h.T),T}},3325:(e,t,n)=>{n.d(t,{D:()=>r,p:()=>i});const r={ajax:"ajax",jserrors:"jserrors",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",spa:"spa"},i={[r.pageViewEvent]:1,[r.pageViewTiming]:2,[r.metrics]:3,[r.jserrors]:4,[r.ajax]:5,[r.sessionTrace]:6,[r.pageAction]:7,[r.spa]:8,[r.sessionReplay]:9}}},r={};function i(e){var t=r[e];if(void 0!==t)return t.exports;var a=r[e]={exports:{}};return n[e](a,a.exports,i),a.exports}i.m=n,i.d=(e,t)=>{for(var n in t)i.o(t,n)&&!i.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:t[n]})},i.f={},i.e=e=>Promise.all(Object.keys(i.f).reduce(((t,n)=>(i.f[n](e,t),t)),[])),i.u=e=>"nr-rum-1.241.0.min.js",i.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},t="NRBA-1.241.0.PROD:",i.l=(n,r,a,o)=>{if(e[n])e[n].push(r);else{var s,c;if(void 0!==a)for(var u=document.getElementsByTagName("script"),d=0;d<u.length;d++){var l=u[d];if(l.getAttribute("src")==n||l.getAttribute("data-webpack")==t+a){s=l;break}}s||(c=!0,(s=document.createElement("script")).charset="utf-8",s.timeout=120,i.nc&&s.setAttribute("nonce",i.nc),s.setAttribute("data-webpack",t+a),s.src=n),e[n]=[r];var f=(t,r)=>{s.onerror=s.onload=null,clearTimeout(g);var i=e[n];if(delete e[n],s.parentNode&&s.parentNode.removeChild(s),i&&i.forEach((e=>e(r))),t)return t(r)},g=setTimeout(f.bind(null,void 0,{type:"timeout",target:s}),12e4);s.onerror=f.bind(null,s.onerror),s.onload=f.bind(null,s.onload),c&&document.head.appendChild(s)}},i.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.p="https://js-agent.newrelic.com/",(()=>{var e={50:0,832:0};i.f.j=(t,n)=>{var r=i.o(e,t)?e[t]:void 0;if(0!==r)if(r)n.push(r[2]);else{var a=new Promise(((n,i)=>r=e[t]=[n,i]));n.push(r[2]=a);var o=i.p+i.u(t),s=new Error;i.l(o,(n=>{if(i.o(e,t)&&(0!==(r=e[t])&&(e[t]=void 0),r)){var a=n&&("load"===n.type?"missing":n.type),o=n&&n.target&&n.target.src;s.message="Loading chunk "+t+" failed.\n("+a+": "+o+")",s.name="ChunkLoadError",s.type=a,s.request=o,r[1](s)}}),"chunk-"+t,t)}};var t=(t,n)=>{var r,a,[o,s,c]=n,u=0;if(o.some((t=>0!==e[t]))){for(r in s)i.o(s,r)&&(i.m[r]=s[r]);if(c)c(i)}for(t&&t(n);u<o.length;u++)a=o[u],i.o(e,a)&&e[a]&&e[a][0](),e[a]=0},n=self["webpackChunk:NRBA-1.241.0.PROD"]=self["webpackChunk:NRBA-1.241.0.PROD"]||[];n.forEach(t.bind(null,0)),n.push=t.bind(null,n.push.bind(n))})(),(()=>{var e=i(50);class t{addPageAction(t,n){(0,e.Z)("Call to agent api addPageAction failed. The session trace feature is not currently initialized.")}setPageViewName(t,n){(0,e.Z)("Call to agent api setPageViewName failed. The page view feature is not currently initialized.")}setCustomAttribute(t,n,r){(0,e.Z)("Call to agent api setCustomAttribute failed. The js errors feature is not currently initialized.")}noticeError(t,n){(0,e.Z)("Call to agent api noticeError failed. The js errors feature is not currently initialized.")}setUserId(t){(0,e.Z)("Call to agent api setUserId failed. The js errors feature is not currently initialized.")}setApplicationVersion(t){(0,e.Z)("Call to agent api setApplicationVersion failed. The agent is not currently initialized.")}setErrorHandler(t){(0,e.Z)("Call to agent api setErrorHandler failed. The js errors feature is not currently initialized.")}finished(t){(0,e.Z)("Call to agent api finished failed. The page action feature is not currently initialized.")}addRelease(t,n){(0,e.Z)("Call to agent api addRelease failed. The agent is not currently initialized.")}start(t){(0,e.Z)("Call to agent api addRelease failed. The agent is not currently initialized.")}}var n=i(3325),r=i(5763);const a=Object.values(n.D);function o(e){const t={};return a.forEach((n=>{t[n]=function(e,t){return!1!==(0,r.Mt)(t,"".concat(e,".enabled"))}(n,e)})),t}var s=i(7530);var c=i(8e3),u=i(5938),d=i(3960),l=i(385);class f extends u.W{constructor(e,t,n){let i=!(arguments.length>3&&void 0!==arguments[3])||arguments[3];super(e,t,n),this.auto=i,this.abortHandler=void 0,this.featAggregate=void 0,this.onAggregateImported=void 0,!1===(0,r.Mt)(this.agentIdentifier,"".concat(this.featureName,".autoStart"))&&(this.auto=!1),this.auto&&(0,c.R)(e,n)}importAggregator(){let t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if(this.featAggregate)return;if(!this.auto)return void this.ee.on("".concat(this.featureName,"-opt-in"),(()=>{(0,c.R)(this.agentIdentifier,this.featureName),this.auto=!0,this.importAggregator()}));const n=l.il&&!0===(0,r.Mt)(this.agentIdentifier,"privacy.cookies_enabled");let a;this.onAggregateImported=new Promise((e=>{a=e}));const o=async()=>{let r;try{if(n){const{setupAgentSession:e}=await i.e(75).then(i.bind(i,3228));r=e(this.agentIdentifier)}}catch(t){(0,e.Z)("A problem occurred when starting up session manager. This page will not start or extend any session.",t)}try{if(!this.shouldImportAgg(this.featureName,r))return(0,c.L)(this.agentIdentifier,this.featureName),void a(!1);const{lazyFeatureLoader:e}=await i.e(75).then(i.bind(i,8582)),{Aggregate:n}=await e(this.featureName,"aggregate");this.featAggregate=new n(this.agentIdentifier,this.aggregator,t),a(!0)}catch(t){(0,e.Z)("Downloading and initializing ".concat(this.featureName," failed..."),t),this.abortHandler?.(),a(!1)}};l.il?(0,d.b)((()=>o()),!0):o()}shouldImportAgg(e,t){return e!==n.D.sessionReplay||!!r.Yu.MO&&(!1!==(0,r.Mt)(this.agentIdentifier,"session_trace.enabled")&&(!!t?.isNew||!!t?.state.sessionReplay))}}var g=i(7633);class p extends f{static featureName=g.t;constructor(e,t){let n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,g.t,n),this.importAggregator()}}var h=i(1117),v=i(1284);class m extends h.w{constructor(e){super(e),this.aggregatedData={}}store(e,t,n,r,i){var a=this.getBucket(e,t,n,i);return a.metrics=function(e,t){t||(t={count:0});return t.count+=1,(0,v.D)(e,(function(e,n){t[e]=b(n,t[e])})),t}(r,a.metrics),a}merge(e,t,n,r,i){var a=this.getBucket(e,t,r,i);if(a.metrics){var o=a.metrics;o.count+=n.count,(0,v.D)(n,(function(e,t){if("count"!==e){var r=o[e],i=n[e];i&&!i.c?o[e]=b(i.t,r):o[e]=function(e,t){if(!t)return e;t.c||(t=y(t.t));return t.min=Math.min(e.min,t.min),t.max=Math.max(e.max,t.max),t.t+=e.t,t.sos+=e.sos,t.c+=e.c,t}(i,o[e])}}))}else a.metrics=n}storeMetric(e,t,n,r){var i=this.getBucket(e,t,n);return i.stats=b(r,i.stats),i}getBucket(e,t,n,r){this.aggregatedData[e]||(this.aggregatedData[e]={});var i=this.aggregatedData[e][t];return i||(i=this.aggregatedData[e][t]={params:n||{}},r&&(i.custom=r)),i}get(e,t){return t?this.aggregatedData[e]&&this.aggregatedData[e][t]:this.aggregatedData[e]}take(e){for(var t={},n="",r=!1,i=0;i<e.length;i++)t[n=e[i]]=w(this.aggregatedData[n]),t[n].length&&(r=!0),delete this.aggregatedData[n];return r?t:null}}function b(e,t){return null==e?function(e){e?e.c++:e={c:1};return e}(t):t?(t.c||(t=y(t.t)),t.c+=1,t.t+=e,t.sos+=e*e,e>t.max&&(t.max=e),e<t.min&&(t.min=e),t):{t:e}}function y(e){return{t:e,min:e,max:e,sos:e*e,c:1}}function w(e){return"object"!=typeof e?[]:(0,v.D)(e,A)}function A(e,t){return t}var x=i(8632),_=i(4402),D=i(4351);var E=i(5546),j=i(7956),k=i(3239),T=i(7894),N=i(9251);class S extends f{static featureName=N.t;constructor(e,t){let n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,N.t,n),l.il&&((0,j.N)((()=>(0,E.p)("docHidden",[(0,T.z)()],void 0,N.t,this.ee)),!0),(0,k.bP)("pagehide",(()=>(0,E.p)("winPagehide",[(0,T.z)()],void 0,N.t,this.ee))),this.importAggregator())}}var P=i(3081);class C extends f{static featureName=P.t9;constructor(e,t){let n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,P.t9,n),this.importAggregator()}}new class extends t{constructor(t){let n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:(0,_.ky)(16);super(),l._A?(this.agentIdentifier=n,this.sharedAggregator=new m({agentIdentifier:this.agentIdentifier}),this.features={},this.desiredFeatures=new Set(t.features||[]),this.desiredFeatures.add(p),Object.assign(this,(0,s.j)(this.agentIdentifier,t,t.loaderType||"agent")),this.run()):(0,e.Z)("Failed to initial the agent. Could not determine the runtime environment.")}get config(){return{info:(0,r.C5)(this.agentIdentifier),init:(0,r.P_)(this.agentIdentifier),loader_config:(0,r.DL)(this.agentIdentifier),runtime:(0,r.OP)(this.agentIdentifier)}}run(){const t="features";try{const r=o(this.agentIdentifier),i=[...this.desiredFeatures];i.sort(((e,t)=>n.p[e.featureName]-n.p[t.featureName])),i.forEach((t=>{if(r[t.featureName]||t.featureName===n.D.pageViewEvent){const i=function(e){switch(e){case n.D.ajax:return[n.D.jserrors];case n.D.sessionTrace:return[n.D.ajax,n.D.pageViewEvent];case n.D.sessionReplay:return[n.D.sessionTrace];case n.D.pageViewTiming:return[n.D.pageViewEvent];default:return[]}}(t.featureName);i.every((e=>r[e]))||(0,e.Z)("".concat(t.featureName," is enabled but one or more dependent features has been disabled (").concat((0,D.P)(i),"). This may cause unintended consequences or missing data...")),this.features[t.featureName]=new t(this.agentIdentifier,this.sharedAggregator)}})),(0,x.Qy)(this.agentIdentifier,this.features,t)}catch(n){(0,e.Z)("Failed to initialize all enabled instrument classes (agent aborted) -",n);for(const e in this.features)this.features[e].abortHandler?.();const r=(0,x.fP)();return delete r.initializedAgents[this.agentIdentifier]?.api,delete r.initializedAgents[this.agentIdentifier]?.[t],delete this.sharedAggregator,r.ee?.abort(),delete r.ee?.get(this.agentIdentifier),!1}}addToTrace(t){(0,e.Z)("Call to agent api addToTrace failed. The page action feature is not currently initialized.")}setCurrentRouteName(t){(0,e.Z)("Call to agent api setCurrentRouteName failed. The spa feature is not currently initialized.")}interaction(){(0,e.Z)("Call to agent api interaction failed. The spa feature is not currently initialized.")}}({features:[p,S,C],loaderType:"lite"})})()})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <link href="https://d1f74no97k6yi9.cloudfront.net/assets/application-2d8a1f3a0e50bc208312b543fca9b28c.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://d1f74no97k6yi9.cloudfront.net/assets/conferences-e80a31f6e84e3bf363a9ac1605c3c678.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://d1f74no97k6yi9.cloudfront.net/assets/application_series-95702931fa8e965ac3db831831ce3de4.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://d1f74no97k6yi9.cloudfront.net/assets/fonts-w-e6e3ff4174415bfa037c6888a4a2c4f9.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://d1f74no97k6yi9.cloudfront.net/assets/fonts-g-51eaabb227da69840e4d913f952d79ae.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://d1f74no97k6yi9.cloudfront.net/assets/fonts-sf-c825537f9f1dbea84927e7110111c47f.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://d1f74no97k6yi9.cloudfront.net/assets/fonts-pro-03a6f515fbbb89abb8a4a7835b91599e.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://d1f74no97k6yi9.cloudfront.net/assets/fonts-m-7ca8c0aa70a3f8aaf95b9d8f86bef7e8.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://d1f74no97k6yi9.cloudfront.net/assets/virtual-checkin-0692e80bb17bd10d4942b0fea4d93cca.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://d1f74no97k6yi9.cloudfront.net/assets/event-dashboard-2cfdb4b32e707015cce635993d34fa38.css" media="all" rel="stylesheet" type="text/css" />
+  <script src="https://d1f74no97k6yi9.cloudfront.net/assets/application-962ec172a47fce91a688297da112f002.js" type="text/javascript"></script>
+  <script src="https://d1f74no97k6yi9.cloudfront.net/assets/lazyload-59ca3f8c871c504dbb93a2641125a70c.js" type="text/javascript"></script>
+  <script src="https://d1f74no97k6yi9.cloudfront.net/assets/application_series-292601ef7b39d2b2136a889a2312c180.js" type="text/javascript"></script>
+  <link href='https://fonts.googleapis.com/css?family=Cuprum' rel='stylesheet' type='text/css'/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="content-language" content="en">
+<title>Innovate: Encore</title>
+
+
+
+<link rel="canonical" href="https://online-events.keysight.com/series/innovate-encore/register_ticket">
+
+<meta content="authenticity_token" name="csrf-param" />
+<meta content="+BXZ2TQ2JRUq3oKhzK8+RI9QHygsEKoctY6JpEfK2o8=" name="csrf-token" />
+  <script src="https://assets.adobedtm.com/af12bb6c0390/c2f90b6fd526/launch-07c59290bcb1.min.js" async></script>
+
+
+
+<style>
+
+.summit-section-video-stage {
+    padding-bottom: 0 !important;
+}
+
+.techweek2020-section-1 {
+    padding-top: 0 !important;
+}
+
+.summit-section-video-stage {
+    padding-top: 75px !important;
+}
+
+a, a:link, a:visited {
+    color: #e90029;
+}
+
+.techweek2020-section-2-in {
+    padding: 74px 0 !important;
+}
+
+.techweek2020-section-5-btn a {
+    border-radius: 0 !important;
+}
+
+.sponsor-desc-text {
+    font-size: 10px !important;
+}
+
+b, strong {
+    font-size: 18px;
+}
+
+.tw2020-buytikets-checkout-right {
+display: none;
+}
+
+.techweek2020-banner {
+    height: 415px !important;
+}
+
+.banner-image {
+height:220px !important;
+}
+
+.techweek2020-banner-already-registered a {
+    display: none;
+}
+
+.techweek2020-header-nav-btn {
+    border-radius: 0 !important;
+}
+
+.techweek2020-banner-btn a {
+    border-radius: 0 !important;
+}
+
+.new-stage-header-nav-btn a {
+    border-radius: 0 !important;
+}
+
+.techweek2020-section-2-btn a {
+    border-radius: 0 !important;
+}
+
+.techweek2020-section-2-btn a {
+    display: none !important;
+}
+
+.conf-creation-regiserbox-button>input[type="submit"], .conf-creation-regiserbox-button button, .conf-creation-regiserbox-button a:not(.template-all-gdpr-nano-link-a), .conf-creation-download-recording-btu a {
+    background-image: linear-gradient(to left, #ec1515, #ec1515);
+}
+
+</style>
+
+<style>
+*{
+font-family: Graphik !important;
+}
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-SuperItalic-Web.woff2') format('woff2'),
+       url('GraphikCondensed-SuperItalic-Web.woff') format('woff');
+  font-weight:  900;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.techweek2020-section-5-title {
+    display: none;
+}
+
+.GraphikCondensed-SuperItalic-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  900;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-Super-Web.woff2') format('woff2'),
+       url('GraphikCondensed-Super-Web.woff') format('woff');
+  font-weight:  900;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-Super-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  900;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-BlackItalic-Web.woff2') format('woff2'),
+       url('GraphikCondensed-BlackItalic-Web.woff') format('woff');
+  font-weight:  800;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-BlackItalic-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  800;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-Black-Web.woff2') format('woff2'),
+       url('GraphikCondensed-Black-Web.woff') format('woff');
+  font-weight:  800;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-Black-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  800;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-BoldItalic-Web.woff2') format('woff2'),
+       url('GraphikCondensed-BoldItalic-Web.woff') format('woff');
+  font-weight:  700;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-BoldItalic-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  700;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-Bold-Web.woff2') format('woff2'),
+       url('GraphikCondensed-Bold-Web.woff') format('woff');
+  font-weight:  700;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-Bold-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  700;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-SemiboldItalic-Web.woff2') format('woff2'),
+       url('GraphikCondensed-SemiboldItalic-Web.woff') format('woff');
+  font-weight:  600;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-SemiboldItalic-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  600;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-Semibold-Web.woff2') format('woff2'),
+       url('GraphikCondensed-Semibold-Web.woff') format('woff');
+  font-weight:  600;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-Semibold-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  600;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-MediumItalic-Web.woff2') format('woff2'),
+       url('GraphikCondensed-MediumItalic-Web.woff') format('woff');
+  font-weight:  500;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-MediumItalic-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  500;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-Medium-Web.woff2') format('woff2'),
+       url('GraphikCondensed-Medium-Web.woff') format('woff');
+  font-weight:  500;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-Medium-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  500;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-RegularItalic-Web.woff2') format('woff2'),
+       url('GraphikCondensed-RegularItalic-Web.woff') format('woff');
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-RegularItalic-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-Regular-Web.woff2') format('woff2'),
+       url('GraphikCondensed-Regular-Web.woff') format('woff');
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-Regular-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-LightItalic-Web.woff2') format('woff2'),
+       url('GraphikCondensed-LightItalic-Web.woff') format('woff');
+  font-weight:  300;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-LightItalic-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  300;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-Light-Web.woff2') format('woff2'),
+       url('GraphikCondensed-Light-Web.woff') format('woff');
+  font-weight:  300;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-Light-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  300;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-ExtralightItalic-Web.woff2') format('woff2'),
+       url('GraphikCondensed-ExtralightItalic-Web.woff') format('woff');
+  font-weight:  200;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-ExtralightItalic-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  200;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-Extralight-Web.woff2') format('woff2'),
+       url('GraphikCondensed-Extralight-Web.woff') format('woff');
+  font-weight:  200;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-Extralight-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  200;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-ThinItalic-Web.woff2') format('woff2'),
+       url('GraphikCondensed-ThinItalic-Web.woff') format('woff');
+  font-weight:  100;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-ThinItalic-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  100;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik Cond Web';
+  src: url('GraphikCondensed-Thin-Web.woff2') format('woff2'),
+       url('GraphikCondensed-Thin-Web.woff') format('woff');
+  font-weight:  100;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.GraphikCondensed-Thin-Web {
+  font-family: 'Graphik Cond Web';
+  font-weight:  100;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-SuperItalic-Cy-Web.woff2') format('woff2'),
+       url('Graphik-SuperItalic-Cy-Web.woff') format('woff');
+  font-weight:  900;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Graphik-SuperItalic-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  900;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-Super-Cy-Web.woff2') format('woff2'),
+       url('Graphik-Super-Cy-Web.woff') format('woff');
+  font-weight:  900;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Graphik-Super-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  900;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-BlackItalic-Cy-Web.woff2') format('woff2'),
+       url('Graphik-BlackItalic-Cy-Web.woff') format('woff');
+  font-weight:  800;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Graphik-BlackItalic-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  800;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-Black-Cy-Web.woff2') format('woff2'),
+       url('Graphik-Black-Cy-Web.woff') format('woff');
+  font-weight:  800;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Graphik-Black-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  800;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-BoldItalic-Cy-Web.woff2') format('woff2'),
+       url('Graphik-BoldItalic-Cy-Web.woff') format('woff');
+  font-weight:  700;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Graphik-BoldItalic-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  700;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-Bold-Cy-Web.woff2') format('woff2'),
+       url('Graphik-Bold-Cy-Web.woff') format('woff');
+  font-weight:  700;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Graphik-Bold-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  700;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-SemiboldItalic-Cy-Web.woff2') format('woff2'),
+       url('Graphik-SemiboldItalic-Cy-Web.woff') format('woff');
+  font-weight:  600;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Graphik-SemiboldItalic-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  600;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-Semibold-Cy-Web.woff2') format('woff2'),
+       url('Graphik-Semibold-Cy-Web.woff') format('woff');
+  font-weight:  600;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Graphik-Semibold-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  600;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-MediumItalic-Cy-Web.woff2') format('woff2'),
+       url('Graphik-MediumItalic-Cy-Web.woff') format('woff');
+  font-weight:  500;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Graphik-MediumItalic-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  500;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-Medium-Cy-Web.woff2') format('woff2'),
+       url('Graphik-Medium-Cy-Web.woff') format('woff');
+  font-weight:  500;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Graphik-Medium-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  500;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-RegularItalic-Cy-Web.woff2') format('woff2'),
+       url('Graphik-RegularItalic-Cy-Web.woff') format('woff');
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Graphik-RegularItalic-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  400;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-Regular-Cy-Web.woff2') format('woff2'),
+       url('Graphik-Regular-Cy-Web.woff') format('woff');
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Graphik-Regular-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  400;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-LightItalic-Cy-Web.woff2') format('woff2'),
+       url('Graphik-LightItalic-Cy-Web.woff') format('woff');
+  font-weight:  300;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Graphik-LightItalic-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  300;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-Light-Cy-Web.woff2') format('woff2'),
+       url('Graphik-Light-Cy-Web.woff') format('woff');
+  font-weight:  300;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Graphik-Light-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  300;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-ExtralightItalic-Cy-Web.woff2') format('woff2'),
+       url('Graphik-ExtralightItalic-Cy-Web.woff') format('woff');
+  font-weight:  200;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Graphik-ExtralightItalic-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  200;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-Extralight-Cy-Web.woff2') format('woff2'),
+       url('Graphik-Extralight-Cy-Web.woff') format('woff');
+  font-weight:  200;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Graphik-Extralight-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  200;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-ThinItalic-Cy-Web.woff2') format('woff2'),
+       url('Graphik-ThinItalic-Cy-Web.woff') format('woff');
+  font-weight:  100;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+.Graphik-ThinItalic-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  100;
+  font-style:   italic;
+  font-stretch: normal;
+}
+
+
+@font-face {
+  font-family: 'Graphik LC Web';
+  src: url('Graphik-Thin-Cy-Web.woff2') format('woff2'),
+       url('Graphik-Thin-Cy-Web.woff') format('woff');
+  font-weight:  100;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.Graphik-Thin-Cy-Web {
+  font-family: 'Graphik LC Web';
+  font-weight:  100;
+  font-style:   normal;
+  font-stretch: normal;
+}
+
+.conf-creation-landing-about-textbox{
+font-family: 'Graphik-Bold-Cy-Web' !important;
+}
+
+@media(min-width: 600px){
+#js-techsweek-spon .techweek2020-section-4-logo > li:first-child {
+width: 560px !important;
+height: 376px !important;
+}
+}
+
+#js-techsweek-spon .techweek2020-section-4-text {
+display: none;
+}
+
+.techweek2020-section-4-title {
+    padding-bottom: 0 !important;
+}
+
+</style>
+
+    <link href="https://d5ln38p3754yc.cloudfront.net/brand_favicon/240/original/1650567457-c93328cdc7e5bc88.png?1650567457" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+    <style>
+
+.tw2020-buytikets-header{
+	padding: 10px 16px !important;
+	background: #02091a;
+}
+
+.new-stage-prizebox li
+{margin: 0 19px 32px !important;
+}
+
+@media(min-width: 1166px) {
+.new-stage-section-list {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+justify-items: center;
+}
+
+.new-stage-section-description {
+    color: #ffffff !important;
+}
+
+.new-stage-header-nav-btn .network-header-nav {
+    display: none;
+}
+
+.techweek2020-header-nav-user {
+display:none !important;
+}
+
+.series-techweek .ccop-banner-middle .techweek2020-banner-btn a{
+color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+.conf-creation-landing-regiserbox-subtitle a {
+    color: #e90029 !important;
+}
+
+</style>
+
+
+  
+</head>
+
+<body>
+<!-- Top navigation bar -->
+<link href="https://d1f74no97k6yi9.cloudfront.net/assets/techweek2020-f86a78110e71f4426d65a538ed27057f.css" media="all" rel="stylesheet" type="text/css" />
+<div class="tw2020-buytikets-main" style="background-color: #ffffff;">
+  <div class="pass-buytikets" id="js-pass-ticket">
+    <div class="tw2020-buytikets-header clear">
+      <div class="tw2020-buytikets-header-logo">
+          <a href="/">
+            <img alt="1682090173-e98707c59ed4535a" src="https://d5ln38p3754yc.cloudfront.net/networking_images/:obfuscated_id/medium/1682090173-e98707c59ed4535a.png?1682090173" />
+</a>      </div>
+    </div>
+    <div class="tw2020-buytikets-body" style="max-width: 560px; margin: 0 auto;">
+    	<input id="conference-obfuscated-id" name="conference-obfuscated-id" type="hidden" value="91e363268ff6" />
+        <div class="conf-creation-landing-regiserbox js-registration-form-box" id="js-new-registration-panel">
+    <div class="conf-creation-landing-regiserbox-title">
+      Register for Keysight World: Innovate
+    </div>
+
+
+      <div class="conf-creation-landing-regiserbox-subtitle">
+    Disruptive innovation starts here.
+  </div>
+<div class="conf-creation-landing-regiserbox-subtitle">
+<a href="/switch_account" id="not_me_link" style="display:none">Not me, switch account.</a>
+</div>
+
+  <div class="js-registration-form">
+    <form accept-charset="UTF-8" action="/register/register_member_for_conference?load_from=registration_modal&amp;register_conference_id=91e363268ff6&amp;series_register=series_register" autocomplete="nope" class="notranslate" data-remote="true" id="register_member" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="+BXZ2TQ2JRUq3oKhzK8+RI9QHygsEKoctY6JpEfK2o8=" /></div><input name='_usec' type='hidden' value='171153' />
+
+    
+
+    <input id="custom_user_id" name="custom_user_id" type="hidden" />
+          <div class="conf-creation-new-input-out" style="display:">
+        <div class="conf-creation-new-name">First Name*</div>
+        <div class="conf-creation-new-input">
+          <div class="cl-conference-reserve-new-input-in">
+            <input autocomplete="nope" class="new_member_first_name" id="new_member_first_name" name="new_member[first_name]" size="30" type="text" />
+          </div>
+        </div>
+      </div>
+      <div class="conf-creation-new-input-out" style="display:">
+          <div class="conf-creation-new-name">Last Name*</div>
+          <div class="conf-creation-new-input">
+            <div class="cl-conference-reserve-new-input-in">
+              <input autocomplete="nope" class="new_member_last_name" id="new_member_last_name" name="new_member[last_name]" size="30" type="text" />
+            </div>
+          </div>
+
+      </div>
+    <div class="conf-creation-new-input-out">
+      <div class="conf-creation-new-name">Your Email*</div>
+      <div class="conf-creation-new-input">
+        <div class="cl-conference-reserve-new-input-in ">
+          <input autocomplete="nope" class="new_member_email" id="new_member_email" name="new_member[email]" size="30" type="text" />
+
+          <div class="errtext" style="padding: 0 0 0 10px"></div>
+        </div>
+      </div>
+    </div>
+
+      <input id="register_with_pre_question" name="register_with_pre_question" type="hidden" value="new_member_with_pre_questions" />
+      
+  
+    <input id="conference_registration_pre_conference_responses_attributes_0_field_type" name="conference_registration[pre_conference_responses_attributes][0][field_type]" type="hidden" value="text" />
+    <input id="conference_registration_pre_conference_responses_attributes_0_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][0][pre_conference_question_id]" type="hidden" value="14936367" />
+    <div class="conf-creation-new-input-out js-custom-fields ff6a7ffc9f3e-question " data-question-title=Company data-question-id=ff6a7ffc9f3e data-use-number=false  style="">
+        <div class="conf-creation-new-name">
+          Company*
+        </div>
+        
+        <div class="conf-creation-new-input">
+          <div class="cl-conference-reserve-new-input-in">
+
+            <input id="conference_registration_pre_conference_responses_attributes_0_required" name="conference_registration[pre_conference_responses_attributes][0][required]" type="hidden" value="true" />
+            <input id="conference_registration_pre_conference_responses_attributes_0_question" name="conference_registration[pre_conference_responses_attributes][0][question]" type="hidden" value="Company" />
+              <input autocomplete="nope" id="conference_registration_pre_conference_responses_attributes_0_response" name="conference_registration[pre_conference_responses_attributes][0][response]" row="1" size="30" type="text" />
+          </div>
+        </div>
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_1_field_type" name="conference_registration[pre_conference_responses_attributes][1][field_type]" type="hidden" value="dropdown" />
+    <input id="conference_registration_pre_conference_responses_attributes_1_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][1][pre_conference_question_id]" type="hidden" value="14936369" />
+    <div class="conf-creation-new-input-out js-custom-fields 6f6266f75135-question " data-question-title=Country or Area data-question-id=6f6266f75135 data-use-number=false  style="">
+        <div class="conf-creation-new-name">
+          Country or Area*
+        </div>
+        
+          <div class="general-registration-field-select">
+            <input id="conference_registration_pre_conference_responses_attributes_1_required" name="conference_registration[pre_conference_responses_attributes][1][required]" type="hidden" value="true" />
+            <input id="conference_registration_pre_conference_responses_attributes_1_question" name="conference_registration[pre_conference_responses_attributes][1][question]" type="hidden" value="Country or Area" />
+              <select class="custom-filed-single-dropdown" data-index="1" id="conference_registration_pre_conference_responses_attributes_1_response" name="conference_registration[pre_conference_responses_attributes][1][response]"><option value="">Please select</option>
+<option value="Åland Islands">Åland Islands</option>
+<option value="Afghanistan">Afghanistan</option>
+<option value="Albania">Albania</option>
+
+</select>
+            <b>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="640" height="640" viewBox="0 0 640 640">
+                <path d="M23.517 187.438c23.571-24.112 56.388-26.004 85.204 0l211.279 202.574 211.279-202.574c28.816-26.004 61.686-24.112 85.096 0 23.571 24.058 22.058 64.713 0 87.312-21.949 22.599-253.827 243.393-253.827 243.393-11.731 12.056-27.139 18.111-42.548 18.111s-30.816-6.054-42.656-18.111c0 0-231.769-220.794-253.827-243.392-22.112-22.599-23.571-63.254 0-87.312z"></path>
+              </svg>
+            </b>
+          </div>
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_2_field_type" name="conference_registration[pre_conference_responses_attributes][2][field_type]" type="hidden" value="dropdown" />
+    <input id="conference_registration_pre_conference_responses_attributes_2_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][2][pre_conference_question_id]" type="hidden" value="14936370" />
+    <div class="conf-creation-new-input-out js-custom-fields 5969ac660e8f-question " data-question-title=Job Level data-question-id=5969ac660e8f data-use-number=false  style="">
+        <div class="conf-creation-new-name">
+          Job Level*
+        </div>
+        
+          <div class="general-registration-field-select">
+            <input id="conference_registration_pre_conference_responses_attributes_2_required" name="conference_registration[pre_conference_responses_attributes][2][required]" type="hidden" value="true" />
+            <input id="conference_registration_pre_conference_responses_attributes_2_question" name="conference_registration[pre_conference_responses_attributes][2][question]" type="hidden" value="Job Level" />
+              <select class="custom-filed-single-dropdown" data-index="2" id="conference_registration_pre_conference_responses_attributes_2_response" name="conference_registration[pre_conference_responses_attributes][2][response]"><option value="">Please select</option>
+<option value="Executive Management">Executive Management</option>
+<option value="Chief Engineer / Department Head">Chief Engineer / Department Head</option>
+<option value="Engineering Manager">Engineering Manager</option>
+<option value="Individual Contributor">Individual Contributor</option>
+<option value="Student">Student</option>
+<option value="Consultant">Consultant</option></select>
+            <b>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="640" height="640" viewBox="0 0 640 640">
+                <path d="M23.517 187.438c23.571-24.112 56.388-26.004 85.204 0l211.279 202.574 211.279-202.574c28.816-26.004 61.686-24.112 85.096 0 23.571 24.058 22.058 64.713 0 87.312-21.949 22.599-253.827 243.393-253.827 243.393-11.731 12.056-27.139 18.111-42.548 18.111s-30.816-6.054-42.656-18.111c0 0-231.769-220.794-253.827-243.392-22.112-22.599-23.571-63.254 0-87.312z"></path>
+              </svg>
+            </b>
+          </div>
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_3_field_type" name="conference_registration[pre_conference_responses_attributes][3][field_type]" type="hidden" value="dropdown" />
+    <input id="conference_registration_pre_conference_responses_attributes_3_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][3][pre_conference_question_id]" type="hidden" value="14936371" />
+    <div class="conf-creation-new-input-out js-custom-fields fd257397bc95-question " data-question-title=Industry data-question-id=fd257397bc95 data-use-number=false  style="">
+        <div class="conf-creation-new-name">
+          Industry*
+        </div>
+        
+          <div class="general-registration-field-select">
+            <input id="conference_registration_pre_conference_responses_attributes_3_required" name="conference_registration[pre_conference_responses_attributes][3][required]" type="hidden" value="true" />
+            <input id="conference_registration_pre_conference_responses_attributes_3_question" name="conference_registration[pre_conference_responses_attributes][3][question]" type="hidden" value="Industry" />
+              <select class="custom-filed-single-dropdown" data-index="3" id="conference_registration_pre_conference_responses_attributes_3_response" name="conference_registration[pre_conference_responses_attributes][3][response]"><option value="">Please select</option>
+<option value="Aerospace / Defense">Aerospace / Defense</option>
+<option value="Automotive">Automotive</option>
+</select>
+            <b>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="640" height="640" viewBox="0 0 640 640">
+                <path d="M23.517 187.438c23.571-24.112 56.388-26.004 85.204 0l211.279 202.574 211.279-202.574c28.816-26.004 61.686-24.112 85.096 0 23.571 24.058 22.058 64.713 0 87.312-21.949 22.599-253.827 243.393-253.827 243.393-11.731 12.056-27.139 18.111-42.548 18.111s-30.816-6.054-42.656-18.111c0 0-231.769-220.794-253.827-243.392-22.112-22.599-23.571-63.254 0-87.312z"></path>
+              </svg>
+            </b>
+          </div>
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_4_field_type" name="conference_registration[pre_conference_responses_attributes][4][field_type]" type="hidden" value="text" />
+    <input id="conference_registration_pre_conference_responses_attributes_4_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][4][pre_conference_question_id]" type="hidden" value="15133550" />
+    <div class="conf-creation-new-input-out js-custom-fields db13b84d2ae0-question " data-question-title=Business Phone data-question-id=db13b84d2ae0 data-use-number=false  style="">
+        <div class="conf-creation-new-name">
+          Business Phone*
+        </div>
+        
+        <div class="conf-creation-new-input">
+          <div class="cl-conference-reserve-new-input-in">
+
+            <input id="conference_registration_pre_conference_responses_attributes_4_required" name="conference_registration[pre_conference_responses_attributes][4][required]" type="hidden" value="true" />
+            <input id="conference_registration_pre_conference_responses_attributes_4_question" name="conference_registration[pre_conference_responses_attributes][4][question]" type="hidden" value="Business Phone" />
+              <input autocomplete="nope" id="conference_registration_pre_conference_responses_attributes_4_response" name="conference_registration[pre_conference_responses_attributes][4][response]" row="1" size="30" type="text" />
+          </div>
+        </div>
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_5_field_type" name="conference_registration[pre_conference_responses_attributes][5][field_type]" type="hidden" value="checkbox" />
+    <input id="conference_registration_pre_conference_responses_attributes_5_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][5][pre_conference_question_id]" type="hidden" value="14936372" />
+    <div class="conf-creation-new-input-out js-custom-fields bdb53bf3b8bc-question " data-question-title=I would like to receive event information and other educational emails from Keysight. data-question-id=bdb53bf3b8bc data-use-number=false  style="">
+        <div class="template-all-custom-filed-checkbox">
+          <div onclick="clickCustomCheckbox(this)" onkeypress="handleCustomCheckboxKeypress(event)">
+            <input id="conference_registration_pre_conference_responses_attributes_5_required" name="conference_registration[pre_conference_responses_attributes][5][required]" type="hidden" value="false" />
+            <input id="conference_registration_pre_conference_responses_attributes_5_question" name="conference_registration[pre_conference_responses_attributes][5][question]" type="hidden" value="I would like to receive event information and other educational emails from Keysight." />
+            <input id="conference_registration_pre_conference_responses_attributes_5_response" name="conference_registration[pre_conference_responses_attributes][5][response]" type="hidden" value="false" />
+<span role="checkbox" aria-labelledby="custom-checkbox-5-label" tabindex="0" class="custom_fields_checkbox "><i>✓</i></span>
+            I would like to receive event information and other educational emails from Keysight.
+          </div>
+        </div>
+        
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_7_field_type" name="conference_registration[pre_conference_responses_attributes][7][field_type]" type="hidden" value="text" />
+    <input id="conference_registration_pre_conference_responses_attributes_7_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][7][pre_conference_question_id]" type="hidden" value="14936395" />
+    <div class="conf-creation-new-input-out js-custom-fields 13e0ace19c2d-question custom-field-cookie" data-question-title=utm_bmid data-question-id=13e0ace19c2d data-use-number=false style=display:none; style="">
+        <div class="conf-creation-new-name">
+          utm_bmid
+        </div>
+        
+        <div class="conf-creation-new-input">
+          <div class="cl-conference-reserve-new-input-in">
+
+            <input id="conference_registration_pre_conference_responses_attributes_7_required" name="conference_registration[pre_conference_responses_attributes][7][required]" type="hidden" value="false" />
+            <input id="conference_registration_pre_conference_responses_attributes_7_question" name="conference_registration[pre_conference_responses_attributes][7][question]" type="hidden" value="utm_bmid" />
+              <input autocomplete="nope" id="conference_registration_pre_conference_responses_attributes_7_response" name="conference_registration[pre_conference_responses_attributes][7][response]" row="1" size="30" type="text" />
+          </div>
+        </div>
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_9_field_type" name="conference_registration[pre_conference_responses_attributes][9][field_type]" type="hidden" value="text" />
+    <input id="conference_registration_pre_conference_responses_attributes_9_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][9][pre_conference_question_id]" type="hidden" value="14936393" />
+    <div class="conf-creation-new-input-out js-custom-fields eb7805a1efe3-question custom-field-cookie" data-question-title=mid data-question-id=eb7805a1efe3 data-use-number=false style=display:none; style="">
+        <div class="conf-creation-new-name">
+          mid
+        </div>
+        
+        <div class="conf-creation-new-input">
+          <div class="cl-conference-reserve-new-input-in">
+
+            <input id="conference_registration_pre_conference_responses_attributes_9_required" name="conference_registration[pre_conference_responses_attributes][9][required]" type="hidden" value="false" />
+            <input id="conference_registration_pre_conference_responses_attributes_9_question" name="conference_registration[pre_conference_responses_attributes][9][question]" type="hidden" value="mid" />
+              <input autocomplete="nope" id="conference_registration_pre_conference_responses_attributes_9_response" name="conference_registration[pre_conference_responses_attributes][9][response]" row="1" size="30" type="text" />
+          </div>
+        </div>
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_10_field_type" name="conference_registration[pre_conference_responses_attributes][10][field_type]" type="hidden" value="text" />
+    <input id="conference_registration_pre_conference_responses_attributes_10_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][10][pre_conference_question_id]" type="hidden" value="14936392" />
+    <div class="conf-creation-new-input-out js-custom-fields 73e0d91dc134-question custom-field-cookie" data-question-title=utm_source data-question-id=73e0d91dc134 data-use-number=false style=display:none; style="">
+        <div class="conf-creation-new-name">
+          utm_source
+        </div>
+        
+        <div class="conf-creation-new-input">
+          <div class="cl-conference-reserve-new-input-in">
+
+            <input id="conference_registration_pre_conference_responses_attributes_10_required" name="conference_registration[pre_conference_responses_attributes][10][required]" type="hidden" value="false" />
+            <input id="conference_registration_pre_conference_responses_attributes_10_question" name="conference_registration[pre_conference_responses_attributes][10][question]" type="hidden" value="utm_source" />
+              <input autocomplete="nope" id="conference_registration_pre_conference_responses_attributes_10_response" name="conference_registration[pre_conference_responses_attributes][10][response]" row="1" size="30" type="text" />
+          </div>
+        </div>
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_19_field_type" name="conference_registration[pre_conference_responses_attributes][19][field_type]" type="hidden" value="text" />
+    <input id="conference_registration_pre_conference_responses_attributes_19_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][19][pre_conference_question_id]" type="hidden" value="14936383" />
+    <div class="conf-creation-new-input-out js-custom-fields aaa051138134-question custom-field-cookie" data-question-title=utm_campaign data-question-id=aaa051138134 data-use-number=false style=display:none; style="">
+        <div class="conf-creation-new-name">
+          utm_campaign
+        </div>
+        
+        <div class="conf-creation-new-input">
+          <div class="cl-conference-reserve-new-input-in">
+
+            <input id="conference_registration_pre_conference_responses_attributes_19_required" name="conference_registration[pre_conference_responses_attributes][19][required]" type="hidden" value="false" />
+            <input id="conference_registration_pre_conference_responses_attributes_19_question" name="conference_registration[pre_conference_responses_attributes][19][question]" type="hidden" value="utm_campaign" />
+              <input autocomplete="nope" id="conference_registration_pre_conference_responses_attributes_19_response" name="conference_registration[pre_conference_responses_attributes][19][response]" row="1" size="30" type="text" />
+          </div>
+        </div>
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_20_field_type" name="conference_registration[pre_conference_responses_attributes][20][field_type]" type="hidden" value="text" />
+    <input id="conference_registration_pre_conference_responses_attributes_20_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][20][pre_conference_question_id]" type="hidden" value="14936382" />
+    <div class="conf-creation-new-input-out js-custom-fields 10fd5e9337ac-question custom-field-cookie" data-question-title=utm_content data-question-id=10fd5e9337ac data-use-number=false style=display:none; style="">
+        <div class="conf-creation-new-name">
+          utm_content
+        </div>
+        
+        <div class="conf-creation-new-input">
+          <div class="cl-conference-reserve-new-input-in">
+
+            <input id="conference_registration_pre_conference_responses_attributes_20_required" name="conference_registration[pre_conference_responses_attributes][20][required]" type="hidden" value="false" />
+            <input id="conference_registration_pre_conference_responses_attributes_20_question" name="conference_registration[pre_conference_responses_attributes][20][question]" type="hidden" value="utm_content" />
+              <input autocomplete="nope" id="conference_registration_pre_conference_responses_attributes_20_response" name="conference_registration[pre_conference_responses_attributes][20][response]" row="1" size="30" type="text" />
+          </div>
+        </div>
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_21_field_type" name="conference_registration[pre_conference_responses_attributes][21][field_type]" type="hidden" value="text" />
+    <input id="conference_registration_pre_conference_responses_attributes_21_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][21][pre_conference_question_id]" type="hidden" value="14936381" />
+    <div class="conf-creation-new-input-out js-custom-fields 485399e1ebf2-question custom-field-cookie" data-question-title=utm_medium data-question-id=485399e1ebf2 data-use-number=false style=display:none; style="">
+        <div class="conf-creation-new-name">
+          utm_medium
+        </div>
+        
+        <div class="conf-creation-new-input">
+          <div class="cl-conference-reserve-new-input-in">
+
+            <input id="conference_registration_pre_conference_responses_attributes_21_required" name="conference_registration[pre_conference_responses_attributes][21][required]" type="hidden" value="false" />
+            <input id="conference_registration_pre_conference_responses_attributes_21_question" name="conference_registration[pre_conference_responses_attributes][21][question]" type="hidden" value="utm_medium" />
+              <input autocomplete="nope" id="conference_registration_pre_conference_responses_attributes_21_response" name="conference_registration[pre_conference_responses_attributes][21][response]" row="1" size="30" type="text" />
+          </div>
+        </div>
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_22_field_type" name="conference_registration[pre_conference_responses_attributes][22][field_type]" type="hidden" value="text" />
+    <input id="conference_registration_pre_conference_responses_attributes_22_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][22][pre_conference_question_id]" type="hidden" value="14936380" />
+    <div class="conf-creation-new-input-out js-custom-fields 74d22443cd94-question custom-field-cookie" data-question-title=utm_term data-question-id=74d22443cd94 data-use-number=false style=display:none; style="">
+        <div class="conf-creation-new-name">
+          utm_term
+        </div>
+        
+        <div class="conf-creation-new-input">
+          <div class="cl-conference-reserve-new-input-in">
+
+            <input id="conference_registration_pre_conference_responses_attributes_22_required" name="conference_registration[pre_conference_responses_attributes][22][required]" type="hidden" value="false" />
+            <input id="conference_registration_pre_conference_responses_attributes_22_question" name="conference_registration[pre_conference_responses_attributes][22][question]" type="hidden" value="utm_term" />
+              <input autocomplete="nope" id="conference_registration_pre_conference_responses_attributes_22_response" name="conference_registration[pre_conference_responses_attributes][22][response]" row="1" size="30" type="text" />
+          </div>
+        </div>
+    </div>
+
+  
+    <input id="conference_registration_pre_conference_responses_attributes_23_field_type" name="conference_registration[pre_conference_responses_attributes][23][field_type]" type="hidden" value="text" />
+    <input id="conference_registration_pre_conference_responses_attributes_23_pre_conference_question_id" name="conference_registration[pre_conference_responses_attributes][23][pre_conference_question_id]" type="hidden" value="14936379" />
+    <div class="conf-creation-new-input-out js-custom-fields 27485825965f-question custom-field-cookie" data-question-title=cmpid data-question-id=27485825965f data-use-number=false style=display:none; style="">
+        <div class="conf-creation-new-name">
+          cmpid
+        </div>
+        
+        <div class="conf-creation-new-input">
+          <div class="cl-conference-reserve-new-input-in">
+
+            <input id="conference_registration_pre_conference_responses_attributes_23_required" name="conference_registration[pre_conference_responses_attributes][23][required]" type="hidden" value="false" />
+            <input id="conference_registration_pre_conference_responses_attributes_23_question" name="conference_registration[pre_conference_responses_attributes][23][question]" type="hidden" value="cmpid" />
+              <input autocomplete="nope" id="conference_registration_pre_conference_responses_attributes_23_response" name="conference_registration[pre_conference_responses_attributes][23][response]" row="1" size="30" type="text" />
+          </div>
+        </div>
+    </div>
+
+       
+      <div class="conf-creation-regiserbox-button theme-custom-background-color" id="submit_registration_button" style="">
+        <input class="theme-custom-background-color" data-disable-with="Registering..." id="register_with_pre_response" name="commit" style="background-color: #e90029; background-image: none;color: #ffffff" type="submit" value="Register" />
+      </div>
+</form>
+  </div>
+
+<div class="cl-conference-reserve-signup-2 close">Already registered or have a BigMarker account?
+  <a href="/simple_popup_login?display=login&amp;register_conference_id=91e363268ff6" class="theme-custom-color" id="reserve-your-spot-login-link" rel="modal:open">Log in</a>
+</div>
+
+
+    <div class="template-all-gdpr-nano-tspp">
+        <div id="disclaimer_detail_dialog">
+            By submitting this form, you are providing Keysight with your personal data. For information on how we use this data, see the <a href="https://www.keysight.com/mx/en/contact/privacy.html" target="_blank">Keysight Privacy Statement. </a><br /><br />If you were directed to this form by one of our partners, Keysight may share your information with that partner. Please see the partner’s website for their privacy policy.<br /><br />For the best experience, please make sure you log in on a PC or Mac with one of these browsers: <b>Chrome, Firefox, or Edge</b>.<br /><br /><em>The views and opinions expressed by the speakers at Keysight World: Innovate are those of the speakers and do not necessarily reflect the official policy or position of Keysight Technologies.</em>
+
+
+        </div>
+    </div>
+
+
+  </div>
+
+    </div>
+  </div>
+</div>
+
+    <script type="text/javascript">
+        $('input:checkbox').prettyCheckable({color: 'green'});
+        $('.conf-creation-new-input-out select').on('change', function () {
+            if (this.value.length == 0) {
+                $(this).css('color', '#717e94');
+            } else {
+                $(this).css('color', '#444');
+            }
+        });
+        $('.select2-choices').click(function(){
+          $('.select2-drop').addClass('notranslate');
+        });
+    </script>
+    
+<style>
+  .select2-default{
+    color: rgb(43, 55, 77) !important;
+  }
+</style>
+   
+
+
+<input id="chat_with_id" name="chat_with_id" type="hidden" />
+  <style type="text/css" media="all">
+    .series-button-text-color{
+        background-color: #e90029; background-image: none;color: #ffffff
+    }
+      .series-button-text-color i svg{
+          fill: #ffffff;
+      }
+  </style>
+</div>
+</body>
+</html>

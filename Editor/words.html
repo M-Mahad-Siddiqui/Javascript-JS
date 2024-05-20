@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>MS Word Home Tab GUI</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toolbar {
+            display: flex;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .toolbar-section {
+            margin-right: 20px;
+        }
+
+        .toolbar-section h3 {
+            margin: 0;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .toolbar-section button,
+        .toolbar-section select {
+            display: block;
+            margin-bottom: 5px;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .content {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 300px;
+            background-color: #fff;
+        }
+
+        .toolbar-section .icon {
+            font-size: 18px;
+        }
+
+        .toolbar-section button {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .toolbar-section button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .toolbar-section select {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="toolbar">
+        <!-- Clipboard Section -->
+        <div class="toolbar-section">
+            <h3>Clipboard</h3>
+            <button><span class="icon">📋</span> Paste</button>
+            <button><span class="icon">🔁</span> Cut</button>
+            <button><span class="icon">🗐</span> Copy</button>
+        </div>
+        <!-- Font Section -->
+        <div class="toolbar-section">
+            <h3>Font</h3>
+            <select>
+                <option>Arial</option>
+                <option>Calibri</option>
+                <option>Times New Roman</option>
+            </select>
+            <select>
+                <option>10</option>
+                <option>12</option>
+                <option>14</option>
+                <option>16</option>
+            </select>
+            <button><span class="icon">B</span> Bold</button>
+            <button><span class="icon">I</span> Italic</button>
+            <button><span class="icon">U</span> Underline</button>
+        </div>
+        <!-- Paragraph Section -->
+        <div class="toolbar-section">
+            <h3>Paragraph</h3>
+            <button><span class="icon">⬅️</span> Align Left</button>
+            <button><span class="icon">⬆️</span> Align Center</button>
+            <button><span class="icon">➡️</span> Align Right</button>
+        </div>
+        <!-- Styles Section -->
+        <div class="toolbar-section">
+            <h3>Styles</h3>
+            <select>
+                <option>Normal</option>
+                <option>Heading 1</option>
+                <option>Heading 2</option>
+            </select>
+        </div>
+        <!-- Editing Section -->
+        <div class="toolbar-section">
+            <h3>Editing</h3>
+            <button><span class="icon">🔍</span> Find</button>
+            <button><span class="icon">🔄</span> Replace</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content"
+             contenteditable="true">
+            <p>Start writing here...</p>
+        </div>
+    </div>
+</body>
+
+</html>
+
+i said complete MS-words GUI menus with all option only GUI completeds

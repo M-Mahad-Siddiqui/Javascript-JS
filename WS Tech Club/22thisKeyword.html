@@ -1,0 +1,23 @@
+<html>
+  <body>
+    <br />
+    <!-- <button onclick="this.style.display='none'">click me to hide</button> -->
+    <button onclick="remove(this)">click me to hide me</button>
+    <button onclick="this.style.background='blue'">
+      click me to change the color
+    </button>
+  </body>
+  <script>
+    function remove(elem) {
+      elem.style.display = "none";
+    }
+    var person = {
+      firstName: "liza",
+      secondName: "berry",
+      fullName: function () {
+        return this.firstName + this.secondName;
+      },
+    };
+    document.write("<h1>" + person.fullName());
+  </script>
+</html>

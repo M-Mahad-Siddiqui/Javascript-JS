@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeOf Operator Example</title>
+</head>
+<body>
+    <h1>TypeOf Operator Example</h1>
+    <p>Enter a value to check its data type:</p>
+    <input type="text" id="inputValue" placeholder="Type something...">
+    <button onclick="checkType()">Check Type</button>
+    <p id="result"></p>
+
+    <script>
+        function checkType() {
+            // Get the input value
+            const inputValue = document.getElementById("inputValue").value;
+
+            // Use the typeof operator to check the data type
+            const dataType = typeof inputValue;
+
+            // Display the result
+            document.getElementById("result").textContent = `The data type of "${inputValue}" is ${dataType}.`;
+        }
+    </script>
+</body>
+</html>

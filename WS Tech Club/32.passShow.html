@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      form {
+        background-color: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 8px;
+        padding: 20px;
+        width: 400px;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: #333;
+        text-align: left;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 93%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+
+      .btn {
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-size: 17px;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #05590a;
+      }
+
+      #togglePassword {
+        background-color: #3498db;
+        margin-left: 10px;
+      }
+
+      #togglePassword:hover {
+        background-color: #093653;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <h1>Login</h1>
+      <label for="username">User Name</label><br />
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Enter your username"
+      /><br />
+      <label for="password">Password</label><br />
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+      /><br /><br />
+      <input type="button" value="Login" class="btn" />
+      <button
+        type="button"
+        id="togglePassword"
+        class="btn"
+        onclick="togglePassword()"
+      >
+        Show Password
+      </button>
+    </form>
+    <script>
+      var password = document.getElementById("password");
+      var toggleButton = document.getElementById("togglePassword");
+
+      toggleButton.addEventListener("click", function () {
+        if (password.type === "password") {
+          password.type = "text";
+          toggleButton.textContent = "Hide Password";
+        } else {
+          password.type = "password";
+          toggleButton.textContent = "Show Password";
+        }
+      });
+
+      // var password = document.getElementById("password");
+      // var toggleButton = document.getElementById("togglePassword");
+      // var passwordVisible = false;
+
+      // function togglePassword() {
+      //   passwordVisible = !passwordVisible;
+      //   if (passwordVisible) {
+      //     password.type = "text";
+      //     toggleButton.textContent = "Hide Password";
+      //   } else {
+      //     password.type = "password";
+      //     toggleButton.textContent = "Show Password";
+      //   }
+      // }
+    </script>
+  </body>
+</html>

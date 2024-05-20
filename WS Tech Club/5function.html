@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>function in javascript</title>
+  </head>
+  <body>
+    <input type="text" name="name" id="name" />
+    <button onclick="greet()">greet</button>
+
+    <div class="greet"></div>
+  </body>
+
+  <script type="text/javascript">
+    //---------------------functions---------------------------------
+    function greet() {
+      var name = document.getElementById("name").value;
+      document.getElementsByClassName("greet")[0].innerHTML = "hello " + name;
+      alert(name);
+    }
+
+    // Greet = () => {
+    //   let name = document.getElementById("name").value;
+    //   document.getElementsByClassName("greet").value = "hello" + name;
+    // };
+  </script>
+</html>

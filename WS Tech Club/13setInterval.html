@@ -1,0 +1,66 @@
+<!-- <html>
+  <head></head>
+  <body>
+    <button onclick="test()">Try</button>
+  </body>
+  <script>
+    // function test() {
+    //   setInterval(() => {
+    //     document.write("hello!");
+    //   }, 2500);
+    // }
+
+    function test() {
+      setTimeout( () => {
+        document.write("delay after some second");
+      }, 2000);
+    }
+  </script>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1></h1>
+    <button id="start" onclick="start()">START</button>
+    <button id="stop" onclick="stop()">STOP</button>
+
+    <script>
+      var c = 0;
+      let started;
+
+      start = () => {
+        started = setInterval(() => {
+          document.getElementsByTagName("h1")[0].textContent = c;
+          c++;
+        }, 250);
+      };
+
+      stop = () => {
+        clearInterval(started);
+      };
+    </script>
+
+    <!-- 
+    <script>
+      var c = 0;
+      let started;
+
+      start = () => {
+        document.getElementsByTagName("h1")[0].textContent = c;
+        c++;
+
+        started = setTimeout(start, 250);
+      };
+
+      stop = () => {
+        clearTimeout(started);
+      };
+    </script> -->
+  </body>
+</html>

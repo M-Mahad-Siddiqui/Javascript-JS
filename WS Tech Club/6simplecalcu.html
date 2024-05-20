@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SIMPLE CALCULATOR</title>
+  </head>
+  <body>
+    <h2>Simple Calculator</h2>
+    <input type="number" name="first" id="first" step="any" />
+    <input type="number" name="second" id="second" step="any" />
+    <select id="ope">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option> </select
+    ><br /><br />
+
+    <input type="text" id="res" readonly />
+    <button onclick="calculate()">Calculate</button>
+
+    <script type="text/javascript">
+      function calculate() {
+        var a = parseFloat(document.getElementById("first").value);
+        var b = parseFloat(document.getElementById("second").value);
+        var ope = document.getElementById("ope").value;
+        var res;
+
+        switch (ope) {
+          case "+":
+            res = a + b;
+            break;
+          case "-":
+            res = a - b;
+            break;
+          case "*":
+            res = a * b;
+            break;
+          case "/":
+            res = a / b;
+            break;
+          default:
+            res = "Invalid operator";
+        }
+
+        document.getElementById("res").value = res;
+      }
+    </script>
+  </body>
+</html>

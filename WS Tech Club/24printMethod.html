@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Perfect Page</title>
+    <style>
+      /* Reset some default styles */
+      body,
+      h1,
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Page styles */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+        text-align: center;
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: #0073e6;
+        color: #fff;
+        padding: 20px;
+      }
+
+      header a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      footer {
+        background-color: #0073e6;
+        color: #fff;
+        padding: 10px 0;
+      }
+
+      /* Logo styles */
+      .logo {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+
+      /* Heading styles */
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      /* Paragraph styles */
+      p {
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <header>
+      <a href="https://www.google.com" target="_blank">
+        <img
+          src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_hdpi.png"
+          alt="Google Logo"
+          class="logo"
+        />
+      </a>
+    </header>
+    <main>
+      <h1>Welcome to Your Perfect Page</h1>
+      <h3>Printable data</h3>
+      <p id="data">
+        This is a beautifully designed and well-structured HTML page. You can
+        modify the content and styles as needed.
+      </p>
+    </main>
+    <footer>
+      <p>&copy; 2023 Your Company</p>
+    </footer>
+    <button onclick="printPage()">Print Content</button>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi sunt
+      repellat ipsa, voluptas velit explicabo perspiciatis suscipit alias,
+      nesciunt, minima corporis non distinctio accusamus consequuntur!
+    </p>
+  </body>
+  <script>
+    // function printPage() {
+    //   window.print();
+    // }
+
+    function printPage() {
+      var body = document.getElementById("body").innerHTML;
+      var data = document.getElementById("data").innerHTML;
+      document.getElementById("body").innerHTML = data;
+      window.print();
+      document.getElementById("body").innerHTML = body;
+    }
+  </script>
+</html>

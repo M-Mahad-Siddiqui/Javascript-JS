@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <style>
+      #main {
+        color: red;
+        font-size: 60px;
+        text-align: center;
+        margin-top: 50px;
+        transition: 3s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main" onmouseenter="modify()" onmouseleave="unModify()">
+      Hello World!
+    </div>
+  </body>
+  <script>
+    function modify() {
+      document.getElementById("main").style.fontSize = "150px";
+      document.getElementById("main").style.color = "green";
+      document.getElementById("main").style.fontFamily = "verdana";
+    }
+    function unModify() {
+      document.getElementById("main").style.fontSize = "50px";
+      document.getElementById("main").style.color = "red";
+      document.getElementById("main").style.fontFamily = "";
+    }
+  </script>
+</html>

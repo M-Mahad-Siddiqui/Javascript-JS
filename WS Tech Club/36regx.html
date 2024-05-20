@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Regex Functions Demo</title>
+    </head>
+    <body>
+        <h1>Regex Functions Demo</h1>
+        <p>Sample Text: "The quick brown fox jumps over the lazy dog."</p>
+        <p>Regex Pattern: "fox"</p>
+
+        <!-- Result section -->
+        <h2>Results:</h2>
+        <ul>
+            <li>
+                <strong>exec():</strong>
+                <span id="execResult"></span>
+            </li>
+            <li>
+                <strong>test():</strong>
+                <span id="testResult"></span>
+            </li>
+            <li>
+                <strong>toString():</strong>
+                <span id="toStringResult"></span>
+            </li>
+            <li>
+                <strong>match():</strong>
+                <span id="matchResult"></span>
+            </li>
+            <li>
+                <strong>replace():</strong>
+                <span id="replaceResult"></span>
+            </li>
+        </ul>
+
+        <script>
+            // Sample text and regex pattern
+            const sampleText = "The quick brown fox jumps over the lazy dog.";
+            const regexPattern = /fox/;
+
+            // exec(): Execute the regex pattern and get the first match
+            const execResult = regexPattern.exec(sampleText);
+            document.getElementById('execResult').textContent = execResult ? execResult[0] : 'No match';
+
+            // test(): Test if the sample text matches the regex pattern
+            const testResult = regexPattern.test(sampleText);
+            document.getElementById('testResult').textContent = testResult ? 'Match found' : 'No match';
+
+            // toString(): Convert the regex pattern to a string
+            const regexString = regexPattern.toString();
+            document.getElementById('toStringResult').textContent = regexString;
+
+            // match(): Find all matches of the regex pattern in the sample text
+            const matchResult = sampleText.match(regexPattern);
+            document.getElementById('matchResult').textContent = matchResult ? matchResult.join(', ') : 'No match';
+
+            // replace(): Replace all matches with "REPLACED"
+            const replaceResult = sampleText.replace(regexPattern, 'REPLACED');
+            document.getElementById('replaceResult').textContent = replaceResult;
+        </script>
+    </body>
+</html>

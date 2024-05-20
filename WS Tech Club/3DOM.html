@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+
+  <div class="main" id="main">
+       welcome to our websites:
+  </div>
+
+    <div class="main">
+        welcome to programming world:
+    </div>   
+    
+</body>
+<script type="text/javascript">
+
+ var x=document.getElementById("main").innerHTML="<h1>welcome to this modern era: </h1>";//replace that 
+ //console.log(x);
+ //document.write(x);
+ //alert(x);
+
+ //changes the position
+document.getElementsByClassName("main")[0].innerHTML="welcome to programming world";
+document.getElementsByClassName("main")[1].innerHTML = "welcome to our websites";
+
+</script>
+</html>

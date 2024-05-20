@@ -1,0 +1,14 @@
+<script>
+  function fetchData(callback) {
+    setTimeout(() => {
+      const data = "Data fetched from server";
+      callback(data);
+    }, 2000);
+  }
+
+  function processData(data) {
+    console.log("Data processing: " + data);
+  }
+
+  fetchData(processData); // Output (after 2 seconds delay): Data processing: Data fetched from server
+</script>

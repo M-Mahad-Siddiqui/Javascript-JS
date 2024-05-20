@@ -1,0 +1,241 @@
+<!-- <style>
+    /* Add some styling to the calculator */
+    .calculator {
+        margin: auto;
+        width: 300px;
+        background-color: #f3d4a7;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .calculator input {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 10px;
+        padding: 5px;
+        font-size: 18px;
+        text-align: right;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .calculator .btn {
+        width: 70px;
+        height: 50px;
+        margin: 5px;
+        font-size: 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .calculator .btn:hover {
+        background-color: #e8e8e8;
+    }
+
+    .calculator .btn.orange {
+        background-color: #eb7100;
+        color: #fff;
+    }
+
+    .calculator .btn.orange:hover {
+        background-color: #ff9100;
+    }
+</style>
+
+<div class="calculator">
+    <input type="text" id="num" readonly>
+
+    <div>
+        <button class="btn" id="seven">7</button>
+        <button class="btn" id="eight">8</button>
+        <button class="btn" id="nine">9</button>
+        <button class="btn orange" id="divide">/</button>
+    </div>
+    <div>
+        <button class="btn" id="four">4</button>
+        <button class="btn" id="five">5</button>
+        <button class="btn" id="six">6</button>
+        <button class="btn orange" id="multiply">*</button>
+    </div>
+    <div>
+        <button class="btn" id="one">1</button>
+        <button class="btn" id="two">2</button>
+        <button class="btn" id="three">3</button>
+        <button class="btn orange" id="minus">-</button>
+    </div>
+    <div>
+        <button class="btn" id="zero">0</button>
+        <button class="btn" id="dot">.</button>
+        <button class="btn orange" id="plus">+</button>
+        <button class="btn orange" id="equal">=</button>
+    </div>
+    <div>
+        <button class="btn orange" id="ac">AC</button>
+    </div>
+</div>
+
+<script>
+    // Get references to the elements
+        const numInput = document.getElementById('num');
+        const buttons = document.querySelectorAll('.btn');
+        const equalButton = document.getElementById('equal');
+        const acButton = document.getElementById('ac');
+
+        let expression = ''; // Store the full expression entered by the user
+
+        // Add event listeners to the number buttons
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const value = button.textContent;
+
+                // Ignore clicks on the equal and AC buttons
+                if (value === '=' || value === 'AC') {
+                    return;
+                }
+
+                // Append the clicked number to the current input and expression
+                expression += value;
+                numInput.value = expression;
+            });
+        });
+
+        // Add event listener to the equal button
+        equalButton.addEventListener('click', () => {
+            try {
+                // Evaluate the expression
+                const result = eval(expression);
+                numInput.value = result;
+            } catch (error) {
+                // Handle any errors
+                numInput.value = 'Error';
+            }
+
+            // Reset the expression
+            expression = '';
+        });
+
+        // Add event listener to the AC button
+        acButton.addEventListener('click', () => {
+            // Clear the input and reset the variables
+            numInput.value = '';
+            expression = '';
+        });
+
+
+
+</script> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mobile Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+
+        .calculator {
+            background-color: #fff;
+            width: 280px;
+            margin: 20px auto;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .calculator .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .calculator .button {
+            flex: 1;
+            margin-right: 5px;
+        }
+
+        .calculator .button:last-child {
+            margin-right: 0;
+        }
+
+        .calculator .button:hover {
+            background-color: #e0e0e0;
+            cursor: pointer;
+        }
+
+        .calculator .button:active {
+            background-color: #ccc;
+        }
+
+        .calculator .result {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" id="result" readonly>
+        <div class="row">
+            <div class="button" onclick="appendValue('7')">7</div>
+            <div class="button" onclick="appendValue('8')">8</div>
+            <div class="button" onclick="appendValue('9')">9</div>
+            <div class="button" onclick="appendValue('/')">/</div>
+        </div>
+        <div class="row">
+            <div class="button" onclick="appendValue('4')">4</div>
+            <div class="button" onclick="appendValue('5')">5</div>
+            <div class="button" onclick="appendValue('6')">6</div>
+            <div class="button" onclick="appendValue('*')">*</div>
+        </div>
+        <div class="row">
+            <div class="button" onclick="appendValue('1')">1</div>
+            <div class="button" onclick="appendValue('2')">2</div>
+            <div class="button" onclick="appendValue('3')">3</div>
+            <div class="button" onclick="appendValue('-')">-</div>
+        </div>
+        <div class="row">
+            <div class="button" onclick="appendValue('0')">0</div>
+            <div class="button" onclick="appendValue('.')">.</div>
+            <div class="button" onclick="calculate()">=</div>
+            <div class="button" onclick="appendValue('+')">+</div>
+        </div>
+        <div class="row">
+            <div class="button" onclick="clearValue()">Clear</div>
+        </div>
+    </div>
+
+    <script>
+        // Function to append a value to the calculator display
+            function appendValue(value) {
+                document.getElementById('result').value += value;
+            }
+
+            // Function to perform the calculation and display the result
+            function calculate() {
+                var result = eval(document.getElementById('result').value);
+                document.getElementById('result').value = result;
+            }
+
+            // Function to clear the calculator display
+            function clearValue() {
+                document.getElementById('result').value = '';
+            }
+
+    </script>
