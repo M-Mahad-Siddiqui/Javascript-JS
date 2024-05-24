@@ -8,16 +8,105 @@
     <title>Document</title>
 </head>
 
+<style>
+    *{
+        background-color: rgb(139, 219, 215);
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #f4f4f4;
+        font-size: 21px;
+        line-height: 1.5;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 40px auto;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 12px;
+        border: none;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 20px;
+        background-color: #d7e393;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #addBtn,
+    #deleteAllBtn {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 12px;
+        padding: 10px 20px;
+        background-color: green;
+        color: #fff;
+        border: none;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 2px;
+
+    }
+
+    #addBtn:hover {
+        background-color: #3e8e41;
+
+
+    }
+
+    #deleteAllBtn {
+        background-color: red;
+    }
+
+    #deleteAllBtn:hover {
+        background-color: #d32f2f;
+    }
+
+    ul {
+        margin: 10px;
+    }
+    li > button{
+        margin-left: 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        padding: 5px 10px;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        background-color: blue;
+        color: #fff;
+    }
+    li > button:hover {
+        background-color:blueviolet;
+
+    }
+
+</style>
+
 <body>
-    <input type="text"
-           name=""
-           id="input">
-    <button id="addBtn">Add</button>
-    <button id="deleteAllBtn">Delete All</button>
+    <div class="container">
+        <input type="text"
+               name=""
+               id="input">
+        <button id="addBtn">Add</button>
+        <button id="deleteAllBtn">Delete All</button>
 
-    <ul id="list">
-
-    </ul>
+        <ul id="list">
+        </ul>
+    </div>
 </body>
 
 <script>
