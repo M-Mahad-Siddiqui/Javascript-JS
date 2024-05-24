@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          * {
+            margin: 0;
+            padding: 0;
+            font-family: 'poppins', sans-serif;
+
+        }
+
+        body {
+            background-image: url("https://c8.alamy.com/comp/2AYPGJG/handwriting-text-track-expenses-conceptual-photo-keep-a-close-eye-on-how-things-are-tracking-to-budget-2AYPGJG.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+
+
+        .container {
+            margin: 0 60px;
+            align-items: center;
+            justify-content: space-evenly;
+            display: flex;
+            /* flex-direction: column; */
+
+        }
+
+        #top {
+            text-align: center;
+            font-size: 50px;
+            padding: 15px;
+            display: block;
+        }
+
+        #balance {
+            width: 420px;
+            height: 200px;
+            border: 2px solid grey;
+            padding: 20px 30px;
+            padding-bottom: 50px;
+            text-align: center;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            font-size: 40px;
+            font-weight: bold;
+            margin: 0 90px;
+
+
+        }
+
+        #balance>div {
+            display: flex;
+            width: 370px;
+            margin: 20px auto;
+            font-size: 22px;
+
+        }
+
+        #balance>div>div {
+            flex-direction: column;
+            display: flex;
+            padding: 18px 10px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+
+        }
+
+        #incomeSpan,
+        #expenseSpan {
+            font-size: 40px;
+            margin-top: 12px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 25px;
+            width: 400px;
+        }
+
+        input {
+            padding: 6px;
+            margin: 3px;
+            border-radius: 10px;
+            border: 2px solid grey;
+
+        }
+
+        button {
+
+            cursor: pointer;
+            width: 45%;
+            border-radius: 4px;
+            border: none;
+            color: white;
+            font-size: 15px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: green;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: greenyellow;
+            color: black;
+        }
+
+        #expense-list {
+            border: 2px solid grey;
+            padding: 20px 30px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 0 90px;
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #expense-list>h2 {
+            /* margin-bottom: 20px; */
+            font-size: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 20px;
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="top">Expense Tracker </h1>
+
+    <div class="container">
+
+        <div id="balance">
+            Balance : <span id="balanceSpan">0.00</span>
+
+            <div>
+                <div>Total Income : <span id="incomeSpan">0.00</span></div>
+                <div>Total Expense : <span id="expenseSpan">0.00</span></div>
+            </div>
+
+        </div>
+
+        <div id="balance">
+            Add new <br>
+
+            <form action="">
+                Enter Name : <input type="text"
+                       id="name">
+                Enter Amount : <input type="text"
+                       id="amount">
+                <div>
+                    <button id="expditure">Expenditure</button>
+                    <button id="income">Income</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+    <div id="expense-list">
+        <h2>Traction History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>S no.</th>
+                    <th>Traction type</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr>
+                    <td>1</td>
+                    <td>Income</td>
+                    <td>12:00</td>
+                    <td>12-12-2020</td>
+                    <td>Income</td>
+                    <td>100</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+<script>
+
+
+</script>
+
+</html>

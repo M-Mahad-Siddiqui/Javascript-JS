@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'poppins', sans-serif;
+
+        }
+
+        body {
+            background-image: url("https://c8.alamy.com/comp/2AYPGJG/handwriting-text-track-expenses-conceptual-photo-keep-a-close-eye-on-how-things-are-tracking-to-budget-2AYPGJG.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+
+        .container {
+            margin: 0 60px;
+            align-items: center;
+            justify-content: space-evenly;
+            display: flex;
+        }
+
+        #top {
+            text-align: center;
+            font-size: 50px;
+            padding: 15px;
+            display: block;
+        }
+
+        .balance {
+            width: 420px;
+            height: 200px;
+            border: 2px solid grey;
+            padding: 20px 30px;
+            padding-bottom: 50px;
+            text-align: center;
+            border-radius: 10px;
+            background-color: rgba(101, 101, 101, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            font-size: 40px;
+            font-weight: bold;
+            margin: 0 90px;
+
+        }
+
+        #balanceSpan {
+            font-size: 50px;
+        }
+
+        .balance>div {
+            display: flex;
+            width: 370px;
+            margin: 20px auto;
+            font-size: 22px;
+        }
+
+        .balance>div>div {
+            flex-direction: column;
+            display: flex;
+            padding: 18px 10px;
+            border-radius: 10px;
+            background-color: rgba(41, 123, 199, 0.6);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+            margin: 0 auto;
+        }
+
+        #incomeSpan,
+        #expenseSpan {
+            font-size: 40px;
+            margin-top: 12px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 25px;
+            width: 400px;
+        }
+
+        input {
+            padding: 6px;
+            margin: 3px;
+            border-radius: 10px;
+            background-color: rgba(41, 123, 199, 0.8);
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+
+        }
+
+        button {
+            cursor: pointer;
+            width: 45%;
+            border-radius: 4px;
+            border: none;
+            color: white;
+            font-size: 15px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: green;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: greenyellow;
+            color: black;
+        }
+
+        #expense-list {
+            border: 2px solid grey;
+            padding: 20px 30px;
+            border-radius: 10px;
+            background-color: rgba(101, 101, 101, 0.8);
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 0 90px;
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #expense-list>h2 {
+            font-size: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        @media (max-width: 980px) {
+            #top {
+                font-size: 40px;
+            }
+
+            .container {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto;
+                width: 100%;
+
+            }
+
+            .balance {
+                font-size: 30px;
+                width: 80%;
+                margin-bottom: 10px;
+
+
+            }
+
+            .balance>div {
+                width: 100%;
+                font-size: 20px;
+                margin: 0 auto;
+            }
+
+            form {
+                width: 100%;
+                margin: 0 auto;
+                margin-bottom: 20px;
+
+            }
+
+            #expense-list {
+                margin: 0 auto;
+                margin-bottom: 20px;
+                margin: 0 8px;
+            }
+
+            #expense-list>h2 {
+                margin-bottom: 20px;
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="top">Expense Tracker </h1>
+
+    <div class="container">
+
+        <div class="balance">
+            Balance : <span id="balanceSpan">0.00</span>
+
+            <div>
+                <div>Total Income : <span id="incomeSpan">0.00</span></div>
+                <div>Total Expense : <span id="expenseSpan">0.00</span></div>
+            </div>
+
+        </div>
+
+        <div class="balance">
+            Add new <br>
+
+            <form id="transactionForm">
+                Enter Name : <input type="text"
+                       id="name">
+                Enter Amount : <input type="text"
+                       id="amount">
+                <div>
+                    <button type="button"
+                            id="expditure">Expenditure</button>
+                    <button type="button"
+                            id="income">Income</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <div id="expense-list">
+        <h2>Transaction History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>S no.</th>
+                    <th>Transaction type</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const expBtn = document.getElementById("expditure");
+        const incBtn = document.getElementById("income");
+        const balanceSpan = document.getElementById("balanceSpan");
+        const incomeSpan = document.getElementById("incomeSpan");
+        const expenseSpan = document.getElementById("expenseSpan");
+        const tbody = document.getElementById("tbody");
+        const nameInput = document.getElementById("name");
+        const amountInput = document.getElementById("amount");
+        let balance = 0;
+        let income = 0;
+        let expense = 0;
+        let sNo = 1;
+
+        function getCurrentTime() {
+            const now = new Date();
+            const time = now.toLocaleTimeString();
+            const date = now.toLocaleDateString();
+            return { time, date };
+        }
+
+        function updateBalanceColor() {
+            if (balance < 0) {
+                balanceSpan.style.color = 'red';
+            } else {
+                balanceSpan.style.color = 'green';
+            }
+        }
+
+        expBtn.addEventListener("click", function () {
+            if (nameInput.value === "" || amountInput.value === "") {
+                alert("Enter both name and amount");
+                return;
+            }
+            const amount = parseFloat(amountInput.value);
+            if (amount > 0) {
+                expense += amount;
+                balance -= amount;
+            } else {
+                alert("Enter a valid amount");
+                return;
+            }
+            const { time, date } = getCurrentTime();
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${sNo++}</td>
+                <td>Expense</td>
+                <td>${time}</td>
+                <td>${date}</td>
+                <td>${nameInput.value}</td>
+                <td>-${amount.toFixed(2)}</td>
+            `;
+            tbody.appendChild(tr);
+            balanceSpan.innerText = balance.toFixed(2);
+            expenseSpan.innerText = expense.toFixed(2);
+            updateBalanceColor();
+            nameInput.value = "";
+            amountInput.value = "";
+        });
+
+        incBtn.addEventListener("click", function () {
+            if (nameInput.value === "" || amountInput.value === "") {
+                alert("Enter both name and amount");
+                return;
+            }
+            const amount = parseFloat(amountInput.value);
+            if (amount > 0) {
+                income += amount;
+                balance += amount;
+            } else {
+                alert("Enter a valid amount");
+                return;
+            }
+            const { time, date } = getCurrentTime();
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${sNo++}</td>
+                <td>Income</td>
+                <td>${time}</td>
+                <td>${date}</td>
+                <td>${nameInput.value}</td>
+                <td>+${amount.toFixed(2)}</td>
+            `;
+            tbody.appendChild(tr);
+            balanceSpan.innerText = balance.toFixed(2);
+            incomeSpan.innerText = income.toFixed(2);
+            updateBalanceColor();
+            nameInput.value = "";
+            amountInput.value = "";
+        });
+
+        balanceSpan.innerText = balance.toFixed(2);
+        incomeSpan.innerText = income.toFixed(2);
+        expenseSpan.innerText = expense.toFixed(2);
+        updateBalanceColor();
+    </script>
+
+</body>
+
+</html>
