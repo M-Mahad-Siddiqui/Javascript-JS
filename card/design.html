@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Design</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            justify-items: center;
+            align-items: stretch;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 205px;
+            padding: 16px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .card h2 {
+            font-size: 14px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 12px;
+            color: #666;
+            margin: 8px 0;
+        }
+
+        .card .price {
+            font-size: 16px;
+            color: #b12704;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+
+        .card .category {
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .card .rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #ff9900;
+        }
+
+        .card .rating span {
+            margin-left: 4px;
+            color: #666;
+        }
+
+        .card {
+            position: relative;
+        }
+
+        .delete-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card-container">
+        <!-- first card -->
+        <div class="card">
+            <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+                 alt="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops">
+            <h2>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h2>
+            <p>Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the
+                padded sleeve, your everyday</p>
+            <div class="price">$109.95</div>
+            <div class="category">men's clothing</div>
+            <div class="rating">Rating: 3.9 <span>(120 reviews)</span></div>
+            <button class="delete-button">X</button>
+        </div>
+        <!-- second card -->
+        <div class="card">
+            <img src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+                 alt="Mens Casual Premium Slim Fit T-Shirts">
+            <h2>Mens Casual Premium Slim Fit T-Shirts</h2>
+            <p>Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric
+                for breathable and comfortable wearing.</p>
+            <div class="price">$22.3</div>
+            <div class="category">men's clothing</div>
+            <div class="rating">Rating: 4.1 <span>(259 reviews)</span></div>
+            <button class="delete-button">X</button>
+        </div>
+        <!-- third card -->
+        <div class="card">
+            <img src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
+                 alt="Mens Cotton Jacket">
+            <h2>Mens Cotton Jacket</h2>
+            <p>Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking,
+                camping, mountain/rock climbing, cycling, traveling or other outdoors.</p>
+            <div class="price">$55.99</div>
+            <div class="category">men's clothing</div>
+            <div class="rating">Rating: 4.7 <span>(500 reviews)</span></div>
+            <button class="delete-button">X</button>
+        </div>
+        <!-- fourth card  -->
+        <div class="card">
+            <img src="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg"
+                 alt="Mens Casual Slim Fit">
+            <h2>Mens Casual Slim Fit</h2>
+            <p>The color could be slightly different between on the screen and in practice. / Please note that body
+                builds vary by person, therefore, detailed size information should be reviewed below on the product
+                description.</p>
+            <div class="price">$15.99</div>
+            <div class="category">men's clothing</div>
+            <div class="rating">Rating: 2.1 <span>(430 reviews)</span></div>
+            <button class="delete-button">X</button>
+        </div>
+
+    </div>
+</body>
+
+</html>

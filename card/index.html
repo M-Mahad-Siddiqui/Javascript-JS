@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Card Gallery </title>
 </head>
 <style>
     body {
@@ -89,6 +89,19 @@
     .card .rating span {
         margin-left: 4px;
         color: #666;
+        /* Default color */
+    }
+
+    .card .rating.high span {
+        color: green !important;
+    }
+
+    .card .rating.medium span {
+        color: rgb(14, 3, 112) !important;
+    }
+
+    .card .rating.low span {
+        color: red !important;
     }
 
     .card {
@@ -112,7 +125,22 @@
 
 <body>
 
-    <div class="card-container"></div>
+    <div class="card-container">
+        <!-- Cards will be dynamically generated here -->
+
+        <!-- first card -->
+        <div class="card">
+            <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+                 alt="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops">
+            <h2>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h2>
+            <p>Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the
+                padded sleeve, your everyday</p>
+            <div class="price">$109.95</div>
+            <div class="category">men's clothing</div>
+            <div class="rating">Rating: 3.9 <span>(120 reviews)</span></div>
+            <button class="delete-button">X</button>
+        </div>
+    </div>
 
 </body>
 <script>
@@ -326,9 +354,18 @@
         }
     ];
 
+    function getRatingClass(rating) {
+        if (rating >= 4.5) {
+            return 'high';
+        } else if (rating >= 3) {
+            return 'medium';
+        } else {
+            return 'low';
+        }
+    }
 
 
-    // function to show the data on browser 
+    // function to show the data on browser         &times
     function showCards() {
         const container = document.querySelector('.card-container');
         container.innerHTML = '';
@@ -336,23 +373,42 @@
         data.forEach(item => {
             const card = document.createElement('div');
             card.classList.add('card');
+            const ratingClass = getRatingClass(item.rating.rate);
+
             card.innerHTML = `
-                    <button class="delete-button" onclick="deleteCard(${item.id})">&#10006;</button>
-                    <img src="${item.image}" alt="${item.title}">
-                    <h2>${item.title}</h2>
-                    <p class="price" onclick="editCard(this, ${item.id})">$${item.price}</p>
-                    <p>${item.description}</p>
-                    <p class="category">Category: ${item.category}</p>
-                    <div class="rating">
-                        <span>Rating: ${item.rating.rate}</span>
-                        <span>(${item.rating.count} reviews)</span>
-                    </div>
-                `;
+        <img src="${item.image}" alt="${item.title}">
+        <h2>${item.title}</h2>
+        <p>${item.description}</p>
+        <p class="price" onclick="editCard(${item.id})">$${item.price}</p>
+        <p class="category">Category: ${item.category}</p>
+        <div class="rating ${ratingClass}">
+            <span>Rating: ${item.rating.rate}</span>
+            <span>(${item.rating.count} reviews)</span>
+        </div>
+        <button class="delete-button" onclick="deleteCard(${item.id})">&#10006;</button>
+    `;
+            //         card.innerHTML = `
+            //          <img src="${item.image}" alt="${item.title}">
+            //         <h2>${item.title}</h2>
+            //         <p>${item.description}</p>
+            //         <div class="price" onclick="editCard(${item.id})">$${item.price}</div>
+            //         <div class="category">Category: ${item.category}</div>
+            //         <div class="rating ${ratingClass}">Rating: <span>${item.rating.rate}</span><span>(${item.rating.count} reviews)</span></div>
+            //         <button class="delete-button" onclick="deleteCard(${item.id})">X</button>
+            //         `;
+
             container.appendChild(card);
         });
     }
     showCards();
 
+
+    // In`findIndex()`, the callback function is called for each array element.If the callback returns
+    // a truthy value, `findIndex()` immediately returns the index of that element and stops further
+    // iteration.If no element satisfies the condition, `-1` is returned.This efficient approach stops
+    // as soon as a match is found.
+
+    // //delete card 
     function deleteCard(id) {
         const index = data.findIndex(item => item.id === id);
         if (index !== -1) {
@@ -361,7 +417,7 @@
         }
     }
 
-    function editCard(element, id) {
+    function editCard(id) {
         const newPrice = prompt("Enter new price");
         if (newPrice !== null && !isNaN(newPrice) && newPrice.trim() !== "") {
             const index = data.findIndex(item => item.id === id);

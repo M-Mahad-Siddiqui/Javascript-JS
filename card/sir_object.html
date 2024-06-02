@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Object</h1>
+
+    <div id="keyboards">
+
+    </div>
+    <script>
+        //Object
+        //object is a collection of properties ,
+        //property consist of name/key and value
+        //if property value is function , it is called method
+
+        // var keyboard = {
+        //     company: "Logitics", //string
+        //     color: "Black", //string
+        //     price: 400, //number
+        //     isNew: false, //boolean
+        //     getDiscountedValue: function (disc) {
+        //         console.log("This==>", this);
+        //         var discount = (this.price * disc) / 100;
+        //         console.log("Discount=>", discount);
+        //         var discountedPrice = this.price - discount;
+        //         return discountedPrice;
+        //     },
+        // };
+
+        // // add object property
+        // keyboard.type = "memrein";
+        // //edit object property
+        // keyboard.color = "white";
+        // // console.log("keyboard=>", keyboard)
+        // //remove object property
+        // delete keyboard.isNew;
+        // // console.log("AFTER DELETE=>", keyboard)
+        // //call a method
+        // console.log(keyboard.getDiscountedValue(10));
+
+        var allKeyboards = [
+            {
+                company: "Logitics",
+                type: "Mechanical",
+                code: "E324",
+            },
+            {
+                company: "abc",
+                type: "memrein",
+                code: "E3242",
+            },
+            {
+                company: "ABB",
+                type: "Mechanical",
+                code: "E124",
+            },
+        ];
+
+        // console.log(allKeyboards[1])
+
+        // allKeyboards[1].company = 'A COMPANY'
+        // console.log(allKeyboards[1])
+
+        var keyboardDiv = document.getElementById("keyboards");
+
+        function getItem(ele) {
+            console.log("ele==>", ele.id);
+
+            // var item = allKeyboards[ele.id]
+
+            // item.code = prompt('New Code')
+            allKeyboards.splice(ele.id, 1);
+            console.log("allKeyboards updated=>", allKeyboards);
+            showAllData();
+        }
+
+        function showAllData() {
+            keyboardDiv.innerHTML = "";
+            allKeyboards.forEach(function (data, ind) {
+                // console.log("Index->", ind, "data=>", data)
+                var ele = `<div onclick = "getItem(this)" id=${ind}> ${data.code} - ${data.company} - ${data.type}  </div>`;
+
+                keyboardDiv.innerHTML += ele;
+            });
+        }
+        showAllData()
+
+
+    </script>
+</body>
+
+</html>

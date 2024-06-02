@@ -1,0 +1,350 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+</head>
+<style>
+    :root {
+  --clr-primary: #2962ff;
+  --clr-primary-hover: #0d47a1;
+  --clr-gray-med: #78909c;
+  --clr-gray-light: #cfd8dc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 2em;
+  font-family: "Open Sans", sans-serif;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1em;
+  border-bottom: 2px solid var(--clr-gray-light);
+}
+
+.btn-add {
+  width: 6em;
+  height: 2em;
+  font-size: 1.5em;
+  border: none;
+  background-color: #2962ff;
+  color: white;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  border-radius: 0.2em;
+  outline: none;
+  transition: all 100ms ease-in;
+}
+
+.btn-add:active,
+.btn-add:hover {
+  background-color: var(--clr-primary-hover);
+}
+
+main {
+  margin-top: 1em;
+}
+
+#div-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 2em 0em;
+}
+
+.div-shadow {
+  width: 5em;
+  height: 2em;
+  margin: 0 1em 1em 0;
+  transition: all 100ms ease-in-out;
+}
+
+.div-shadow:nth-child(odd) {
+  box-shadow: 0px 0px 10px var(--clr-gray-med);
+}
+
+.div-shadow:nth-child(even) {
+  box-shadow: inset 0px 0px 10px var(--clr-gray-med);
+}
+
+.div-shadow:hover {
+  transform: scale(1.2);
+}
+
+</style>
+
+<body>
+    <header>
+        <h1>Make Divs with JS </h1>
+        <button class="btn-add">Add New</button>
+    </header>
+    <main>
+        <h2>New Containers</h2>
+        <div id="div-container"></div>
+    </main>
+    <section>
+        <h2>Footer</h2>
+    </section>
+</body>
+
+<script>
+    const BtnAdd = document.querySelector(".btn-add");
+    const DivContainer = document.getElementById("div-container");
+
+    BtnAdd.addEventListener("click", AddNew);
+
+    function AddNew() {
+        const newDiv = document.createElement("div");
+        console.log("add");
+        newDiv.classList.add("div-shadow");
+        DivContainer.appendChild(newDiv);
+    }
+</script>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Div Creator</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+    <style>
+        :root {
+            --clr-primary: #2962ff;
+            --clr-primary-hover: #0d47a1;
+            --clr-gray-med: #78909c;
+            --clr-gray-light: #cfd8dc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 2em;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1em;
+            border-bottom: 2px solid var(--clr-gray-light);
+        }
+
+        .btn-add {
+            width: 8em;
+            height: 2.5em;
+            font-size: 1.2em;
+            border: none;
+            background-color: var(--clr-primary);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 0.2em;
+            outline: none;
+            transition: all 100ms ease-in;
+        }
+
+        .btn-add:active,
+        .btn-add:hover {
+            background-color: var(--clr-primary-hover);
+        }
+
+        main {
+            margin-top: 1em;
+        }
+
+        #div-container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            margin: 2em 0;
+        }
+
+        .div-shadow {
+            width: 8em;
+            height: 8em;
+            margin: 0.5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--clr-gray-light);
+            transition: all 100ms ease-in-out;
+            position: relative;
+            padding: 1em;
+            box-sizing: border-box;
+             overflow: hidden;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .div-shadow:nth-child(odd) {
+            box-shadow: 0px 0px 10px var(--clr-gray-med);
+        }
+
+        .div-shadow:nth-child(even) {
+            box-shadow: inset 0px 0px 10px var(--clr-gray-med);
+        }
+
+        .div-shadow:hover {
+            transform: scale(1.1);
+        }
+
+        .delete-btn,
+        .edit-btn {
+            position: absolute;
+            top: 0.2em;
+            width: 1.5em;
+            height: 1.5em;
+            background-color: var(--clr-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1em;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 100ms ease-in;
+        }
+
+        .delete-btn {
+            right: 0.2em;
+        }
+
+        .edit-btn {
+            left: 0.2em;
+        }
+
+        .delete-btn:hover,
+        .edit-btn:hover {
+            background-color: var(--clr-primary-hover);
+        }
+ /* optionaal */
+        .content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            padding: 0.5em;
+        }  
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Dynamic Div Creator</h1>
+        <button class="btn-add">Add New</button>
+    </header>
+    <main>
+        <h2>New Containers</h2>
+        <div id="div-container"></div>
+    </main>
+    <footer>
+        <h2>Footer</h2>
+    </footer>
+
+    <script>
+        const btnAdd = document.querySelector(".btn-add");
+        const divContainer = document.getElementById("div-container");
+
+        btnAdd.addEventListener("click", addNewDiv);
+
+        function addNewDiv() {
+            const newDiv = document.createElement("div");
+            newDiv.classList.add("div-shadow");
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.classList.add("delete-btn");
+            deleteBtn.innerHTML = "&times;";
+            deleteBtn.addEventListener("click", () => newDiv.remove());
+
+            const editBtn = document.createElement("button");
+            editBtn.classList.add("edit-btn");
+            editBtn.innerHTML = "✎";
+            editBtn.addEventListener("click", () => editDiv(newDiv));
+
+            const content = document.createElement("div");
+            content.classList.add("content");
+            content.contentEditable = "true";
+            content.innerHTML = "Edit me!";
+
+            newDiv.appendChild(content);
+            newDiv.appendChild(editBtn);
+            newDiv.appendChild(deleteBtn);
+            divContainer.appendChild(newDiv);
+        }
+
+        function editDiv(div) {
+            const content = div.querySelector(".content");
+            content.focus();
+        }
+    </script>
+
+    <!-- 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnAdd = document.querySelector(".btn-add");
+            const divContainer = document.getElementById("div-container");
+
+            btnAdd.addEventListener("click", addNewDiv);
+
+            function addNewDiv() {
+                const newDiv = document.createElement("div");
+                newDiv.classList.add("div-shadow");
+
+                const deleteBtn = document.createElement("button");
+                deleteBtn.classList.add("delete-btn");
+                deleteBtn.innerHTML = "&times;";
+                deleteBtn.addEventListener("click", () => newDiv.remove());
+
+                const editBtn = document.createElement("button");
+                editBtn.classList.add("edit-btn");
+                editBtn.innerHTML = "✎";
+                editBtn.addEventListener("click", () => editDiv(newDiv));
+
+                const content = document.createElement("div");
+                content.classList.add("content");
+                content.contentEditable = "true";
+                content.innerHTML = "Edit me!";
+
+                newDiv.appendChild(content);
+                newDiv.appendChild(editBtn);
+                newDiv.appendChild(deleteBtn);
+                divContainer.appendChild(newDiv);
+            }
+
+            function editDiv(div) {
+                const content = div.querySelector(".content");
+                content.focus();
+            }
+        });
+
+    </script> -->
+</body>
+
+</html> 
