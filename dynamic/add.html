@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .newDiv {
+            border: none;
+            width: 120px;
+            height: 100px;
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: larger;
+            background-color: #98e7aa;
+        }
+
+        button {
+            margin-top: 10px;
+            width: 100px;
+            height: 30px;
+            border-radius: 5px;
+            background-color: rgb(255, 255, 255);
+            border: none;
+            font-size: large;
+            cursor: pointer;
+        }
+
+        #name {
+            cursor: pointer;
+        }
+
+        @keyframes drop {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+        }
+
+          @keyframes magic {
+            0% {
+                transform: scale(1) rotate(0deg);
+                background-color: #98e7aa;
+            }
+            25% {
+                transform: scale(1.1) rotate(10deg);
+                background-color: #ffeb3b;
+            }
+            50% {
+                transform: scale(1.2) rotate(-10deg);
+                background-color: #ffc107;
+            }
+            75% {
+                transform: scale(1.1) rotate(10deg);
+                background-color: #ffeb3b;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                background-color: #98e7aa;
+            }
+        }
+
+        .delete-animation {
+            animation: drop 0.5s forwards;
+        }
+
+        .update-animation {
+            animation: magic 0.5s forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container"></div>
+    <script>
+        let con = document.querySelector('.container');
+        let arr1 = [
+            { name: 'John', age: 25 },
+            { name: 'Jane', age: 30 },
+            { name: 'Jim', age: 35 },
+            { name: 'Joe', age: 40 }
+        ];
+
+        arr1.forEach(element => {
+            let newDiv = document.createElement('div');
+            newDiv.classList.add('newDiv');
+            newDiv.innerHTML = `
+                    <div id="name" onclick="updateName(this)">Name: ${element.name} <br></div>
+                    Age: ${element.age}
+                    `;
+            // <button class="delete-btn">Delete</button>
+
+            let btn = document.createElement('button');
+            btn.textContent = 'Delete';
+            newDiv.appendChild(btn);
+
+            con.appendChild(newDiv);
+
+            // let btn = newDiv.querySelector('.delete-btn');
+            btn.addEventListener('click', function () {
+                newDiv.classList.add('delete-animation');
+                setTimeout(() => newDiv.remove(), 500); 
+            });
+        });
+
+        function updateName(element) {
+            let newName = prompt('Enter new name:');
+            if (newName.trim() !== "" && newName !== null) {
+                element.innerHTML = `Name: ${newName} <br>`;
+                element.parentElement.classList.add('update-animation');
+                setTimeout(() => element.parentElement.classList.remove('update-animation'), 500);
+            }
+        }
+    </script>
+</body>
+
+</html>
