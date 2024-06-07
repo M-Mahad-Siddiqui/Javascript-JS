@@ -6,62 +6,87 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title>Age Calculator</title>
+    <style>
+        body {
+            background-color: #292929;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #444;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            animation: fadeIn 1s ease-in-out;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        input {
+            padding: 12px;
+            margin: 10px;
+            width: 60%;
+            border-radius: 5px;
+            border: none;
+            background-color: #555;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        input:focus {
+            background-color: #666;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 10px;
+            width: 64%;
+            border-radius: 5px;
+            border: none;
+            background-color: #1E90FF;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            letter-spacing: 0.7px;
+        }
+
+        button:hover {
+            background-color: #4682B4;
+        }
+
+        h1,
+        h2,
+        p {
+            color: #fff;
+        }
+    </style>
 </head>
-<style>
-    .container {
-        max-width: 500px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
-        border-radius: 10px;
-        margin-top: 100px;
-        /* background-color: #f2f2f2; */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
-        font-family: Arial, sans-serif;
-        font-size: 20px;
-        color: #333;
-        font-weight: bold;
-        user-select: none;
-    }
-
-    input {
-        padding: 10px;
-        margin: 10px;
-        width: 60%;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        font-size: 18px;
-        background-color: rgb(209, 203, 203);
-    }
-
-    button {
-        padding: 10px;
-        margin: 10px;
-        width: 64%;
-        border-radius: 5px;
-        border: none;
-        background-color: #4CAF50;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        font-weight: bold;
-        letter-spacing: 0.7px;
-    }
-
-    button:hover {
-        background-color: #237627;
-
-    }
-</style>
 
 <body>
     <div class="container">
         <h1>Age Calculator</h1>
         <p>Enter your date of birth:</p>
         <input type="date"
-               id="dobInput"
-               placeholder="Enter your date of birth">
+               id="dobInput">
         <button onclick="calculateAge()">Calculate Age</button>
         <h2 id="ageOutput"></h2>
     </div>

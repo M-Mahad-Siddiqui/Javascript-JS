@@ -7,15 +7,30 @@
           content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+        * {
+            font-family: "Poppins", sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            color: #348246;
+            font-size: 60px;
+
+        }
+
         .container {
             display: flex;
             flex-wrap: wrap;
+            padding: 0 100px;
         }
 
         .newDiv {
             border: none;
-            width: 120px;
-            height: 100px;
+            width: 140px;
+            height: 110px;
             margin: 10px;
             padding: 10px;
             display: flex;
@@ -53,23 +68,27 @@
             }
         }
 
-          @keyframes magic {
+        @keyframes magic {
             0% {
                 transform: scale(1) rotate(0deg);
                 background-color: #98e7aa;
             }
+
             25% {
                 transform: scale(1.1) rotate(10deg);
                 background-color: #ffeb3b;
             }
+
             50% {
                 transform: scale(1.2) rotate(-10deg);
                 background-color: #ffc107;
             }
+
             75% {
                 transform: scale(1.1) rotate(10deg);
                 background-color: #ffeb3b;
             }
+
             100% {
                 transform: scale(1) rotate(0deg);
                 background-color: #98e7aa;
@@ -87,6 +106,7 @@
 </head>
 
 <body>
+    <h1>Dynamic Edit or Delete div</h1>
     <div class="container"></div>
     <script>
         let con = document.querySelector('.container');
@@ -94,7 +114,17 @@
             { name: 'John', age: 25 },
             { name: 'Jane', age: 30 },
             { name: 'Jim', age: 35 },
-            { name: 'Joe', age: 40 }
+            { name: 'Joe', age: 40 },
+            { name: 'Bilal', age: 32 },
+            { name: 'Ali', age: 22 },
+            { name: 'Ahmed', age: 21 },
+            { name: 'Fatima', age: 30 },
+            { name: 'Hassan', age: 28 },
+            { name: 'Sara', age: 27 },
+            { name: 'Maria', age: 26 },
+            { name: 'Mohammed', age: 25 },
+            { name: 'Sana', age: 28 },
+            { name: 'Hamza', age: 27 },
         ];
 
         arr1.forEach(element => {
@@ -115,7 +145,7 @@
             // let btn = newDiv.querySelector('.delete-btn');
             btn.addEventListener('click', function () {
                 newDiv.classList.add('delete-animation');
-                setTimeout(() => newDiv.remove(), 500); 
+                setTimeout(() => newDiv.remove(), 500);
             });
         });
 

@@ -5,327 +5,499 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My JavaScript Projects</title>
     <style>
-        h1 {
-            text-align: center;
-            color: rgb(255, 0, 153);
-            font-size: 50px;
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #bdd7f4;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .link {
+        /*------------------------- header css ----------------------------------------*/
+        :root {
+            --bg-color: #1f242d;
+            --second-bg-color: #323946;
+            --text-color: #fff;
+            --main-color: #0ef;
+        }
+
+
+        .home {
+            background-color: #1e3c72;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home-img img {
+            width: 25vw;
+            animation: floatImage 4s ease-in-out infinite;
+        }
+
+        /* images move css */
+        @keyframes floatImage {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-2.9rem);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .home-content {
+            position: relative;
+            max-width: 40rem;
+            text-align: center;
+        }
+
+        .home-content h3 {
+            font-size: 3.2rem;
+            font-weight: 600;
+        }
+
+        .home-content h1 {
+            /* font-size: 5.6rem;    */
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .home-content p {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.8;
+            margin: 1.5rem 0;
+        }
+
+        .heading span {
+            color: var(--main-color);
+        }
+
+        @media (max-width: 768px) {
+
+            .home {
+                flex-direction: column;
+            }
+
+            .home-content {
+                text-align: center;
+            }
+
+            .home-content h3 {
+                font-size: 2.6rem;
+            }
+
+            .home-content h1 {
+                font-size: 5rem;
+            }
+
+            .home-img img {
+                width: 70vw;
+                margin-top: 4rem;
+            }
+
+        }
+
+        /* ----------------------------------------------------------- */
+        .container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-
+            margin: 20px;
         }
 
-        a {
-            text-decoration: none;
-            color: rgb(243, 39, 151);
+        /* ------------------card css---------------- */
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 300px;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-category {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+
+        .card-title {
+            font-size: 18px;
             font-weight: bold;
-            font-size: 30px;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 4px solid #31d4cf;
-            display: inline-block;
-            margin: 6px;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                width: 100%;
+            }
+        }
+
+        /* ------------dark mode css------------- */
+        /* body color change */
+        .dark-mode {
+            background-color: #323946;
+            color: #f8f9fa;
+        }
+
+        .dark-mode .home {
+            background-color: #1f242d;
+        }
+
+        /* card color change */
+        .dark-mode .card {
+            background-color: #1f242d;
+            border-color: #555;
+        }
+
+        .dark-mode .card:hover {
+            box-shadow: 0 8px 16px #0ef;
+            ;
+        }
+
+        /* text color changes  */
+        .dark-mode .card-category,
+        .dark-mode .card-description {
+            color: #bbb;
+        }
+
+        .dark-mode .card a {
+            color: #0ef;
+        }
+
+        .dark-mode .header {
+            background-color: #222;
+        }
+
+        /* -----------toggle button css------------------ */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .dark-mode-toggle input {
+            display: none;
+        }
+
+        .dark-mode-toggle label {
+            background-color: #ccc;
+            width: 50px;
+            height: 25px;
+            border-radius: 25px;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        .dark-mode-toggle label::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2.5px;
+            left: 2.5px;
+            transition: transform 0.3s;
+        }
+
+        .dark-mode-toggle input:checked+label {
+            background-color: #007bff;
+        }
+
+        .dark-mode-toggle input:checked+label::after {
+            transform: translateX(25px);
         }
     </style>
 </head>
 
 <body>
-    <!-- https://github.com/ghousahmed/javascript-exercises/blob/main/chapter1.pdf -->
-    <!-- https://github.com/bilalattari/SMIT-BATCH-11-TTS-9-11/ -->
+    <i id="menu-icon"></i>
+    <!-- home section design -->
+    <section class="home"
+             id="home">
+        <div class="home-content">
+            <h2>Hello, It's Me</h2>
+            <h3>Muhammad Mahad Siddiqui</h3>
+            <h2 class="heading">And there is my <span class="typing"></span></h2>
+            <p>
+                Discover a captivating array of JavaScript projects, each a testament to creativity and
+                functionality, where you can immerse yourself in the world of JavaScript. these projects showcase the
+                versatility and ingenuity of JavaScript. Whether you're a beginner exploring the basics or a seasoned
+                developer seeking new challenges and inspiration, these projects offer both learning opportunities and
+                moments of enjoyment.
+            </p>
+        </div>
 
-    <h1>This is my JavaScript work </h1>
-    <div class="link">
-        <a href="chapter-1/index.html">Chapter 1</a>
-        <a href="chapter-2/index.html">Chapter 2</a>
-        <a href="chapter-3/index.html">Chapter 3</a>
-        <a href="chapter-4/index.html">Chapter 4</a>
-        <a href="chapter-5/index.html">Chapter 5</a>
-        <a href="chapter-6/index.html">Chapter 6</a>
-        <a href="chapter-7/index.html">Chapter 7</a>
-        <a href="chapter-8/index.html">Chapter 8</a>
-        <a href="chapter-9/index.html">Chapter 9</a>
-        <a href="chapter-10/index.html">Chapter 10</a>
-        <a href="chapter-11/index.html">Chapter 11</a>
-        <a href="chapter-12/index.html">Chapter 12</a>
-        <a href="chapter-13/index.html">Chapter 13</a>
-        <a href="chapter-14/index.html">Chapter 14</a>
-        <a href="chapter-15/index.html">Chapter 15</a>
-        <a href="calculator/index.html">Calculator</a>
-        <a href="Loop/index.html">Loop</a>
-        
-        <a href="GUI_Calculator/index.html">GUI Calculator</a>
-        <a href="Color_Picker/index.html">Color Picker</a>
-        <a href="Dice_Game/index.html">Dice Game</a>
-        <a href="stopwatch/index.html">Stopwatch</a>
-        <a href="Analog_Clock/index.html">Analog Clock</a>
-        <a href="Digital_Clock/index.html">Digital Clock</a>
-        <a href="Age_Calculator/index.html">Age Calculator</a>
-        <a href="Attendaces_checker/index.html">Attendaces Checker</a>
-        <a href="Photo_gallery/index.html">Photo Gallary</a>
-        <a href="Editor/index.html">Text Editor</a>
-        <a href="TO-DO-APP/index.html">To Do App</a>
-        <a href="TO-DO-APP/net.html">advance TO DO List</a>
-        <a href="Expense-Tracker/index.html">Expense Tracker</a>
-        <a href="Tic-Tac-Toe/index.html">Tic-Tac-Toe"</a>
-        <a href="card/index.html ">cards Assignments"</a>
-        <a href="dynamic/add.html">Edit or delete Div</a>
-        <a href="dynamic/index.html">Dynamic Div Create</a>
+        <div class="home-img">
+            <img src="mahad.png"
+                 alt="" />
+        </div>
+    </section>
+    <!-- <div class="header">
+        <img src="mahad.png" alt="Mahad's Photo">
+        <h1>Welcome to My JavaScript Projects Showcase</h1>
+    </div> -->
 
-
-
-
-
-
+    <div class="dark-mode-toggle">
+        <input type="checkbox"
+               id="darkModeSwitch"
+               onclick="toggleDarkMode()">
+        <label for="darkModeSwitch"></label>
     </div>
+
+    <div class="container"
+         id="projectContainer">
+        <!-- Cards will be injected here by JavaScript -->
+    </div>
+    <!-- -----end-------text write  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <script>
+            const projects = [
+                {
+                    img: "beginning Assignment/pic.jpg",
+                    category: "JavaScript Projects",
+                    title: "Beginning Task",
+                    description: "Basic Javascript assignment for better understanding of JavaScript.",
+                    link: "beginning Assignment/index.html"
+                },
+                {
+                    img: "GUI_Calculator/gui.png",
+                    category: "JavaScript Projects",
+                    title: "GUI Calculator",
+                    description: "A graphical user interface calculator built with JavaScript.",
+                    link: "GUI_Calculator/index.html"
+                },
+                {
+                    img: "Color_Picker/pic.png",
+                    category: "JavaScript Projects",
+                    title: "Color Picker",
+                    description: "A color picker tool created using JavaScript.",
+                    link: "Color_Picker/index.html"
+                },
+                {
+                    img: "Dice_Game/pic.png",
+                    category: "JavaScript Projects",
+                    title: "Dice Game",
+                    description: "A simple dice game implemented in JavaScript.",
+                    link: "Dice_Game/index.html"
+                },
+                {
+                    img: "stopwatch/pic.png",
+                    category: "JavaScript Projects",
+                    title: "Stopwatch",
+                    description: "A stopwatch application built using JavaScript.",
+                    link: "stopwatch/index.html"
+                },
+                {
+                    img: "Analog_Clock/pic.png",
+                    category: "JavaScript Projects",
+                    title: "Analog Clock",
+                    description: "An analog clock created with JavaScript and CSS.",
+                    link: "Analog_Clock/index.html"
+                },
+                {
+                    img: "https://via.placeholder.com/300x150",
+                    category: "JavaScript Projects",
+                    title: "Digital Clock",
+                    description: "A digital clock implemented using JavaScript.",
+                    link: "Digital_Clock/index.html"
+                },
+                {
+                    img: "Age_Calculator/pic1.png",
+                    category: "JavaScript Projects",
+                    title: "Age Calculator",
+                    description: "An age calculator tool built with JavaScript.",
+                    link: "Age_Calculator/index.html"
+                },
+                {
+                    img: "Attendances Checker/pic.png",
+                    category: "JavaScript Projects",
+                    title: "Attendances Checker",
+                    description: "An application to check and manage attendance using JavaScript.",
+                    link: "Attendances_checker/index.html"
+                },
+                {
+                    img: "Photo_gallery/pic.png",
+                    category: "JavaScript Projects",
+                    title: "Photo Gallery",
+                    description: "A photo gallery application built with JavaScript.",
+                    link: "Photo_gallery/index.html"
+                },
+                {
+                    img: "Editor/pic.png",
+                    category: "JavaScript Projects",
+                    title: "Text Editor",
+                    description: "A simple text editor created using JavaScript.",
+                    link: "Editor/index.html"
+                },
+                {
+                    img: "TO-DO-APP/pic1.png",
+                    category: "JavaScript Projects",
+                    title: "Advanced To Do List",
+                    description: "An advanced to-do list application with additional features.",
+                    link: "TO-DO-APP/net.html"
+                },
+                {
+                    img: "TO-DO-APP/pic.png",
+                    category: "JavaScript Projects",
+                    title: "To Do App",
+                    description: "A to-do list application built with JavaScript.",
+                    link: "TO-DO-APP/index.html"
+                },
+                {
+                    img: "Expense-Tracker/pic.png",
+                    category: "JavaScript Projects",
+                    title: "Expense Tracker",
+                    description: "An expense tracker application built with JavaScript.",
+                    link: "Expense-Tracker/index.html"
+                },
+                {
+                    img: "https://via.placeholder.com/300x150",
+                    category: "JavaScript Projects",
+                    title: "Tic-Tac-Toe",
+                    description: "A tic-tac-toe game implemented in JavaScript.",
+                    link: "Tic-Tac-Toe/index.html"
+                },
+                {
+                    img: "card/pic.png",
+                    category: "JavaScript Projects",
+                    title: "Cards Assignments",
+                    description: "A project involving card-based assignments using JavaScript.",
+                    link: "card/index.html"
+                },
+                {
+                    img: "dynamic/pic1.png",
+                    category: "JavaScript Projects",
+                    title: "Edit or Delete Div",
+                    description: "A project demonstrating how to dynamically add, edit, or delete div elements.",
+                    link: "dynamic/add.html"
+                },
+                {
+                    img: "dynamic/pic.png",
+                    category: "JavaScript Projects",
+                    title: "Dynamic Div Create",
+                    description: "A project showcasing dynamic creation of div elements using JavaScript.",
+                    link: "dynamic/index.html"
+                }
+            ];
+
+        const container = document.getElementById('projectContainer');
+
+        projects.forEach(project => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            card.innerHTML = `
+                <img src="${project.img}" alt="${project.title}">
+                <div class="card-body">
+                    <div class="card-category">${project.category}</div>
+                    <div class="card-title">${project.title}</div>
+                    <div class="card-description">${project.description}</div>
+                    <a href="${project.link}">View Project</a>
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        //-------------------------------------------------------------------js portfolio text write----------------------------------------------------------------
+        $(document).ready(function () {
+            // ===================== Toggle Icon Navbar ============================
+            let menuIcon = document.querySelector("#menu-icon");
+            let section = document.querySelectorAll("section");
+
+            menuIcon.onclick = () => {
+                menuIcon.classList.toggle("fa-times");
+                navbar.classList.toggle("active");
+            };
+
+            // Typed.js initialization
+            var typed = new Typed(".typing", {
+                strings: ["Projects", "Assignments", "Works"],
+                typeSpeed: 100,
+                backSpeed: 60,
+                backDelay: 1000,
+                loop: true,
+            });
+
+            // Scroll Reveal initialization on sxreen animation
+            ScrollReveal({
+                reset: true,
+                distance: "80px",
+                duration: 2000,
+                delay: 200,
+            });
+
+            ScrollReveal().reveal(".home-content, .heading", { origin: "top" });
+            ScrollReveal().reveal(
+                ".home-img, .services-container",
+                { origin: "bottom" }
+            );
+            ScrollReveal().reveal(".home-content h1, .about-img", {
+                origin: "left",
+            });
+            // Preloader hide on window load
+            window.onload = () => {
+                document.querySelector(".preloader").style.display = "none";
+            };
+        });
+        //--------------------------------------------------------------------------------------------------------------------
+    </script>
 </body>
 
 </html>
-
-<script>
-    const projects = [
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Basics",
-                title: "Chapter 1",
-                description: "This chapter covers the basics of JavaScript including variables, data types, and simple functions.",
-                link: "chapter-1/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Control Structures",
-                title: "Chapter 2",
-                description: "In this chapter, we dive into control structures such as loops and conditional statements.",
-                link: "chapter-2/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Functions",
-                title: "Chapter 3",
-                description: "This chapter focuses on functions in JavaScript, including function declarations and expressions.",
-                link: "chapter-3/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Objects",
-                title: "Chapter 4",
-                description: "Learn about JavaScript objects, including object creation, properties, and methods.",
-                link: "chapter-4/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Arrays",
-                title: "Chapter 5",
-                description: "This chapter covers arrays in JavaScript, including array methods and manipulation techniques.",
-                link: "chapter-5/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript DOM Manipulation",
-                title: "Chapter 6",
-                description: "Learn how to manipulate the Document Object Model (DOM) using JavaScript.",
-                link: "chapter-6/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Events",
-                title: "Chapter 7",
-                description: "This chapter explores event handling in JavaScript, including different types of events and event listeners.",
-                link: "chapter-7/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Form Handling",
-                title: "Chapter 8",
-                description: "Learn about form handling in JavaScript, including form validation and data submission.",
-                link: "chapter-8/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Ajax",
-                title: "Chapter 9",
-                description: "This chapter covers Asynchronous JavaScript and XML (Ajax) for making asynchronous web requests.",
-                link: "chapter-9/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Promises",
-                title: "Chapter 10",
-                description: "Learn about JavaScript Promises for handling asynchronous operations.",
-                link: "chapter-10/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Async/Await",
-                title: "Chapter 11",
-                description: "This chapter explores the async/await syntax for working with asynchronous code in JavaScript.",
-                link: "chapter-11/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Modules",
-                title: "Chapter 12",
-                description: "Learn about JavaScript modules and how to organize code into reusable components.",
-                link: "chapter-12/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Error Handling",
-                title: "Chapter 13",
-                description: "This chapter covers error handling in JavaScript, including try/catch statements and custom errors.",
-                link: "chapter-13/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript ES6+ Features",
-                title: "Chapter 14",
-                description: "Explore new features introduced in ECMAScript 6 and beyond, including arrow functions and destructuring.",
-                link: "chapter-14/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Advanced Topics",
-                title: "Chapter 15",
-                description: "This chapter delves into advanced JavaScript topics, such as closures, context, and the event loop.",
-                link: "chapter-15/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Calculator",
-                description: "A simple calculator app built using JavaScript, HTML, and CSS.",
-                link: "calculator/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Loop",
-                description: "An interactive project demonstrating the use of loops in JavaScript.",
-                link: "Loop/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "GUI Calculator",
-                description: "A graphical user interface calculator built with JavaScript.",
-                link: "GUI_Calculator/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Color Picker",
-                description: "A color picker tool created using JavaScript.",
-                link: "Color_Picker/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Dice Game",
-                description: "A simple dice game implemented in JavaScript.",
-                link: "Dice_Game/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Stopwatch",
-                description: "A stopwatch application built using JavaScript.",
-                link: "stopwatch/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Analog Clock",
-                description: "An analog clock created with JavaScript and CSS.",
-                link: "Analog_Clock/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Digital Clock",
-                description: "A digital clock implemented using JavaScript.",
-                link: "Digital_Clock/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Age Calculator",
-                description: "An age calculator tool built with JavaScript.",
-                link: "Age_Calculator/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Attendances Checker",
-                description: "An application to check and manage attendance using JavaScript.",
-                link: "Attendaces_checker/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Photo Gallery",
-                description: "A photo gallery application created with JavaScript.",
-                link: "Photo_gallery/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Text Editor",
-                description: "A simple text editor built using JavaScript.",
-                link: "Editor/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "To Do App",
-                description: "A to-do list application built with JavaScript.",
-                link: "TO-DO-APP/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Advanced To Do List",
-                description: "An advanced to-do list application with additional features.",
-                link: "TO-DO-APP/net.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Expense Tracker",
-                description: "An expense tracker application built using JavaScript.",
-                link: "Expense-Tracker/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Tic-Tac-Toe",
-                description: "A tic-tac-toe game implemented in JavaScript.",
-                link: "Tic-Tac-Toe/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Cards Assignments",
-                description: "Various assignments involving card elements in JavaScript.",
-                link: "card/index.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Edit or Delete Div",
-                description: "A project demonstrating how to dynamically add, edit, or delete div elements.",
-                link: "dynamic/add.html"
-            },
-            {
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Dynamic Div Create",
-                description: "A project showcasing dynamic creation of div elements using JavaScript.",
-                link: "dynamic/index.html"
-            }
-        ];
-
-</script>
