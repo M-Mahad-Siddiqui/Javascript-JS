@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Methods in JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        div {
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            text-align: center;
+        }
+        div:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number Methods in JavaScript</h1>
+    
+    <div onclick="matchNumber(1)">1</div>
+    <div onclick="matchNumber(2)">2</div>
+    <div onclick="matchNumber(3)">3</div>
+    <div onclick="matchNumber(4)">4</div>
+    <div onclick="matchNumber(5)">5</div>
+    <div onclick="matchNumber(6)">6</div>
+    <h2 id="random">-</h2>
+    <button onclick="generateRandomNumber()">Generate Random Number</button>
+
+    <script>
+        // Function to generate a random number between 1 and 6
+            function generateRandomNumber() {
+                // Math.random() generates a number between 0 and 1
+                // Multiplying by 6 scales it up to between 0 and 6
+                // Math.ceil() rounds up to the nearest whole number
+                var num = Math.ceil(Math.random() * 6);
+
+                // Display the generated number in the h2 element
+                var h2 = document.getElementById('random');
+                h2.innerText = `Random Number: ${num}`;
+
+                // Log the number to the console for debugging
+                console.log('Generated number:', num);
+
+                // Return the number for use in other functions
+                return num;
+            }
+
+            // Store the generated number for comparison
+            var randomNumber = generateRandomNumber();
+
+            // Function to match the clicked number with the generated random number
+            function matchNumber(val) {
+                console.log('Clicked number:', val);
+                if (val == randomNumber) {
+                    alert("Correct! You guessed the random number.");
+                } else {
+                    alert("Incorrect. Try again!");
+                }
+            }
+
+            // Demonstrate various Math methods
+            function demonstrateMathMethods() {
+                var number = 4.5;
+
+                // Math.round rounds to the nearest whole number
+                console.log('Math.round(4.5):', Math.round(number)); // Outputs: 5
+
+                // Math.ceil always rounds up to the nearest whole number
+                console.log('Math.ceil(4.5):', Math.ceil(number)); // Outputs: 5
+
+                // Math.floor always rounds down to the nearest whole number
+                console.log('Math.floor(4.5):', Math.floor(number)); // Outputs: 4
+            }
+
+            // Run the demonstration of Math methods
+            demonstrateMathMethods();
+
+    </script>
+</body>
+</html>

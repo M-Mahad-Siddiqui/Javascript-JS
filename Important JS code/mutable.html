@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Mutable and Immutable Data Types in JavaScript</title>
+</head>
+
+<body>
+    <h1>Understanding Mutable and Immutable Data Types in JavaScript</h1>
+
+    <h2>Immutable - Primitive Types</h2>
+    <p>Immutable data types cannot be changed after they are created. When you update an immutable value, a new value is
+        created.</p>
+    <ul>
+        <li>String</li>
+        <li>Number</li>
+        <li>Boolean</li>
+        <li>Undefined</li>
+        <li>Null</li>
+    </ul>
+
+    <h2>Mutable - Non-Primitive Types</h2>
+    <p>Mutable data types can be changed after they are created. When you update a mutable value, the original value is
+        modified.</p>
+    <ul>
+        <li>Array</li>
+        <li>Object</li>
+    </ul>
+
+    <script>
+        // 1. Demonstrating Mutable vs Immutable Updates
+
+        console.log("1. Mutable vs Immutable Updates");
+
+        // Immutable Example (String)
+        let hello = 'hello world!';
+        console.log('Original String:', hello);
+        console.log('Uppercase String:', hello.toUpperCase());
+        console.log('String after toUpperCase method:', hello); // remains unchanged
+
+        // Mutable Example (Array)
+        let array = ['Ahsan', 'Abdullah', 'Abu Bakr'];
+        console.log('Original Array:', array);
+        array[0] = 'Akbar';
+        console.log('Modified Array:', array); // array is updated
+
+        // Immutable Example (String - Attempt to change individual character)
+        hello[0] = 'H';
+        console.log('String after trying to change character:', hello); // remains unchanged
+
+        // 2. Assignment and Copy Behavior
+
+        console.log("\n2. Assignment and Copy Behavior");
+
+        // Immutable Example (String)
+        let test = 'Test';
+        let test1 = test; // test1 is a copy of test
+        console.log('Original test:', test);
+        console.log('Copied test1:', test1);
+
+        test = 'testing'; // test is reassigned
+        console.log('Reassigned test:', test);
+        console.log('Unchanged test1:', test1); // test1 remains unchanged
+
+        // Mutable Example (Array)
+        let abc = ['a', 'b', 'c', 'd'];
+        let abc1 = abc; // abc1 is a reference to abc
+        console.log('Original abc:', abc);
+        console.log('Referenced abc1:', abc1);
+
+        abc.push('e'); // modifying abc also modifies abc1
+        console.log('Modified abc:', abc);
+        console.log('Referenced abc1 after modification:', abc1);
+
+        // Mutable Example (Object)
+        let obj = { name: 'Ahsan', age: 30 };
+        let obj1 = obj; // obj1 is a reference to obj
+        console.log('Original obj:', obj);
+        console.log('Referenced obj1:', obj1);
+
+        obj.age = 31; // modifying obj also modifies obj1
+        console.log('Modified obj:', obj);
+        console.log('Referenced obj1 after modification:', obj1);
+
+        // 3. Comparison Behavior
+
+        console.log("\n3. Comparison Behavior");
+
+        // Immutable Example (String)
+        let str1 = 'test';
+        let str2 = 'test';
+        let str3 = 'testing';
+        console.log('str1 === str2:', str1 === str2); // true, same value
+        console.log('str1 === str3:', str1 === str3); // false, different values
+
+        // Mutable Example (Array)
+        let arr = ['1', '2', '3', '4'];
+        let arr1 = arr; // arr1 is a reference to arr
+        let arr2 = ['1', '2', '3', '4']; // arr2 is a new array with the same values
+        console.log('arr === arr1:', arr === arr1); // true, same reference
+        console.log('arr === arr2:', arr === arr2); // false, different references
+
+        // Mutable Example (Object)
+        let objA = { a: 1, b: 2 };
+        let objB = objA; // objB is a reference to objA
+        let objC = { a: 1, b: 2 }; // objC is a new object with the same properties
+        console.log('objA === objB:', objA === objB); // true, same reference
+        console.log('objA === objC:', objA === objC); // false, different references
+
+    </script>
+</body>
+
+</html>

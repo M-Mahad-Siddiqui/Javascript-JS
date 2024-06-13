@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+    <title>Date Handling in JavaScript</title>
+</head>
+
+<body>
+    <h1>Date Handling in JavaScript</h1>
+
+    <!-- Input for birthdate and submit button -->
+    <label for="birthdate">Enter your birthdate:</label>
+    <input type="date"
+           id="birthdate" />
+    <button onclick="calculateTimeFromBirth()">Submit</button>
+
+    <!-- Output elements to display date and time information -->
+    <h2>Current Date and Time</h2>
+    <p id="currentDate"></p>
+
+    <h2>Formatted Date</h2>
+    <p id="onlyDate"></p>
+
+    <h2>Time</h2>
+    <p id="time"></p>
+
+    <!-- Script to handle date calculations -->
+    <script>
+        // Function to initialize and display current date and time
+        function displayCurrentDateTime() {
+            const date_heading = document.getElementById('currentDate');
+            const onlyDate = document.getElementById('onlyDate');
+            const time = document.getElementById('time');
+
+            const now = new Date();
+
+            // Displaying current date and time
+            date_heading.textContent = `Current Date and Time: ${now}`;
+
+            // Displaying only the date in different formats
+            onlyDate.textContent = `Current Date: ${now.toDateString()}`;
+
+            // Displaying the current time
+            time.textContent = `Current Time: ${now.toLocaleTimeString()}`;
+        }
+
+        // Function to calculate and display age from birthdate
+        function calculateTimeFromBirth() {
+            const birthdateInput = document.getElementById('birthdate').value;
+            const userBirthdate = new Date(birthdateInput);
+            const currentDate = new Date();
+
+            // Calculate difference in milliseconds
+            const timeDifference = currentDate.getTime() - userBirthdate.getTime();
+
+            // Convert milliseconds to years (approximation)
+            const ageInYears = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365));
+
+            // Display the calculated age
+            alert(`You are approximately ${ageInYears} years old.`);
+        }
+
+        // Initialize the display when the page loads
+        displayCurrentDateTime();
+
+    </script>
+</body>
+
+</html>

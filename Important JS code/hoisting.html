@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Hoisting and Scope Example</title>
+</head>
+
+<body>
+    <h1>Understanding JavaScript Hoisting and Scope</h1>
+    <p>
+        JavaScript Hoisting is the behavior where the interpreter moves function
+        and variable declarations to the top of their respective scope before
+        executing the code. This allows variables to be accessed before
+        declaration, aiding in more flexible coding practices and avoiding
+        “undefined” errors during execution.
+    </p>
+    <p>
+        This example also demonstrates the differences between <code>var</code>, <code>let</code>, and
+        <code>const</code>,
+        including their scoping rules and the concept of the Temporal Dead Zone (TDZ).
+    </p>
+    <script>
+        // Hoisting in JavaScript
+        console.log("Hoisting example:");
+        console.log("x before declaration:", x); // undefined
+
+        var x = 10;
+
+        console.log("x after declaration:", x); // 10
+
+        function sum(a, b) {
+            return a + b;
+        }
+
+        console.log("sum function before declaration:", sum); // function definition
+        var sum1 = sum(5, 10);
+        var sum2 = sum(10, 20);
+
+        console.log("sum1:", sum1); // 15
+        console.log("sum2:", sum2); // 30
+
+        // Difference between var, let, and const
+        console.log("\nDifference between var, let, and const:");
+
+        // 1. var can be redeclared, let cannot
+        console.log("Redeclaration:");
+        var a = 5;
+        var a = 10; // No error
+        console.log("var a redeclared:", a); // 10
+
+        let b = 5;
+        // let b = 10; // Error: Identifier 'b' has already been declared
+        b = 10;
+        console.log("let b reassigned:", b); // 10
+
+        const c = 5;
+        // const c = 10; // Error: Identifier 'c' has already been declared
+        // c = 10; // Error: Assignment to constant variable
+        console.log("const c:", c); // 5
+
+        // 2. Temporal Dead Zone (TDZ)
+        console.log("\nTemporal Dead Zone:");
+        console.log("Access var before declaration:", d); // undefined
+        // console.log("Access let before declaration:", e); // Error: Cannot access 'e' before initialization
+        // console.log("Access const before declaration:", f); // Error: Cannot access 'f' before initialization
+
+        var d = 15;
+        let e = 20;
+        const f = 25;
+
+        console.log("var d after declaration:", d); // 15
+        console.log("let e after declaration:", e); // 20
+        console.log("const f after declaration:", f); // 25
+
+        // 3. Scope differences
+        console.log("\nScope differences with var, let, and const:");
+        console.log("var Scope:");
+        function varScope() {
+            var x = 2;
+            console.log("var x after declaration inside function:", x); // 2
+
+            if (true) {
+                var x = 4; // Same variable redeclared
+                console.log("var x inside block:", x); // 4
+            }
+
+            console.log("var x after block:", x); // 4
+        }
+
+        varScope();
+
+        console.log("\nlet Scope:");
+        function letScope() {
+            let x = 2;
+            console.log("let x after declaration inside function:", x); // 2
+
+            if (true) {
+                let x = 4; // Different variable inside block
+                console.log("let x inside block:", x); // 4
+                if (true) {
+                    // console.log("let y before declaration inside nested block:", y); // Error: Cannot access 'y' before initialization
+                    let y = 10;
+                    console.log("let y after declaration inside nested block:", y); // 10
+                }
+            }
+
+            console.log("let x after block:", x); // 2
+        }
+
+        letScope();
+
+        console.log("\nconst Scope:");
+        function constScope() {
+            const x = 2;
+            console.log("const x after declaration inside function:", x); // 2
+
+            if (true) {
+                const x = 4; // Different variable inside block
+                console.log("const x inside block:", x); // 4
+                if (true) {
+                    // console.log("const y before declaration inside nested block:", y); // Error: Cannot access 'y' before initialization
+                    const y = 10;
+                    console.log("const y after declaration inside nested block:", y); // 10
+                }
+            }
+
+            console.log("const x after block:", x); // 2
+        }
+
+        constScope();
+
+    </script>
+</body>
+
+</html>
