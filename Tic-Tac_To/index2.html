@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 50px;
+            padding: 70px;
+        }
+
+        .boxes {
+            display: grid;
+            grid-template-rows: repeat(3, 15);
+            grid-template-columns: repeat(3, 15vw);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .gameInfo {
+            padding: 10px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        b {
+            font-size: 3rem;
+            color: red;
+        }
+
+        button {
+            font-size: 1.4rem;
+            padding: 10px 15px;
+            margin: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #2d1a1a;
+            color: aliceblue;
+            outline: none;
+        }
+
+        button:hover {
+            background-color: white;
+            border: 2px solid black;
+            color: black;
+            font-weight: bold;
+            transition: 0.5s ease-in;
+        }
+
+        .box {
+            border: 2px solid #000;
+            font-size: 7vw;
+            height: 10vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s
+        }
+
+        .box:hover {
+            background-color: #d8d8d8;
+        }
+
+        .box:active {
+            background-color: #998585;
+        }
+
+        /* Border Removal Classes */
+        .bt-0 {
+            border-top: none;
+        }
+
+        .br-0 {
+            border-right: none;
+        }
+
+        .bd-0 {
+            border-bottom: none;
+        }
+
+        .bl-0 {
+            border-left: none;
+        }
+
+
+
+        /* Responsive Design */
+        @media screen and (max-width: 1000px) {
+            .container {
+                flex-direction: column;
+                margin-top: 0;
+                padding: 20px;
+            }
+
+            .gameInfo {
+                margin-top: 10px;
+                font-size: 0.9rem;
+            }
+
+            button {
+                font-size: 1.2rem;
+                padding: 5px 10px;
+                margin: 5px;
+            }
+
+            .boxes {
+                grid-template-rows: repeat(3, 15);
+                grid-template-columns: repeat(3, 15vw);
+            }
+
+            .box {
+                padding-bottom: 20px;
+                font-size: 7vw;
+            }
+
+            b {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="boxes">
+            <div onclick="update(this, 1)"
+                 class="box bl-0 bt-0"><span id="testbox-1"></span></div>
+            <div onclick="update(this, 2)"
+                 class="box bt-0"><span id="testbox-2"></span></div>
+            <div onclick="update(this, 3)"
+                 class="box br-0 bt-0"><span id="testbox-3"> </span></div>
+            <div onclick="update(this, 4)"
+                 class="box bl-0"><span id="testbox-4"></span></div>
+            <div onclick="update(this, 5)"
+                 class="box"><span id="testbox-5"></span></div>
+            <div onclick="update(this, 6)"
+                 class="box br-0"><span id="testbox-6"></span></div>
+            <div onclick="update(this, 7)"
+                 class="box bl-0 bd-0"><span id="testbox-7"></span></div>
+            <div onclick="update(this, 8)"
+                 class="box bd-0"><span id="testbgit add -Aox-8"></span></div>
+            <div onclick="update(this, 9)"
+                 class="box bd-0 br-0"><span id="testbox-9"></span></div>
+        </div>
+
+        <div class="gameInfo">
+            <h1>Tic-Tac-Toe</h1>
+            <div>
+                <h2 id="winShow">Winner is 0</h2>
+                <h3 class="info">Turn for <b id="xo">X</b></h3>
+                <button id="reset"
+                        onclick="resetGame()">ReStart</button>
+            </div>
+        </div>
+    </div>
+</body>
+    <script>
+        var gameOver = false;
+        var turn = 'X';
+
+        const changeTurn = () => {
+            return turn === 'X' ? '0' : 'X';
+        }
+
+        const checkWin = () => {
+            let boxes = document.querySelectorAll(".box span");
+            let winPatterns = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+
+            winPatterns.forEach(pattern => {
+                if ((boxes[pattern[0]].innerText === boxes[pattern[1]].innerText) &&
+                    (boxes[pattern[1]].innerText === boxes[pattern[2]].innerText) &&
+                    (boxes[pattern[0]].innerText !== "")) {
+                    gameOver = true;
+                    document.getElementById("winShow").innerText = "Winner is " + boxes[pattern[0]].innerText;
+                    document.getElementsByClassName("info")[0].innerText = "Game Over";
+                    document.getElementById("reset").innerText = "Play Again";
+                }
+            });
+        }
+
+        function update(element, number) {
+            if (!gameOver) {
+                if (element.innerText.trim() === "") {
+                    element.querySelector('span').innerText = turn;
+                    checkWin();
+                    if (!gameOver) {
+                        turn = changeTurn();
+                        document.getElementById("xo").innerText = turn;
+                    }
+                }
+            }
+        }
+
+        function resetGame() {
+            let boxes = document.querySelectorAll(".box span");
+            boxes.forEach(box => box.innerText = " ");
+            turn = 'X';
+            gameOver = false;
+            document.getElementById("winShow").innerText = "";
+            document.getElementsByClassName("info")[0].innerHTML = 'Turn for <b id="xo" style="color: rgb(255, 0, 0); font-size: 20px">X</b>';
+            document.getElementById("reset").innerText = "Reset";
+        }
+    </script>
+    </html>
+    <!-- 
+    <script>
+        var gameOver = false;
+        var turn = 'X';
+
+        const changeTurn = () => {
+            return turn === 'X' ? '0' : 'X';
+        }
+
+        const checkWin = (player) => {
+            const boxes = document.querySelectorAll(".box span");
+            const winPatterns = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+
+            for (let pattern of winPatterns) {
+                if (
+                    boxes[pattern[0]].innerText === player &&
+                    boxes[pattern[1]].innerText === player &&
+                    boxes[pattern[2]].innerText === player
+                ) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function update(element, number) {
+            if (!gameOver) {
+                const spanElement = element.querySelector('span');
+                if (spanElement.innerText.trim() === "") {
+                    spanElement.innerText = turn;
+                    if (checkWin(turn)) {
+                        gameOver = true;
+                        document.getElementById("winShow").innerText = "Winner is " + turn;
+                        document.getElementsByClassName("info")[0].innerText = "Game Over";
+                        document.getElementById("reset").innerText = "Play Again";
+                    } else {
+                        turn = changeTurn();
+                        document.getElementById("xo").innerText = turn;
+                    }
+                }
+            }
+        }
+
+        function resetGame() {
+            const boxes = document.querySelectorAll(".box span");
+            boxes.forEach(box => box.innerText = " ");
+            turn = 'X';
+            gameOver = false;
+            document.getElementById("winShow").innerText = "";
+            document.getElementsByClassName("info")[0].innerHTML = 'Turn for <b id="xo" style="color: rgb(255, 0, 0); font-size: 20px">X</b>';
+            document.getElementById("reset").innerText = "Reset";
+        }
+    </script> -->

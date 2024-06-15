@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            margin-top: 80px;
+            flex-wrap: wrap;
+        }
+
+        .boxes {
+            display: grid;
+            grid-template-rows: repeat(3, 10vw);
+            grid-template-columns: repeat(3, 10vw);
+        }
+
+        .box {
+            border: 2px solid black;
+            font-size: 8vw;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .boxes :hover {
+            background-color: #e7e7e7;
+        }
+
+        .info {
+            font-size: 22px;
+        }
+
+        .gameInfo {
+            padding: 0 34px;
+        }
+
+        .imgBox img {
+            width: 0;
+            transition: width 1s ease-in-out;
+        }
+
+        .br-0 {
+            border-right: 0;
+        }
+
+        .bl-0 {
+            border-left: 0;
+        }
+
+        .bt-0 {
+            border-top: 0;
+        }
+
+        .bb-0 {
+            border-bottom: 0;
+        }
+
+        #reset {
+            margin: 0 23px;
+            padding: 6px 14px;
+            background-color: #e7e7e7;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 800px) {
+            #contents {
+                width: 90%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="boxes">
+            <div class="box bt-0 bl-0"><span class="boxText"></span></div>
+            <div class="box bt-0"><span class="boxText"></span></div>
+            <div class="box bt-0 br-0"><span class="boxText"></span></div>
+
+            <div class="box bl-0"><span class="boxText"></span></div>
+            <div class="box"><span class="boxText"></span></div>
+            <div class="box br-0"><span class="boxText"></span></div>
+
+            <div class="box bl-0 bb-0"><span class="boxText"></span></div>
+            <div class="box bb-0"><span class="boxText"></span></div>
+            <div class="box bb-0 br-0"><span class="boxText"></span></div>
+        </div>
+
+        <div class="gameInfo">
+            <h1>Tic Tac Toe</h1>
+            <div>
+                <span class="info">Turn for X</span>
+                <button id="reset">Reset</button>
+                <div class="imgBox"> <img src="gif.gif"
+                         alt="img"> </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        let turn = "X";
+        let gameOver = false;
+
+        const changeTurn = () => {
+            return turn === "X" ? "0" : "X";
+        }
+
+        const checkWin = () => {
+            let boxTexts = document.getElementsByClassName('boxText');
+            let wins = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6],
+            ]
+            wins.forEach(e => {
+                if ((boxTexts[e[0]].innerText === boxTexts[e[1]].innerText) && (boxTexts[e[2]].innerText === boxTexts[e[1]].innerText) && (boxTexts[e[0]].innerText !== "")) {
+                    document.querySelector('.info').innerText = boxTexts[e[0]].innerText + ' Won';
+                    gameOver = true;
+                    document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width = "150px";
+                }
+
+            })
+        }
+
+        let boxes = document.getElementsByClassName("box");
+        Array.from(boxes).forEach(element => {
+            let boxText = element.querySelector('.boxText');
+            element.addEventListener('click', () => {
+                if (boxText.innerText === '') {
+                    boxText.innerText = turn;
+                    turn = changeTurn();
+                    checkWin();
+                    if (!gameOver) {
+                        document.getElementsByClassName("info")[0].innerText = "Turn for " + turn;
+                    }
+                }
+            })
+        })
+
+
+        reset.addEventListener('click', () => {
+            let boxtexts = document.querySelectorAll('.boxText');
+            Array.from(boxtexts).forEach(element => {
+                element.innerText = "";
+
+            });
+            turn = 'X';
+            gameOver = false;
+            document.getElementsByClassName("info")[0].innerText = "Turn for " + turn;
+            document.querySelector('.imgBox').getElementsByTagName('img')[0].style.width = "110px";
+
+        })
+
+    </script>
+</body>
+
+</html>

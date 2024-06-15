@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+        }
+    
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 70%;
+            max-width: 500px;
+        }
+    
+        .boxes {
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            width: 90%;
+            /* max-width: 400px; */
+            margin-bottom: 20px;
+        }
+    
+        .box {
+            background: #f0f0f0;
+            border: 2px solid #000;
+            font-size: 5vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s, transform 0.3s;
+            height: 8vw;
+        }
+    
+        .box:hover {
+            background-color: rgb(216, 216, 216);
+            transform: scale(1.05);
+        }
+    
+        .box:active {
+            background-color: rgb(153, 133, 133);
+        }
+    
+        .gameInfo {
+            text-align: center;
+            margin-top: 10px;
+        }
+    
+        .gameInfo h1 {
+            margin-bottom: 10px;
+            color: #2575fc;
+        }
+    
+        .info {
+            display: block;
+            margin-bottom: 10px;
+        }
+    
+        .info b {
+            font-size: 20px;
+            color: rgb(255, 0, 0);
+        }
+    
+        #winShow {
+            color: #ff0000;
+            font-size: 24px;
+        }
+    
+        button {
+            background: #2575fc;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+    
+        button:hover {
+            background: #6a11cb;
+        }
+    
+        button:active {
+            background: #3b5998;
+        }
+    
+        @media screen and (max-width: 900px) {
+            .container {
+                width: 80%;
+            }
+    
+            .boxes {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+    
+            .box {
+                height: 14vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="boxes">
+            <div onclick="update(this, 0, 0)"
+                 class="box"><span id="testbox-1"></span></div>
+            <div onclick="update(this, 0, 1)"
+                 class="box"><span id="testbox-2"></span></div>
+            <div onclick="update(this, 0, 2)"
+                 class="box"><span id="testbox-3"></span></div>
+            <div onclick="update(this, 1, 0)"
+                 class="box"><span id="testbox-4"></span></div>
+            <div onclick="update(this, 1, 1)"
+                 class="box"><span id="testbox-5"></span></div>
+            <div onclick="update(this, 1, 2)"
+                 class="box"><span id="testbox-6"></span></div>
+            <div onclick="update(this, 2, 0)"
+                 class="box"><span id="testbox-7"></span></div>
+            <div onclick="update(this, 2, 1)"
+                 class="box"><span id="testbox-8"></span></div>
+            <div onclick="update(this, 2, 2)"
+                 class="box"><span id="testbox-9"></span></div>
+        </div>
+
+        <div class="gameInfo">
+            <h1>Tic-Tac-Toe</h1>
+            <div>
+                <h2 id="winShow"></h2>
+                <span class="info">Turn for <b id="xo">X</b></span>
+                <button id="reset"
+                        onclick="resetGame()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var gameOver = false;
+        var turn = 'X';
+        var board = [
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', '']
+        ];
+
+        function changeTurn() {
+            return turn === 'X' ? 'O' : 'X';
+        }
+
+        function update(element, row, col) {
+            if (!gameOver && board[row][col] === '') {
+                board[row][col] = turn;
+                element.firstChild.innerText = turn; // Update span content
+
+                if (checkWin(turn)) {
+                    gameOver = true;
+                    document.getElementById("winShow").innerText = "Winner is " + turn;
+                    endGame();
+                } else if (isTie()) {
+                    gameOver = true;
+                    document.getElementById("winShow").innerText = "It's a Tie!";
+                    endGame();
+                } else {
+                    turn = changeTurn();
+                    document.getElementById("xo").innerText = turn;
+                }
+            }
+        }
+
+        function checkWin(player) {
+            // Check rows, columns, and diagonals
+            for (let i = 0; i < 3; i++) {
+                if (board[i][0] === player && board[i][1] === player && board[i][2] === player) {
+                    return true;
+                }
+                if (board[0][i] === player && board[1][i] === player && board[2][i] === player) {
+                    return true;
+                }
+            }
+            if (board[0][0] === player && board[1][1] === player && board[2][2] === player) {
+                return true;
+            }
+            if (board[0][2] === player && board[1][1] === player && board[2][0] === player) {
+                return true;
+            }
+            return false;
+        }
+
+        function isTie() {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (board[i][j] === '') {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        function endGame() {
+            document.getElementsByClassName("info")[0].innerText = "Game Over";
+            document.getElementById("reset").innerText = "Play Again";
+        }
+
+        function resetGame() {
+            // Clear all spans inside .box elements
+            var boxes = document.querySelectorAll(".box span");
+            boxes.forEach(box => box.innerText = "");
+
+            // Reset game variables
+            turn = 'X';
+            gameOver = false;
+            board = [
+                ['', '', ''],
+                ['', '', ''],
+                ['', '', '']
+            ];
+
+            // Clear win message and reset UI
+            document.getElementById("winShow").innerText = "";
+            document.getElementsByClassName("info")[0].innerHTML = 'Turn for <b id="xo">X</b>';
+            document.getElementById("reset").innerText = "Reset";
+        }
+    </script>
+</body>
+
+</html>
