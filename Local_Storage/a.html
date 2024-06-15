@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Login Form</h1>
+    <input type="email"
+           id="email"
+           placeholder="Enter your email">
+    <input type="password"
+           id="password"
+           placeholder="Enter your password">
+    <input type="button"
+           value="Submit"
+           onclick="login()">
+</body>
+
+<script>
+    function login() {
+        let email = document.getElementById("email").value.trim();
+        let password = document.getElementById("password").value.trim();
+
+        if (!email || !password) {
+            return alert("Please add data");
+        }
+
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+
+        window.location.href = 'b.html';
+    }
+</script>
+
+</html>

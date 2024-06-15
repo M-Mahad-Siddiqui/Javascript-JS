@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #output_con {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .output {
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 120px;
+            margin: 20px;
+        }
+
+        .output>div {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="input_con">
+        <h1>Welcome <span id="user_email"></span></h1>
+        <input type="text"
+               id="sub"
+               placeholder="Subject">
+        <input type="text"
+               id="note"
+               placeholder="Note">
+        <input type="button"
+               value="add"
+               onclick="add()">
+        <input type="button"
+               value="logout"
+               onclick="logout()">
+    </div>
+
+    <div id="output_con"></div>
+
+    <script>
+        let email = localStorage.getItem('email');
+        let subInput = document.getElementById('sub');
+        let noteInput = document.getElementById('note');
+
+        function add() {
+            let sub = subInput.value.trim();
+            let note = noteInput.value.trim();
+            if (!sub || !note) {
+                return alert('Please fill all the fields');
+            }
+
+            let obj = {
+                email: email,
+                sub: sub,
+                note: note
+            };
+
+            let data = JSON.parse(localStorage.getItem('data') || '[]');
+            data.push(obj);
+            localStorage.setItem('data', JSON.stringify(data));
+
+            subInput.value = "";
+            noteInput.value = "";
+            show();
+        }
+
+        function show() {
+            let output = document.getElementById('output_con');
+            output.innerHTML = '';
+
+            let data = JSON.parse(localStorage.getItem('data'));
+            let userData = data.filter(item => item.email === email);
+
+            userData.forEach(item => {
+                let box = `
+                    <div class="output">
+                        <div>
+                            <h3>${item.sub}</h3>
+                            <p>${item.note}</p>
+                            <input type="button" onclick="deleteTask('${item.sub}')" value="delete">
+                        </div>
+                    </div>`;
+                output.innerHTML += box;
+            });
+        }
+
+        function deleteTask(sub) {
+            let data = JSON.parse(localStorage.getItem('data'));
+            data = data.filter(item => !(item.email === email && item.sub === sub));//The filter method creates a new array that includes all items except the one that matches the email and sub you want to delete.
+            localStorage.setItem('data', JSON.stringify(data));
+            show();
+        }
+
+        function logout() {
+            localStorage.removeItem('email');
+            window.location.href = 'a.html';
+        }
+
+        window.onload = function () {
+            document.getElementById('user_email').textContent = email;
+            show();
+        }
+    </script>
+</body>
+
+</html>
