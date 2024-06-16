@@ -60,7 +60,6 @@
         var password = document.getElementById("password");
         var todo_input = document.getElementById("todo_input");
 
-        // this is for show the correct container 
         function checkIsUserLogin() {
             var email = localStorage.getItem("email");
             if (email) {
@@ -68,7 +67,6 @@
                 home_container.style.display = "block";
                 user_email.innerText = email;
                 showTodos();
-
             } else {
                 login_container.style.display = "block";
                 home_container.style.display = "none";
@@ -101,7 +99,7 @@
                 todo: todo_input.value.trim(),
             };
             var todos = localStorage.getItem("todos");
-            console.log("Local Storage se get kye=>",todos);
+            console.log("Local Storage se get kye=>", todos);
             if (todos) {
                 todos = JSON.parse(todos);
                 todos.push(obj);
@@ -131,6 +129,55 @@
             }
         }
         showTodos();
+
+
+        //filter Class 2
+
+        var arrOfObjects = [
+            {
+                cowColor: "red",
+                kilo: 500,
+                price: 100000,
+            },
+            {
+                cowColor: "brown",
+                kilo: 400,
+                price: 90000,
+            },
+            {
+                cowColor: "white",
+                kilo: 850,
+                price: 120000,
+            },
+            {
+                cowColor: "black",
+                kilo: 1000,
+                price: 150000,
+            },
+        ];
+
+        var lakhSeKam = arrOfObjects.filter(function (data, ind) {
+            return data.price < 100000;
+        });
+
+        console.log("lakhSeKam=>", lakhSeKam);
+
+        // var array = ["bilal", "ahmed", "hassan"];
+
+        // function saveToLocalStorage() {
+        //   localStorage.setItem("array", JSON.stringify(array));
+        // }
+
+        // function removeLastItemOfArray() {
+        //   var arr = localStorage.getItem("array");
+        //   arr = JSON.parse(arr);
+        //   arr.pop()
+        //   console.log("remove function=>", arr);
+        //   localStorage.setItem("array", JSON.stringify(arr));
+        // }
+
+        // // saveToLocalStorage();
+        // removeLastItemOfArray()
     </script>
 </body>
 
