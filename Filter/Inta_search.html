@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+        }
+
+        #search {
+            width: 94%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        #list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #list li {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #list li:hover {
+            background-color: #beaaaa;
+            color: #333;
+        }
+
+        #list li:active {
+            background-color: #beaaaa;
+            color: #333;
+        }
+
+        #list li.hide {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .no-results {
+            display: none;
+            color: #888;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text"
+               id="search"
+               placeholder="Search">
+        <ul id="list">
+            <li>Anoosha</li>
+            <li>Aliza</li>
+            <li>hiba</li>
+            <li>fasih</li>
+            <li>hamza</li>
+            <li>Mahad</li>
+            <li>zahra</li>
+        </ul>
+        <div class="no-results">No results found</div>
+    </div>
+    <script>
+        const onSearch = () => {
+            const input = document.querySelector("#search");
+            const filter = input.value.toLowerCase();
+            const list = document.querySelectorAll("#list li");
+            let hasVisibleItems = false;
+
+            list.forEach((el) => {
+                const text = el.textContent.toLowerCase();
+                // el.style.display = text.includes(filter) ? "" : "none";
+
+                if (text.includes(filter)) {
+                    el.classList.remove('hide');
+                    hasVisibleItems = true;
+                } else {
+                    el.classList.add('hide');
+                }
+            });
+
+            document.querySelector('.no-results').classList.toggle('show', !hasVisibleItems);
+        };
+
+        document.querySelector("#search").addEventListener("input", onSearch);
+
+        // toggle is a built-in JS function that can be used to toggle the value of a variable.its take two arguments and return the new value of the variable.
+        // second argument is optional and if it is not provided, it will return the current value of the variable by toggle.
+        // const toggle = (variable, value) => {
+        //     return (value === undefined) ? !variable : value
+        // }
+    </script>
+</body>
+
+</html>

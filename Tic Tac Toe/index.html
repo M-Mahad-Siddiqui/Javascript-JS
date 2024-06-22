@@ -11,8 +11,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
             background: linear-gradient(to right, #6a11cb, #2575fc);
             flex-direction: column;
@@ -26,7 +26,7 @@
             flex-direction: column;
             background: #fff;
             border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: -10px 10px 25px 5px rgba(24, 199, 184, 0.9);
             padding: 10px 20px;
             width: 80%;
             max-width: 500px;
@@ -38,7 +38,7 @@
             display: grid;
             grid-template-rows: repeat(3, 1fr);
             grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
+            gap: 4px;
             width: 95%;
             margin-bottom: 20px;
         }
@@ -55,12 +55,12 @@
         }
 
         .box:hover {
-            background-color: rgb(216, 216, 216);
+            background-color: rgb(88, 152, 226);
             transform: scale(1.05);
         }
 
         .box:active {
-            background-color: rgb(153, 133, 133);
+            background-color: rgb(214, 79, 79);
         }
 
         .gameInfo {
@@ -103,7 +103,7 @@
         }
 
         button:active {
-            background: #3b5998;
+            background: #db1515;
         }
 
         .settings {
@@ -114,10 +114,12 @@
             padding: 10px;
             border-radius: 10px;
             margin-top: 2.5rem;
+
         }
 
         .settings label {
             font-weight: bold;
+            font-size: large;
         }
 
         .settings select {
@@ -321,6 +323,35 @@
             }
         }
 
+        // function normalComputerMove() {
+        //     // Normal level: Random move
+        //     var emptyCells = [];
+        //     for (let i = 0; i < 3; i++) {
+        //         for (let j = 0; j < 3; j++) {
+        //             if (board[i][j] === '') {
+        //                 emptyCells.push({ row: i, col: j });
+        //             }
+        //         }
+        //     }
+        //     if (emptyCells.length > 0) {
+        //         var randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        //         board[randomCell.row][randomCell.col] = 'O';
+        //         document.querySelector(`#testbox-${randomCell.row * 3 + randomCell.col + 1}`).innerText = 'O';
+        //         if (checkWin('O')) {
+        //             gameOver = true;
+        //             document.getElementById("winShow").innerText = "Winner is O";
+        //             endGame();
+        //         } else if (isTie()) {
+        //             gameOver = true;
+        //             document.getElementById("winShow").innerText = "It's a Tie!";
+        //             endGame();
+        //         } else {
+        //             turn = changeTurn();
+        //             document.getElementById("xo").innerText = turn;
+        //         }
+        //     }
+        // }
+
         function normalComputerMove() {
             // Normal level: Random move
             var emptyCells = [];
@@ -350,6 +381,35 @@
             }
         }
 
+
+        // function hardComputerMove() {
+        //     // Hard level: Simple strategy to block the player
+        //     if (!tryWinOrBlock('O')) {
+        //         if (!tryWinOrBlock('X')) {
+        //             normalComputerMove();
+        //         }
+        //     }
+        // }
+
+
+        // function tryWinOrBlock(player) {
+        //     // Try to win or block the player
+        //     for (let i = 0; i < 3; i++) {
+        //         for (let j = 0; j < 3; j++) {
+        //             if (board[i][j] === '') {
+        //                 board[i][j] = player;
+        //                 if (checkWin(player)) {
+        //                     board[i][j] = 'O'; // Make the move
+        //                     document.querySelector(`#testbox-${i * 3 + j + 1}`).innerText = 'O';
+        //                     return true;
+        //                 }
+        //                 board[i][j] = '';
+        //             }
+        //         }
+        //     }
+        //     return false;
+        // }
+
         function hardComputerMove() {
             // Hard level: Simple strategy to block the player
             if (!tryWinOrBlock('O')) {
@@ -357,6 +417,25 @@
                     normalComputerMove();
                 }
             }
+        }
+
+        function tryWinOrBlock(player) {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (board[i][j] === '') {
+                        board[i][j] = player;
+                        if (checkWin(player)) {
+                            if (player === 'O') {
+                                document.querySelector(`#testbox-${i * 3 + j + 1}`).innerText = 'O';
+                            }
+                            board[i][j] = 'O'; // Ensure to place 'O' when blocking or winning
+                            return true;
+                        }
+                        board[i][j] = '';
+                    }
+                }
+            }
+            return false;
         }
 
         function impossibleComputerMove() {
@@ -378,23 +457,6 @@
             }
         }
 
-        function tryWinOrBlock(player) {
-            // Try to win or block the player
-            for (let i = 0; i < 3; i++) {
-                for (let j = 0; j < 3; j++) {
-                    if (board[i][j] === '') {
-                        board[i][j] = player;
-                        if (checkWin(player)) {
-                            board[i][j] = 'O'; // Make the move
-                            document.querySelector(`#testbox-${i * 3 + j + 1}`).innerText = 'O';
-                            return true;
-                        }
-                        board[i][j] = '';
-                    }
-                }
-            }
-            return false;
-        }
 
         function findBestMove(board) {
             let bestMove;
