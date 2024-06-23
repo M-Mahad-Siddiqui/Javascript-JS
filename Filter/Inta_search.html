@@ -95,8 +95,8 @@
     </div>
     <script>
         const onSearch = () => {
-            const input = document.querySelector("#search");
-            const filter = input.value.toLowerCase();
+            const input = document.querySelector("#search").value;
+            const filter = input.toLowerCase();
             const list = document.querySelectorAll("#list li");
             let hasVisibleItems = false;
 
@@ -126,3 +126,103 @@
 </body>
 
 </html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border: 2px solid gray;
+            width: 350px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 100px;
+            border-radius: 5px;
+
+        }
+
+        input {
+            width: 100%;
+            height: 30px;
+            margin-bottom: 15px;
+            font-size: 26px;
+            padding: 5px;
+            font-weight: bold;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            /* Remove default padding */
+            margin: 0;
+            /* Remove default margin */
+        }
+
+        ul li {
+            border: 1px solid grey;
+            list-style: none;
+            font-size: 22px;
+            text-align: center;
+            padding: 10px;
+            margin: 15px;
+            width: 250%;
+            border-radius: 7px;
+            /* Take up full width of the ul */
+        }
+
+        ul li:hover {
+            border: none;
+            background-color: rgb(235, 235, 235);
+            cursor: pointer;
+            padding: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text"
+               id="search">
+        <ul id="list">
+            <li>Aliza</li>
+            <li>Anoosha</li>
+            <li>Hiba</li>
+            <li>Fasih</li>
+            <li>Mahad</li>
+            <li>Ali</li>
+        </ul>
+    </div>
+</body>
+<script>
+
+
+    const onSearch = () => {
+        const search = document.querySelector("#search").value;
+        const input = search.toLowerCase();
+        const items = document.querySelectorAll("#list li");
+
+        items.forEach((ele) => {
+            var element = ele.textContent.toLocaleLowerCase();
+            ele.style.display = element.includes(input) ? "" : "none";
+
+        })
+    }
+
+    document.querySelector('#search').addEventListener('input', onSearch);
+
+</script>
+
+</html> -->

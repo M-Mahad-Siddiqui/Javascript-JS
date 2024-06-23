@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h3>synchronous functions in JavaScript are crucial for handling operations that take time,
+        such as network requests, file I / O, and timers, without blocking the main thread.
+        Here are some famous asynchronous functions and methods in JavaScript:</h3>
+    <script>
+
+        //1. setTimeout and setInterval:
+
+        // setTimeout: Executes a function once after a specified delay.    
+        setTimeout(() => {
+            console.log('This runs after 2 seconds');
+        }, 2000);
+        // setInterval: Repeatedly executes a function with a fixed time delay between each call.
+        setInterval(() => {
+            console.log('This runs every 2 seconds');
+        }, 2000);
+
+
+        //2. fetch: Used to make network requests and handle responses.
+        fetch('https://api.example.com/data')
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+
+
+        //3.  XMLHttpRequest: An older way to make HTTP requests.Mostly replaced by fetch but still used in some scenarios.
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://api.example.com/data', true);
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                console.log(JSON.parse(xhr.responseText));
+            } else {
+                console.error('Error:', xhr.statusText);
+            }
+        };
+        xhr.send();
+
+
+        //4.  Promise: Represents a value that may be available now, or in the future, or never.
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('Resolved!');
+            }, 2000);
+        });
+        promise.then(value => console.log(value));
+
+
+        //5.  async / await: Syntactic sugar over Promises that make asynchronous code look and behave more like synchronous code.
+        async function fetchData() {
+            try {
+                const response = await fetch('https://api.example.com/data');
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        fetchData();
+
+
+        //6.  Event Listeners: Functions like addEventListener that handle events asynchronously.
+        document.getElementById('myButton').addEventListener('click', () => {
+            console.log('Button clicked!');
+        });
+
+
+        //7.  Node.js Asynchronous Functions:
+
+        // fs.readFile: Asynchronously reads the entire contents of a file.
+        const fs = require('fs');
+        fs.readFile('path/to/file', 'utf8', (err, data) => {
+            if (err) throw err;
+            console.log(data);
+        });
+        // process.nextTick: Adds a callback to be invoked in the next iteration of the event loop.
+        process.nextTick(() => {
+            console.log('Next tick callback');
+        });
+
+
+        //8. setImmediate: Adds a callback to be invoked by the next available I/O opportunity.
+        setImmediate(() => {
+            console.log('Immediate callback');
+        });
+
+    </script>
+</body>
+
+</html>

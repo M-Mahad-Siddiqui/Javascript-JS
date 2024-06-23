@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <!-- ----------------------------- Main Search and Filter Section ----------------------------------------->
+    <div class="flex items-center justify-center w-full my-3">
+        <!-- Search Input Field -->
+        <input class="border rounded w-1/2 p-3 text-lg"
+               type="search"
+               id="searchInput"
+               placeholder="Search tasks">
+
+        <!-- Priority Dropdown -->
+        <select class="border rounded p-3 text-lg ml-1"
+                id="priorityDropdown">
+            <option value="">Select Priority</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+    </div>
+
+    <!-- To-Do List Display Section -->
+    <div id="taskListContainer"></div>
+
+    <script>
+        // Get references to DOM elements
+        const taskListContainer = document.getElementById("taskListContainer");
+        const searchInput = document.getElementById("searchInput");
+        const priorityDropdown = document.getElementById("priorityDropdown");
+
+        // Initial list of tasks
+        const taskList = [
+            { task: "Buy groceries", category: "Personal", priority: "High" },
+            { task: "Prepare presentation for Monday meeting", category: "Work", priority: "High" },
+            { task: "Clean the house", category: "Personal", priority: "Medium" },
+            { task: "Finish project report", category: "Work", priority: "High" },
+            { task: "Schedule dentist appointment", category: "Health", priority: "Medium" },
+            { task: "Go for a run", category: "Health", priority: "Low" },
+            { task: "Call mom", category: "Personal", priority: "High" },
+            { task: "Plan weekend trip", category: "Personal", priority: "Low" },
+            { task: "Attend yoga class", category: "Health", priority: "Medium" },
+            { task: "Complete online course", category: "Learning", priority: "High" },
+            { task: "Read a book", category: "Personal", priority: "Low" },
+            { task: "Update LinkedIn profile", category: "Work", priority: "Medium" },
+            { task: "Water the plants", category: "Personal", priority: "Low" },
+            { task: "Prepare for job interview", category: "Work", priority: "High" },
+            { task: "Meditate for 15 minutes", category: "Health", priority: "Low" },
+            { task: "Complete homework assignment", category: "Learning", priority: "High" },
+            { task: "Watch educational video", category: "Learning", priority: "Medium" },
+            { task: "Organize workspace", category: "Work", priority: "Medium" },
+            { task: "Research new investment opportunities", category: "Learning", priority: "Medium" },
+            { task: "Cook a healthy meal", category: "Health", priority: "Medium" }
+        ];
+
+        // Function to create a task item element
+        function createTaskElement({ task, category, priority }) {
+            return `
+                <div class="border rounded-md p-3 m-2">
+                    <h1 class="font-bold text-2xl">${task}</h1>
+                    <h3 class="font-medium text-lg">${category}</h3>
+                    <h3 class="${priority === "High" ? "bg-red-600" : priority === "Medium" ? "bg-green-600" : "bg-blue-600"} 
+                                inline-block py-1 px-3 my-3 text-white rounded-md">${priority}</h3>
+                </div>`;
+        }
+
+        // Function to render the task list
+        function renderTaskList(filteredTasks) {
+            taskListContainer.innerHTML = filteredTasks.map(task => createTaskElement(task)).join('');
+        }
+
+        // Initial rendering of tasks
+        renderTaskList(taskList);
+
+        // Event listener for search input
+        searchInput.addEventListener("input", function () {
+            const searchTerm = this.value.toLowerCase();
+            const filteredTasks = taskList.filter(task => task.task.toLowerCase().includes(searchTerm));
+            renderTaskList(filteredTasks);
+        });
+
+        // Event listener for priority dropdown
+        priorityDropdown.addEventListener("change", function () {
+            const selectedPriority = this.value;
+            const filteredTasks = selectedPriority ? taskList.filter(task => task.priority === selectedPriority) : taskList;
+            renderTaskList(filteredTasks);
+        });
+    </script>
+</body>
+
+</html>
