@@ -1,0 +1,553 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Fetch API from External Server</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    .boddy {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f0f0f0;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+        position: relative;
+        top: 150px;
+    }
+
+    #productCardsContainer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        justify-items: center;
+        align-items: stretch;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 205px;
+        padding: 16px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.2s, box-shadow 0.2s;
+        position: relative;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .card h2 {
+        font-size: 14px;
+        margin: 10px 0;
+        color: #333;
+    }
+
+    .card p {
+        font-size: 12px;
+        color: #666;
+        margin: 8px 0;
+    }
+
+    .card .price {
+        font-size: 16px;
+        color: #b12704;
+        margin: 8px 0;
+        cursor: pointer;
+    }
+
+    .card .category {
+        font-size: 11px;
+        color: #999;
+        margin-bottom: 8px;
+    }
+
+    .card .rating {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        color: #ff9900;
+    }
+
+    .card .rating span {
+        margin-left: 4px;
+        color: #666;
+    }
+
+    .card .rating.high span {
+        color: green !important;
+    }
+
+    .card .rating.medium span {
+        color: rgb(14, 3, 112) !important;
+    }
+
+    .card .rating.low span {
+        color: red !important;
+    }
+
+    .delete-button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        to {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+    }
+
+    .fade-out {
+        animation: fadeOut 0.5s forwards;
+    }
+
+    .mains {
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        background-color: rgba(96, 175, 193, 0.7);
+        padding: 30px;
+    }
+</style>
+
+<body>
+    <div class=" mains flex items-center justify-center w-full my-3 ">
+        <h1 class="text-4xl w-1/2 text-center font-bold text-blue-800 mb-3 ">Dynamics Product Card Hub</h1>
+        <input class="border rounded w-1/2 p-3 text-lg"
+               type="search"
+               id="searchInput"
+               placeholder="Search tasks">
+
+            <select class="border rounded p-3 text-lg ml-1"
+                id="priorityDropdown">
+            <option value="">Select Priority</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>
+    </div>
+
+    <div class="boddy">
+        <div id="productCardsContainer">
+        </div>
+    </div>
+</body>
+<script>
+    const searchInput = document.getElementById("searchInput");
+    const priorityDropdown = document.getElementById("priorityDropdown");
+    let data = [];
+
+        function getRatingClass(rating) {
+            if (rating >= 4.5) {
+                return 'high';
+            } else if (rating >= 3) {
+                return 'medium';
+            } else {
+                return 'low';
+            }
+        }
+        
+
+    function deleteCard(id) {
+        const index = data.findIndex(item => item.id === id);
+        if (index !== -1) {
+            const card = document.querySelector(`[data-id="${id}"]`);
+            if (card) {
+                card.classList.add('fade-out');
+                card.addEventListener('animationend', () => {
+                    data.splice(index, 1);
+                    renderProductCards(data);
+                });
+            }
+        }
+    }
+
+    function editCard(id) {
+        const newPrice = prompt("Enter new price");
+        if (newPrice !== null && !isNaN(newPrice) && newPrice.trim() !== "") {
+            const index = data.findIndex(item => item.id === id);
+            if (index !== -1) {
+                data[index].price = parseFloat(newPrice);
+                renderProductCards(data);
+            } else {
+                alert("Product not found!");
+            }
+        }
+    }
+
+    
+
+    const renderProductCards = (products) => {
+        const productCardsContainer = document.getElementById('productCardsContainer');
+        productCardsContainer.innerHTML = '';
+
+        products.forEach(item => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.setAttribute('data-id', item.id);
+            const ratingClass = getRatingClass(item.rating.rate);
+
+            card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <h2>${item.title}</h2>
+                    <p>${item.description}</p>
+                    <p class="price" onclick="editCard(${item.id})">$${item.price}</p>
+                    <p class="category">Category: ${item.category}</p>
+                    <div class="rating ${ratingClass}">
+                        <span>Rating: ${item.rating.rate}</span>
+                        <span>(${item.rating.count} reviews)</span>
+                    </div>
+                    <button class="delete-button" onclick="deleteCard(${item.id})">&#10006;</button>
+                `;
+                
+                    
+            priorityDropdown.addEventListener("change", function () {
+                const selectedPriority = this.value;
+                const filteredTasks = selectedPriority ? ratingClass.filter(task => task.priority === selectedPriority) : taskList;
+                renderTaskList(filteredTasks);
+            });
+               
+            searchInput.addEventListener("input", function () {
+                const searchTerm = this.value.toLowerCase();
+                const filteredTasks = items.title.filter(task => task.task.toLowerCase().includes(searchTerm));
+                renderTaskList(filteredTasks);
+            });
+
+            productCardsContainer.appendChild(card); 
+        });
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('https://fakestoreapi.com/products')
+            .then(response => response.json())
+            .then(products => {
+                data = products;
+                renderProductCards(products);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    });
+
+
+
+</script>
+
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Product Card Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    .body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f0f0f0;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+        position: relative;
+        top: 150px;
+    }
+
+    #productCardsContainer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        justify-items: center;
+        align-items: stretch;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 205px;
+        padding: 16px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.2s, box-shadow 0.2s;
+        position: relative;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .card h2 {
+        font-size: 14px;
+        margin: 10px 0;
+        color: #333;
+    }
+
+    .card p {
+        font-size: 12px;
+        color: #666;
+        margin: 8px 0;
+    }
+
+    .card .price {
+        font-size: 16px;
+        color: #b12704;
+        margin: 8px 0;
+        cursor: pointer;
+    }
+
+    .card .category {
+        font-size: 11px;
+        color: #999;
+        margin-bottom: 8px;
+    }
+
+    .card .rating {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        color: #ff9900;
+    }
+
+    .card .rating span {
+        margin-left: 4px;
+        color: #666;
+    }
+
+    .card .rating.high span {
+        color: green !important;
+    }
+
+    .card .rating.medium span {
+        color: rgb(14, 3, 112) !important;
+    }
+
+    .card .rating.low span {
+        color: red !important;
+    }
+
+    .delete-button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        to {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+    }
+
+    .fade-out {
+        animation: fadeOut 0.5s forwards;
+    }
+
+    .mains {
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        background-color: rgba(96, 175, 193, 0.7);
+        padding: 30px;
+    }
+</style>
+
+<body>
+    <!-- Main Search and Filter Section -->
+    <div class="mains flex items-center justify-center w-full my-3">
+        <h1 class="text-4xl w-1/2 text-center font-bold">Dynamic Product Card Hub</h1>
+        <!-- Search Input Field -->
+        <input class="border rounded w-1/2 p-3 text-lg"
+               type="search"
+               id="searchInput"
+               placeholder="Search tasks">
+
+        <!-- Priority Dropdown -->
+        <select class="border rounded p-3 text-lg ml-1"
+                id="priorityDropdown">
+            <option value="">Select Priority</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+        </select>
+    </div>
+
+    <div class="body">
+        <div id="productCardsContainer">
+            <!-- Product Cards will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const priorityDropdown = document.getElementById("priorityDropdown");
+        let data = [];
+
+        // Function to get rating class
+        function getRatingClass(rating) {
+            if (rating >= 4.5) {
+                return 'high';
+            } else if (rating >= 3) {
+                return 'medium';
+            } else {
+                return 'low';
+            }
+        }
+
+        // Function to delete a card
+        function deleteCard(id) {
+            const index = data.findIndex(item => item.id === id);
+            if (index !== -1) {
+                const card = document.querySelector(`[data-id="${id}"]`);
+                if (card) {
+                    card.classList.add('fade-out');
+                    card.addEventListener('animationend', () => {
+                        data.splice(index, 1);
+                        renderProductCards(data);
+                    });
+                }
+            }
+        }
+
+        // Function to edit a card (example function, adjust as needed)
+        function editCard(id) {
+            const newPrice = prompt("Enter new price");
+            if (newPrice !== null && !isNaN(newPrice) && newPrice.trim() !== "") {
+                const index = data.findIndex(item => item.id === id);
+                if (index !== -1) {
+                    data[index].price = parseFloat(newPrice);
+                    renderProductCards(data);
+                } else {
+                    alert("Product not found!");
+                }
+            }
+        }
+
+        // Function to render product cards based on filters
+        function renderProductCards(products) {
+            const productCardsContainer = document.getElementById('productCardsContainer');
+            productCardsContainer.innerHTML = ''; // Clear the container
+
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedPriority = priorityDropdown.value.toLowerCase();
+
+            products.forEach(item => {
+                const ratingClass = getRatingClass(item.rating.rate);
+                const matchesSearch = item.title.toLowerCase().includes(searchTerm);
+                const matchesPriority = selectedPriority === '' || ratingClass === selectedPriority;
+
+                if (matchesSearch && matchesPriority) {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.setAttribute('data-id', item.id);
+
+                    card.innerHTML = `
+                        <img src="${item.image}" alt="${item.title}">
+                        <h2>${item.title}</h2>
+                        <p>${item.description}</p>
+                        <p class="price" onclick="editCard(${item.id})">$${item.price}</p>
+                        <p class="category">Category: ${item.category}</p>
+                        <div class="rating ${ratingClass}">
+                            <span>Rating: ${item.rating.rate}</span>
+                            <span>(${item.rating.count} reviews)</span>
+                        </div>
+                        <button class="delete-button" onclick="deleteCard(${item.id})">&#10006;</button>
+                    `;
+
+                    productCardsContainer.appendChild(card); // Append the card to the container
+                }
+            });
+        }
+
+        // Event listener for priority dropdown
+        priorityDropdown.addEventListener('change', () => {
+            renderProductCards(data);
+        });
+
+        // Event listener for search input
+        searchInput.addEventListener('input', () => {
+            renderProductCards(data);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fetch data from API
+            fetch('https://fakestoreapi.com/products')
+                .then(response => response.json())
+                .then(products => {
+                    data = products;
+                    renderProductCards(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>

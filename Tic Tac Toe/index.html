@@ -5,107 +5,544 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    <title>Sign in - Google Accounts</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Tic-Tac-Toe</title>
     <style>
         body {
-            background-color: #f5f5f5;
-        }
-
-        .google-logo {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            height: 40px;
-            width: 120px;
-        }
-
-        .input-container {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-
-        .floating-label {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            color: #757575;
-            transition: all 0.2s ease-out;
-            pointer-events: none;
-        }
-
-        input:focus+.floating-label,
-        input:not(:placeholder-shown)+.floating-label {
-            top: -0.75rem;
-            left: 1rem;
-            font-size: 0.75rem;
-            color: #4285f4;
-            background-color: white;
-            padding: 0 0.25rem;
-        }
-
-        input {
-            width: 100%;
-            padding: 1rem .9rem !important;
-            border: 1px solid #ccc;
-            border-radius: 0.25rem;
-            outline: none;
-            transition: all 0.2s ease-out;
-            height: 2.5rem;
-        }
-
-        input:focus {
-            border-color: #4285f4;
-            box-shadow: 0 0 0 1px #4285f4;
-        }
-
-        .footer-links {
             display: flex;
-            justify-content: space-between;
-            margin-top: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            flex-direction: column;
+            height: 96vh;
         }
 
-        .footer-links a {
-            color: #4285f4;
-            text-decoration: none;
-            font-size: 0.875rem;
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: -10px 10px 25px 5px rgba(24, 199, 184, 0.9);
+            padding: 10px 20px;
+            width: 80%;
+            max-width: 500px;
+            position: relative;
+            margin-top: 20px;
         }
 
-        .footer-links a:hover {
-            text-decoration: underline;
+        .boxes {
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            width: 95%;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            background: #f0f0f0;
+            border: 2px solid #000;
+            font-size: 5vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s, transform 0.3s;
+            height: 7.1vw;
+        }
+
+        .box:hover {
+            background-color: rgb(88, 152, 226);
+            transform: scale(1.05);
+        }
+
+        .box:active {
+            background-color: rgb(214, 79, 79);
+        }
+
+        .gameInfo {
+            text-align: center;
+        }
+
+        .mainTitle h1 {
+            margin-bottom: 10px;
+            color: #2575fc;
+        }
+
+        .info {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .info b {
+            font-size: 20px;
+            color: rgb(255, 0, 0);
+        }
+
+        #winShow {
+            color: #ff0000;
+            font-size: 24px;
+        }
+
+        button {
+            background: #2575fc;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #6a11cb;
+        }
+
+        button:active {
+            background: #db1515;
+        }
+
+        .settings {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 2.5rem;
+
+        }
+
+        .settings label {
+            font-weight: bold;
+            font-size: large;
+        }
+
+        .settings select {
+            margin-top: 5px;
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        @media screen and (max-width: 1050px) {
+            .container {
+                width: 80%;
+            }
+
+            .boxes {
+                width: 93%;
+                margin-bottom: 10px;
+            }
+
+            .box {
+                height: 11vw;
+            }
+        }
+
+        @media screen and (max-width: 700px) {
+            .box {
+                height: 18vw;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container mx-auto px-4 py-12 flex flex-col items-center justify-center h-screen bg-gray-50">
-        <div class="w-full max-w-sm bg-white shadow-md rounded-lg p-8">
-            <div class="flex flex-col items-center mb-6">
-                <div class="google-logo mb-4"></div>
-                <h1 class="text-2xl font-medium text-gray-800">Sign in</h1>
-                <p class="text-gray-600">Use your Google Account</p>
-            </div>
-            <div class="input-container">
-                <input type="email"
-                       id="email"
-                       required>
-                <label for="email"
-                       class="floating-label">Email or phone</label>
-            </div>
-            <a href="#"
-               class="text-sm text-blue-500 hover:underline mb-6 block">Forgot email?</a>
-            <div class="w-full mb-4">
-                <button
-                        class="w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded text-center">Next</button>
-            </div>
-            <div class="footer-links">
-                <a href="#">Create account</a>
-                <a href="#">Help</a>
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-            </div>
+    <div class="settings">
+        <label for="mode">Game Mode:</label>
+        <select id="mode"
+                onchange="toggleMode()">
+            <option value="2">Two Player</option>
+            <option value="1">Single Player</option>
+        </select>
+
+        <div id="difficultySelector"
+             style="display: none;">
+            <label for="difficulty">Difficulty:</label>
+            <select id="difficulty">
+                <option value="normal">Normal</option>
+                <option value="hard">Hard</option>
+                <option value="impossible">Impossible</option>
+            </select>
         </div>
     </div>
+
+    <div class="container">
+        <div class="mainTitle">
+            <h1>Tic-Tac-Toe</h1>
+        </div>
+        <div class="boxes">
+            <div onclick="update(this, 0, 0)"
+                 class="box"><span id="testbox-1"></span></div>
+            <div onclick="update(this, 0, 1)"
+                 class="box"><span id="testbox-2"></span></div>
+            <div onclick="update(this, 0, 2)"
+                 class="box"><span id="testbox-3"></span></div>
+            <div onclick="update(this, 1, 0)"
+                 class="box"><span id="testbox-4"></span></div>
+            <div onclick="update(this, 1, 1)"
+                 class="box"><span id="testbox-5"></span></div>
+            <div onclick="update(this, 1, 2)"
+                 class="box"><span id="testbox-6"></span></div>
+            <div onclick="update(this, 2, 0)"
+                 class="box"><span id="testbox-7"></span></div>
+            <div onclick="update(this, 2, 1)"
+                 class="box"><span id="testbox-8"></span></div>
+            <div onclick="update(this, 2, 2)"
+                 class="box"><span id="testbox-9"></span></div>
+        </div>
+        <div class="gameInfo">
+            <h2 id="winShow"></h2>
+            <span class="info">Turn for <b id="xo">X</b></span>
+            <button id="reset"
+                    onclick="resetGame()">Reset</button>
+        </div>
+    </div>
+    <script>
+        // Initialize game state variables
+        var gameOver = false; // Indicates if the game has ended
+        var turn = 'X'; // Tracks the current player's turn ('X' or 'O')
+        var board = [ // Represents the game board as a 2D array
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', '']
+        ];
+        var singlePlayer = false; // Flag for single player mode
+
+        function toggleMode() {
+            var mode = document.getElementById('mode').value;
+            singlePlayer = mode === '1';
+            document.getElementById('difficultySelector').style.display = singlePlayer ? 'block' : 'none';
+            resetGame();
+        }
+
+        function changeTurn() {
+            return turn === 'X' ? 'O' : 'X'; // Switches turn between 'X' and 'O'
+        }
+
+        function update(element, row, col) {
+            if (!gameOver && board[row][col] === '') { // Ensures updates only if the game is not over and the cell is empty
+                board[row][col] = turn; // Update the board array with the current turn
+                element.firstChild.innerText = turn; // Update the displayed content of the clicked cell
+
+                if (checkWin(turn)) { // Check if the current player has won
+                    gameOver = true;
+                    document.getElementById("winShow").innerText = "Winner is " + turn;
+                    endGame();
+                } else if (isTie()) {
+                    gameOver = true;
+                    document.getElementById("winShow").innerText = "It's a Tie!";
+                    endGame();
+                } else {
+                    turn = changeTurn(); // Change turn to the next player
+                    document.getElementById("xo").innerText = turn; // Update turn indicator in the UI
+                    if (singlePlayer && turn === 'O') { // If single player mode and it's the computer's turn
+                        setTimeout(computerMove, 500); // Make computer move after a short delay
+                    }
+                }
+            }
+        }
+
+        function endGame() {
+            document.getElementsByClassName("info")[0].innerText = "Game Over";
+            document.getElementById("reset").innerText = "Play Again"; // Change reset button text to "Play Again"
+        }
+
+        function checkWin(player) {
+            // Check rows, columns, and diagonals for a win
+            for (let i = 0; i < 3; i++) {
+                if (board[i][0] === player && board[i][1] === player && board[i][2] === player) { // Check rows
+                    return true;
+                }
+                if (board[0][i] === player && board[1][i] === player && board[2][i] === player) { // Check columns
+                    return true;
+                }
+            }
+            if (board[0][0] === player && board[1][1] === player && board[2][2] === player) { // Check right diagonal
+                return true;
+            }
+            if (board[0][2] === player && board[1][1] === player && board[2][0] === player) { // Check left diagonal
+                return true;
+            }
+            return false; // Return false if no win is found
+        }
+
+        function isTie() {
+            // Iterate through the board to check for any empty cells
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (board[i][j] === '') { // If any cell is empty, return false (not a tie)
+                        return false;
+                    }
+                }
+            }
+            return true; // Return true if all cells are filled (tie)
+        }
+
+        function resetGame() {
+            // Clear all spans inside .box elements
+            var boxes = document.querySelectorAll(".box span");
+            boxes.forEach(box => box.innerText = ""); // Clear the text in each cell
+
+            // Reset game variables
+            turn = 'X'; // Set the turn back to 'X'
+            gameOver = false; // Reset game over state
+            board = [ // Reset the game board to empty
+                ['', '', ''],
+                ['', '', ''],
+                ['', '', '']
+            ];
+
+            // Clear win message and reset UI
+            document.getElementById("winShow").innerText = ""; // Clear the win message
+            document.getElementsByClassName("info")[0].innerHTML = 'Turn for <b id="xo">X</b>'; // Reset turn indicator
+            document.getElementById("reset").innerText = "Reset"; // Reset the reset button text
+        }
+
+        function computerMove() {
+            if (gameOver) return;
+
+            var difficulty = document.getElementById('difficulty').value;
+
+            switch (difficulty) {
+                case 'normal':
+                    normalComputerMove();
+                    break;
+                case 'hard':
+                    hardComputerMove();
+                    break;
+                case 'impossible':
+                    impossibleComputerMove();
+                    break;
+            }
+        }
+
+        // function normalComputerMove() {
+        //     // Normal level: Random move
+        //     var emptyCells = [];
+        //     for (let i = 0; i < 3; i++) {
+        //         for (let j = 0; j < 3; j++) {
+        //             if (board[i][j] === '') {
+        //                 emptyCells.push({ row: i, col: j });
+        //             }
+        //         }
+        //     }
+        //     if (emptyCells.length > 0) {
+        //         var randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        //         board[randomCell.row][randomCell.col] = 'O';
+        //         document.querySelector(`#testbox-${randomCell.row * 3 + randomCell.col + 1}`).innerText = 'O';
+        //         if (checkWin('O')) {
+        //             gameOver = true;
+        //             document.getElementById("winShow").innerText = "Winner is O";
+        //             endGame();
+        //         } else if (isTie()) {
+        //             gameOver = true;
+        //             document.getElementById("winShow").innerText = "It's a Tie!";
+        //             endGame();
+        //         } else {
+        //             turn = changeTurn();
+        //             document.getElementById("xo").innerText = turn;
+        //         }
+        //     }
+        // }
+
+        function normalComputerMove() {
+            // Normal level: Random move
+            var emptyCells = [];
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (board[i][j] === '') {
+                        emptyCells.push({ row: i, col: j });
+                    }
+                }
+            }
+            if (emptyCells.length > 0) {
+                var randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+                board[randomCell.row][randomCell.col] = 'O';
+                document.querySelector(`#testbox-${randomCell.row * 3 + randomCell.col + 1}`).innerText = 'O';
+                if (checkWin('O')) {
+                    gameOver = true;
+                    document.getElementById("winShow").innerText = "Winner is O";
+                    endGame();
+                } else if (isTie()) {
+                    gameOver = true;
+                    document.getElementById("winShow").innerText = "It's a Tie!";
+                    endGame();
+                } else {
+                    turn = changeTurn();
+                    document.getElementById("xo").innerText = turn;
+                }
+            }
+        }
+
+
+        // function hardComputerMove() {
+        //     // Hard level: Simple strategy to block the player
+        //     if (!tryWinOrBlock('O')) {
+        //         if (!tryWinOrBlock('X')) {
+        //             normalComputerMove();
+        //         }
+        //     }
+        // }
+
+
+        // function tryWinOrBlock(player) {
+        //     // Try to win or block the player
+        //     for (let i = 0; i < 3; i++) {
+        //         for (let j = 0; j < 3; j++) {
+        //             if (board[i][j] === '') {
+        //                 board[i][j] = player;
+        //                 if (checkWin(player)) {
+        //                     board[i][j] = 'O'; // Make the move
+        //                     document.querySelector(`#testbox-${i * 3 + j + 1}`).innerText = 'O';
+        //                     return true;
+        //                 }
+        //                 board[i][j] = '';
+        //             }
+        //         }
+        //     }
+        //     return false;
+        // }
+
+        function hardComputerMove() {
+            // Hard level: Simple strategy to block the player
+            if (!tryWinOrBlock('O')) {
+                if (!tryWinOrBlock('X')) {
+                    normalComputerMove();
+                }
+            }
+        }
+
+        function tryWinOrBlock(player) {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (board[i][j] === '') {
+                        board[i][j] = player;
+                        if (checkWin(player)) {
+                            if (player === 'O') {
+                                document.querySelector(`#testbox-${i * 3 + j + 1}`).innerText = 'O';
+                            }
+                            board[i][j] = 'O'; // Ensure to place 'O' when blocking or winning
+                            return true;
+                        }
+                        board[i][j] = '';
+                    }
+                }
+            }
+            return false;
+        }
+
+        function impossibleComputerMove() {
+            // Impossible level: Use Minimax algorithm or similar strategy
+            let bestMove = findBestMove(board);
+            board[bestMove.row][bestMove.col] = 'O';
+            document.querySelector(`#testbox-${bestMove.row * 3 + bestMove.col + 1}`).innerText = 'O';
+            if (checkWin('O')) {
+                gameOver = true;
+                document.getElementById("winShow").innerText = "Winner is O";
+                endGame();
+            } else if (isTie()) {
+                gameOver = true;
+                document.getElementById("winShow").innerText = "It's a Tie!";
+                endGame();
+            } else {
+                turn = changeTurn();
+                document.getElementById("xo").innerText = turn;
+            }
+        }
+
+
+        function findBestMove(board) {
+            let bestMove;
+            let bestScore = -Infinity;
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (board[i][j] === '') {
+                        board[i][j] = 'O';
+                        let score = minimax(board, 0, false);
+                        board[i][j] = '';
+                        if (score > bestScore) {
+                            bestScore = score;
+                            bestMove = { row: i, col: j };
+                        }
+                    }
+                }
+            }
+            return bestMove;
+        }
+
+        function minimax(board, depth, isMaximizing) {
+            let scores = {
+                'O': 10,
+                'X': -10,
+                'tie': 0
+            };
+
+            let result = checkWinner();
+            if (result !== null) {
+                return scores[result];
+            }
+
+            if (isMaximizing) {
+                let bestScore = -Infinity;
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        if (board[i][j] === '') {
+                            board[i][j] = 'O';
+                            let score = minimax(board, depth + 1, false);
+                            board[i][j] = '';
+                            bestScore = Math.max(score, bestScore);
+                        }
+                    }
+                }
+                return bestScore;
+            } else {
+                let bestScore = Infinity;
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        if (board[i][j] === '') {
+                            board[i][j] = 'X';
+                            let score = minimax(board, depth + 1, true);
+                            board[i][j] = '';
+                            bestScore = Math.min(score, bestScore);
+                        }
+                    }
+                }
+                return bestScore;
+            }
+        }
+
+        function checkWinner() {
+            for (let i = 0; i < 3; i++) {
+                if (board[i][0] === board[i][1] && board[i][1] === board[i][2] && board[i][0] !== '') {
+                    return board[i][0];
+                }
+                if (board[0][i] === board[1][i] && board[1][i] === board[2][i] && board[0][i] !== '') {
+                    return board[0][i];
+                }
+            }
+            if (board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] !== '') {
+                return board[0][0];
+            }
+            if (board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] !== '') {
+                return board[0][2];
+            }
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (board[i][j] === '') {
+                        return null;
+                    }
+                }
+            }
+            return 'tie';
+        }
+    </script>
 </body>
 
 </html>

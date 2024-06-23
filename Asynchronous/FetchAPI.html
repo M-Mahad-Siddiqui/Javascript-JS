@@ -105,6 +105,33 @@
                 productCardsContainer.innerHTML = cardHtml;
             };
         });
+            // // function to show the data on browser         &times
+                // function showCards() {
+                //     const container = document.querySelector('#productCardsContainer');
+                //     container.innerHTML = '';
+
+                //     data.forEach(item => {
+                //         const card = document.createElement('div');
+                //         card.classList.add('card');
+                //         const ratingClass = getRatingClass(item.rating.rate);
+
+                //         card.innerHTML += `
+                //     <img src="${item.image}" alt="${item.title}">
+                //     <h2>${item.title}</h2>
+                //     <p>${item.description}</p>
+                //     <p class="price" onclick="editCard(${item.id})">$${item.price}</p>
+                //     <p class="category">Category: ${item.category}</p>
+                //     <div class="rating ${ratingClass}">
+                //         <span>Rating: ${item.rating.rate}</span>
+                //         <span>(${item.rating.count} reviews)</span>
+                //     </div>
+                //     <button class="delete-button" onclick="deleteCard(${item.id})">&#10006;</button>
+                // ` ;
+
+                //         container.appendChild(card);
+                //     });
+                // }
+                // showCards();
     </script>
 
 </body>
