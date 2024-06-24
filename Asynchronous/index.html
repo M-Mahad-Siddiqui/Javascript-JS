@@ -199,7 +199,7 @@
 
             products.forEach(item => {
                 const ratingClass = getRatingClass(item.rating.rate);
-                const matchesSearch = item.title.toLowerCase().includes(searchTerm);
+                const matchesSearch = item.category.toLowerCase().includes(searchTerm);
                 const matchesPriority = selectedPriority === '' || ratingClass === selectedPriority;
 
                 if (matchesSearch && matchesPriority) {

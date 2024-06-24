@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <!--------------------------- bikr hy sahi sy kam bhi nhi kr rahi bas is ki script achi or new way hy jabi save kr ky rakha huwa hy ---------------------->
+
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
@@ -29,8 +31,7 @@
         }
     </style>
 </head>
- 
-<!--------------------------------------- bikr hy sahi sy kam bhi nhi kr rahi bas is ki script achi or new way hy jabi save kr ky rakha huwa hy ---------------------->
+
 
 <body>
     <!-- Main Search and Filter Section -->
@@ -110,5 +111,52 @@
     </script>
 
 </body>
+<!-- samjoo isko mahad     const { title, price, description, image, rating } = product; -->
+
+<!-- The line you mentioned uses a feature in JavaScript called destructuring assignment. This feature allows you to extract
+values from objects or arrays and assign them to variables in a more concise way. Let's break down how it works in this
+context. -->
+
+<!-- Destructuring Assignment -->
+<!-- Destructuring assignment allows you to unpack values from arrays or properties from objects into distinct variables. It
+simplifies the code and makes it more readable. see examples below -->
+
+<!-- const person = {
+name: 'John Doe',
+age: 30,
+job: 'Developer'
+};
+
+const { name, age, job } = person;
+
+console.log(name); // John Doe
+console.log(age); // 30
+console.log(job); // Developer -->
+
+<!-- In this example:
+const { name, age, job } = person; is a destructuring assignment.
+It extracts the properties name, age, and job from the person object and assigns them to corresponding variables name,
+age, and job. -->
+
+<!-- const { title, price, description, image, rating } = product;
+
+In the context of your code:
+product is an object representing a single product, which has properties like title, price, description, image, and rating.
+const { title, price, description, image, rating } = product; extracts these properties from the product object and
+assigns them to new variables with the same names. -->
+
+<!-- when you run this => const { title, price, description, image, rating } = product;
+It is equivalent to:
+const title = product.title;
+const price = product.price;
+const description = product.description;
+const image = product.image;
+const rating = product.rating; -->
+
+<!-- Recap
+Destructuring Assignment: A concise way to extract values from objects or arrays and assign them to variables.
+Usage: const { title, price, description, image, rating } = product; extracts properties from the product object into individual variables.
+Benefits: Simplifies code and improves readability by reducing the need to repeatedly reference the object. -->
+
 
 </html>
