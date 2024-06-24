@@ -57,21 +57,34 @@
 
         // login(getUserData);
 
-        let productsArr = [];
-        function getProductsFromApi(callBack) {
+        // function getProductsFromApi(callBack) {
+        //     fetch("https://api.escuelajs.co/api/v1/products")
+        //         .then((res) => res.json())
+        //         .then((products) => {
+        //             // console.log("products==>", products);    
+        //             callBack(products);
+        //         });
+        // }
+
+        // function displayProducts(products) {
+        //     console.log("See all products", products);
+        // }
+
+        // getProductsFromApi(displayProducts);
+
+        //mahad write code
+        getItems = (callback) => {
             fetch("https://api.escuelajs.co/api/v1/products")
-                .then((res) => res.json())
+                .then((response) => response.json())
                 .then((products) => {
-                    console.log("products==>", products);
-                    callBack(products);
-                });
+                    callback(products)
+                })
+        }
+        showProducts = (product) => {
+            console.log("Object of products are :", product)
         }
 
-        function displayProducts(products) {
-            console.log("See all products", products);
-        }
-
-        getProductsFromApi(displayProducts);
+        getItems(showProducts)
     </script>
 </body>
 

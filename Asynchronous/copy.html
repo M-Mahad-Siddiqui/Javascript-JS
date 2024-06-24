@@ -132,6 +132,46 @@
     <script>
         let data = [];
 
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fetch data from API
+            fetch('https://fakestoreapi.com/products')
+                .then(response => response.json())
+                .then(products => {
+                    data = products;
+                    renderProductCards(products);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        });
+
+        // Function to render all product cards
+        const renderProductCards = (products) => {
+            const productCardsContainer = document.getElementById('productCardsContainer');
+            productCardsContainer.innerHTML = ''; // Clear the container
+
+            products.forEach(item => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                const ratingClass = getRatingClass(item.rating.rate);
+
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <h2>${item.title}</h2>
+                    <p>${item.description}</p>
+                    <p class="price" onclick="editCard(${item.id})">$${item.price}</p>
+                    <p class="category">Category: ${item.category}</p>
+                    <div class="rating ${ratingClass}">
+                        <span>Rating: ${item.rating.rate}</span>
+                        <span>(${item.rating.count} reviews)</span>
+                    </div>
+                    <button class="delete-button" onclick="deleteCard(${item.id})">&#10006;</button>
+                `;
+
+                productCardsContainer.appendChild(card); // Append the card to the container
+            });
+        };
+
         // Function to delete a card
         function deleteCard(id) {
             const index = data.findIndex(item => item.id === id);
@@ -166,45 +206,9 @@
             }
         }
 
-        // Function to render all product cards
-        const renderProductCards = (products) => {
-            const productCardsContainer = document.getElementById('productCardsContainer');
-            productCardsContainer.innerHTML = ''; // Clear the container
 
-            products.forEach(item => {
-                const card = document.createElement('div');
-                card.classList.add('card');
-                const ratingClass = getRatingClass(item.rating.rate);
 
-                card.innerHTML = `
-                    <img src="${item.image}" alt="${item.title}">
-                    <h2>${item.title}</h2>
-                    <p>${item.description}</p>
-                    <p class="price" onclick="editCard(${item.id})">$${item.price}</p>
-                    <p class="category">Category: ${item.category}</p>
-                    <div class="rating ${ratingClass}">
-                        <span>Rating: ${item.rating.rate}</span>
-                        <span>(${item.rating.count} reviews)</span>
-                    </div>
-                    <button class="delete-button" onclick="deleteCard(${item.id})">&#10006;</button>
-                `;
 
-                productCardsContainer.appendChild(card); // Append the card to the container
-            });
-        };
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Fetch data from API
-            fetch('https://fakestoreapi.com/products')
-                .then(response => response.json())
-                .then(products => {
-                    data = products;
-                    renderProductCards(products);
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
-        });
     </script>
 </body>
 
