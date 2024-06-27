@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 100%;
+
+
+    }
+
+    .createDiv {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+    }
+
+    .createDiv:nth-child(even) {
+        box-shadow: inset 0 0 10px 10px #0000ff;
+    }
+
+    .createDiv:nth-child(odd) {
+        box-shadow: 0 0 10px 10px #0000ff;
+    }
+</style>
+
+<body>
+    <button class="btn">Create</button>
+    <div class="container"></div>
+
+    <script>
+        let con = document.getElementsByClassName('container')[0];
+        const btn = document.querySelector('.btn');
+
+        btn.addEventListener('click', show);
+
+        function show() {
+            let newDiv = document.createElement('div');
+            newDiv.classList.add("createDiv")
+
+
+            con.appendChild(newDiv);
+        }
+    </script>
+</body>
+
+</html>
