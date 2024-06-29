@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Example program demonstrating various methods of the window object
+
+        // Method 1: alert()
+        window.alert('This is an alert box'); // Displays an alert dialog with the given message
+
+        // Method 2: confirm()
+        let userConfirmed = window.confirm('Do you confirm?'); // Displays a confirmation dialog with OK and Cancel buttons
+        console.log('User confirmed:', userConfirmed); // Logs true if OK was pressed, false if Cancel was pressed
+
+        // Method 3: prompt()
+        let userInput = window.prompt('Enter your name:', 'John Doe'); // Displays a prompt dialog with an optional default value
+        console.log('User input:', userInput); // Logs the value entered by the user or null if canceled
+
+        // Method 4: setTimeout()
+        function delayedAlert() {
+            console.log('Delayed alert after 2 seconds');
+        }
+        window.setTimeout(delayedAlert, 2000); // Executes the function after a specified delay (in milliseconds)
+
+        // Method 5: setInterval()
+        let counter = 0;
+        function incrementCounter() {
+            counter++;
+            console.log('Counter:', counter);
+        }
+        let intervalId = window.setInterval(incrementCounter, 1000); // Calls the function repeatedly at a specified interval (in milliseconds)
+        // To stop the interval after a certain period, use clearInterval(intervalId)
+
+        // Method 6: clearTimeout()
+        let timeoutId = window.setTimeout(() => {
+            console.log('This should not appear because clearTimeout was called');
+        }, 3000);
+        window.clearTimeout(timeoutId); // Cancels a timeout set with setTimeout before it triggers
+
+        // Method 7: clearInterval()
+        // Uncomment the following line to stop the interval after 5 seconds
+        // window.setTimeout(() => { clearInterval(intervalId); console.log('Interval stopped after 5 seconds'); }, 5000);
+
+        // Method 8: open()
+        let newWindow = window.open('https://www.example.com', '_blank'); // Opens a new browser window/tab with the specified URL
+        // newWindow.close(); // Uncomment to close the newly opened window/tab
+
+        // Method 9: close()
+        // Uncomment the following line to close the current window/tab
+        // window.close();
+
+        // Method 10: scrollTo() / scrollBy()
+        // Uncomment the following lines to scroll the window to a specific position
+        // window.scrollTo(0, 100); // Scrolls to a specific coordinate (x, y)
+        // window.scrollBy(0, 100); // Scrolls by a specified amount (x, y)
+
+        // Method 11: location
+        console.log('Current URL:', window.location.href); // Retrieves the current URL
+        // window.location.href = 'https://www.newurl.com'; // Uncomment to navigate to a new URL
+
+        // Method 12: history
+        console.log('Number of pages in history:', window.history.length); // Retrieves the number of entries in the session history
+
+        // Method 13: navigator
+        console.log('User agent:', window.navigator.userAgent); // Retrieves information about the user's browser and operating system
+
+        // Method 14: innerWidth / innerHeight
+        console.log('Viewport width:', window.innerWidth); // Retrieves the interior width of the window's content area
+        console.log('Viewport height:', window.innerHeight); // Retrieves the interior height of the window's content area
+
+        // Method 15: document
+        console.log('Document title:', window.document.title); // Retrieves the title of the current HTML document
+
+        // Method 16: alert(), confirm(), prompt() (also available as global functions)
+        // These are also available as global functions without the 'window.' prefix
+
+        // Method 17: and more...
+
+        // Additional methods and properties exist on the window object depending on the browser and environment.
+
+        // Note: Methods like alert(), confirm(), and prompt() are also available globally without the 'window.' prefix.
+
+
+    </script>
+
+</body>
+
+</html>

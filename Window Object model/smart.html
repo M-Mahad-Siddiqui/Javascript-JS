@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+    <script>
+        // Example demonstrating various browser control methods and properties
+
+        // Getting parts of the URL
+        var currentURL = window.location.href; // Full URL including protocol, domain, path, and fragment
+        var domainName = window.location.hostname; // Domain name (e.g., "www.example.com")
+        var pathName = window.location.pathname; // Path of the URL (e.g., "/products/page33.html")
+        var fragment = window.location.hash; // Fragment identifier (e.g., "#humidifier")
+
+        console.log('Current URL:', currentURL);
+        console.log('Domain Name:', domainName);
+        console.log('Path Name:', pathName);
+        console.log('Fragment:', fragment);
+
+        // Setting the URL
+        function navigateToNewURL() {
+            window.location.href = "http://www.newwebsite.com"; // Navigate to a new URL
+        }
+
+        // Reload the page
+        function reloadPage() {
+            window.location.reload(); // Reloads the current page
+        }
+
+        // Navigating through history
+        function navigateBack() {
+            history.back(); // Equivalent to pressing the Back button
+        }
+
+        function navigateForward() {
+            history.forward(); // Equivalent to pressing the Forward button
+        }
+
+        // Open a popup window
+        function openPopup() {
+            var popupWindow = window.open("http://www.example.com", "popupName", "width=600,height=400");
+            popupWindow.document.write("<h1>Hello, Popup!</h1>"); // Write content to the popup window
+        }
+
+        // Close the popup window
+        function closePopup(popupWindow) {
+            popupWindow.close(); // Close the popup window
+        }
+
+        // Testing for popup blockers
+        function checkForPopBlocker() {
+            var testPop = window.open("", "", "width=100,height=100");
+            if (testPop === null || typeof (testPop) === 'undefined') {
+                alert("Please disable your popup blocker.");
+            }
+            testPop.close();
+        }
+
+        // Example usage
+        console.log('=== Example Usage ===');
+        navigateToNewURL(); // Uncomment to navigate to a new URL
+        // reloadPage(); // Uncomment to reload the page
+        // navigateBack(); // Uncomment to navigate back in history
+        // navigateForward(); // Uncomment to navigate forward in history
+        // openPopup(); // Uncomment to open a popup window
+        // checkForPopBlocker(); // Uncomment to check for popup blockers
+
+        // Note: Uncomment the relevant function calls to see the effects in your browser environment.
+
+    </script> -->
+
+    <script>
+        // Getting and setting the URL
+        // Get current URL components
+        var whereWeAt = window.location.href;
+        var theDomain = window.location.hostname;
+        var thePath = window.location.pathname;
+        var theAnchor = window.location.hash;
+
+        // Change browser location
+        window.location.href = "http://www.example.com";
+        window.location.assign("http://www.example.com");
+        window.location.replace("http://www.example.com");
+
+        // Reload the current page
+        window.location.reload(true);
+
+        // Forward and backward in history
+        history.back();
+        history.forward();
+        history.go(-3);
+        history.go(2);
+
+        // Get referrer URL
+        var whereUserCameFrom = document.referrer;
+
+        // Popup window
+        // Open a new window and fill it with content
+        var monkeyWindow = window.open();
+        var windowContent = "<h1>Capuchin monkey</h1><img src='monkey.jpg'><p>The word capuchin...</p>";
+        monkeyWindow.document.write(windowContent);
+
+        // Close the popup window
+        monkeyWindow.close();
+
+        // Open a popup with specified URL
+        var monkeyWindow2 = window.open("http://www.animals.com/capuchin.html");
+
+        // Control window size and position
+        var monkeyWindow3 = window.open("monk.html", "win1", "width=420,height=380,left=200,top=100");
+
+        // Testing for popup blockers
+        function checkForPopBlocker() {
+            var testPop = window.open("", "", "width=100,height=100");
+            if (testPop === null || typeof (testPop) === "undefined") {
+                alert("Please disable your popup blocker.");
+            }
+            testPop.close();
+        }
+
+        // Run popup blocker test on page load
+        window.onload = function () {
+            checkForPopBlocker();
+        };
+        //     Explanation:
+// Getting and setting the URL:  Various methods(window.location) to get and set different parts of the URL.
+        // Browser navigation:   Methods(window.location.href, window.location.assign, window.location.replace) to navigate to different URLs.
+        // Reloading the page:   Methods(window.location.reload(true / false), window.location.reload()) to reload the current page from cache or server.
+        // History navigation:   Methods(history.back(), history.forward(), history.go(-3), history.go(2)) to navigate through the browser history.
+        //         Referrer:     Using document.referrer to get the URL from which the user navigated.
+        // Popup windows:        Opening new windows(window.open) with and without content, closing them(window.close), and controlling their size and position.
+    //Popup blocker detection:   Function(checkForPopBlocker) to test for popup blockers and notify the user if they are enabled.
+       
+    // This code snippet integrates all the concepts you've described into a single JavaScript file. It demonstrates how to interact with the browser's
+    //  location, history, and popup window features programmatically.
+    </script>
+</body>
+
+</html>
