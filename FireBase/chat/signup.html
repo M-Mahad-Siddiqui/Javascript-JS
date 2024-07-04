@@ -1,0 +1,224 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="SignUp">
+        <div class="bg-grey-lighter min-h-screen flex flex-col">
+            <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+                <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+                    <h1 class="mb-8 text-3xl text-center">User Sign up page</h1>
+                    <input type="text"
+                           class="block border border-grey-light w-full p-3 rounded mb-4"
+                           name="fullname"
+                           placeholder="Full Name" />
+
+                    <input type="text"
+                           class="block border border-grey-light w-full p-3 rounded mb-4"
+                           name="email"
+                           placeholder="Email"
+                           id="signUp_email" />
+
+                    <input type="password"
+                           class="block border border-grey-light w-full p-3 rounded mb-4"
+                           name="password"
+                           placeholder="Password"
+                           id="signUp_password" />
+
+                    <button type="button"
+                            id="create_btn"
+                            class="w-full text-center py-3 rounded bg-green text-black hover:bg-green-dark focus:outline-none my-1">Create
+                        Account</button>
+
+                    <div class="text-center text-sm text-grey-dark mt-4">
+                        By signing up, you agree to the
+                        <a class="no-underline border-b border-grey-dark text-grey-dark"
+                           href="#">Terms of Service</a> and
+                        <a class="no-underline border-b border-grey-dark text-grey-dark"
+                           href="#">Privacy Policy</a>
+                    </div>
+                </div>
+
+                <div class="text-grey-dark mt-6">
+                    Already have an account?
+                    <a id="login"
+                       class="no-underline border-b border-blue text-blue"
+                       href="index.html">Log in</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCvFVIs2b5ChcAEk9g5Jz8h23QYpIPRdk0",
+            authDomain: "first-project-athentication.firebaseapp.com",
+            projectId: "first-project-athentication",
+            storageBucket: "first-project-athentication.appspot.com",
+            messagingSenderId: "694589556541",
+            appId: "1:694589556541:web:5e1c584bc1e4d133e76754",
+            measurementId: "G-QKH91FQBSR"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const signUpEmailInput = document.getElementById('signUp_email');
+        const signUpPasswordInput = document.getElementById('signUp_password');
+        const createBtn = document.getElementById('create_btn');
+
+        createBtn.addEventListener('click', () => {
+            const email = signUpEmailInput.value;
+            const password = signUpPasswordInput.value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed up
+                    const user = userCredential.user;
+                    console.log('User created:', user);
+                    alert('User created successfully!');
+                    window.location.href = 'dashboard.html';
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error('Sign up error:', errorMessage);
+                    alert(errorMessage);
+                });
+        });
+    </script>
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="SignUp">
+        <!-- component -->
+        <div class="bg-grey-lighter min-h-screen flex flex-col">
+            <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+                <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+                    <h1 class="mb-8 text-3xl text-center">User Sign Up Page</h1>
+                    <input type="text"
+                           class="block border border-grey-light w-full p-3 rounded mb-4"
+                           name="fullname"
+                           placeholder="Full Name"
+                           id="signUp_name" />
+
+                    <input type="text"
+                           class="block border border-grey-light w-full p-3 rounded mb-4"
+                           name="email"
+                           placeholder="Email"
+                           id="signUp_email" />
+
+                    <input type="password"
+                           class="block border border-grey-light w-full p-3 rounded mb-4"
+                           name="password"
+                           placeholder="Password"
+                           id="signUp_password" />
+
+                    <button type="submit"
+                            id="create_btn"
+                            class="w-full text-center py-3 rounded bg-green text-black hover:bg-green-dark focus:outline-none my-1">Create
+                        Account</button>
+
+                    <div class="text-center text-sm text-grey-dark mt-4">
+                        By signing up, you agree to the
+                        <a class="no-underline border-b border-grey-dark text-grey-dark"
+                           href="#">
+                            Terms of Service
+                        </a> and
+                        <a class="no-underline border-b border-grey-dark text-grey-dark"
+                           href="#">
+                            Privacy Policy
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-grey-dark mt-6">
+                    Already have an account?
+                    <a id="login"
+                       class="no-underline border-b border-blue text-blue"
+                       href="index.html">
+                        Log in
+                    </a>.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCvFVIs2b5ChcAEk9g5Jz8h23QYpIPRdk0",
+            authDomain: "first-project-athentication.firebaseapp.com",
+            projectId: "first-project-athentication",
+            storageBucket: "first-project-athentication.appspot.com",
+            messagingSenderId: "694589556541",
+            appId: "1:694589556541:web:5e1c584bc1e4d133e76754",
+            measurementId: "G-QKH91FQBSR"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        const signUp_name = document.getElementById('signUp_name');
+        const signUp_email = document.getElementById('signUp_email');
+        const signUp_password = document.getElementById('signUp_password');
+        const create_btn = document.getElementById('create_btn');
+
+        create_btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            createUserWithEmailAndPassword(auth, signUp_email.value, signUp_password.value)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    return updateProfile(user, {
+                        displayName: signUp_name.value
+                    });
+                })
+                .then(() => {
+                    window.location.href = "dashboard.html";
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode, errorMessage);
+                });
+        });
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+
+</html>
