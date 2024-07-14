@@ -43,6 +43,10 @@
             box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
         }
 
+        #name {
+            text-shadow: #007bff 0 0px 10px;
+        }
+
         /* images move css */
         @keyframes floatImage {
             0% {
@@ -227,7 +231,10 @@
         .dark-mode .header {
             background-color: #222;
             color: var(--main-color);
-            text-shadow: var(--text-color) 1px 0 20px;
+        }
+
+        .dark-mode #name {
+            text-shadow: var(--main-color) 0 0 10px
         }
 
         /* -----------toggle button css------------------ */
@@ -285,7 +292,7 @@
              id="home">
         <div class="home-content">
             <h2>Hello, It's Me</h2>
-            <h3>Muhammad Mahad Siddiqui</h3>
+            <h3 id="name">Muhammad Mahad Siddiqui</h3>
             <h2 class="heading">And there is my <span class="typing"></span></h2>
             <p>
                 Discover a captivating array of JavaScript projects, each a testament to creativity and
