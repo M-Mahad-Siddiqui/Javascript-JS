@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 600px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 90px);
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #add_todo {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    #add_todo:hover {
+        background-color: #45a049;
+    }
+
+    #delete_All {
+        background-color: #f44336;
+        color: white;
+        margin-left: 10px;
+    }
+
+    #delete_All:hover {
+        background-color: #e53935;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        background-color: #f9f9f9;
+        margin-bottom: 10px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    li input[type="text"] {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    li button {
+        padding: 8px 12px;
+        font-size: 14px;
+        border: none;
+        background-color: #f44336;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    li button:hover {
+        background-color: #e53935;
+    }
+</style>
+
+<body>
+
+<div class="container">
+    <h1>Firestore Todo List</h1>
+
+    <input type="text"
+           id="todo_input"
+           placeholder="Enter todo">
+
+    <button id="add_todo">Add Todo</button>
+    <button id="delete_All">Delete All Todo</button>
+
+    <ul id="todo_list">
+        <!-- Todo items will be dynamically added here -->
+    </ul>
+</div>
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
+        import { getFirestore, collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC3NbSRMiqsYs1XHwR09uERY8N-6cr9J4E",
+            authDomain: "firestore-db-bc14d.firebaseapp.com",
+            projectId: "firestore-db-bc14d",
+            storageBucket: "firestore-db-bc14d.appspot.com",
+            messagingSenderId: "178419087334",
+            appId: "1:178419087334:web:d121a758743f3378a14827",
+            measurementId: "G-LT5TJHZWZ4"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        // Initialize Cloud Firestore and get a reference to the service
+        const db = getFirestore(app);
+        // console.log(db);
+
+        // simple example to add number to DB
+        // let numberCollection = collection(db, "numbers");
+        // async function addNumberToDB() {
+        //     try {
+        //         const docRef = await addDoc(numberCollection, {
+        //             number: Math.round(Math.random() * 1000000),
+        //             date: new Date()
+        //         });
+        //     } catch (e) {
+        //         console.error("Error adding document: ", e);
+        //     }
+        // }
+        // addNumberToDB()
+
+        const todoCollection = collection(db, "todos");
+        const todoList = document.getElementById("todo_list");
+        const todo_input = document.getElementById("todo_input");
+        const add_todo = document.getElementById("add_todo");
+        const delete_All = document.getElementById("delete_All");
+
+        // Function to get all todos
+        async function getTodos() {
+            try {
+                const querySnapshot = await getDocs(todoCollection);
+                todoList.innerHTML = "";
+                querySnapshot.forEach((doc) => {
+                    const todoData = doc.data();
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                        <input type="text" value="${todoData.todo}" />
+                        <button class="update-btn" data-id="${doc.id}">Update</button>
+                        <button class="delete-btn" data-id="${doc.id}">Delete</button>
+                    `;
+                    todoList.appendChild(li);
+                });
+
+                // Attach event listeners after rendering todos
+                todoList.querySelectorAll(".update-btn").forEach(btn => {
+                    btn.addEventListener("click", handleUpdate);
+                });
+
+                todoList.querySelectorAll(".delete-btn").forEach(btn => {
+                    btn.addEventListener("click", handleDelete);
+                });
+            } catch (e) {
+                console.error("Error fetching todos: ", e);
+            }
+        }
+
+        // Initial fetch of todos
+        getTodos();
+
+        // Function to delete all todos
+        delete_All.addEventListener("click", async () => {
+            try {
+                const querySnapshot = await getDocs(todoCollection);
+                querySnapshot.forEach(async (doc) => {
+                    await deleteDoc(doc.ref);
+                });
+                // Clear the list after deleting all todos
+                todoList.innerHTML = "";
+            } catch (e) {
+                console.error("Error deleting all todos: ", e);
+            }
+        });
+
+        // Function to add todo
+        add_todo.addEventListener("click", async () => {
+            try {
+                const todoText = todo_input.value.trim();
+                if (todoText === "") return;
+
+                const obj = {
+                    todo: todoText,
+                    createdAt: new Date().toLocaleString(),
+                };
+                // const docRef = await addDoc(todoCollection, obj);
+                await addDoc(todoCollection, obj);
+                todo_input.value = ""; // Clear input field after adding todo
+                getTodos(); // Refresh the list after adding todo
+            } catch (e) {
+                console.error("Error adding todo: ", e);
+            }
+        });
+
+        // Function to handle update todo
+        function handleUpdate(event) {
+            const btn = event.target;
+            const docId = btn.getAttribute("data-id");
+
+            // Prompt the user for updated todo text
+            const updatedTodo = prompt("Enter updated todo:");
+
+            if (updatedTodo !== null) { // User clicked OK in the prompt
+                updateTodoInFirestore(docId, updatedTodo);
+            }
+        }
+
+        // Function to update todo in Firestore
+        async function updateTodoInFirestore(docId, updatedTodo) {
+            try {
+                await updateDoc(doc(todoCollection, docId), { todo: updatedTodo });
+                getTodos(); // Refresh the list after updating todo
+            } catch (error) {
+                console.error("Error updating todo: ", error);
+            }
+        }
+
+        // Function to handle delete todo
+        function handleDelete(event) {
+            const btn = event.target;
+            const docId = btn.getAttribute("data-id");
+            deleteTodoFromFirestore(docId);
+        }
+
+        // // function to delete todo
+        // async function deleteTodo(e) {
+        //     try {
+        //         const docId = e.target.id;
+        //         const docCollection = doc(db, "todos", docId);
+        //         const docRef = await deleteDoc(docCollection);
+        //         getTodos();
+        //         console.log("Document deleted=>", docRef);
+        //     } catch (e) {
+        //         console.log(e);
+        //     }
+        // }
+
+        // Function to delete todo from Firestore
+        async function deleteTodoFromFirestore(docId) {
+            try {
+                await deleteDoc(doc(todoCollection, docId));
+                getTodos(); // Refresh the list after deleting todo
+            } catch (e) {
+                console.error("Error deleting todo: ", e);
+            }
+        }
+
+        //       // Function to update todo
+        // async function updateTodo(event) {
+        //     try {
+        //         const btn = event.target;
+        //         const docId = btn.getAttribute("data-id");
+        //         const todoToUpdate = todoList.querySelector(`[data-id="${docId}"] input`).value.trim();
+
+        //         await updateDoc(doc(todoCollection, docId), { todo: todoToUpdate });
+        //         getTodos(); // Refresh the list after updating todo
+        //     } catch (e) {
+        //         console.error("Error updating todo: ", e);
+        //     }
+        // }
+
+        // // Function to delete todo
+        // async function deleteTodo(event) {
+        //     try {
+        //         const btn = event.target;
+        //         const docId = btn.getAttribute("data-id");
+
+        //         await deleteDoc(doc(todoCollection, docId));
+        //         getTodos(); // Refresh the list after deleting todo
+        //     } catch (e) {
+        //         console.error("Error deleting todo: ", e);
+        //     }
+        // }
+    </script>
+
+</body>
+
+</html>
