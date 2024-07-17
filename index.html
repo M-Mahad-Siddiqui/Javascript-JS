@@ -40,8 +40,24 @@
         .home-img img {
             width: 25vw;
             animation: floatImage 4s ease-in-out infinite;
-            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+            /* box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2); */
+            filter: drop-shadow(5px 1px 20px rgb(32, 158, 196));
+            /* filter: drop-shadow(offset-x offset-y blur-radius color); */
+
         }
+
+        .home-content {
+            text-align: center;
+            margin: 0 1rem;
+        }
+
+        .home-content h1 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .home-content h3 {}
 
         #name {
             text-shadow: #007bff 0 0px 10px;
@@ -292,7 +308,7 @@
              id="home">
         <div class="home-content">
             <h2>Hello, It's Me</h2>
-            <h3 id="name">Muhammad Mahad Siddiquii</h3>
+            <h3 id="name">Muhammad Mahad Siddiqui</h3>
             <h2 class="heading">And there is my <span class="typing"></span></h2>
             <p>
                 Discover a captivating array of JavaScript projects, each a testament to creativity and
@@ -493,7 +509,15 @@
                 title: "Firebase Authentication with Sign In and Sign Up",
                 description: "This project implements a user authentication system using Firebase. It includes sign in and sign up functionalities, user state management, and a protected dashboard displaying user information.",
                 link: "23-FireBase/Use_Authentication/index.html"
+            },
+            {    // 24
+                img: "23-FireBase/FireStore DataBase/pic.png",
+                category: "Advanced JavaScript Projects",
+                title: "Firebase Firestore Todo List Application",
+                description: "A web application that uses Firebase Firestore to manage a todo list. It includes functionalities for adding, updating, and deleting todos, along with real-time updates.",
+                link: "23-FireBase/FireStore DataBase/index.html"
             }
+
 
         ];
 
