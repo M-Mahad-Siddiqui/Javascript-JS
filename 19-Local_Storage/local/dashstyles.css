@@ -1,0 +1,63 @@
+.navbar{
+    background-color: #007BFF !important;
+    height: 80px;
+}
+.navbar-brand{
+    color: #ffff;
+}
+.btn-primary{
+    background-color: #007BFF;
+    border-color: #007BFF;
+}
+.btn-primary:hover{
+    background-color: #007BFF;
+    border-color: #007BFF;
+}
+.btn-primary:active{
+    background-color: #007BFF !important;
+    border-color: #007bff !important;
+}
+.swal2-actions {
+    width: 90% !important;
+}
+.swal2-confirm {
+    background-color: #007BFF !important;
+    width: 100% !important;
+}
+.logbtn:hover{
+    background-color: #f8f8f8;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+
+}
+.logbtn{
+    background-color:#007BFF;
+    color: rgb(255, 255, 255);
+    padding: 10px 25px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block;; 
+    margin: 2px 0px; cursor: pointer; 
+    border-radius: 8px;
+    font-weight: bold;
+    border: 2px solid white;
+
+}
+
+
+@media only screen and (max-width: 500px) {
+    .main{
+        padding: 10px 4px !important;
+    }
+}
+.card{
+    padding: 10px;
+}
+
+.blockquote-footer{
+    color: black;
+}
+p {
+    color: white;
+}

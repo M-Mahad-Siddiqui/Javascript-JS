@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="container">
+        <form onsubmit="registerForm()" id="registerForm">
+            <h2>Create Account</h2>
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" placeholder="Enter your Full Name" id="fullName" >
+            </div>
+            <div class="mb-3">
+                <label for="emailAddress" class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="Email" id="emailAddress" >
+            </div>
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" placeholder="Upto Eleven Digits" id="phoneNumber" >
+            </div>
+           <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" placeholder="More than Eight Digits " id="password">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="cpassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" placeholder="Should be same" id="cpassword" >
+                </div>
+            </div>
+           </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <p><a href="./login.html">Do you already have an account? Click here</a></p>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="./app.js"></script>
+</body>
+</html>

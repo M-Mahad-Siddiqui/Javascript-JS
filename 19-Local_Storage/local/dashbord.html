@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./dashstyles.css">
+</head>
+<body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><span id="welUser"></span></a>
+            <button class="logbtn" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-5 col-lg-4">
+                <div class="main p-4">
+                    <div class="card p-4" >
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Subject</label>
+                            <input id="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                            <textarea id="description" class="form-control" id="exampleFormControlTextarea1" rows="3">Hello World</textarea>
+                        </div>
+                        <button onclick="addPost()" class="btn btn-primary">ADD NOTE</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-7 col-lg-8">
+                <div class="main p-4">
+                    <!-- Search Bar -->
+                    <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search notes...">
+                    <div id="posts">
+                        <!-- Display notes here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        // Load existing notes from local storage when the page loads
+        window.onload = function() {
+            displayNotes();
+        };
+
+        // Function to retrieve notes data from local storage
+        function getNotesData() {
+            return JSON.parse(localStorage.getItem("NotesData")) || [];
+        }
+
+        // Function to display notes on the page
+        function displayNotes() {
+            var notes = getNotesData();
+            var posts = document.getElementById("posts");
+            posts.innerHTML = ""; // Clear existing notes
+            
+            notes.forEach(function(note, index) {
+                var noteHtml = `
+                    <div class="note p-4">
+                        <div class="card">
+                            <div class="card-header">@Notes</div>
+                            <div class="card-body" style="background:background: #c0c0aa;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #1cefff, #c0c0aa);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #1cefff, #c0c0aa); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+                                <blockquote class="blockquote mb-0">
+                                    <p class="note-title">${note.title}</p>
+                                    <footer class="blockquote-footer note-description">${note.description}<cite title="Source Title"></cite></footer>
+                                </blockquote>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary" onclick="editPost(${index})">Edit</button>
+                                <button class="btn btn-danger" onclick="deletePost(${index})">Delete</button>
+                            </div>
+                        </div>
+                    </div>`;
+                posts.innerHTML += noteHtml;
+            });
+        }
+
+        // Function to add a new note
+        function addPost() {
+            var title = document.getElementById("title").value.trim();
+            var description = document.getElementById("description").value.trim();
+
+            if (title && description) {
+                var notes = getNotesData();
+                var newNote = {
+                    title: title,
+                    description: description
+                };
+                notes.push(newNote);
+                localStorage.setItem("NotesData", JSON.stringify(notes));
+                displayNotes();
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please Enter Title & Description!",
+                });
+            }
+
+            // Clear input fields
+            document.getElementById("title").value = "";
+            document.getElementById("description").value = "";
+        }
+
+        // Function to handle the search functionality
+        function searchNotes() {
+            var input = document.getElementById('searchInput').value.toLowerCase();
+            var notes = document.querySelectorAll('.note');
+
+            notes.forEach(function(note) {
+                var title = note.querySelector('.note-title').textContent.toLowerCase();
+                var description = note.querySelector('.note-description').textContent.toLowerCase();
+
+                if (title.includes(input) || description.includes(input)) {
+                    note.style.display = "block";
+                } else {
+                    note.style.display = "none";
+                }
+            });
+        }
+
+        // Add event listener to search input
+        document.getElementById('searchInput').addEventListener('input', searchNotes);
+
+        // Function to logout user
+        function logout() {
+            //localStorage.clear();
+            setTimeout(function() {
+                window.location.href = "./index.html";
+            }, 0);
+        }
+
+        // Function to edit a note
+        function editPost(index) {
+            var notes = getNotesData();
+            var note = notes[index];
+            document.getElementById("title").value = note.title;
+            document.getElementById("description").value = note.description;
+            notes.splice(index, 1);
+            localStorage.setItem("NotesData", JSON.stringify(notes));
+            displayNotes();
+        }
+
+        // Function to delete a note
+        function deletePost(index) {
+            var notes = getNotesData();
+            notes.splice(index, 1);
+            localStorage.setItem("NotesData", JSON.stringify(notes));
+            displayNotes();
+        }
+
+        // Display username when the page loads
+        var userData = JSON.parse(localStorage.getItem("UserData"));
+        document.getElementById("welUser").innerText = userData.name;
+    </script>
+</body>
+</html>
