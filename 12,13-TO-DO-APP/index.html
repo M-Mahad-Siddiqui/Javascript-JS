@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,9 +9,10 @@
 </head>
 
 <style>
-    *{
+    * {
         background-color: rgb(139, 219, 215);
     }
+
     .container {
         display: flex;
         flex-direction: column;
@@ -77,7 +78,8 @@
     ul {
         margin: 10px;
     }
-    li > button{
+
+    li>button {
         margin-left: 10px;
         cursor: pointer;
         border: none;
@@ -89,11 +91,11 @@
         background-color: blue;
         color: #fff;
     }
-    li > button:hover {
-        background-color:blueviolet;
+
+    li>button:hover {
+        background-color: blueviolet;
 
     }
-
 </style>
 
 <body>
@@ -142,5 +144,177 @@
         list.innerHTML = '';
     });
 </script>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            width: 49%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+        }
+
+        button#addBtn {
+            background-color: #4c6aaf;
+            color: #fff;
+        }
+
+        button#addBtn:hover {
+            background-color: #1e407f;
+        }
+
+        button#deleteAllBtn {
+            background-color: #c536f4;
+            color: #fff;
+        }
+
+        button#deleteAllBtn:hover {
+            background-color: #8a0a93;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            font-size: 20px;
+            margin-bottom: 10px;
+            padding: 7px;
+            background-color: #dedede;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background-color: #2196F3;
+            width: 40px;
+            color: #fff;
+            border: none;
+            /* border-radius: 100px; */
+            cursor: pointer;
+            padding: 7px;
+            transition: background-color 0.3s ease;
+            margin-top: 5px;
+
+        }
+
+        .icon-btn:hover {
+            background-color: #1e87f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text"
+               id="input"
+               placeholder="Enter your task...">
+        <button id="addBtn">Add Task</button>
+        <button id="deleteAllBtn">Delete All</button>
+        <ul id="list">
+
+        </ul>
+    </div>
+    <script>
+        var addBtn = document.getElementById("addBtn");
+        var list = document.getElementById("list");
+        var deleteAllBtn = document.getElementById("deleteAllBtn");
+        var input = document.getElementById("input");
+
+        addBtn.addEventListener('click', function () {
+            var inp = input.value.trim();
+            if (inp === "") {
+                alert("Please write at least one item.");
+                return;
+            }
+            var li = document.createElement('li');
+            li.innerHTML = `
+                    <span>${inp}</span>
+                    <span>
+                        <button class="icon-btn" onclick="del(this)"><i class="fas fa-trash-alt"></i></button>
+                        <button class="icon-btn" onclick="edit(this)"><i class="fas fa-edit"></i></button>
+                    </span>
+                `;
+            list.appendChild(li);
+            input.value = "";
+        });
+
+        function del(element) {
+            element.parentNode.parentNode.remove();
+        }
+
+        function edit(element) {
+            var span = element.parentNode.previousElementSibling;
+            var text = span.textContent.trim();
+            var newText = prompt("Edit your item:", text);
+            if (newText !== null && newText !== "") {
+                span.textContent = newText;
+            }
+        }
+
+        deleteAllBtn.addEventListener('click', function () {
+            list.innerHTML = '';
+        });
+    </script>
+</body>
 
 </html>
