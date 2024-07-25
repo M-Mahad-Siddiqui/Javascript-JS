@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow">
+        <div class="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
+          <div class="flex justify-between items-center">
+            <div>
+              <a class="text-gray-800 text-xl font-bold md:text-2xl hover:text-gray-700" href="#">Brand</a>
+            </div>
+      
+            <!-- Mobile menu button -->
+            <div class="flex md:hidden">
+              <button type="button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600" aria-label="toggle menu">
+                <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
+                  <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+      
+          <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+          <div class="md:flex items-center">
+            <div class="flex flex-col md:flex-row md:mx-6">
+              <a class="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" href="../project/signin/index.html">login</a>
+              <a class="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" href="#">logout</a>
+              <a class="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" href="#">own product</a>
+              <a class="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0" href="#">create product</a>
+            </div>
+      
+            <div class="flex justify-center md:block">
+              <a class="relative text-gray-700 hover:text-gray-600" href="#">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+      
+                <span class="absolute top-0 left-0 rounded-full bg-indigo-500 text-white p-1 text-xs"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="flex-col md:flex-row justify-between flex gap-4 items-start mx-4 py-12">
+        <div class="flex bg-white rounded-lg shadow dark:bg-gray-800 flex-col md:flex-row">
+            <div class="relative w-full md:w-48 flex justify-center items-center">
+                <img src="https://cdn.pixabay.com/photo/2013/07/13/14/07/apparel-162180_960_720.png" alt="shopping image"
+                    class="object-cover w-full h-48 md:h-full rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+            </div>
+            <form class="flex-auto p-6">
+                <div class="flex flex-wrap">
+                    <h1 class="flex-auto text-xl font-semibold dark:text-gray-50">Product name</h1>
+                    <div class="text-xl font-semibold text-gray-500 dark:text-gray-300">$110.00</div>
+                    <div class="flex-none w-full mt-2 text-sm font-medium text-gray-500 dark:text-gray-300">In stock</div>
+                </div>
+                <div class="flex items-baseline mt-4 mb-6 text-gray-700 dark:text-gray-300">
+                    <div class="flex space-x-2">
+    
+                        <label class="text-center">
+    
+                            <input type="radio"
+                                class="flex items-center justify-center w-6 h-6 accent-violet-600 bg-gray-100 rounded-lg dark:bg-gray-600"
+                                name="size" value="xs">XS
+                        </label>
+                        <label class="text-center">
+                            <input type="radio" class="flex items-center justify-center w-6 h-6 accent-violet-600" name="size"
+                                value="s">S
+                        </label>
+                        <label class="text-center">
+                            <input type="radio" class="flex items-center justify-center w-6 h-6 accent-violet-600" name="size"
+                                value="m">M
+                        </label>
+                        <label class="text-center">
+                            <input type="radio" class="flex items-center justify-center w-6 h-6 accent-violet-600" name="size"
+                                value="l">L
+                        </label>
+                        <label class="text-center">
+                            <input type="radio" class="flex items-center justify-center w-6 h-6 accent-violet-600" name="size"
+                                value="xl">XL
+                        </label>
+                    </div>
+                    <a href="#"
+                        class="hidden ml-auto text-sm text-gray-500 underline md:block dark:text-gray-300">Size
+                        Guide
+                    </a>
+                </div>
+                <div class="flex mb-4 text-sm font-medium">
+                    <button type="button"
+                        class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg ">Buy
+                        now</button>
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-300">Free shipping on all continental US orders.</p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
