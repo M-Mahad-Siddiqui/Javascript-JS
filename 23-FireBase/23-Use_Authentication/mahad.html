@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(233, 234, 234);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            gap: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 400px;
+            padding: 20px;
+            border-radius: 5px;
+            border: 3px solid rgb(28, 215, 215);
+            box-shadow: 0 0 10px rgb(101, 75, 204);
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: white;
+            color: rgb(0, 0, 0);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            transform: scale(1);
+            animation: scale 0.5s ease-in-out;
+        }
+
+        @keyframes scale {
+            0% {
+                transform: scale(0.5);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(13, 48, 112);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: rgb(199, 27, 27);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        button:active {
+            background-color: rgb(53, 176, 78);
+            color: white;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #signupErrorMessage,
+        #signinErrorMessage {
+            color: red;
+            font-weight: lighter;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ----------------------------------- sign up Container ----------------------------------- -->
+    <div class="container sign_up">
+        <caption>Sign Up</caption>
+        <label for="email-up">Email</label>
+        <input type="text"
+               id="email-up"
+               name="email"
+               placeholder="Enter Email">
+        <label for="password-up">Password</label>
+        <input type="password"
+               id="password-up"
+               name="password"
+               placeholder="Enter Password">
+        <button id="signup">Sign Up</button>
+        <button id="signinBtn">Already have an account? <b>Sign In</b></button>
+        <div id="signupErrorMessage"></div>
+    </div>
+    <!-- ------------------------------------sign in Container------------------------------------ -->
+    <div class="container login hidden">
+        <caption>Login</caption>
+        <label for="email-in">Email</label>
+        <input type="text"
+               id="email-in"
+               name="email"
+               placeholder="Enter Email">
+        <label for="password-in">Password</label>
+        <input type="password"
+               id="password-in"
+               name="password"
+               placeholder="Enter Password">
+        <button id="login">Login</button>
+        <button id="signUpBtn">Don't have an account? <b>Sign Up</b></button>
+        <div id="signinErrorMessage"></div>
+    </div>
+    <!-- ---------------------------------------User Container--------------------------------------- -->
+    <div class="container userContainer hidden">
+        <h1>Welcome <span id="userEmail">User Email</span></h1>
+        <button id="logoutBtn">Logout</button>
+        <button id="deleteBtn">Delete Account</button>
+        <!-- <button id="updateBtn">Update Account</button> -->
+        <!-- <button id="changePasswordBtn">Change Password</button> -->
+        <!-- <button id="changeEmailBtn">Change Email</button> -->
+
+    </div>
+
+    <script type="module">
+        // -----------------------FireBase Utility Functions-----------------------
+        // import { firebase } from "./firebase.js";
+        // const auth = firebase.auth();
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCvFVIs2b5ChcAEk9g5Jz8h23QYpIPRdk0",
+            authDomain: "first-project-athentication.firebaseapp.com",
+            projectId: "first-project-athentication",
+            storageBucket: "first-project-athentication.appspot.com",
+            messagingSenderId: "694589556541",
+            appId: "1:694589556541:web:5e1c584bc1e4d133e76754",
+            measurementId: "G-QKH91FQBSR"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        //container
+        const signUpContainer = document.querySelector('.sign_up');
+        const signInContainer = document.querySelector('.login');
+        const userContainer = document.querySelector('.userContainer');
+
+        // sign up
+        document.getElementById('signup').addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email-up').value.trim();
+            const password = document.getElementById('password-up').value.trim();
+            // if (!email || !password) {
+            //     return alert("Please add data");
+            // }
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log("User created:", user);
+                    signUpContainer.classList.add('hidden');
+                    userContainer.classList.remove('hidden');
+                    document.getElementById('userEmail').innerText = user.email;
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error("Sign-up Error:", errorCode);
+                    document.getElementById('signupErrorMessage').innerText = `Sign-up Error: ${errorMessage}`;
+                });
+        });
+
+        // sign in
+        document.getElementById('login').addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email-in').value.trim();
+            const password = document.getElementById('password-in').value.trim();
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log("User signed in:", user);
+                    //show dashboard
+                    signInContainer.classList.add('hidden');
+                    userContainer.classList.remove('hidden');
+                    document.getElementById('userEmail').innerText = user.email;
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    document.getElementById('signinErrorMessage').innerText = `Sign-in Error: ${errorMessage}`;
+                });
+        });
+
+        // ------------------check the user is login or not------------------
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                userContainer.classList.remove('hidden');
+                signInContainer.classList.add('hidden');
+                signUpContainer.classList.add('hidden');
+                document.getElementById('userEmail').innerText = user.email;
+            } else {
+                userContainer.classList.add('hidden');
+                signUpContainer.classList.remove('hidden');
+                signInContainer.classList.add('hidden');
+            }
+        });
+        //------------logout acount -------------
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            signOut(auth).then(() => {
+                userContainer.classList.add('hidden');
+                signUpContainer.classList.add('hidden');
+                signInContainer.classList.remove('hidden');
+            }).catch((error) => {
+                console.error("Error signing out:", error);
+            });
+        });
+
+        //------------delete account -------------
+        document.getElementById('deleteBtn').addEventListener('click', () => {
+            if (auth.currentUser) {
+                auth.currentUser.delete().then(() => {
+                    console.log("User deleted");
+                }).catch((error) => {
+                    console.error("Error deleting user:", error);
+                });
+            }
+        });
+
+        document.getElementById('signUpBtn').addEventListener('click', () => {
+            signInContainer.classList.add('hidden');
+            signUpContainer.classList.remove('hidden');
+        });
+
+        document.getElementById('signinBtn').addEventListener('click', () => {
+            signUpContainer.classList.add('hidden');
+            signInContainer.classList.remove('hidden');
+        });
+    </script>
+</body>
+
+</html>
