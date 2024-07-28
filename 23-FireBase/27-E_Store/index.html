@@ -7,16 +7,96 @@
         content="width=device-width, initial-scale=1.0">
   <title>E-Commerce store</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .boddy {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      justify-items: center;
+      align-items: stretch;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 205px;
+      padding: 16px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .card h2 {
+      font-size: 15px;
+      margin: 10px 0;
+      color: #333;
+      font-weight: bold;
+    }
+
+
+
+    .card .price {
+      font-size: 16px;
+      color: #b12704;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+
+    .card {
+      position: relative;
+    }
+
+    .delete-button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body class="bg-gray-100">
+  <!-- ------------------------------NAVBAR--------------------------------------- -->
   <nav class="bg-white shadow">
     <div class="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
       <div class="flex justify-between items-center">
         <div>
           <a class="text-gray-800 text-xl font-bold md:text-2xl hover:text-gray-700"
-          href="profile.html">
-          <!-- profile logo -->
+             href="profile.html">
+            <!-- profile logo -->
             <div class="flex items-center gap-4">
 
               <img class="w-14 h-14 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
@@ -50,16 +130,19 @@
       <div class="md:flex items-center">
         <div class="flex flex-col md:flex-row md:mx-6">
           <a class="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0"
-             href="#"> LOGOUT</a>
+             href="#"
+             id="logout"> LOGOUT</a>
           <a class="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0"
-             href="#">CREAT PRODUCT</a>
+             href="#" id="deleteBtn">DELETE ACOUNT</a>
+          <a class="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0"
+             href="createProduct.html">CREAT PRODUCT</a>
           <a class="my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0"
              href="profile.html">PROFILE </a>
         </div>
 
         <div class="flex justify-center md:block">
           <a class="relative text-gray-700 hover:text-gray-600"
-             href="#">
+             href="buyCard.html">
             <svg class="h-5 w-5"
                  viewBox="0 0 24 24"
                  fill="none"
@@ -77,68 +160,26 @@
       </div>
     </div>
   </nav>
-  <div class="flex-col md:flex-row justify-between flex gap-4 items-start mx-4 py-12">
-    <div class="flex bg-white rounded-lg shadow dark:bg-gray-800 flex-col md:flex-row">
-      <div class="relative w-full md:w-48 flex justify-center items-center">
-        <img src="https://cdn.pixabay.com/photo/2013/07/13/14/07/apparel-162180_960_720.png"
-             alt="shopping image"
-             class="object-cover w-full h-48 md:h-full rounded-t-lg md:rounded-l-lg md:rounded-t-none">
+
+  <!-- --------------------------------------CARD-------------------------------------- -->
+
+  <div class="boddy">
+    <div class=" card-container">
+
+      <!-- first card -->
+      <div class="card">
+        <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+             alt="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops">
+        <h2>Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</h2>
+        <div class="price">$109.95</div>
+        <button class="delete-button">X</button>
       </div>
-      <form class="flex-auto p-6">
-        <div class="flex flex-wrap">
-          <h1 class="flex-auto text-xl font-semibold dark:text-gray-50">Product name</h1>
-          <div class="text-xl font-semibold text-gray-500 dark:text-gray-300">$110.00</div>
-          <div class="flex-none w-full mt-2 text-sm font-medium text-gray-500 dark:text-gray-300">In stock</div>
-        </div>
-        <div class="flex items-baseline mt-4 mb-6 text-gray-700 dark:text-gray-300">
-          <div class="flex space-x-2">
 
-            <label class="text-center">
-
-              <input type="radio"
-                     class="flex items-center justify-center w-6 h-6 accent-violet-600 bg-gray-100 rounded-lg dark:bg-gray-600"
-                     name="size"
-                     value="xs">XS
-            </label>
-            <label class="text-center">
-              <input type="radio"
-                     class="flex items-center justify-center w-6 h-6 accent-violet-600"
-                     name="size"
-                     value="s">S
-            </label>
-            <label class="text-center">
-              <input type="radio"
-                     class="flex items-center justify-center w-6 h-6 accent-violet-600"
-                     name="size"
-                     value="m">M
-            </label>
-            <label class="text-center">
-              <input type="radio"
-                     class="flex items-center justify-center w-6 h-6 accent-violet-600"
-                     name="size"
-                     value="l">L
-            </label>
-            <label class="text-center">
-              <input type="radio"
-                     class="flex items-center justify-center w-6 h-6 accent-violet-600"
-                     name="size"
-                     value="xl">XL
-            </label>
-          </div>
-          <a href="#"
-             class="hidden ml-auto text-sm text-gray-500 underline md:block dark:text-gray-300">Size
-            Guide
-          </a>
-        </div>
-        <div class="flex mb-4 text-sm font-medium">
-          <button type="button"
-                  class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg ">Buy
-            now</button>
-        </div>
-        <p class="text-sm text-gray-500 dark:text-gray-300">Free shipping on all continental US orders.</p>
-      </form>
     </div>
   </div>
+
+  <script type="module"
+          src="app.js"></script>
 </body>
 
 </html>
