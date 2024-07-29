@@ -88,3 +88,25 @@ document.getElementById('deleteBtn')?.addEventListener('click', async () => {
         // Optionally, handle the error by notifying the user or taking other actions
     }
 });
+
+
+//  //------------logout acount -------------
+//         document.getElementById('logout').addEventListener('click', () =>
+// {
+  //             signOut(auth).then(() => {
+  //         console.log("User signed out");
+  //             }).catch((error) => {
+  //                 console.error("Error signing out:", error);
+  //             });
+  //         });
+
+  //         //------------delete account -------------
+  //         document.getElementById('deleteBtn').addEventListener('click', () => {
+  //             if (auth.currentUser) {
+  //                 auth.currentUser.delete().then(() => {
+  //                     console.log("User deleted");
+  //                 }).catch((error) => {
+  //                     console.error("Error deleting user:", error);
+  //                 });
+  //             }
+  //         });
