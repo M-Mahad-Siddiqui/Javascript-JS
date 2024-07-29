@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Upload Image to Firebase</title>
+    <style>
+        img {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #imageContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Upload Image to Firebase</h1>
+    <input type="file"
+           id="imageUpload" />
+    <button id="uploadImage">Upload Image</button>
+
+    <div id="imageContainer">Images show here</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+        import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-storage.js";
+        import { getDatabase, ref as dbRef, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBj0HT4W4aARblxeg9-jgehUpzhGCdlR8I",
+            authDomain: "e-store-a0ade.firebaseapp.com",
+            projectId: "e-store-a0ade",
+            storageBucket: "e-store-a0ade.appspot.com",
+            messagingSenderId: "354313090658",
+            appId: "1:354313090658:web:54b4d2dbe442568264833b",
+            measurementId: "G-3VPMX53SC0",
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+        const database = getDatabase(app);
+
+        // Function to handle image upload
+        document.getElementById('uploadImage').addEventListener('click', () => {
+            const fileInput = document.getElementById('imageUpload');
+            const file = fileInput.files[0];
+            if (file) {
+                const storageRef = ref(storage, 'images/' + file.name);
+                const uploadTask = uploadBytesResumable(storageRef, file);
+
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        // Progress function
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                    },
+                    (error) => {
+                        // Error function
+                        console.error('Upload failed:', error);
+                    },
+                    async () => {
+                        // Complete function
+                        try {
+                            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                            console.log('File available at', downloadURL);
+
+                            // Save image metadata to Firebase Realtime Database
+                            const newImageRef = dbRef(database, 'images/' + Date.now());
+                            await set(newImageRef, {
+                                url: downloadURL,
+                                name: file.name,
+                                timestamp: Date.now()
+                            });
+
+                            console.log('Metadata saved successfully');
+                            // Update the UI with the new image
+                            displayImages();
+                        } catch (error) {
+                            console.error('Failed to save metadata:', error);
+                        }
+                    }
+                );
+            } else {
+                alert('No file selected');
+            }
+        });
+
+        // Function to display images
+        function displayImages() {
+            const imageContainer = document.getElementById('imageContainer');
+            // Clear the existing images
+            imageContainer.innerHTML = '';
+
+            const imagesRef = dbRef(database, 'images/');
+            onValue(imagesRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    snapshot.forEach((childSnapshot) => {
+                        const imageData = childSnapshot.val();
+                        if (imageData.url) {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = imageData.url;
+                            imgElement.alt = imageData.name;
+                            imgElement.onload = () => console.log('Image loaded:', imageData.url);
+                            imgElement.onerror = () => console.error('Error loading image:', imageData.url);
+                            imageContainer.appendChild(imgElement);
+                        } else {
+                            console.error('No URL found for image data:', imageData);
+                        }
+                    });
+                } else {
+                    imageContainer.innerHTML = 'No images found.';
+                }
+            }, (error) => {
+                console.error('Failed to retrieve images:', error);
+            });
+        }
+
+        // Load images on page load and update on new uploads
+        window.onload = displayImages;
+    </script>
+</body>
+
+</html>
