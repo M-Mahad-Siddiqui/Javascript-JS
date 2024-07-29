@@ -8,6 +8,7 @@
 </head>
 <body>
     <div id="app">
+        <!--  Login / Signup -->
         <div id="login-container">
             <h1>Login / Signup</h1>
             <input type="email" id="email" placeholder="Email">
@@ -16,18 +17,20 @@
             <button onclick="signup()">Signup</button>
         </div>
 
-        <div id="profile-container" style="display: none;">
+        <!--  Profile -->
+        <div id="profile-container" style="display:block ;">
             <h1 id="welcome-message"></h1>
             <img id="profile-picture" src="default-pic.jpg" alt="Profile Picture" width="100" height="100">
             <input type="file" id="new-profile-pic" accept="image/*">
             <button onclick="uploadProfilePic()">Upload Profile Pic</button>
             <button onclick="toggleProfilePopup()">Profile</button>
-            <div id="profile-popup" style="display: none;">
+            <div id="profile-popup" style="display: block;">
                 <button onclick="logout()">Logout</button>
                 <button onclick="toggleProfilePopup()">Close</button>
             </div>
         </div>
 
+        <!--  Add Food Item cart or post-->
         <div id="input-section" style="display: none;">
             <h2>Add a Food Item</h2>
             <input type="text" id="title" placeholder="Title">

@@ -50,9 +50,12 @@
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const storage = getStorage(app);
 
+        const storage = getStorage(app);
+        const storageRef = ref(storage);
+        const db = getFirestore(app);
+
+        // collection banayei hy url ko db mai save karnay ky liye end mai dhekhu
         const carsCollection = collection(db, "cars");
         console.log("storage=>", storage);
 
@@ -68,18 +71,18 @@
 
             const carStorageRef = ref(storage, car_img.files[0].name);
 
-            //upload file to the storage
+            //1-upload file to the storage
             save_file.disabled = true;
             uploadBytes(carStorageRef, car_img.files[0])
                 .then((snapshot) => {
                     console.log("Uploaded  file!");
 
-                    // get url from the same storage ref
+                    //2- get url from the same storage ref
                     getDownloadURL(carStorageRef)
                         .then((url) => {
-                            console.log("url=>", url);
+                            console.log("url=>", url);  //->images ki ulr agyi hy storage sy
 
-                            //add url + category to the db
+                            //3- add url + category = obj to the db of fireStorage 
                             addDoc(carsCollection, { url, category: "car" }).then(() => {
                                 console.log("Document updated to the DB");
                                 getImagesFromDB();

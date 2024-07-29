@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
     createUserWithEmailAndPassword,
+    deleteUser,
     getAuth,
     onAuthStateChanged,
     signInWithEmailAndPassword,
@@ -43,6 +44,7 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 
 export {
-    addDoc, auth, collection, createUserWithEmailAndPassword, db, deleteDoc, doc, getDoc, getDocs, getDownloadURL, onAuthStateChanged, ref, setDoc, signInWithEmailAndPassword,
+    addDoc, auth, collection, createUserWithEmailAndPassword, db, deleteDoc, deleteUser, doc, getDoc, getDocs, getDownloadURL, onAuthStateChanged, ref, setDoc, signInWithEmailAndPassword,
     signOut, storage, updateDoc, uploadBytes
 };
+
