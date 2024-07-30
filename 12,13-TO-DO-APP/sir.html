@@ -16,47 +16,48 @@
 </body>
 
 <script>
-    
-        // var body = document.getElementsByTagName('body')
 
-        // console.log("body=>", body[0].children[0].children[0])
+    // var body = document.getElementsByTagName('body')
+
+    // console.log("body=>", body[0].children[0].children[0])
 
 
-        var btn = document.getElementById('addBtn')
-        var historyDiv = document.getElementById('historyDiv')
-        var todo = document.getElementById('todo')
+    var btn = document.getElementById('addBtn')
+    var historyDiv = document.getElementById('historyDiv')
+    var todo = document.getElementById('todo')
 
-        btn.addEventListener('click', function () {
-            if (todo.value.trim() === '') return alert('Please add todo.')
+    btn.addEventListener('click', function () {
+        if (todo.value.trim() === '') return alert('Please add todo.')
 
-            var now = new Date()
-            var time = now.toLocaleTimeString()
+        var now = new Date()
+        var time = now.toLocaleTimeString()
 
-            var li = `<li>${todo.value.trim()} ${time} <button onclick = "console.log(this.parentNode.remove())">Del </button>  </li>`
-            historyDiv.innerHTML += li
+        var li = `<li>${todo.value.trim()} ${time} <button onclick = "console.log(this.parentNode.remove())">Del </button>  </li>`
+        historyDiv.innerHTML += li
 
-            todo.value = ''
+        todo.value = ''
 
-        })
+    })
+    // addBtn.addEventListener("click", function(){
+    // var li = document.createElement("li");
+    // var text = document.createTextNode(input.value);
+    // li.appendChild(text);
+    // list.appendChild(li);
+    // input.value = "";
+
+    // del.addEventListener("click", function(){
+    // list.removeChild(li);
+    // });
+
+    // edit.addEventListener("click", function(){
+    // input.value = li.firstChild.nodeValue;
+    // list.removeChild(li);
+    // });
+    // });
+
+    // deleteAllBtn.addEventListener("click", function(){
+    // list.innerHTML = "";
+    // });
 </script>
+
 </html>
-// addBtn.addEventListener("click", function(){
-// var li = document.createElement("li");
-// var text = document.createTextNode(input.value);
-// li.appendChild(text);
-// list.appendChild(li);
-// input.value = "";
-
-// del.addEventListener("click", function(){
-// list.removeChild(li);
-// });
-
-// edit.addEventListener("click", function(){
-// input.value = li.firstChild.nodeValue;
-// list.removeChild(li);
-// });
-// });
-
-// deleteAllBtn.addEventListener("click", function(){
-// list.innerHTML = "";
-// });
