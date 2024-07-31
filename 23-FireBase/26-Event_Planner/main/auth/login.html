@@ -20,7 +20,7 @@
 
 <body>
 
-    <div class="py-16">
+    <div class="py-16 bg-gray-200">
         <div class="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
             <div class="hidden lg:block lg:w-1/2 bg-cover"
                  style="background-image:url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80')">
@@ -68,8 +68,7 @@
                            type="password"
                            id="password-in" />
                 </div>
-                <div class="mt-8"
-                     id="signInbtn">
+                <div class="mt-8">
                     <button id="signInBtn"
                             class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Login</button>
                 </div>
@@ -83,8 +82,88 @@
             </div>
         </div>
     </div>
-    <script type="module"
-            src="auth.js"></script>
+
+    <Script type="module">
+        import { auth, signInWithEmailAndPassword } from "../utils/utils.js"; // Adjust the path as needed
+
+        // Function to handle sign-in
+        const emailInput = document.getElementById("email-in");
+        const passwordInput = document.getElementById("password-in");
+        const signInError = document.getElementById("signInError");
+        const signInBtn = document.getElementById("signInBtn");
+
+        signInBtn.addEventListener("click", async (e) => {
+            e.preventDefault(); // Prevent default form submission
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!email || !password) {
+                signInError.innerText = "Please enter both email and password.";
+                emailInput.focus();
+                return;
+            }
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                console.log("User signed in:", userCredential.user);
+                window.location.href = '../index.html';
+            } catch (error) {
+                const errorMessage = error.message;
+                console.error("Sign-in error:", errorMessage);
+                signInError.innerText = "Failed to sign in. Please check your credentials and try again.";
+            }
+        });
+
+    </Script>
+
+
+
+    <!-- The primary difference between using async/await and .then() lies in the way asynchronous code is handled and written in
+    JavaScript. Both methods achieve similar outcomes, but they offer different styles and advantages. Here’s a detailed
+    comparison: -->
+
+    <!-- 1.......      async / await Syntax
+    Syntax: async / await allows you to write asynchronous code that looks more like synchronous code, which can be easier to read and maintain.
+    Error Handling: Use try/catch blocks to handle errors, making it look more like synchronous code error handling.
+        Example:  -->
+
+    <!--------------------------------  async / await Syntax  ------------------------------------------------- >
+            async function signIn() {
+                try {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    console.log("User signed in:", userCredential.user);
+                    //Handle successful sign-in
+                } catch (error) {
+                    console.error("Sign-in error:", error.message);
+                    signInError.innerText = "Failed to sign in. Please check your credentials and try again.";
+                }
+            }
+            signIn();-->
+            
+    <!---  2...............     .then() Syntax
+      Syntax: .then() chains promises and is the traditional way to handle asynchronous operations in JavaScript.It uses a callback - based approach.
+      Error Handling: Use.catch() to handle errors, which is similar to handling errors in a callback function.
+    Example: -->
+
+    <!--------------------------------------  .then() Syntax  ------------------------------------------------- >
+    <!--signInWithEmailAndPassword(auth, email, password) 
+               .then((userCredential) => {
+                    console.log("User signed in:", userCredential.user);
+                    // Handle successful sign-in
+                })
+                .catch((error) => {
+                    console.error("Sign-in error:", error.message);
+                    signInError.innerText = "Failed to sign in. Please check your credentials and try again.";
+                }); -->
+
+    <!--Key Differences Readability:Error Handling:Control Flow: Debugging: -->
+    <!--In summary, both methods are valid and can be used based on the context and your preference.Modern JavaScript development often favors async / await for its readability and ease of use,
+     but.then() is still widely used and effective, especially for simpler cases or existing codebases. -->
+
+
+
+
 </body>
 
 </html>
