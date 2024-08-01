@@ -31,7 +31,7 @@ signUpForm.addEventListener("submit", async (e) => {
 
   // Create an object from the form data
   const userInfo = Object.fromEntries(formData.entries()); // {email: 'abc@gmail.com', password: '123456', name: 'abc', file: File { ... }}
-  console.log("user=>", userInfo);
+  console.log("userinfo=>", userInfo);
 
   // Get the file input
   const fileInput = document.getElementById("fileUpload");
@@ -70,13 +70,14 @@ signUpForm.addEventListener("submit", async (e) => {
     // Add the image URL to the user object
     userInfo.url = url;
 
-    // Save user data to Firestore
+    // Save user data to FireStore
     const userRef = doc(db, "users", userCredential.user.uid);
     await setDoc(userRef, userInfo);
     console.log("User object data saved to Firestore");
     window.location.href = "../index.html";
     document.getElementById("signUpBtn").disabled = false;
     document.getElementById("signUpBtn").innerText = "Sign up"; // Re-enable the button and change the text
+    
   } catch (error) {
     const errorMessage = error.message;
     signUpError.textContent = errorMessage; // Display the error message
@@ -84,4 +85,3 @@ signUpForm.addEventListener("submit", async (e) => {
     document.getElementById("signUpBtn").innerText = "Sign up";
   }
 });
-
