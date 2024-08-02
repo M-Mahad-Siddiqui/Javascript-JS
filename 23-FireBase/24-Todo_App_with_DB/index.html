@@ -134,7 +134,7 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-        import { getFirestore, collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+        import { getFirestore, collection, doc, getDocs, addDoc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyC3NbSRMiqsYs1XHwR09uERY8N-6cr9J4E",
@@ -145,7 +145,6 @@
             appId: "1:178419087334:web:d121a758743f3378a14827",
             measurementId: "G-LT5TJHZWZ4"
         };
-
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
@@ -153,7 +152,7 @@
         const db = getFirestore(app);
         // console.log(db);
 
-        // simple example to add number to DB
+        // ------------------------------------ simple example to add number to DB -----------------------------------------  
         // let numberCollection = collection(db, "numbers");
         // async function addNumberToDB() {
         //     try {
@@ -166,6 +165,25 @@
         //     }
         // }
         // addNumberToDB()
+
+        // ------------------------------------ function to add number to DB ------------------------------------------------
+        const generateRandomNumber = (min = 0, max = 1000000) => Math.floor(Math.random() * (max - min + 1)) + min;  // Function to generate a random number within a given range
+        const obj = {
+            number: generateRandomNumber(),
+            date: new Date(),
+        };
+
+        async function addNumberToDatabase() {              // Function to add a number to the Firestore database
+            const numberCollection = collection(db, 'numbers');  // first we need to get a reference to the collection
+            try {
+                const docRef = await addDoc(numberCollection, obj); // then we need to add a document to the collection
+                console.log(`Document written with ID: ${docRef.id}`);
+            } catch (error) {
+                console.error("Error adding document to the database:", error);
+            }
+        }
+        addNumberToDatabase();
+
 
         const todoCollection = collection(db, "todos");
         const todoList = document.getElementById("todo_list");

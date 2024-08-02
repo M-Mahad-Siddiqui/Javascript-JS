@@ -261,7 +261,151 @@
             signUpContainer.classList.add('hidden');
             signInContainer.classList.remove('hidden');
         });
+
+        // update verion of JS downwards
     </script>
+
+
+    <!-- <script type="module">
+      // -----------------------FireBase Utility Functions-----------------------
+        // import { firebase } from "./firebase.js";
+        // const auth = firebase.auth();
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCvFVIs2b5ChcAEk9g5Jz8h23QYpIPRdk0",
+            authDomain: "first-project-athentication.firebaseapp.com",
+            projectId: "first-project-athentication",
+            storageBucket: "first-project-athentication.appspot.com",
+            messagingSenderId: "694589556541",
+            appId: "1:694589556541:web:5e1c584bc1e4d133e76754",
+            measurementId: "G-QKH91FQBSR"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+    // Define containers
+        const signUpContainer = document.querySelector('.sign_up');
+        const signInContainer = document.querySelector('.login');
+        const userContainer = document.querySelector('.userContainer');
+
+        // Helper function to show an error message
+        const showError = (message, elementId) => {
+            document.getElementById(elementId).innerText = message;
+        };
+
+        // Helper function to show or hide elements
+        const toggleVisibility = (element, isVisible) => {
+            element.classList.toggle('hidden', !isVisible);
+        };
+
+        // Authentication Functions
+        const signUp = async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email-up').value.trim();
+            const password = document.getElementById('password-up').value.trim();
+
+            if (!email || !password) {
+                return showError("Please add data kr yar", 'signupErrorMessage');
+            }
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                console.log("User created:", user);
+
+                // Show dashboard
+                toggleVisibility(signUpContainer, false);
+                toggleVisibility(userContainer, true);
+                document.getElementById('userEmail').innerText = user.email;
+            } catch (error) {
+                showError(`Sign-up Error: ${error.message}`, 'signupErrorMessage');
+            }
+        };
+
+        const signIn = async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email-in').value.trim();
+            const password = document.getElementById('password-in').value.trim();
+
+            if (!email || !password) {
+                return showError("Please add data", 'signinErrorMessage');
+            }
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                console.log("User signed in:", user);
+
+                // Show dashboard
+                toggleVisibility(signInContainer, false);
+                toggleVisibility(userContainer, true);
+                document.getElementById('userEmail').innerText = user.email;
+            } catch (error) {
+                showError(`Sign-in Error: ${error.message}`, 'signinErrorMessage');
+            }
+        };
+
+        const signOutUser = async () => {
+            try {
+                await signOut(auth);
+                toggleVisibility(userContainer, false);
+                toggleVisibility(signInContainer, true);
+                toggleVisibility(signUpContainer, false);
+            } catch (error) {
+                showError(`Sign-out Error: ${error.message}`, 'signupErrorMessage'); // Adjust as needed
+            }
+        };
+
+        const deleteUserAccount = async () => {
+            try {
+                if (auth.currentUser) {
+                    await auth.currentUser.delete();
+                    console.log("User deleted");
+                }
+            } catch (error) {
+                showError(`Delete Error: ${error.message}`, 'signupErrorMessage'); // Adjust as needed
+            }
+        };
+
+        const handleAuthStateChange = (user) => {
+            if (user) {
+                toggleVisibility(userContainer, true);
+                toggleVisibility(signInContainer, false);
+                toggleVisibility(signUpContainer, false);
+                document.getElementById('userEmail').innerText = user.email;
+            } else {
+                toggleVisibility(userContainer, false);
+                toggleVisibility(signUpContainer, true);
+                toggleVisibility(signInContainer, false);
+            }
+        };
+
+        // Attach event listeners
+        document.getElementById('signup').addEventListener('click', signUp);
+        document.getElementById('login').addEventListener('click', signIn);
+        document.getElementById('logoutBtn').addEventListener('click', signOutUser);
+        document.getElementById('deleteBtn').addEventListener('click', deleteUserAccount);
+
+        document.getElementById('signUpBtn').addEventListener('click', () => {
+            toggleVisibility(signInContainer, false);
+            toggleVisibility(signUpContainer, true);
+        });
+
+        document.getElementById('signinBtn').addEventListener('click', () => {
+            toggleVisibility(signUpContainer, false);
+            toggleVisibility(signInContainer, true);
+        });
+
+        // Check authentication state
+        onAuthStateChanged(auth, handleAuthStateChange);
+    </script> -->
+
 </body>
 
 </html>
