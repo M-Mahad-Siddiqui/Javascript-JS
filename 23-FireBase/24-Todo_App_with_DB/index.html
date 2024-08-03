@@ -167,22 +167,22 @@
         // addNumberToDB()
 
         // ------------------------------------ function to add number to DB ------------------------------------------------
-        const generateRandomNumber = (min = 0, max = 1000000) => Math.floor(Math.random() * (max - min + 1)) + min;  // Function to generate a random number within a given range
-        const obj = {
-            number: generateRandomNumber(),
-            date: new Date(),
-        };
+        // const generateRandomNumber = (min = 0, max = 1000000) => Math.floor(Math.random() * (max - min + 1)) + min;  // Function to generate a random number within a given range
+        // const obj = {
+        //     number: generateRandomNumber(),
+        //     date: new Date(),
+        // };
 
-        async function addNumberToDatabase() {              // Function to add a number to the Firestore database
-            const numberCollection = collection(db, 'numbers');  // first we need to get a reference to the collection
-            try {
-                const docRef = await addDoc(numberCollection, obj); // then we need to add a document to the collection
-                console.log(`Document written with ID: ${docRef.id}`);
-            } catch (error) {
-                console.error("Error adding document to the database:", error);
-            }
-        }
-        addNumberToDatabase();
+        // async function addNumberToDatabase() {              // Function to add a number to the Firestore database
+        //     const numberCollection = collection(db, 'numbers');  // first we need to get a reference to the collection
+        //     try {
+        //         const docRef = await addDoc(numberCollection, obj); // then we need to add a document to the collection
+        //         console.log(`Document written with ID: ${docRef.id}`);
+        //     } catch (error) {
+        //         console.error("Error adding document to the database:", error);
+        //     }
+        // }
+        // addNumberToDatabase();
 
 
         const todoCollection = collection(db, "todos");
@@ -190,6 +190,39 @@
         const todo_input = document.getElementById("todo_input");
         const add_todo = document.getElementById("add_todo");
         const delete_All = document.getElementById("delete_All");
+
+        // Function to add todo
+        add_todo.addEventListener("click", async () => {
+            try {
+                const todoText = todo_input.value.trim();
+                if (todoText === "") return;
+
+                const obj = {
+                    todo: todoText,
+                    createdAt: new Date().toLocaleString(),
+                };
+                // const docRef = await addDoc(todoCollection, obj);
+                await addDoc(todoCollection, obj);
+                todo_input.value = ""; // Clear input field after adding todo
+                getTodos(); // Refresh the list after adding todo
+            } catch (e) {
+                console.error("Error adding todo: ", e);
+            }
+        });
+
+        // Function to delete all todos
+        delete_All.addEventListener("click", async () => {
+            try {
+                const querySnapshot = await getDocs(todoCollection);
+                querySnapshot.forEach(async (doc) => {
+                    await deleteDoc(doc.ref);
+                });
+                // Clear the list after deleting all todos
+                todoList.innerHTML = "";
+            } catch (e) {
+                console.error("Error deleting all todos: ", e);
+            }
+        });
 
         // Function to get all todos
         async function getTodos() {
@@ -219,98 +252,38 @@
                 console.error("Error fetching todos: ", e);
             }
         }
-
         // Initial fetch of todos
         getTodos();
 
-        // Function to delete all todos
-        delete_All.addEventListener("click", async () => {
-            try {
-                const querySnapshot = await getDocs(todoCollection);
-                querySnapshot.forEach(async (doc) => {
-                    await deleteDoc(doc.ref);
-                });
-                // Clear the list after deleting all todos
-                todoList.innerHTML = "";
-            } catch (e) {
-                console.error("Error deleting all todos: ", e);
-            }
-        });
-
-        // Function to add todo
-        add_todo.addEventListener("click", async () => {
-            try {
-                const todoText = todo_input.value.trim();
-                if (todoText === "") return;
-
-                const obj = {
-                    todo: todoText,
-                    createdAt: new Date().toLocaleString(),
-                };
-                // const docRef = await addDoc(todoCollection, obj);
-                await addDoc(todoCollection, obj);
-                todo_input.value = ""; // Clear input field after adding todo
-                getTodos(); // Refresh the list after adding todo
-            } catch (e) {
-                console.error("Error adding todo: ", e);
-            }
-        });
-
         // Function to handle update todo
-        function handleUpdate(event) {
-            const btn = event.target;
-            const docId = btn.getAttribute("data-id");
+            async function handleUpdate(event) {
+                try {
+                    // Get the document ID from the element's data attribute
+                    const docId = event.target.getAttribute("data-id");
+                    // Prompt the user for updated todo text
+                    const updatedTodo = prompt("Enter updated todo:");
 
-            // Prompt the user for updated todo text
-            const updatedTodo = prompt("Enter updated todo:");
+                    // Check if the user clicked "Cancel" or entered an empty string
+                    if (updatedTodo === null || updatedTodo.trim() === "") {
+                        alert("Todo not updated. Please enter a valid todo.");
+                        return;
+                    }
+                    // Create a reference to the document in the "todos" collection
+                    const docRef = doc(db, "todos", docId);
+                    // Update the document with the new todo text
+                    const updatedObj = { todo: updatedTodo };
+                    await updateDoc(docRef, updatedObj);
 
-            if (updatedTodo !== null) { // User clicked OK in the prompt
-                updateTodoInFirestore(docId, updatedTodo);
+                    // Refresh the list of todos
+                    await getTodos();
+                } catch (error) {
+                    // Log errors to the console
+                    console.error("Error updating todo: ", error);
+                }
             }
-        }
 
-        // Function to update todo in Firestore
-        async function updateTodoInFirestore(docId, updatedTodo) {
-            try {
-                await updateDoc(doc(todoCollection, docId), { todo: updatedTodo });
-                getTodos(); // Refresh the list after updating todo
-            } catch (error) {
-                console.error("Error updating todo: ", error);
-            }
-        }
-
-        // Function to handle delete todo
-        function handleDelete(event) {
-            const btn = event.target;
-            const docId = btn.getAttribute("data-id");
-            deleteTodoFromFirestore(docId);
-        }
-
-        // // function to delete todo
-        // async function deleteTodo(e) {
-        //     try {
-        //         const docId = e.target.id;
-        //         const docCollection = doc(db, "todos", docId);
-        //         const docRef = await deleteDoc(docCollection);
-        //         getTodos();
-        //         console.log("Document deleted=>", docRef);
-        //     } catch (e) {
-        //         console.log(e);
-        //     }
-        // }
-
-        // Function to delete todo from Firestore
-        async function deleteTodoFromFirestore(docId) {
-            try {
-                await deleteDoc(doc(todoCollection, docId));
-                getTodos(); // Refresh the list after deleting todo
-            } catch (e) {
-                console.error("Error deleting todo: ", e);
-            }
-        }
-
-        //       // Function to update todo
-        // async function updateTodo(event) {
+        // // Function to update todo
+        // async function handleUpdate(event) {
         //     try {
         //         const btn = event.target;
         //         const docId = btn.getAttribute("data-id");
@@ -323,14 +296,48 @@
         //     }
         // }
 
-        // // Function to delete todo
-        // async function deleteTodo(event) {
+
+
+        // Function to delete todo
+        async function handleDelete(e) {
+            try {
+                // Get the document ID from the element's ID attribute
+                const docId = e.target.getAttribute("data-id");
+                // Create a reference to the document in the "todos" collection
+                const docRef = doc(db, "todos", docId);
+                await deleteDoc(docRef);
+                await getTodos();
+                console.log("Document deleted successfully");
+            } catch (error) {
+                console.error("Error deleting document: ", error);
+            }
+        }
+
+
+        // usedless both one is same and other function not delete because to see that you can used your adddoc collection also in delete function not see again
+        // // // Function to delete todo
+        // async function handleDelete(e) {
         //     try {
-        //         const btn = event.target;
-        //         const docId = btn.getAttribute("data-id");
+        //         const docId = e.target.getAttribute("data-id");
 
         //         await deleteDoc(doc(todoCollection, docId));
         //         getTodos(); // Refresh the list after deleting todo
+        //     } catch (e) {
+        //         console.error("Error deleting todo: ", e);
+        //     }
+        // }
+
+        // // Function to handle delete todo
+        // function handleDelete(event) {
+        //     const docId = event.target.getAttribute("data-id");
+        //     deleteTodoFromFirestore(docId);
+        // }
+        // // Function to delete todo from Firestore
+        // async function deleteTodoFromFirestore(docId) {
+        //     try {
+        // const docRef = doc(db, "todos", docId);
+        //         await deleteDoc(docRef);
+        //         getTodos();
         //     } catch (e) {
         //         console.error("Error deleting todo: ", e);
         //     }
