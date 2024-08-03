@@ -185,11 +185,11 @@
         // addNumberToDatabase();
 
 
-        const todoCollection = collection(db, "todos");
         const todoList = document.getElementById("todo_list");
         const todo_input = document.getElementById("todo_input");
         const add_todo = document.getElementById("add_todo");
         const delete_All = document.getElementById("delete_All");
+        const todoCollection = collection(db, "todos");
 
         // Function to add todo
         add_todo.addEventListener("click", async () => {
@@ -201,9 +201,9 @@
                     todo: todoText,
                     createdAt: new Date().toLocaleString(),
                 };
-                // const docRef = await addDoc(todoCollection, obj);
-                await addDoc(todoCollection, obj);
-                todo_input.value = ""; // Clear input field after adding todo
+                const docRef = await addDoc(todoCollection, obj);
+                console.log(`Document written with ID: ${docRef.id}`);
+                todo_input.value = "";
                 getTodos(); // Refresh the list after adding todo
             } catch (e) {
                 console.error("Error adding todo: ", e);
@@ -230,7 +230,7 @@
                 const querySnapshot = await getDocs(todoCollection);
                 todoList.innerHTML = "";
                 querySnapshot.forEach((doc) => {
-                    const todoData = doc.data();
+                    const todoData = doc.data();  // <=  easy way instead of this :`${doc.id}: ${JSON.stringify(doc.data())}`;
                     const li = document.createElement("li");
                     li.innerHTML = `
                         <input type="text" value="${todoData.todo}" />
@@ -256,31 +256,31 @@
         getTodos();
 
         // Function to handle update todo
-            async function handleUpdate(event) {
-                try {
-                    // Get the document ID from the element's data attribute
-                    const docId = event.target.getAttribute("data-id");
-                    // Prompt the user for updated todo text
-                    const updatedTodo = prompt("Enter updated todo:");
+        async function handleUpdate(event) {
+            try {
+                // Get the document ID from the element's data attribute
+                const docId = event.target.getAttribute("data-id");
+                // Prompt the user for updated todo text
+                const updatedTodo = prompt("Enter updated todo:");
 
-                    // Check if the user clicked "Cancel" or entered an empty string
-                    if (updatedTodo === null || updatedTodo.trim() === "") {
-                        alert("Todo not updated. Please enter a valid todo.");
-                        return;
-                    }
-                    // Create a reference to the document in the "todos" collection
-                    const docRef = doc(db, "todos", docId);
-                    // Update the document with the new todo text
-                    const updatedObj = { todo: updatedTodo };
-                    await updateDoc(docRef, updatedObj);
-
-                    // Refresh the list of todos
-                    await getTodos();
-                } catch (error) {
-                    // Log errors to the console
-                    console.error("Error updating todo: ", error);
+                // Check if the user clicked "Cancel" or entered an empty string
+                if (updatedTodo === null || updatedTodo.trim() === "") {
+                    alert("Todo not updated. Please enter a valid todo.");
+                    return;
                 }
+                // Create a reference to the document in the "todos" collection
+                const docRef = doc(db, "todos", docId);
+                // Update the document with the new todo text
+                const updatedObj = { todo: updatedTodo };
+                await updateDoc(docRef, updatedObj);
+
+                // Refresh the list of todos
+                await getTodos();
+            } catch (error) {
+                // Log errors to the console
+                console.error("Error updating todo: ", error);
             }
+        }
 
         // // Function to update todo
         // async function handleUpdate(event) {
@@ -342,6 +342,9 @@
         //         console.error("Error deleting todo: ", e);
         //     }
         // }
+
+        // await in a Non - Async Function: The await keyword is used inside a function that is not declared as async.
+        // You need to mark the function as async to use await correctly
     </script>
 
 </body>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Smart Form</title>
+    <style>
+        /* Your existing CSS styles */
+        .container {
+            margin: 0 auto;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30rem;
+            background-color: rgb(182, 235, 189);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px 0 rgba(7, 9, 9, 0.6);
+        }
+
+        input {
+            margin: 0.4rem;
+            padding: 0.9rem;
+            border-radius: 0.4rem;
+            font-size: 1rem;
+            border: none;
+            outline: none;
+            width: 85%;
+        }
+
+        input:focus {
+            box-shadow: 0 0 10px 0 rgba(8, 194, 204, 0.9);
+        }
+
+        label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0.4rem;
+            font-family: sans-serif;
+            color: rgb(111, 90, 90);
+            align-self: flex-start;
+        }
+
+        #submit {
+            background-color: rgb(16, 145, 36);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            width: 91%;
+            margin: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        #submit:hover {
+            background-color: rgb(7, 88, 7);
+        }
+
+        #submit:active {
+            background-color: rgb(3, 59, 3);
+        }
+
+        .display {
+            background: #d3d8b4;
+            width: 50%;
+            margin: 0 auto;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px 0 rgba(7, 9, 9, 0.6);
+        }
+
+        .display h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin: 1rem 0;
+        }
+
+        .display span {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: rgb(111, 90, 90);
+        }
+
+        #back {
+            background-color: rgb(108, 193, 97);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            width: 91%;
+            margin: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #back:hover {
+            background-color: rgb(50, 212, 50);
+        }
+
+        #back:active {
+            background-color: rgb(5, 145, 5);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form id="userForm">
+            <label for="input_name">Your Name :</label>
+            <input type="text"
+                   id="input_name"
+                   required
+                   class="userValues"
+                   placeholder="Enter your name">
+
+            <label for="input_email">Email :</label>
+            <input type="email"
+                   id="input_email"
+                   required
+                   class="userValues"
+                   placeholder="Enter your email">
+
+            <label for="input_password">Password :</label>
+            <input type="password"
+                   id="input_password"
+                   required
+                   class="userValues"
+                   placeholder="Enter your password">
+
+            <label for="input_address">Address :</label>
+            <input type="text"
+                   id="input_address"
+                   required
+                   class="userValues"
+                   placeholder="Enter your address">
+
+            <button id="submit"
+                    type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="display hidden">
+        <h1>Display</h1>
+        <p>Name: <span id="display_name"></span></p>
+        <p>Email: <span id="display_email"></span></p>
+        <p>Password: <span id="display_password"></span></p>
+        <p>Address: <span id="display_address"></span></p>
+        <button id="back">Back</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC3NbSRMiqsYs1XHwR09uERY8N-6cr9J4E",
+            authDomain: "firestore-db-bc14d.firebaseapp.com",
+            projectId: "firestore-db-bc14d",
+            storageBucket: "firestore-db-bc14d.appspot.com",
+            messagingSenderId: "178419087334",
+            appId: "1:178419087334:web:d121a758743f3378a14827",
+            measurementId: "G-LT5TJHZWZ4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        const validateInputs = () => {
+            const [name, email, password, address] = document.querySelectorAll('.userValues');
+            if (!name.value || !email.value || !password.value || !address.value) {
+                alert("Please fill all the fields");
+                return false;
+            }
+            return true;
+        };
+
+        //    const inputs = document.querySelectorAll('.container input');
+        //     const validateInputs = () => {
+        //         for (let input of inputs) {
+        //             if (input.value.trim() === '') {
+        //                 alert("Please fill all the fields");
+        //                 return false;
+        //             }
+        //         }
+        //         return true;
+        //     };
+
+        const toggleVisibility = (element, isVisible) => {
+            element.classList.toggle('hidden', !isVisible);
+        };
+
+        window.onload = () => {
+            toggleVisibility(document.querySelector('.display'), false);
+            toggleVisibility(document.querySelector('.container'), true);
+        };
+
+        const [container, display] = document.querySelectorAll('.container, .display');
+        // const [backBtn, submitBtn] = document.querySelectorAll('#back, #submit');
+        const backBtn = document.getElementById('back');
+        const submitBtn = document.getElementById('submit');
+
+        backBtn.addEventListener('click', () => {
+            toggleVisibility(display, false);
+            toggleVisibility(container, true);
+        });
+
+        document.getElementById('userForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            if (validateInputs()) {
+                await insertData();
+                await displayData();
+                toggleVisibility(container, false);
+                toggleVisibility(display, true);
+                clearInputs();  // Clear input fields after submission
+            }
+        });
+
+        const insertData = async () => {
+            const [name, email, password, address] = document.querySelectorAll('.userValues');
+            const userData = { name: name.value, email: email.value, password: password.value, address: address.value };
+
+            try {
+                await addDoc(collection(db, "userData"), userData);
+                console.log("Document successfully written!");
+            } catch (error) {
+                console.error("Error adding document: ", error);
+            }
+        };
+
+        // const displaySpans = document.querySelectorAll('.display span');
+
+        const displayData = async () => {
+            try {
+                const querySnapshot = await getDocs(collection(db, "userData"));
+                const [displayName, displayEmail, displayPassword, displayAddress] = document.querySelectorAll('#display_name, #display_email, #display_password, #display_address');
+
+                // Clear display elements before updating
+                displayName.textContent = '';
+                displayEmail.textContent = '';
+                displayPassword.textContent = '';
+                displayAddress.textContent = '';
+
+                querySnapshot.forEach(doc => {
+                    const { name, email, password, address } = doc.data();
+                    displayName.textContent = name;
+                    displayEmail.textContent = email;
+                    displayPassword.textContent = password;
+                    displayAddress.textContent = address;
+                });
+                // querySnapshot.forEach(doc => {
+                //     const data = doc.data();
+                //     displaySpans[0].innerText = data.name;
+                //     displaySpans[1].innerText = data.email;
+                //     displaySpans[2].innerText = data.password;
+                //     displaySpans[3].innerText = data.address;
+                // });
+            } catch (error) {
+                console.error("Error retrieving document: ", error);
+            }
+        };
+
+        const clearInputs = () => {
+            document.querySelectorAll('.userValues').forEach(input => input.value = '');
+        };
+    </script>
+</body>
+
+</html>
