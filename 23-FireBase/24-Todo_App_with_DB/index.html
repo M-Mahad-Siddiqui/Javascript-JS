@@ -210,10 +210,11 @@
             }
         });
 
-        // Function to delete all todos
+        // // Function to delete all todos
         delete_All.addEventListener("click", async () => {
             try {
                 const querySnapshot = await getDocs(todoCollection);
+
                 querySnapshot.forEach(async (doc) => {
                     await deleteDoc(doc.ref);
                 });
@@ -223,6 +224,24 @@
                 console.error("Error deleting all todos: ", e);
             }
         });
+
+        // Function to delete all todos
+        // delete_All.addEventListener("click", async () => {
+        //     try {
+        //         const querySnapshot = await getDocs(todoCollection);
+
+        //         const deletePromises = querySnapshot.docs.map(doc => {
+        //             return deleteDoc(doc(db, "todos", doc.id));  //return replace await also
+        //         });
+        //         await Promise.all(deletePromises);
+        //         todoList.innerHTML = "";
+        //         console.log("All todos have been deleted");
+        //     } catch (e) {
+        //         console.error("Error deleting all todos: ", e);
+        //     }
+        // });
+
+
 
         // Function to get all todos
         async function getTodos() {
@@ -281,6 +300,24 @@
                 console.error("Error updating todo: ", error);
             }
         }
+        //---------------example-----------------
+        // async function updateDocument(docId, newData) {
+        //         const docRef = doc(db, "collectionName", docId);
+
+        //         try {
+        //             await updateDoc(docRef, newData);
+        //             console.log("Document successfully updated");
+        //         } catch (error) {
+        //             console.error("Error updating document: ", error);
+        //         }
+        //     }
+
+        //     // Example usage
+        //     updateDocument("documentId", {
+        //         field1: "newValue1",
+        //         field2: "newValue2"
+        //     });
+
 
         // // Function to update todo
         // async function handleUpdate(event) {
@@ -313,6 +350,19 @@
             }
         }
 
+        //---------------examples to delete single doc --------------------
+        // async function deleteDocument(docId) {
+        //     const docRef = doc(db, "collectionName", docId);
+
+        //     try {
+        //         await deleteDoc(docRef);
+        //         console.log("Document successfully deleted");
+        //     } catch (error) {
+        //         console.error("Error deleting document: ", error);
+        //     }
+        // }
+        // // Example usage
+        // deleteDocument("documentId");
 
         // usedless both one is same and other function not delete because to see that you can used your adddoc collection also in delete function not see again
         // // // Function to delete todo

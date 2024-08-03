@@ -10,7 +10,7 @@
 
 <body>
     <input type="file"
-           name="file"
+           name=""
            id="car_img" />
     <button id="save_file">Save</button>
 
@@ -23,8 +23,7 @@
       /> -->
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    <script type="module">import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import {
             getFirestore,
             collection,
@@ -50,12 +49,9 @@
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-
-        const storage = getStorage(app);
-        const storageRef = ref(storage);
         const db = getFirestore(app);
+        const storage = getStorage(app);
 
-        // collection banayei hy url ko db mai save karnay ky liye end mai dhekhu
         const carsCollection = collection(db, "cars");
         console.log("storage=>", storage);
 
@@ -71,18 +67,18 @@
 
             const carStorageRef = ref(storage, car_img.files[0].name);
 
-            //1-upload file to the storage
+            //upload file to the storage
             save_file.disabled = true;
             uploadBytes(carStorageRef, car_img.files[0])
                 .then((snapshot) => {
                     console.log("Uploaded  file!");
 
-                    //2- get url from the same storage ref
+                    // get url from the same storage ref
                     getDownloadURL(carStorageRef)
                         .then((url) => {
-                            console.log("url=>", url);  //->images ki ulr agyi hy storage sy
+                            console.log("url=>", url);
 
-                            //3- add url + category = obj to the db of fireStorage 
+                            //add url + category to the db
                             addDoc(carsCollection, { url, category: "car" }).then(() => {
                                 console.log("Document updated to the DB");
                                 getImagesFromDB();
@@ -114,8 +110,7 @@
 
                 container.innerHTML += img;
             });
-        }
-    </script>
+        }</script>
 </body>
 
 </html>
