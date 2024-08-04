@@ -6,11 +6,308 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .relative {
+            position: relative;
+        }
+
+        .heart-btn,
+        .close-btn {
+            background: rgba(255, 255, 255, 0.6);
+            border: none;
+            border-radius: 50%;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .heart-btn {
+            top: 10px;
+            right: 10px;
+        }
+
+        .close-btn {
+            top: 10px;
+            right: 50px;
+            margin-right: 10px;
+
+
+            /* Adjusted for spacing from the heart button */
+        }
+
+        /* Image container */
+        .relative {
+            position: relative;
+            width: 100%;
+            /* Full width of its parent */
+        }
+
+        /* Styling for the image */
+        .relative img {
+            width: 100%;
+            height: 38rem;
+            /* Fixed height; adjust as needed */
+            object-fit: cover;
+            /* Ensure the image covers the container while maintaining its aspect ratio */
+            border-radius: 0.5rem;
+            /* Rounded corners for the image; adjust as needed */
+        }
+
+        /* Button styling */
+        .heart-btn,
+        .close-btn {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            /* Semi-transparent background */
+            border: none;
+            border-radius: 50%;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 20px;
+            /* Adjust size as needed */
+        }
+
+        .heart-btn {
+            top: 10px;
+            right: 10px;
+        }
+
+        .close-btn {
+            top: 10px;
+            right: 50px;
+            /* Adjust spacing from the heart button */
+        }
+
+        /* Text overlay styling */
+        .text-center {
+            text-align: center;
+            background-color: rgba(107, 114, 128, 0.7);
+            /* Semi-transparent background */
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0 0 0.5rem 0.5rem;
+            /* Rounded bottom corners */
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-weight: bold;
+            /* Make text bold */
+        }
+    </style>
+
 </head>
 
-<body>
+<body class="bg-gray-300">
 
-    <h1>Photo Upload gallery app under working incompleted</h1>
+    <!-- ----------------------header ---------------------- -->
+    <h1 class="text-3xl font-bold text-center text-blue-500 m-3 bg-blue-200 py-10 rounded-xl sticky "> Photo Gallery App
+        Save
+        your priceless Memories
+    </h1>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 m-5">
+        <div>
+            <label for="title"
+                   class=" block text-gray-700 text-lg font-bold mb-2">Enter the Images Title</label>
+            <input class=" text-xl bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   type="text"
+                   id="title"
+                   placeholder="Enter Title">
+        </div>
+
+        <div>
+            <label for="image"
+                   class="block text-gray-700 text-lg font-bold mb-2 ">Upload Image</label>
+            <input class="bg-gray-100  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-1"
+                   type="file"
+                   name="image"
+                   id="image">
+        </div>
+        <div>
+            <label for="button"
+                   class="block text-gray-700 text-lg font-bold mb-2 "> Submit The Image</label>
+            <button class="bg-blue-500  text-xl hover:bg-blue-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+                    type="button"
+                    id="uploadBtn">
+                Upload
+            </button>
+        </div>
+    </div>
+
+    <!-- ----------------------photos-------------------- -->
+    <!-- 2 -->
+    <!-- <div>
+         <img class="object-cover object-center w-full h-40 max-w-full rounded-lg"
+         src="https://images.unsplash.com/photo-1432462770865-65b70566d673?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80"
+         alt="gallery-photo" />
+        </div> -->
+
+
+    <div id="image-gallery"
+         class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 ">
+
+        <!-- <div class="relative">
+            <img class=" object-cover object-center w-full h-100 max-w-full rounded-t-lg"
+                 src=""
+                 alt="gallery-photo" />
+            <button class="heart-btn absolute top-2 right-2"
+                    aria-label="Like">❤️</button>
+            <button class="close-btn absolute top-2 right-12"
+                    aria-label="Close">❌</button>
+            <div class="text-center bg-gray-500 text-bold w-full p-0.5 text-white border-none rounded-b-lg"></div>
+
+        </div> -->
+
+        <!-- Images will be dynamically added here -->
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDROf6RpmmOBLjHoQgRyMrmZZfyuVU8gqc",
+            authDomain: "photosgallery-d176c.firebaseapp.com",
+            projectId: "photosgallery-d176c",
+            storageBucket: "photosgallery-d176c.appspot.com",
+            messagingSenderId: "1071735205656",
+            appId: "1:1071735205656:web:632e62a3503d940a6eb86d",
+            measurementId: "G-90TXP31P67"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        const title = document.getElementById('title');
+        const image = document.getElementById('image');
+        const uploadBtn = document.getElementById('uploadBtn');
+
+        uploadBtn.addEventListener('click', async () => {
+            try {
+                uploadBtn.disabled = true;
+                uploadBtn.innerText = 'Uploading...';
+                // Upload image to Firebase Storage
+                const file = image.files[0];
+                const storageRef = ref(storage, 'Gallery_Photos/' + file.name);
+                const snapshot = await uploadBytes(storageRef, file);
+                const url = await getDownloadURL(snapshot.ref);
+                console.log(url);
+
+                // Save URL to Firestore with custom field name
+                const docRef = await addDoc(collection(db, 'Gallery_Photos'), { image: url, title: title.value });
+                console.log('Document added with ID:', docRef.id);
+
+                // Clear input fields
+                title.value = '';
+                image.value = '';
+                uploadBtn.disabled = false;
+                uploadBtn.innerText = 'Uploaded';
+            }
+            catch (error) {
+                console.error('Error adding document:', error);
+            }
+        });
+        // Get documents from Firestore and display them
+        const gallery = document.getElementById('photo_Container');
+        getDocs(collection(db, 'Gallery_Photos'))
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    const url = doc.data().image;
+                    const title = doc.data().title;
+                    addImage(url, title);
+                });
+            });
+
+        function addImage(url, description) {
+            // Get the gallery container
+            const gallery = document.getElementById('image-gallery');
+
+            // Create a new container for the image
+            const imageContainer = document.createElement('div');
+            imageContainer.classList.add('relative');
+
+            // Create the image element
+            const img = document.createElement('img');
+            img.classList.add('object-cover', 'object-center', 'w-full', 'h-64', 'rounded-t-lg'); // Adjust 'h-64' as needed
+
+            img.src = url;
+            img.alt = 'gallery-photo';
+
+            // Create the heart button
+            const heartButton = document.createElement('button');
+            heartButton.classList.add('heart-btn', 'absolute', 'top-2', 'right-2');
+            heartButton.setAttribute('aria-label', 'Like');
+            heartButton.textContent = '❤️';
+
+            // Create the close button
+            const closeButton = document.createElement('button');
+            closeButton.classList.add('close-btn', 'absolute', 'top-2', 'right-12');
+            closeButton.setAttribute('aria-label', 'Close');
+            closeButton.textContent = '❌';
+
+            // Create the description container
+            const descriptionDiv = document.createElement('div');
+            descriptionDiv.classList.add('text-center', 'bg-gray-500', 'text-bold', 'w-full', 'p-0.5', 'text-white', 'border-none', 'rounded-b-lg');
+            descriptionDiv.textContent = description;
+
+            // Append elements to the container
+            imageContainer.appendChild(img);
+            imageContainer.appendChild(heartButton);
+            imageContainer.appendChild(closeButton);
+            imageContainer.appendChild(descriptionDiv);
+
+            // Append the new container to the gallery
+            gallery.appendChild(imageContainer);
+        }
+
+        //--------------------------------------- Function to create and add a new image card to the gallery
+        function ddImage(url, description) {
+            // Get the gallery container
+            const gallery = document.getElementById('image-gallery');
+
+            // Create a new container for the image
+            const imageContainer = document.createElement('div');
+            imageContainer.classList.add('relative');
+
+            // Create the image element
+            const img = document.createElement('img');
+            // img.classList.add('object-cover', 'object-center', 'w-full/2', 'h-700', 'max-w-full/2', 'rounded-t-lg');
+            img.classList.add('object-cover', 'object-center', 'w-full', 'h-100', 'rounded-t-lg');
+
+            img.src = url;
+            img.alt = 'gallery-photo';
+
+            // Create the heart button
+            const heartButton = document.createElement('button');
+            heartButton.classList.add('heart-btn', 'absolute', 'top-2', 'right-2');
+            heartButton.setAttribute('aria-label', 'Like');
+            heartButton.textContent = '❤️';
+
+            // Create the close button
+            const closeButton = document.createElement('button');
+            closeButton.classList.add('close-btn', 'absolute', 'top-2', 'right-12');
+            closeButton.setAttribute('aria-label', 'Close');
+            closeButton.textContent = '❌';
+
+            // Create the description container
+            const descriptionDiv = document.createElement('div');
+            descriptionDiv.classList.add('text-center', 'bg-gray-500', 'text-bold', 'w-full', 'p-0.5', 'text-white', 'border-none', 'rounded-b-lg');
+            descriptionDiv.textContent = description;
+
+            // Append elements to the container
+            imageContainer.appendChild(img);
+            imageContainer.appendChild(heartButton);
+            imageContainer.appendChild(closeButton);
+            imageContainer.appendChild(descriptionDiv);
+
+            // Append the new container to the gallery
+            gallery.appendChild(imageContainer);
+        }
+    </script>
+
 </body>
 
 </html>

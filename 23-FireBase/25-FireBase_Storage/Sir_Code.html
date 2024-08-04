@@ -10,107 +10,129 @@
 
 <body>
     <input type="file"
-           name=""
            id="car_img" />
     <button id="save_file">Save</button>
 
-    <div style="display: flex;
-      flex-wrap: wrap;
-      justify-content: center; align-items: center"
-         id="container">
-        <!-- <img
-        style="height: 300px; width: 300px; border-radius: 12px; margin: 10px"
-      /> -->
-    </div>
+    <div id="container"
+         style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center"></div>
 
-    <script type="module">import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import {
-            getFirestore,
-            collection,
-            addDoc,
-            getDocs,
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-        import {
-            getStorage,
-            ref,
-            uploadBytes,
-            getDownloadURL,
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-        // Your web app's Firebase configuration
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
         const firebaseConfig = {
-            apiKey: "AIzaSyAr2R1sryYvVbSNdplyeKYrIHHZ6D0uZyc",
-            authDomain: "calcium-pod-256305.firebaseapp.com",
-            projectId: "calcium-pod-256305",
-            storageBucket: "calcium-pod-256305.appspot.com",
-            messagingSenderId: "182256618793",
-            appId: "1:182256618793:web:c3c627824b1c28feea3b38",
-            measurementId: "G-3R2S7KYERZ",
+            apiKey: "AIzaSyDROf6RpmmOBLjHoQgRyMrmZZfyuVU8gqc",
+            authDomain: "photosgallery-d176c.firebaseapp.com",
+            projectId: "photosgallery-d176c",
+            storageBucket: "photosgallery-d176c.appspot.com",
+            messagingSenderId: "1071735205656",
+            appId: "1:1071735205656:web:632e62a3503d940a6eb86d",
+            measurementId: "G-90TXP31P67"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const storage = getStorage(app);
-
-        const carsCollection = collection(db, "cars");
-        console.log("storage=>", storage);
 
         const car_img = document.getElementById("car_img");
         const save_file = document.getElementById("save_file");
         const container = document.getElementById("container");
 
-        getImagesFromDB();
+        const carsCollection = collection(db, "cars");
 
-        save_file.addEventListener("click", () => {
-            //console the first file from the input type file
-            console.log(car_img.files[0]);
+        save_file.addEventListener("click", async () => {
+            if (car_img.files.length === 0) {
+                console.log("No file selected.");
+                return;
+            }
 
-            const carStorageRef = ref(storage, car_img.files[0].name);
+            const file = car_img.files[0];
+            const carStorageRef = ref(storage, `images/${file.name}`);
 
-            //upload file to the storage
-            save_file.disabled = true;
-            uploadBytes(carStorageRef, car_img.files[0])
-                .then((snapshot) => {
-                    console.log("Uploaded  file!");
+            try {
+                save_file.disabled = true;
+                save_file.innerText = "Uploading...";
+                await uploadBytes(carStorageRef, file);
+                console.log("Uploaded file!");
 
-                    // get url from the same storage ref
-                    getDownloadURL(carStorageRef)
-                        .then((url) => {
-                            console.log("url=>", url);
+                const url = await getDownloadURL(carStorageRef);
+                console.log("url=>", url);
 
-                            //add url + category to the db
-                            addDoc(carsCollection, { url, category: "car" }).then(() => {
-                                console.log("Document updated to the DB");
-                                getImagesFromDB();
-                                save_file.disabled = false;
-                            });
-                        })
-                        .catch((err) => {
-                            console.log("Error in download=>", err), (save_file.disabled = false);
-                        });
-                })
-                .catch((err) => {
-                    console.log(err), (save_file.disabled = false);
-                });
+                // Save URL to Firestore with custom field name
+                await addDoc(carsCollection, { "the images url : ": url, category: "car" });
+                console.log("Document added to the DB");
+
+                await getImagesFromDB();
+            } catch (error) {
+                console.error("Error:", error);
+            } finally {
+                save_file.disabled = false;
+                save_file.innerText = "Save";
+            }
         });
 
         async function getImagesFromDB() {
-            const querySnapshot = await getDocs(carsCollection);
-            container.innerHTML = "";
-            querySnapshot.forEach((doc) => {
-                console.log(`${doc.id} =>`);
+            try {
+                const querySnapshot = await getDocs(carsCollection);
+                container.innerHTML = "";
+                querySnapshot.forEach((doc) => {
+                    //you can used directly url instead of doc.data()["the images url : "]; when you Don't mention object key but only url passed
+                    const url = doc.data()["the images url : "]; // Use the custom field name
+                    const img = `<img id="${doc.id}" src="${url}" style="height: 300px; width: 300px; border-radius: 12px; margin: 10px" />`;
+                    container.innerHTML += img;
+                });
+            } catch (error) {
+                console.error("Error getting documents:", error);
+            }
+        }
 
-                console.log(doc.data());
-
-                const img = `<img
-    id = ${doc.id}
-    src = ${doc.data().url}
-    style="height: 300px; width: 300px; border-radius: 12px; margin: 10px"
-  />`;
-
-                container.innerHTML += img;
-            });
-        }</script>
+        getImagesFromDB();
+    </script>
 </body>
 
-</html>
+</html>//--------------------------------------- Function to create and add a new image card to the gallery
+function ddImage(url, description) {
+// Get the gallery container
+const gallery = document.getElementById('image-gallery');
+
+// Create a new container for the image
+const imageContainer = document.createElement('div');
+imageContainer.classList.add('relative');
+
+// Create the image element
+const img = document.createElement('img');
+// img.classList.add('object-cover', 'object-center', 'w-full/2', 'h-700', 'max-w-full/2', 'rounded-t-lg');
+img.classList.add('object-cover', 'object-center', 'w-full', 'h-100', 'rounded-t-lg');
+
+img.src = url;
+img.alt = 'gallery-photo';
+
+// Create the heart button
+const heartButton = document.createElement('button');
+heartButton.classList.add('heart-btn', 'absolute', 'top-2', 'right-2');
+heartButton.setAttribute('aria-label', 'Like');
+heartButton.textContent = '❤️';
+
+// Create the close button
+const closeButton = document.createElement('button');
+closeButton.classList.add('close-btn', 'absolute', 'top-2', 'right-12');
+closeButton.setAttribute('aria-label', 'Close');
+closeButton.textContent = '❌';
+
+// Create the description container
+const descriptionDiv = document.createElement('div');
+descriptionDiv.classList.add('text-center', 'bg-gray-500', 'text-bold', 'w-full', 'p-0.5', 'text-white', 'border-none',
+'rounded-b-lg');
+descriptionDiv.textContent = description;
+
+// Append elements to the container
+imageContainer.appendChild(img);
+imageContainer.appendChild(heartButton);
+imageContainer.appendChild(closeButton);
+imageContainer.appendChild(descriptionDiv);
+
+// Append the new container to the gallery
+gallery.appendChild(imageContainer);
+}
+</script>
