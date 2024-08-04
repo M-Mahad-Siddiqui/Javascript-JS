@@ -5,168 +5,78 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Photo Gallery App</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .relative {
-            position: relative;
-        }
-
-        .heart-btn,
-        .close-btn {
-            background: rgba(255, 255, 255, 0.6);
-            border: none;
-            border-radius: 50%;
-            padding: 8px;
-            cursor: pointer;
-            font-size: 20px;
+        .header {
+            width: 98%;
+            font-size: 3rem;
+            margin: 10px 20px;
+            padding: 30px 0px;
         }
 
         .heart-btn {
-            top: 10px;
-            right: 10px;
-        }
-
-        .close-btn {
-            top: 10px;
-            right: 50px;
-            margin-right: 10px;
-
-
-            /* Adjusted for spacing from the heart button */
-        }
-
-        /* Image container */
-        .relative {
-            position: relative;
-            width: 100%;
-            /* Full width of its parent */
-        }
-
-        /* Styling for the image */
-        .relative img {
-            width: 100%;
-            height: 38rem;
-            /* Fixed height; adjust as needed */
-            object-fit: cover;
-            /* Ensure the image covers the container while maintaining its aspect ratio */
-            border-radius: 0.5rem;
-            /* Rounded corners for the image; adjust as needed */
-        }
-
-        /* Button styling */
-        .heart-btn,
-        .close-btn {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.6);
-            /* Semi-transparent background */
+            background: none;
             border: none;
-            border-radius: 50%;
-            padding: 8px;
             cursor: pointer;
-            font-size: 20px;
-            /* Adjust size as needed */
+            transition: fill 0.3s;
         }
 
-        .heart-btn {
-            top: 10px;
-            right: 10px;
+        .heart-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: gray;
         }
 
-        .close-btn {
-            top: 10px;
-            right: 50px;
-            /* Adjust spacing from the heart button */
-        }
-
-        /* Text overlay styling */
-        .text-center {
-            text-align: center;
-            background-color: rgba(107, 114, 128, 0.7);
-            /* Semi-transparent background */
-            color: white;
-            padding: 0.5rem;
-            border-radius: 0 0 0.5rem 0.5rem;
-            /* Rounded bottom corners */
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            font-weight: bold;
-            /* Make text bold */
+        .heart-btn.liked svg {
+            fill: red;
         }
     </style>
-
 </head>
 
 <body class="bg-gray-300">
-
-    <!-- ----------------------header ---------------------- -->
-    <h1 class="text-3xl font-bold text-center text-blue-500 m-3 bg-blue-200 py-10 rounded-xl sticky "> Photo Gallery App
-        Save
-        your priceless Memories
+    <!-- Header -->
+    <h1 class="header font-bold text-center text-blue-500 bg-blue-200 rounded-xl">
+        Photo Gallery App
+        Save your priceless Memories
     </h1>
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 m-5">
+
+    <!-- Form -->
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 m-12">
         <div>
             <label for="title"
-                   class=" block text-gray-700 text-lg font-bold mb-2">Enter the Images Title</label>
-            <input class=" text-xl bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   class="block text-gray-700 text-lg font-bold mb-2">Enter the Image's Title</label>
+            <input class="text-xl bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                    type="text"
                    id="title"
                    placeholder="Enter Title">
         </div>
-
         <div>
             <label for="image"
-                   class="block text-gray-700 text-lg font-bold mb-2 ">Upload Image</label>
-            <input class="bg-gray-100  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-1"
+                   class="block text-gray-700 text-lg font-bold mb-2">Upload Image</label>
+            <input class="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-1"
                    type="file"
-                   name="image"
                    id="image">
         </div>
         <div>
-            <label for="button"
-                   class="block text-gray-700 text-lg font-bold mb-2 "> Submit The Image</label>
-            <button class="bg-blue-500  text-xl hover:bg-blue-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+            <label for="uploadBtn"
+                   class="block text-gray-700 text-lg font-bold mb-2">Submit The Image</label>
+            <button class="bg-blue-500 text-xl hover:bg-blue-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
                     type="button"
-                    id="uploadBtn">
-                Upload
-            </button>
+                    id="uploadBtn">Upload</button>
         </div>
     </div>
 
-    <!-- ----------------------photos-------------------- -->
-    <!-- 2 -->
-    <!-- <div>
-         <img class="object-cover object-center w-full h-40 max-w-full rounded-lg"
-         src="https://images.unsplash.com/photo-1432462770865-65b70566d673?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80"
-         alt="gallery-photo" />
-        </div> -->
-
-
+    <!-- Image Gallery -->
     <div id="image-gallery"
-         class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 ">
-
-        <!-- <div class="relative">
-            <img class=" object-cover object-center w-full h-100 max-w-full rounded-t-lg"
-                 src=""
-                 alt="gallery-photo" />
-            <button class="heart-btn absolute top-2 right-2"
-                    aria-label="Like">❤️</button>
-            <button class="close-btn absolute top-2 right-12"
-                    aria-label="Close">❌</button>
-            <div class="text-center bg-gray-500 text-bold w-full p-0.5 text-white border-none rounded-b-lg"></div>
-
-        </div> -->
-
-        <!-- Images will be dynamically added here -->
-    </div>
+         class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 m-12"></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
+        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDROf6RpmmOBLjHoQgRyMrmZZfyuVU8gqc",
             authDomain: "photosgallery-d176c.firebaseapp.com",
@@ -177,135 +87,209 @@
             measurementId: "G-90TXP31P67"
         };
 
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        const title = document.getElementById('title');
-        const image = document.getElementById('image');
+        // DOM elements
+        const titleInput = document.getElementById('title');
+        const imageInput = document.getElementById('image');
         const uploadBtn = document.getElementById('uploadBtn');
+        const gallery = document.getElementById('image-gallery');
 
+        // Upload image
         uploadBtn.addEventListener('click', async () => {
             try {
+                if (!imageInput.files[0]) {
+                    alert("Please select an image file.");
+                    return;
+                }
+                if (!titleInput.value.trim()) {
+                    alert("Please enter a title.");
+                    return;
+                }
+
                 uploadBtn.disabled = true;
                 uploadBtn.innerText = 'Uploading...';
+
                 // Upload image to Firebase Storage
-                const file = image.files[0];
-                const storageRef = ref(storage, 'Gallery_Photos/' + file.name);
+                const file = imageInput.files[0];
+                const storageRef = ref(storage, `Gallery_Photos/${file.name}`);
                 const snapshot = await uploadBytes(storageRef, file);
                 const url = await getDownloadURL(snapshot.ref);
-                console.log(url);
 
-                // Save URL to Firestore with custom field name
-                const docRef = await addDoc(collection(db, 'Gallery_Photos'), { image: url, title: title.value });
-                console.log('Document added with ID:', docRef.id);
+                // Save URL and title to Firestore
+                await addDoc(collection(db, 'Gallery_Photos'), { url, title: titleInput.value });
 
-                // Clear input fields
-                title.value = '';
-                image.value = '';
+                // Clear input fields and update the gallery
+                titleInput.value = '';
+                imageInput.value = '';
                 uploadBtn.disabled = false;
-                uploadBtn.innerText = 'Uploaded';
-            }
-            catch (error) {
-                console.error('Error adding document:', error);
+                uploadBtn.innerText = 'Upload';
+                showImages();
+            } catch (error) {
+                console.error('Error uploading image:', error);
+                uploadBtn.disabled = false;
+                uploadBtn.innerText = 'Upload';
             }
         });
-        // Get documents from Firestore and display them
-        const gallery = document.getElementById('photo_Container');
-        getDocs(collection(db, 'Gallery_Photos'))
-            .then((querySnapshot) => {
+
+        // Show images
+        async function showImages() {
+            try {
+                const querySnapshot = await getDocs(collection(db, 'Gallery_Photos'));
+                gallery.innerHTML = '';
                 querySnapshot.forEach((doc) => {
-                    const url = doc.data().image;
-                    const title = doc.data().title;
-                    addImage(url, title);
+                    const data = doc.data();
+                    addImage(data.url, data.title, doc.id);
                 });
+            } catch (error) {
+                console.error('Error fetching images:', error);
+            }
+        }
+
+        // Add image to gallery
+        function addImage(url, description, docId) {
+            const imageContainer = document.createElement('div');
+            imageContainer.classList.add('relative');
+
+            const img = document.createElement('img');
+            img.classList.add('object-cover', 'object-center', 'w-full', 'h-64', 'rounded-t-lg');
+            img.src = url;
+            img.alt = 'gallery-photo';
+
+            const heartButton = document.createElement('button');
+            heartButton.classList.add('heart-btn', 'absolute', 'top-2', 'right-2');
+            heartButton.setAttribute('aria-label', 'Like');
+            heartButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        `;
+
+            const closeButton = document.createElement('button');
+            closeButton.classList.add('close-btn', 'absolute', 'top-2', 'right-12');
+            closeButton.setAttribute('aria-label', 'Close');
+            closeButton.textContent = '❌';
+            closeButton.dataset.id = docId;
+
+            const updateButton = document.createElement('button');
+            updateButton.classList.add('update-btn', 'absolute', 'top-2', 'right-20');
+            updateButton.setAttribute('aria-label', 'Update');
+            updateButton.textContent = '✏️';
+            updateButton.dataset.id = docId;
+
+            const descriptionDiv = document.createElement('div');
+            descriptionDiv.classList.add('text-center', 'bg-gray-500', 'text-bold', 'w-full', 'p-0.5', 'text-white', 'border-none', 'rounded-b-lg');
+            descriptionDiv.textContent = description;
+
+            imageContainer.append(img, heartButton, closeButton, updateButton, descriptionDiv);
+            gallery.appendChild(imageContainer);
+
+            // Event listeners for buttons
+            closeButton.addEventListener('click', () => {
+                console.log('Delete button clicked');
+                deleteImage(url, docId);
             });
+            updateButton.addEventListener('click', async () => {
+                const newTitle = prompt("Enter the new title:");
+                if (!newTitle || !newTitle.trim()) {
+                    alert("Title cannot be empty.");
+                    return;
+                }
 
-        function addImage(url, description) {
-            // Get the gallery container
-            const gallery = document.getElementById('image-gallery');
-
-            // Create a new container for the image
-            const imageContainer = document.createElement('div');
-            imageContainer.classList.add('relative');
-
-            // Create the image element
-            const img = document.createElement('img');
-            img.classList.add('object-cover', 'object-center', 'w-full', 'h-64', 'rounded-t-lg'); // Adjust 'h-64' as needed
-
-            img.src = url;
-            img.alt = 'gallery-photo';
-
-            // Create the heart button
-            const heartButton = document.createElement('button');
-            heartButton.classList.add('heart-btn', 'absolute', 'top-2', 'right-2');
-            heartButton.setAttribute('aria-label', 'Like');
-            heartButton.textContent = '❤️';
-
-            // Create the close button
-            const closeButton = document.createElement('button');
-            closeButton.classList.add('close-btn', 'absolute', 'top-2', 'right-12');
-            closeButton.setAttribute('aria-label', 'Close');
-            closeButton.textContent = '❌';
-
-            // Create the description container
-            const descriptionDiv = document.createElement('div');
-            descriptionDiv.classList.add('text-center', 'bg-gray-500', 'text-bold', 'w-full', 'p-0.5', 'text-white', 'border-none', 'rounded-b-lg');
-            descriptionDiv.textContent = description;
-
-            // Append elements to the container
-            imageContainer.appendChild(img);
-            imageContainer.appendChild(heartButton);
-            imageContainer.appendChild(closeButton);
-            imageContainer.appendChild(descriptionDiv);
-
-            // Append the new container to the gallery
-            gallery.appendChild(imageContainer);
+                const newImageFile = await promptForFile();
+                if (newImageFile) {
+                    updateImage(url, docId, newTitle, newImageFile);
+                } else {
+                    updateImage(url, docId, newTitle);
+                }
+            });
+            heartButton.addEventListener('click', () => heartButton.classList.toggle('liked'));
         }
 
-        //--------------------------------------- Function to create and add a new image card to the gallery
-        function ddImage(url, description) {
-            // Get the gallery container
-            const gallery = document.getElementById('image-gallery');
+        // Delete image
+        async function deleteImage(url, docId) {
+            try {
+                // Extract and decode the file path
+                const filePath = decodeURIComponent(url.split('/o/')[1].split('?')[0].replace('%2F', '/'));
+                console.log('Deleting file:', filePath);
 
-            // Create a new container for the image
-            const imageContainer = document.createElement('div');
-            imageContainer.classList.add('relative');
+                // Create a reference to the file in Firebase Storage
+                const imageRef = ref(storage, filePath);
+                await deleteObject(imageRef);
 
-            // Create the image element
-            const img = document.createElement('img');
-            // img.classList.add('object-cover', 'object-center', 'w-full/2', 'h-700', 'max-w-full/2', 'rounded-t-lg');
-            img.classList.add('object-cover', 'object-center', 'w-full', 'h-100', 'rounded-t-lg');
+                // Delete the document from Firestore
+                await deleteDoc(doc(db, 'Gallery_Photos', docId));
+                console.log('Image and document deleted successfully');
 
-            img.src = url;
-            img.alt = 'gallery-photo';
-
-            // Create the heart button
-            const heartButton = document.createElement('button');
-            heartButton.classList.add('heart-btn', 'absolute', 'top-2', 'right-2');
-            heartButton.setAttribute('aria-label', 'Like');
-            heartButton.textContent = '❤️';
-
-            // Create the close button
-            const closeButton = document.createElement('button');
-            closeButton.classList.add('close-btn', 'absolute', 'top-2', 'right-12');
-            closeButton.setAttribute('aria-label', 'Close');
-            closeButton.textContent = '❌';
-
-            // Create the description container
-            const descriptionDiv = document.createElement('div');
-            descriptionDiv.classList.add('text-center', 'bg-gray-500', 'text-bold', 'w-full', 'p-0.5', 'text-white', 'border-none', 'rounded-b-lg');
-            descriptionDiv.textContent = description;
-
-            // Append elements to the container
-            imageContainer.appendChild(img);
-            imageContainer.appendChild(heartButton);
-            imageContainer.appendChild(closeButton);
-            imageContainer.appendChild(descriptionDiv);
-
-            // Append the new container to the gallery
-            gallery.appendChild(imageContainer);
+                // Refresh the gallery
+                showImages();
+            } catch (error) {
+                console.error('Error deleting image:', error);
+                alert('Error deleting image. Please try again.');
+            }
         }
+
+        // Update image
+        async function updateImage(oldImageUrl, docId, newTitle, newImageFile = null) {
+            try {
+                const oldImagePath = oldImageUrl ? decodeURIComponent(oldImageUrl.split('/o/')[1].split('?')[0].replace('%2F', '/')) : null;
+
+                if (newImageFile) {
+                    // Upload new image
+                    const newImageRef = ref(storage, `Gallery_Photos/${Date.now()}_${newImageFile.name}`);
+                    const snapshot = await uploadBytes(newImageRef, newImageFile);
+                    const newImageUrl = await getDownloadURL(snapshot.ref);
+
+                    // Delete old image if it exists
+                    if (oldImagePath) {
+                        const oldImageRef = ref(storage, oldImagePath);
+                        try {
+                            await deleteObject(oldImageRef);
+                        } catch (deleteError) {
+                            console.warn('Old image could not be deleted, may not exist:', deleteError);
+                        }
+                    }
+
+                    // Update Firestore with new image URL
+                    await updateDoc(doc(db, 'Gallery_Photos', docId), { title: newTitle, url: newImageUrl });
+                } else {
+                    // Update only the title
+                    await updateDoc(doc(db, 'Gallery_Photos', docId), { title: newTitle });
+                }
+
+                // Refresh the gallery
+                showImages();
+            } catch (error) {
+                console.error('Error updating image:', error);
+                alert('Error updating image. Please try again.');
+            }
+        }
+
+        // Prompt for file
+        function promptForFile() {
+            return new Promise((resolve) => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', () => {
+                    if (input.files[0]) {
+                        resolve(input.files[0]);
+                    } else {
+                        resolve(null);
+                    }
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+
+        // Initial call to show images
+        showImages();
     </script>
 
 </body>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .header {
+
+            width: 98%;
+            font-size: 3rem;
+            /* position: fixed; */
+            top: 0;
+            left: 0;
+            z-index: 1;
+            margin: 10px 20px;
+            padding: 30px 0px
+        }
+
+        .heart-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: fill 0.3s;
+            /* Smooth transition for color change */
+        }
+
+        .heart-btn svg {
+            width: 24px;
+            /* Adjust size as needed */
+            height: 24px;
+            /* Adjust size as needed */
+            fill: gray;
+            /* Default color */
+        }
+
+        .heart-btn.liked svg {
+            fill: red;
+            /* Color when "liked" */
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-300 ">
+
+    <!-- ----------------------header ---------------------- -->
+    <h1 class="header font-bold text-center text-blue-500  bg-blue-200  rounded-xl ">
+        Photo
+        Gallery
+        App
+        Save
+        your priceless Memories
+    </h1>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 m-12">
+        <div>
+            <label for="title"
+                   class=" block text-gray-700 text-lg font-bold mb-2">Enter the Images Title</label>
+            <input class=" text-xl bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   type="text"
+                   id="title"
+                   placeholder="Enter Title">
+        </div>
+
+        <div>
+            <label for="image"
+                   class="block text-gray-700 text-lg font-bold mb-2 ">Upload Image</label>
+            <input class="bg-gray-100  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-1"
+                   type="file"
+                   name="image"
+                   id="image">
+        </div>
+        <div>
+            <label for="button"
+                   class="block text-gray-700 text-lg font-bold mb-2 "> Submit The Image</label>
+            <button class="bg-blue-500  text-xl hover:bg-blue-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+                    type="button"
+                    id="uploadBtn">
+                Upload
+            </button>
+        </div>
+    </div>
+
+    <!-- ----------------------photos-------------------- -->
+    <!-- 2 -->
+    <!-- <div>
+         <img class="object-cover object-center w-full h-40 max-w-full rounded-lg"
+         src="https://images.unsplash.com/photo-1432462770865-65b70566d673?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80"
+         alt="gallery-photo" />
+        </div> -->
+
+
+    <div id="image-gallery"
+         class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 ">
+
+        <!-- <div class="relative">
+            <img class=" object-cover object-center w-full h-100 max-w-full rounded-t-lg"
+                 src=""
+                 alt="gallery-photo" />
+            <button class="heart-btn absolute top-2 right-2"
+                    aria-label="Like">❤️</button>
+            <button class="close-btn absolute top-2 right-12"
+                    aria-label="Close">❌</button>
+            <div class="text-center bg-gray-500 text-bold w-full p-0.5 text-white border-none rounded-b-lg"></div>
+
+        </div> -->
+
+        <!-- Images will be dynamically added here -->
+    </div>
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDROf6RpmmOBLjHoQgRyMrmZZfyuVU8gqc",
+            authDomain: "photosgallery-d176c.firebaseapp.com",
+            projectId: "photosgallery-d176c",
+            storageBucket: "photosgallery-d176c.appspot.com",
+            messagingSenderId: "1071735205656",
+            appId: "1:1071735205656:web:632e62a3503d940a6eb86d",
+            measurementId: "G-90TXP31P67"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        const title = document.getElementById('title');
+        const image = document.getElementById('image');
+        const uploadBtn = document.getElementById('uploadBtn');
+
+        uploadBtn.addEventListener('click', async () => {
+            try {
+                if (!image.files[0]) {
+                    alert("Please select an image file.");
+                    return;
+                }
+                if (!title.value.trim()) {
+                    alert("Please enter a title.");
+                    return;
+                }
+
+                uploadBtn.disabled = true;
+                uploadBtn.innerText = 'Uploading...';
+
+                // Upload image to Firebase Storage
+                const file = image.files[0];
+                const storageRef = ref(storage, 'Gallery_Photos/' + file.name);
+                const snapshot = await uploadBytes(storageRef, file);
+                const url = await getDownloadURL(snapshot.ref);
+                console.log(url);
+
+                // Save URL to Firestore with custom field name
+                const docRef = await addDoc(collection(db, 'Gallery_Photos'), { image: url, title: title.value });
+                console.log('Document added with ID:', docRef.id);
+
+                // Clear input fields
+                title.value = '';
+                image.value = '';
+                uploadBtn.disabled = false;
+                uploadBtn.innerText = 'Uploaded';
+                showImages();
+            } catch (error) {
+                console.error('Error adding document:', error);
+                uploadBtn.disabled = false;
+                uploadBtn.innerText = 'Upload';
+            }
+        });
+
+        async function showImages() {
+            // Get documents from Firestore and display them
+            const gallery = document.getElementById('image-gallery');
+            gallery.innerHTML = ''; // Clear the gallery before adding new images
+            const querySnapshot = await getDocs(collection(db, 'Gallery_Photos'));
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                addImage(data.image, data.title, doc.id);
+            });
+        }
+
+        function addImage(url, description, docId) {
+            // Get the gallery container
+            const gallery = document.getElementById('image-gallery');
+
+            // Create a new container for the image
+            const imageContainer = document.createElement('div');
+            imageContainer.classList.add('relative');
+
+            // Create the image element
+            const img = document.createElement('img');
+            img.classList.add('object-cover', 'object-center', 'w-full', 'h-64', 'rounded-t-lg'); // Adjust 'h-64' as needed
+            img.src = url;
+            img.alt = 'gallery-photo';
+
+            // Create the heart button with SVG
+            const heartButton = document.createElement('button');
+            heartButton.classList.add('heart-btn', 'absolute', 'top-2', 'right-2');
+            heartButton.setAttribute('aria-label', 'Like');
+            heartButton.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            `;
+            heartButton.style.fill = 'gray'; // Default color
+
+            // Create the close button
+            const closeButton = document.createElement('button');
+            closeButton.classList.add('close-btn', 'absolute', 'top-2', 'right-12');
+            closeButton.setAttribute('aria-label', 'Close');
+            closeButton.textContent = '❌';
+            closeButton.dataset.id = docId; // Store the document ID in a data attribute
+
+            // Create the update button
+            const updateButton = document.createElement('button');
+            updateButton.classList.add('update-btn', 'absolute', 'top-2', 'right-20');
+            updateButton.setAttribute('aria-label', 'Update');
+            updateButton.textContent = '✏️';
+            updateButton.dataset.id = docId; // Store the document ID in a data attribute
+
+            // Create the description container
+            const descriptionDiv = document.createElement('div');
+            descriptionDiv.classList.add('text-center', 'bg-gray-500', 'text-bold', 'w-full', 'p-0.5', 'text-white', 'border-none', 'rounded-b-lg');
+            descriptionDiv.textContent = description;
+
+            // Append elements to the container
+            imageContainer.appendChild(img);
+            imageContainer.appendChild(heartButton);
+            imageContainer.appendChild(closeButton);
+            imageContainer.appendChild(updateButton);
+            imageContainer.appendChild(descriptionDiv);
+
+            // Append the new container to the gallery
+            gallery.appendChild(imageContainer);
+
+            // Add event listener to the close button
+            closeButton.addEventListener('click', async (event) => {
+                const docId = event.target.dataset.id;
+                try {
+                    // Delete image from Firebase Storage
+                    const imageRef = ref(storage, 'Gallery_Photos/' + url.split('/').pop().split('?')[0]);
+                    await deleteObject(imageRef);
+
+                    // Delete document from Firestore
+                    const docRef = doc(db, "Gallery_Photos", docId);
+                    await deleteDoc(docRef);
+                    console.log('Document deleted:', docId);
+                    showImages();
+                } catch (error) {
+                    console.error('Error deleting document:', error);
+                }
+            });
+
+            // Add event listener to the update button
+            updateButton.addEventListener('click', async (event) => {
+                const docId = event.target.dataset.id;
+                const newTitle = prompt("Enter the new title:");
+
+                if (newTitle === null || newTitle.trim() === '') {
+                    alert("Title cannot be empty.");
+                    return;
+                }
+
+                // Prompt for new image file
+                const newImageFile = await promptForFile();
+                if (newImageFile) {
+                    try {
+                        // Upload new image
+                        const newImageRef = ref(storage, 'Gallery_Photos/' + newImageFile.name);
+                        const newImageSnapshot = await uploadBytes(newImageRef, newImageFile);
+                        const newImageUrl = await getDownloadURL(newImageSnapshot.ref);
+
+                        // Update Firestore document with new image URL
+                        await updateDoc(doc(db, "Gallery_Photos", docId), {
+                            title: newTitle,
+                            image: newImageUrl
+                        });
+
+                        // Delete old image from Firebase Storage
+                        const oldImageRef = ref(storage, 'Gallery_Photos/' + url.split('/').pop().split('?')[0]);
+                        await deleteObject(oldImageRef);
+
+                        console.log('Document updated:', docId);
+                    } catch (error) {
+                        console.error('Error updating document:', error);
+                    }
+                } else {
+                    try {
+                        // Update Firestore document with new title only
+                        await updateDoc(doc(db, "Gallery_Photos", docId), { title: newTitle });
+                        console.log('Document updated:', docId);
+                    } catch (error) {
+                        console.error('Error updating document:', error);
+                    }
+                }
+                showImages();
+            });
+
+            // Add event listener to the heart button
+            heartButton.addEventListener('click', () => {
+                heartButton.classList.toggle('liked');
+            });
+        }
+
+        function promptForFile() {
+            return new Promise((resolve) => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                input.style.display = 'none';
+                document.body.appendChild(input);
+                input.addEventListener('change', () => {
+                    if (input.files[0]) {
+                        resolve(input.files[0]);
+                    } else {
+                        resolve(null);
+                    }
+                    document.body.removeChild(input);
+                });
+                input.click();
+            });
+        }
+
+        // Initial load of images
+        showImages();
+    </script>
+
+
+
+</body>
+
+</html>
