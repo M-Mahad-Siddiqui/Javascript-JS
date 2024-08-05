@@ -8,11 +8,29 @@
     <title>Photo Gallery App</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        body {
+            background: linear-gradient(to right, #127cba, #a20be2);
+        }
+
         .header {
-            width: 98%;
             font-size: 3rem;
-            margin: 10px 20px;
             padding: 30px 0px;
+            background: linear-gradient(to left, #bb01af, #e49e42);
+            color: white;
+            text-shadow: 0px 0px 10px #000;
+        }
+
+        .heart-btn-container {
+            z-index: 1;
+            /* position: fixed;  */
+            top: 0;
+            left: 0;
+        }
+
+        label {
+            color: aliceblue;
+            text-shadow: 0px 0px 10px #72f903;
+
         }
 
         .heart-btn {
@@ -34,18 +52,18 @@
     </style>
 </head>
 
-<body class="bg-gray-300">
+<body class="m-3">
     <!-- Header -->
-    <h1 class="header font-bold text-center text-blue-500 bg-blue-200 rounded-xl">
+    <h1 class="header font-bold text-center rounded-xl">
         Photo Gallery App
         Save your priceless Memories
     </h1>
 
     <!-- Form -->
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 m-12">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 m-4 ">
         <div>
             <label for="title"
-                   class="block text-gray-700 text-lg font-bold mb-2">Enter the Image's Title</label>
+                   class="block text-lg font-bold mb-2">Enter the Image's Title</label>
             <input class="text-xl bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                    type="text"
                    id="title"
@@ -53,24 +71,45 @@
         </div>
         <div>
             <label for="image"
-                   class="block text-gray-700 text-lg font-bold mb-2">Upload Image</label>
+                   class="block text-lg font-bold mb-2">Upload Image</label>
             <input class="bg-gray-100 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-1"
                    type="file"
                    id="image">
         </div>
         <div>
             <label for="uploadBtn"
-                   class="block text-gray-700 text-lg font-bold mb-2">Submit The Image</label>
+                   class="block text-lg font-bold mb-2">Submit The Image</label>
             <button class="bg-blue-500 text-xl hover:bg-blue-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
                     type="button"
                     id="uploadBtn">Upload</button>
         </div>
     </div>
+    <!-- ----------------------photos-------------------- -->
+    <!-- 2 -->
+    <!-- <div>
+             <img class="object-cover object-center w-full h-40 max-w-full rounded-lg"
+             src="https://images.unsplash.com/photo-1432462770865-65b70566d673?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80"
+             alt="gallery-photo" />
+            </div> -->
 
     <!-- Image Gallery -->
     <div id="image-gallery"
-         class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 m-12"></div>
+         class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 my-12">
 
+        <!-- <div class="relative">
+            <img class=" object-cover object-center w-full h-100 max-w-full rounded-t-lg"
+                 src=""
+                 alt="gallery-photo" />
+            <button class="heart-btn absolute top-2 right-2"
+                    aria-label="Like">❤️</button>
+            <button class="close-btn absolute top-2 right-12"
+                    aria-label="Close">❌</button>
+            <div class="text-center bg-gray-500 text-bold w-full p-0.5 text-white border-none rounded-b-lg"></div>
+
+        </div> -->
+
+        <!-- Images will be dynamically added here -->
+    </div>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -121,6 +160,7 @@
 
                 // Save URL and title to Firestore
                 await addDoc(collection(db, 'Gallery_Photos'), { url, title: titleInput.value });
+                console.log('Document added with ID:');
 
                 // Clear input fields and update the gallery
                 titleInput.value = '';
@@ -138,8 +178,8 @@
         // Show images
         async function showImages() {
             try {
-                const querySnapshot = await getDocs(collection(db, 'Gallery_Photos'));
                 gallery.innerHTML = '';
+                const querySnapshot = await getDocs(collection(db, 'Gallery_Photos'));
                 querySnapshot.forEach((doc) => {
                     const data = doc.data();
                     addImage(data.url, data.title, doc.id);
@@ -152,34 +192,38 @@
         // Add image to gallery
         function addImage(url, description, docId) {
             const imageContainer = document.createElement('div');
-            imageContainer.classList.add('relative');
+            imageContainer.classList.add('relative', 'mb-7');
 
             const img = document.createElement('img');
-            img.classList.add('object-cover', 'object-center', 'w-full', 'h-64', 'rounded-t-lg');
+            img.classList.add('object-cover', 'object-center', 'w-full', 'h-full', 'rounded-t-lg');
             img.src = url;
             img.alt = 'gallery-photo';
 
+            // Create the heart button
             const heartButton = document.createElement('button');
             heartButton.classList.add('heart-btn', 'absolute', 'top-2', 'right-2');
             heartButton.setAttribute('aria-label', 'Like');
+            // heartButton.textContent = '❤️';
             heartButton.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
         `;
-
+            // Create the close button
             const closeButton = document.createElement('button');
             closeButton.classList.add('close-btn', 'absolute', 'top-2', 'right-12');
             closeButton.setAttribute('aria-label', 'Close');
             closeButton.textContent = '❌';
             closeButton.dataset.id = docId;
 
+            // Create the edit button
             const updateButton = document.createElement('button');
             updateButton.classList.add('update-btn', 'absolute', 'top-2', 'right-20');
             updateButton.setAttribute('aria-label', 'Update');
             updateButton.textContent = '✏️';
             updateButton.dataset.id = docId;
 
+            // Create the description container
             const descriptionDiv = document.createElement('div');
             descriptionDiv.classList.add('text-center', 'bg-gray-500', 'text-bold', 'w-full', 'p-0.5', 'text-white', 'border-none', 'rounded-b-lg');
             descriptionDiv.textContent = description;

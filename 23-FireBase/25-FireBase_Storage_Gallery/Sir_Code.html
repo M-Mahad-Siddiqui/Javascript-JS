@@ -91,48 +91,4 @@
     </script>
 </body>
 
-</html>//--------------------------------------- Function to create and add a new image card to the gallery
-function ddImage(url, description) {
-// Get the gallery container
-const gallery = document.getElementById('image-gallery');
-
-// Create a new container for the image
-const imageContainer = document.createElement('div');
-imageContainer.classList.add('relative');
-
-// Create the image element
-const img = document.createElement('img');
-// img.classList.add('object-cover', 'object-center', 'w-full/2', 'h-700', 'max-w-full/2', 'rounded-t-lg');
-img.classList.add('object-cover', 'object-center', 'w-full', 'h-100', 'rounded-t-lg');
-
-img.src = url;
-img.alt = 'gallery-photo';
-
-// Create the heart button
-const heartButton = document.createElement('button');
-heartButton.classList.add('heart-btn', 'absolute', 'top-2', 'right-2');
-heartButton.setAttribute('aria-label', 'Like');
-heartButton.textContent = '❤️';
-
-// Create the close button
-const closeButton = document.createElement('button');
-closeButton.classList.add('close-btn', 'absolute', 'top-2', 'right-12');
-closeButton.setAttribute('aria-label', 'Close');
-closeButton.textContent = '❌';
-
-// Create the description container
-const descriptionDiv = document.createElement('div');
-descriptionDiv.classList.add('text-center', 'bg-gray-500', 'text-bold', 'w-full', 'p-0.5', 'text-white', 'border-none',
-'rounded-b-lg');
-descriptionDiv.textContent = description;
-
-// Append elements to the container
-imageContainer.appendChild(img);
-imageContainer.appendChild(heartButton);
-imageContainer.appendChild(closeButton);
-imageContainer.appendChild(descriptionDiv);
-
-// Append the new container to the gallery
-gallery.appendChild(imageContainer);
-}
-</script>
+</html>

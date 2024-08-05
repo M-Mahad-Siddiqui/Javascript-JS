@@ -8,9 +8,10 @@
 /* Body */
 body {
     font-family: 'Arial', sans-serif;
-    background: #f5f5f5; /* Light gray background */
     color: #333;
     line-height: 1.6;
+    background: linear-gradient(to right, #437be1, #cb81ed) !important;
+
 }
 
 /* Header */
@@ -93,9 +94,9 @@ input[type="file"] {
     width: calc(100% - 20px);
     margin: 10px auto;
     padding: 12px;
-    border: 2px solid #ddd; /* Light gray border */
+    border: none; /* Light gray border */
     border-radius: 5px;
-    background: #fff;
+    background: #94caec;
     color: #333;
     outline: none;
     transition: border-color 0.3s, background 0.3s;
