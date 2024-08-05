@@ -1,636 +1,661 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <title>My JavaScript Projects</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap');
-
-        body {
-            font-family: vollkorn;
-            margin: 0;
-            padding: 0;
-            /* background-color: #8cc0e0; */
-            background: linear-gradient(to left, #1631c7, #1ba0e2);
-            color: #333;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /*------------------------- header css ----------------------------------------*/
-        :root {
-            --bg-color: #1f242d;
-            --second-bg-color: #323946;
-            --text-color: #fff;
-            --main-color: #0ef;
-        }
-
-
-        .home {
-            /* background-color: #1e3c72; */
-            background: linear-gradient(to left, #1e3c72, #3f34b4);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .home-img img {
-            width: 25vw;
-            animation: floatImage 4s ease-in-out infinite;
-            /* box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2); */
-            filter: drop-shadow(5px 1px 20px rgb(32, 158, 196));
-            /* filter: drop-shadow(offset-x offset-y blur-radius color); */
-
-        }
-
-        .home-content {
-            text-align: center;
-            margin: 0 1rem;
-        }
-
-        .home-content h1 {
-            font-size: 3.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .home-content h3 {}
-
-        #name {
-            text-shadow: #007bff 0 0px 10px;
-        }
-
-        /* images move css */
-        @keyframes floatImage {
-            0% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-2.9rem);
-            }
-
-            100% {
-                transform: translateY(0);
-            }
-        }
-
-        .header {
-            text-align: center;
-            padding: 1px;
-            color: var(--text-color);
-            margin: 10px 8px;
-            text-shadow: #ce25e1 0 0px 10px;
-            border-radius: 10px;
-            font-size: 1.5rem;
-        }
-
-        .home-content {
-            position: relative;
-            max-width: 40rem;
-            text-align: center;
-        }
-
-        .home-content h3 {
-            font-size: 3.2rem;
-            font-weight: 600;
-        }
-
-        .home-content h1 {
-            /* font-size: 5.6rem;    */
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        .home-content p {
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.8;
-            margin: 1.5rem 0;
-        }
-
-        .heading span {
-            color: var(--main-color);
-        }
-
-        @media (max-width: 768px) {
-
-            .home {
-                flex-direction: column;
-            }
-
-            .home-content {
-                text-align: center;
-            }
-
-            .home-content h3 {
-                font-size: 2.6rem;
-            }
-
-            .home-content h1 {
-                font-size: 5rem;
-            }
-
-            .home-img img {
-                width: 70vw;
-                margin-top: 4rem;
-            }
-
-        }
-
-        /* ----------------------------------------------------------- */
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 20px;
-        }
-
-        /* ------------------card css---------------- */
-        .card {
-            background-color: white;
-            border: 1px solid #bb5e6c;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 15px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            width: 300px;
-            position: relative;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0px 16px rgb(236, 73, 4);
-        }
-
-        .card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .card:hover img {
-            transform: scale(1.1);
-        }
-
-        .card-body {
-            padding: 15px;
-        }
-
-        .card-category {
-            font-size: 14px;
-            color: #6c757d;
-            margin-bottom: 5px;
-        }
-
-        .card-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .card-description {
-            font-size: 14px;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .card a {
-            text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
-        }
-
-        .card-no {
-            color: blue;
-            font-size: 20px;
-            font-weight: bold;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgb(255, 255, 255, 0.7);
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card-no:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0px 10px rgba(14, 209, 206, 0.6);
-            color: red;
-            background-color: rgb(255, 255, 255, 0.9);
-            /* border: 2px solid pink; */
-        }
-
-        @media (max-width: 600px) {
-            .card {
-                width: 100%;
-            }
-        }
-
-        /* ------------dark mode css------------- */
-        /* body color change */
-        .dark-mode {
-            background: #323946;
-            color: #f8f9fa;
-        }
-
-        .dark-mode .home {
-            background: #1f242d;
-        }
-
-        /* card color change */
-        .dark-mode .card {
-            background-color: #1f242d;
-            border-color: #555;
-        }
-
-        .dark-mode .card:hover {
-            box-shadow: 0 8px 16px #0ef;
-            transform: translateY(-10px);
-        }
-
-        /* text color changes  */
-        .dark-mode .card-category,
-        .dark-mode .card-description {
-            color: #bbb;
-        }
-
-        .dark-mode .card a {
-            color: #0ef;
-        }
-
-        .dark-mode .header {
-            background-color: #222;
-            color: var(--main-color);
-        }
-
-        .dark-mode #name {
-            text-shadow: var(--main-color) 0 0 10px;
-        }
-
-        .dark-mode .card-no {
-            background-color: rgb(255, 255, 255, 0.9);
-            color: rgb(119, 0, 255);
-            box-shadow: rgb(230, 112, 131) 0 0px 10px;
-        }
-
-        .dark-mode .card-no:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0px 10px rgba(14, 209, 206, 0.6);
-            color: red;
-            background-color: rgb(255, 255, 255, 0.9);
-        }
-
-        /* -----------toggle button css------------------ */
-        .dark-mode-toggle {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            z-index: 2;
-        }
-
-        .dark-mode-toggle input {
-            display: none;
-        }
-
-        .dark-mode-toggle label {
-            background-color: #ccc;
-            width: 50px;
-            height: 25px;
-            border-radius: 25px;
-            position: relative;
-            transition: background-color 0.3s;
-        }
-
-        .dark-mode-toggle label::after {
-            content: '';
-            width: 20px;
-            height: 20px;
-            background-color: white;
-            border-radius: 50%;
-            position: absolute;
-            top: 2.5px;
-            left: 2.5px;
-            transition: transform 0.3s;
-        }
-
-        .dark-mode-toggle input:checked+label {
-            background-color: #007bff;
-        }
-
-        .dark-mode-toggle input:checked+label::after {
-            transform: translateX(25px);
-        }
-    </style>
-</head>
-
-<body>
-
-
-    <i id="menu-icon"></i>
-    <!-- home section design -->
-    <section class="home"
-             id="home">
-        <div class="home-content">
-            <h2>Hello, It's Me</h2>
-            <h3 id="name">Muhammad Mahad Siddiqui</h3>
-            <h2 class="heading">And there is my <span class="typing"></span></h2>
-            <p>
-                Discover a captivating array of JavaScript projects, each a testament to creativity and
-                functionality, where you can immerse yourself in the world of JavaScript. these projects showcase the
-                versatility and ingenuity of JavaScript. Whether you're a beginner exploring the basics or a seasoned
-                developer seeking new challenges and inspiration, these projects offer both learning opportunities and
-                moments of enjoyment.
-            </p>
-        </div>
-
-        <div class="home-img">
-            <img src="mahad.png"
-                 alt="Mahad's Photo" />
-        </div>
-    </section>
-    <div class="header">
-        <!-- <img src="mahad.png" alt="Mahad's Photo"> -->
-        <h1>Welcome to My JavaScript Projects Showcase</h1>
-    </div>
-
-
-    <div class="dark-mode-toggle">
-        <input type="checkbox"
-               id="darkModeSwitch"
-               onclick="toggleDarkMode()">
-        <label for="darkModeSwitch"></label>
-    </div>
-
-    <div class="container"
-         id="projectContainer">
-        <!-- Cards will be injected here by JavaScript -->
-    </div>
-    <!-- -----end-------text write  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
-    <script>
-        const projects = [
-            {  //  1
-                number: "1",
-                img: "1-beginning Assignment/pic.jpg",
-                category: "JavaScript Projects",
-                title: "Beginning Task",
-                description: "Basic Javascript assignment for better understanding of JavaScript.",
-                link: "1-beginning Assignment/index.html"
-            },
-            {   // 2
-                number: "2",
-                img: "2-GUI_Calculator/gui.png",
-                category: "JavaScript Projects",
-                title: "GUI Calculator",
-                description: "A graphical user interface calculator built with JavaScript.",
-                link: "2-GUI_Calculator/index.html"
-            },
-            {   // 3
-                number: "3",
-                img: "3-Color_Picker/pic.png",
-                category: "JavaScript Projects",
-                title: "Color Picker",
-                description: "A color picker tool created using JavaScript.",
-                link: "3-Color_Picker/index.html"
-            },
-            {   // 4
-                number: "4",
-                img: "4-Dice_Game/pic.png",
-                category: "JavaScript Projects",
-                title: "Dice Game",
-                description: "A simple dice game implemented in JavaScript.",
-                link: "4-Dice_Game/index.html"
-            },
-            {    // 5
-                number: "5",
-                img: "5-stopwatch/pic.png",
-                category: "JavaScript Projects",
-                title: "Stopwatch",
-                description: "A stopwatch application built using JavaScript.",
-                link: "5-stopwatch/index.html"
-            },
-            {    // 6
-                number: "6",
-                img: "6-Analog_Clock/pic.png",
-                category: "JavaScript Projects",
-                title: "Analog Clock",
-                description: "An analog clock created with JavaScript and CSS.",
-                link: "6-Analog_Clock/index.html"
-            },
-            {     // 7
-                number: "7",
-                img: "https://via.placeholder.com/300x150",
-                category: "JavaScript Projects",
-                title: "Digital Clock",
-                description: "A digital clock implemented using JavaScript.",
-                link: "7-Digital_Clock/index.html"
-            },
-            {     // 8
-                number: "8",
-                img: "8-Age_Calculator/pic1.png",
-                category: "JavaScript Projects",
-                title: "Age Calculator",
-                description: "An age calculator tool built with JavaScript.",
-                link: "8-Age_Calculator/index.html"
-            },
-            {     // 9
-                number: "9",
-                img: "9-Attendances_checker/pic.png",
-                category: "JavaScript Projects",
-                title: "Attendances Checker",
-                description: "An application to check and manage attendance using JavaScript.",
-                link: "9-Attendances_checker/index.html"
-            },
-            {     // 10
-                number: "10",
-                img: "10-Photo_gallery/pic.png",
-                category: "JavaScript Projects",
-                title: "Photo Gallery",
-                description: "A photo gallery application built with JavaScript.",
-                link: "10-Photo_gallery/index.html"
-            },
-            {     //  11
-                number: "11",
-                img: "11-Editor/pic.png",
-                category: "JavaScript Projects",
-                title: "Text Editor",
-                description: "A simple text editor created using JavaScript.",
-                link: "11-Editor/index.html"
-            },
-            {     //  12
-                number: "12",
-                img: "12,13-TO-DO-APP/pic1.png",
-                category: "JavaScript Projects",
-                title: "Advanced To Do List",
-                description: "An advanced to-do list application with additional features.",
-                link: "12,13-TO-DO-APP/net.html"
-            },
-            {     //  13
-                number: "13",
-                img: "12,13-TO-DO-APP/pic.png",
-                category: "JavaScript Projects",
-                title: "To Do App",
-                description: "A to-do list application built with JavaScript.",
-                link: "12,13-TO-DO-APP/index.html"
-            },
-            {     //  14
-                number: "14",
-                img: "14-Expense-Tracker/pic.png",
-                category: "JavaScript Projects",
-                title: "Expense Tracker",
-                description: "An expense tracker application built with JavaScript.",
-                link: "14-Expense-Tracker/index.html"
-            },
-            {     //  15
-                number: "15",
-                img: "15-Tic Tac Toe/pic.png",
-                category: "JavaScript Projects",
-                title: "Tic-Tac-Toe",
-                description: "A tic-tac-toe game implemented in JavaScript.",
-                link: "15-Tic Tac Toe/index.html"
-            },
-            {    //  16
-                number: "16",
-                img: "16-card/pic.png",
-                category: "JavaScript Projects",
-                title: "Cards Assignments",
-                description: "A project involving card-based assignments using JavaScript.",
-                link: "16-card/index.html"
-            },
-            {     // 17
-                number: "17",
-                img: "17,18-dynamic/pic1.png",
-                category: "JavaScript Projects",
-                title: "Edit or Delete Div",
-                description: "A project demonstrating how to dynamically add, edit, or delete div elements.",
-                link: "17,18-dynamic/add.html"
-            },
-            {     //  18
-                number: "18",
-                img: "17,18-dynamic/pic.png",
-                category: "JavaScript Projects",
-                title: "Dynamic Div Create",
-                description: "A project showcasing dynamic creation of div elements using JavaScript.",
-                link: "17,18-dynamic/index.html"
-            },
-            {     //  19
-                number: "19",
-                img: "19-Local_Storage/pic.png",
-                category: "JavaScript Projects",
-                title: "Local Storage and it functionality",
-                description: "A project showcasing local storage and its functionality using JavaScript.",
-                link: "19-Local_Storage/index.html"
-            },
-            {     //  20
-                number: "20",
-                img: "20-Weather_App/other_made_Weather-webapp/pic.png",
-                category: "JavaScript Projects",
-                title: "Whether App",
-                description: "A weather application built with JavaScript. The weather application fetches weather data from an API and displays it on the screen.",
-                link: "20-Weather_App/other_made_Weather-webapp/index.html"
-            },
-            {     //  22
-                number: "22",
-                img: "22-Filter/pic.png",
-                category: "Advanced JavaScript Projects",
-                title: "ShowCards with Search Functionality",
-                description: "This project demonstrates how to dynamically load JSON and API data using asynchronous JavaScript.",
-                link: "22-Filter/index.html"
-            },
-            {     //  23
-                number: "23",
-                img: "23-FireBase/23-Use_Authentication/pic.png",
-                category: "Web Development full stack Projects",
-                title: "Firebase Authentication with Sign In and Sign Up",
-                description: "This project implements a user authentication system using Firebase. It includes sign in and sign up functionalities, user state management, and a protected dashboard displaying user information.",
-                link: "23-FireBase/23-Use_Authentication/index.html"
-            },
-            {    // 24
-                number: "24",
-                img: "23-FireBase/24-Todo_App_with_DB/pic.png",
-                category: "Web Development full stack Projects",
-                title: "Firebase Firestore Todo List Application",
-                description: "A web application that uses Firebase Firestore to manage a todo list. It includes functionalities for adding, updating, and deleting todos, along with real-time updates.",
-                link: "23-FireBase/24-Todo_App_with_DB/index.html"
-            },
-            {   // 25
-                number: "25",
-                img: "23-FireBase/25-FireBase_Storage_Gallery/pic.png",
-                category: "Web Development full stack Projects",
-                title: "Firebase Storage Photo Gallery Application",
-                description: "A web application that allows users to upload and view photos stored in Firebase Storage. It includes functionalities for uploading, viewing, and deleting photos.",
-                link: "23-FireBase/25-FireBase_Storage_Gallery/index.html"
-
-            },
-            {     //  26
-                number: "26",
-                img: "23-FireBase/26-Event_Planner/main/pic.png",
-                category: "Advance full stack Projects with Firebase, DataBase and Firebase Storage",
-                title: "FireBase Event Planner Application for Create Events",
-                description: "A web application that allows users to create and manage events. This project uses Firebase Storage and Firebase Database. It includes user authentication, event management, and real-time updates for event creation.",
-                link: "23-FireBase/26-Event_Planner/main/auth/signUp.html"
-            },
-            {     //  27   
-                number: "27",
-                img: "23-FireBase/27-E_Store/pic.png",
-                category: "Advance full stack Projects with Firebase, DataBase and Firebase Storage.",
-                title: "E-Commerce Web Store Application",
-                description: "This project demonstrates how to dynamically load JSON and API data using asynchronous JavaScript. It includes user authentication, event management, and real-time updates for event creation.",
-                link: "23-FireBase/27-E_Store/index.html"
-            },
-            {     //  28   
-                number: "28",
-                img: "23-FireBase/28-FoodSharingAppFirebase/main/pic.png",
-                category: "Advanced full stack Projects with Firebase storage and DataBase",
-                title: "Food Sharing App with Firebase",
-                description: "This project demonstrates how to dynamically load JSON and API data using asynchronous JavaScript. It includes user authentication, event management, and real-time updates for event creation.",
-                link: "23-FireBase/28-FoodSharingAppFirebase/main/food-sharing-app-main/index.html"
-            },
-            // {     //  29
-            //     number: "29",
-            //     img: "/pic.png",
-            //     category: "Advanced JavaScript Projects",
-            //     title: "food sharing app",
-            //     description: "This project demonstrates how to dynamically load JSON and API data using asynchronous JavaScript.",
-            //     link: "28-copy/food-sharing-app-main/index.html"
-            // },
-            {   //29
-                number: "29",
-                img: "25-Quiz_App/pic.png",
-                category: "Web Development",
-                title: "TypeScript Quiz App",
-                description: "A feature-rich quiz application developed using TypeScript. This app allows users to take quizzes on various topics, track their scores, and review their answers. The project showcases the use of TypeScript for building scalable and maintainable web applications, incorporating responsive design, user authentication, and real-time data updates.",
-                link: "25-Quiz_App/main/index.html"
-            },
-
-
-
-        ];
-
-
-        const container = document.getElementById('projectContainer');
-
-        projects.forEach(project => {
-            const card = document.createElement('div');
-            card.classList.add('card');
-
-            card.innerHTML = `
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>My JavaScript Projects</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap");
+
+			body {
+				font-family: vollkorn;
+				margin: 0;
+				padding: 0;
+				/* background-color: #8cc0e0; */
+				background: linear-gradient(to left, #1631c7, #1ba0e2);
+				color: #333;
+				transition: background-color 0.3s, color 0.3s;
+			}
+
+			/*------------------------- header css ----------------------------------------*/
+			:root {
+				--bg-color: #1f242d;
+				--second-bg-color: #323946;
+				--text-color: #fff;
+				--main-color: #0ef;
+			}
+
+			.home {
+				/* background-color: #1e3c72; */
+				background: linear-gradient(to left, #1e3c72, #3f34b4);
+				color: var(--text-color);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+			}
+
+			.home-img img {
+				width: 25vw;
+				animation: floatImage 4s ease-in-out infinite;
+				/* box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2); */
+				filter: drop-shadow(5px 1px 20px rgb(32, 158, 196));
+				/* filter: drop-shadow(offset-x offset-y blur-radius color); */
+			}
+
+			.home-content {
+				text-align: center;
+				margin: 0 1rem;
+			}
+
+			.home-content h1 {
+				font-size: 3.2rem;
+				font-weight: 600;
+				margin-bottom: 0.5rem;
+			}
+
+			.home-content h3 {
+			}
+
+			#name {
+				text-shadow: #007bff 0 0px 10px;
+			}
+
+			/* images move css */
+			@keyframes floatImage {
+				0% {
+					transform: translateY(0);
+				}
+
+				50% {
+					transform: translateY(-2.9rem);
+				}
+
+				100% {
+					transform: translateY(0);
+				}
+			}
+
+			.header {
+				text-align: center;
+				padding: 1px;
+				color: var(--text-color);
+				margin: 10px 8px;
+				text-shadow: #ce25e1 0 0px 10px;
+				border-radius: 10px;
+				font-size: 1.5rem;
+			}
+
+			.home-content {
+				position: relative;
+				max-width: 40rem;
+				text-align: center;
+			}
+
+			.home-content h3 {
+				font-size: 3.2rem;
+				font-weight: 600;
+			}
+
+			.home-content h1 {
+				/* font-size: 5.6rem;    */
+				font-weight: 700;
+				line-height: 1.3;
+			}
+
+			.home-content p {
+				font-size: 1rem;
+				font-weight: 400;
+				line-height: 1.8;
+				margin: 1.5rem 0;
+			}
+
+			.heading span {
+				color: var(--main-color);
+			}
+
+			@media (max-width: 768px) {
+				.home {
+					flex-direction: column;
+				}
+
+				.home-content {
+					text-align: center;
+				}
+
+				.home-content h3 {
+					font-size: 2.6rem;
+				}
+
+				.home-content h1 {
+					font-size: 5rem;
+				}
+
+				.home-img img {
+					width: 70vw;
+					margin-top: 4rem;
+				}
+			}
+
+			/* ----------------------------------------------------------- */
+			.container {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				margin: 20px;
+			}
+
+			/* ------------------card css---------------- */
+			.card {
+				background-color: white;
+				border: 1px solid #bb5e6c;
+				border-radius: 10px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				margin: 15px;
+				overflow: hidden;
+				transition: transform 0.3s, box-shadow 0.3s;
+				width: 300px;
+				position: relative;
+			}
+
+			.card:hover {
+				transform: translateY(-10px);
+				box-shadow: 0 0px 16px rgb(236, 73, 4);
+			}
+
+			.card img {
+				width: 100%;
+				height: 150px;
+				object-fit: cover;
+				transition: transform 0.3s;
+			}
+
+			.card:hover img {
+				transform: scale(1.1);
+			}
+
+			.card-body {
+				padding: 15px;
+			}
+
+			.card-category {
+				font-size: 14px;
+				color: #6c757d;
+				margin-bottom: 5px;
+			}
+
+			.card-title {
+				font-size: 18px;
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+
+			.card-description {
+				font-size: 14px;
+				color: #333;
+				margin-bottom: 15px;
+			}
+
+			.card a {
+				text-decoration: none;
+				color: #007bff;
+				font-weight: bold;
+			}
+
+			.card-no {
+				color: blue;
+				font-size: 20px;
+				font-weight: bold;
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				background-color: rgb(255, 255, 255, 0.7);
+				padding: 5px;
+				border-radius: 5px;
+				border: 1px solid #ddd;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s, box-shadow 0.3s;
+			}
+
+			.card-no:hover {
+				transform: scale(1.1);
+				box-shadow: 0 0px 10px rgba(14, 209, 206, 0.6);
+				color: red;
+				background-color: rgb(255, 255, 255, 0.9);
+				/* border: 2px solid pink; */
+			}
+
+			@media (max-width: 600px) {
+				.card {
+					width: 100%;
+				}
+			}
+
+			/* ------------dark mode css------------- */
+			/* body color change */
+			.dark-mode {
+				background: #323946;
+				color: #f8f9fa;
+			}
+
+			.dark-mode .home {
+				background: #1f242d;
+			}
+
+			/* card color change */
+			.dark-mode .card {
+				background-color: #1f242d;
+				border-color: #555;
+			}
+
+			.dark-mode .card:hover {
+				box-shadow: 0 8px 16px #0ef;
+				transform: translateY(-10px);
+			}
+
+			/* text color changes  */
+			.dark-mode .card-category,
+			.dark-mode .card-description {
+				color: #bbb;
+			}
+
+			.dark-mode .card a {
+				color: #0ef;
+			}
+
+			.dark-mode .header {
+				background-color: #222;
+				color: var(--main-color);
+			}
+
+			.dark-mode #name {
+				text-shadow: var(--main-color) 0 0 10px;
+			}
+
+			.dark-mode .card-no {
+				background-color: rgb(255, 255, 255, 0.9);
+				color: rgb(119, 0, 255);
+				box-shadow: rgb(230, 112, 131) 0 0px 10px;
+			}
+
+			.dark-mode .card-no:hover {
+				transform: scale(1.1);
+				box-shadow: 0 0px 10px rgba(14, 209, 206, 0.6);
+				color: red;
+				background-color: rgb(255, 255, 255, 0.9);
+			}
+
+			/* -----------toggle button css------------------ */
+			.dark-mode-toggle {
+				position: fixed;
+				top: 30px;
+				right: 30px;
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+				z-index: 2;
+			}
+
+			.dark-mode-toggle input {
+				display: none;
+			}
+
+			.dark-mode-toggle label {
+				background-color: #ccc;
+				width: 50px;
+				height: 25px;
+				border-radius: 25px;
+				position: relative;
+				transition: background-color 0.3s;
+			}
+
+			.dark-mode-toggle label::after {
+				content: "";
+				width: 20px;
+				height: 20px;
+				background-color: white;
+				border-radius: 50%;
+				position: absolute;
+				top: 2.5px;
+				left: 2.5px;
+				transition: transform 0.3s;
+			}
+
+			.dark-mode-toggle input:checked + label {
+				background-color: #007bff;
+			}
+
+			.dark-mode-toggle input:checked + label::after {
+				transform: translateX(25px);
+			}
+		</style>
+	</head>
+
+	<body>
+		<i id="menu-icon"></i>
+		<!-- home section design -->
+		<section class="home" id="home">
+			<div class="home-content">
+				<h2>Hello, It's Me</h2>
+				<h3 id="name">Muhammad Mahad Siddiqui</h3>
+				<h2 class="heading">And there is my <span class="typing"></span></h2>
+				<p>
+					Discover a captivating array of JavaScript projects, each a testament to creativity and functionality, where you
+					can immerse yourself in the world of JavaScript. these projects showcase the versatility and ingenuity of
+					JavaScript. Whether you're a beginner exploring the basics or a seasoned developer seeking new challenges and
+					inspiration, these projects offer both learning opportunities and moments of enjoyment.
+				</p>
+			</div>
+
+			<div class="home-img">
+				<img src="mahad.png" alt="Mahad's Photo" />
+			</div>
+		</section>
+		<div class="header">
+			<!-- <img src="mahad.png" alt="Mahad's Photo"> -->
+			<h1>Welcome to My JavaScript Projects Showcase</h1>
+		</div>
+
+		<div class="dark-mode-toggle">
+			<input type="checkbox" id="darkModeSwitch" onclick="toggleDarkMode()" />
+			<label for="darkModeSwitch"></label>
+		</div>
+
+		<div class="container" id="projectContainer">
+			<!-- Cards will be injected here by JavaScript -->
+		</div>
+		<!-- -----end-------text write  -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://unpkg.com/scrollreveal"></script>
+		<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+		<script>
+			const projects = [
+				{
+					//  1
+					number: "1",
+					img: "1-beginning Assignment/pic.jpg",
+					category: "JavaScript Projects",
+					title: "Beginning Task",
+					description: "Basic Javascript assignment for better understanding of JavaScript.",
+					link: "1-beginning Assignment/index.html",
+				},
+				{
+					// 2
+					number: "2",
+					img: "2-GUI_Calculator/gui.png",
+					category: "JavaScript Projects",
+					title: "GUI Calculator",
+					description: "A graphical user interface calculator built with JavaScript.",
+					link: "2-GUI_Calculator/index.html",
+				},
+				{
+					// 3
+					number: "3",
+					img: "3-Color_Picker/pic.png",
+					category: "JavaScript Projects",
+					title: "Color Picker",
+					description: "A color picker tool created using JavaScript.",
+					link: "3-Color_Picker/index.html",
+				},
+				{
+					// 4
+					number: "4",
+					img: "4-Dice_Game/pic.png",
+					category: "JavaScript Projects",
+					title: "Dice Game",
+					description: "A simple dice game implemented in JavaScript.",
+					link: "4-Dice_Game/index.html",
+				},
+				{
+					// 5
+					number: "5",
+					img: "5-stopwatch/pic.png",
+					category: "JavaScript Projects",
+					title: "Stopwatch",
+					description: "A stopwatch application built using JavaScript.",
+					link: "5-stopwatch/index.html",
+				},
+				{
+					// 6
+					number: "6",
+					img: "6-Analog_Clock/pic.png",
+					category: "JavaScript Projects",
+					title: "Analog Clock",
+					description: "An analog clock created with JavaScript and CSS.",
+					link: "6-Analog_Clock/index.html",
+				},
+				{
+					// 7
+					number: "7",
+					img: "https://via.placeholder.com/300x150",
+					category: "JavaScript Projects",
+					title: "Digital Clock",
+					description: "A digital clock implemented using JavaScript.",
+					link: "7-Digital_Clock/index.html",
+				},
+				{
+					// 8
+					number: "8",
+					img: "8-Age_Calculator/pic1.png",
+					category: "JavaScript Projects",
+					title: "Age Calculator",
+					description: "An age calculator tool built with JavaScript.",
+					link: "8-Age_Calculator/index.html",
+				},
+				// {     // 9
+				//     number: "9",
+				//     img: "9-Attendances_checker/pic.png",
+				//     category: "JavaScript Projects",
+				//     title: "Attendances Checker",
+				//     description: "An application to check and manage attendance using JavaScript.",
+				//     link: "9-Attendances_checker/index.html"
+				// },
+				{
+					// 9
+					number: "9",
+					img: "9-Attendance_report/pic.png",
+					category: "JavaScript Projects",
+					title: "Attendances Checker",
+					description: "An application to check and manage attendance using JavaScript.",
+					link: "9-Attendance_report/index.html",
+				},
+				{
+					// 10
+					number: "10",
+					img: "10-Photo_gallery/pic.png",
+					category: "JavaScript Projects",
+					title: "Photo Gallery",
+					description: "A photo gallery application built with JavaScript.",
+					link: "10-Photo_gallery/index.html",
+				},
+				{
+					//  11
+					number: "11",
+					img: "11-Editor/pic.png",
+					category: "JavaScript Projects",
+					title: "Text Editor",
+					description: "A simple text editor created using JavaScript.",
+					link: "11-Editor/index.html",
+				},
+				{
+					//  12
+					number: "12",
+					img: "12,13-TO-DO-APP/pic1.png",
+					category: "JavaScript Projects",
+					title: "Advanced To Do List",
+					description: "An advanced to-do list application with additional features.",
+					link: "12,13-TO-DO-APP/net.html",
+				},
+				{
+					//  13
+					number: "13",
+					img: "12,13-TO-DO-APP/pic.png",
+					category: "JavaScript Projects",
+					title: "To Do App",
+					description: "A to-do list application built with JavaScript.",
+					link: "12,13-TO-DO-APP/index.html",
+				},
+				{
+					//  14
+					number: "14",
+					img: "14-Expense-Tracker/pic.png",
+					category: "JavaScript Projects",
+					title: "Expense Tracker",
+					description: "An expense tracker application built with JavaScript.",
+					link: "14-Expense-Tracker/index.html",
+				},
+				{
+					//  15
+					number: "15",
+					img: "15-Tic Tac Toe/pic.png",
+					category: "JavaScript Projects",
+					title: "Tic-Tac-Toe",
+					description: "A tic-tac-toe game implemented in JavaScript.",
+					link: "15-Tic Tac Toe/index.html",
+				},
+				{
+					//  16
+					number: "16",
+					img: "16-card/pic.png",
+					category: "JavaScript Projects",
+					title: "Cards Assignments",
+					description: "A project involving card-based assignments using JavaScript.",
+					link: "16-card/index.html",
+				},
+				{
+					// 17
+					number: "17",
+					img: "17,18-dynamic/pic1.png",
+					category: "JavaScript Projects",
+					title: "Edit or Delete Div",
+					description: "A project demonstrating how to dynamically add, edit, or delete div elements.",
+					link: "17,18-dynamic/add.html",
+				},
+				{
+					//  18
+					number: "18",
+					img: "17,18-dynamic/pic.png",
+					category: "JavaScript Projects",
+					title: "Dynamic Div Create",
+					description: "A project showcasing dynamic creation of div elements using JavaScript.",
+					link: "17,18-dynamic/index.html",
+				},
+				{
+					//  19
+					number: "19",
+					img: "19-Local_Storage/pic.png",
+					category: "JavaScript Projects",
+					title: "Local Storage and it functionality",
+					description: "A project showcasing local storage and its functionality using JavaScript.",
+					link: "19-Local_Storage/index.html",
+				},
+				{
+					//  20
+					number: "20",
+					img: "20-Weather_App/other_made_Weather-webapp/pic.png",
+					category: "JavaScript Projects",
+					title: "Whether App",
+					description:
+						"A weather application built with JavaScript. The weather application fetches weather data from an API and displays it on the screen.",
+					link: "20-Weather_App/other_made_Weather-webapp/index.html",
+				},
+				{
+					//  22
+					number: "22",
+					img: "22-Filter/pic.png",
+					category: "Advanced JavaScript Projects",
+					title: "ShowCards with Search Functionality",
+					description: "This project demonstrates how to dynamically load JSON and API data using asynchronous JavaScript.",
+					link: "22-Filter/index.html",
+				},
+				{
+					//  23
+					number: "23",
+					img: "23-FireBase/23-Use_Authentication/pic.png",
+					category: "Web Development full stack Projects",
+					title: "Firebase Authentication with Sign In and Sign Up",
+					description:
+						"This project implements a user authentication system using Firebase. It includes sign in and sign up functionalities, user state management, and a protected dashboard displaying user information.",
+					link: "23-FireBase/23-Use_Authentication/index.html",
+				},
+				{
+					// 24
+					number: "24",
+					img: "23-FireBase/24-Todo_App_with_DB/pic.png",
+					category: "Web Development full stack Projects",
+					title: "Firebase Firestore Todo List Application",
+					description:
+						"A web application that uses Firebase Firestore to manage a todo list. It includes functionalities for adding, updating, and deleting todos, along with real-time updates.",
+					link: "23-FireBase/24-Todo_App_with_DB/index.html",
+				},
+				{
+					// 25
+					number: "25",
+					img: "23-FireBase/25-FireBase_Storage_Gallery/pic.png",
+					category: "Web Development full stack Projects",
+					title: "Firebase Storage Photo Gallery Application",
+					description:
+						"A web application that allows users to upload and view photos stored in Firebase Storage. It includes functionalities for uploading, viewing, and deleting photos.",
+					link: "23-FireBase/25-FireBase_Storage_Gallery/index.html",
+				},
+				{
+					//  26
+					number: "26",
+					img: "23-FireBase/26-Event_Planner/main/pic.png",
+					category: "Advance full stack Projects with Firebase, DataBase and Firebase Storage",
+					title: "FireBase Event Planner Application for Create Events",
+					description:
+						"A web application that allows users to create and manage events. This project uses Firebase Storage and Firebase Database. It includes user authentication, event management, and real-time updates for event creation.",
+					link: "23-FireBase/26-Event_Planner/main/auth/signUp.html",
+				},
+				{
+					//  27
+					number: "27",
+					img: "23-FireBase/27-E_Store/pic.png",
+					category: "Advance full stack Projects with Firebase, DataBase and Firebase Storage.",
+					title: "E-Commerce Web Store Application",
+					description:
+						"This project demonstrates how to dynamically load JSON and API data using asynchronous JavaScript. It includes user authentication, event management, and real-time updates for event creation.",
+					link: "23-FireBase/27-E_Store/index.html",
+				},
+				{
+					//  28
+					number: "28",
+					img: "23-FireBase/28-FoodSharingAppFirebase/main/pic.png",
+					category: "Advanced full stack Projects with Firebase storage and DataBase",
+					title: "Food Sharing App with Firebase",
+					description:
+						"This project demonstrates how to dynamically load JSON and API data using asynchronous JavaScript. It includes user authentication, event management, and real-time updates for event creation.",
+					link: "23-FireBase/28-FoodSharingAppFirebase/main/food-sharing-app-main/index.html",
+				},
+				// {     //  29
+				//     number: "29",
+				//     img: "/pic.png",
+				//     category: "Advanced JavaScript Projects",
+				//     title: "food sharing app",
+				//     description: "This project demonstrates how to dynamically load JSON and API data using asynchronous JavaScript.",
+				//     link: "28-copy/food-sharing-app-main/index.html"
+				// },
+				{
+					//29
+					number: "29",
+					img: "25-Quiz_App/pic.png",
+					category: "Web Development",
+					title: "TypeScript Quiz App",
+					description:
+						"A feature-rich quiz application developed using TypeScript. This app allows users to take quizzes on various topics, track their scores, and review their answers. The project showcases the use of TypeScript for building scalable and maintainable web applications, incorporating responsive design, user authentication, and real-time data updates.",
+					link: "25-Quiz_App/main/index.html",
+				},
+			];
+
+			const container = document.getElementById("projectContainer");
+
+			projects.forEach((project) => {
+				const card = document.createElement("div");
+				card.classList.add("card");
+
+				card.innerHTML = `
                 <img src="${project.img}" alt="${project.title}">
                 <div class="card-body">
                     <div class="card-no">${project.number}</div>
@@ -641,56 +666,52 @@
                 </div>
             `;
 
-            container.appendChild(card);
-        });
+				container.appendChild(card);
+			});
 
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
+			function toggleDarkMode() {
+				document.body.classList.toggle("dark-mode");
+			}
 
-        //-------------------------------------------------------------------js portfolio text write----------------------------------------------------------------
-        $(document).ready(function () {
-            // ===================== Toggle Icon Navbar ============================
-            let menuIcon = document.querySelector("#menu-icon");
-            let section = document.querySelectorAll("section");
+			//-------------------------------------------------------------------js portfolio text write----------------------------------------------------------------
+			$(document).ready(function () {
+				// ===================== Toggle Icon Navbar ============================
+				let menuIcon = document.querySelector("#menu-icon");
+				let section = document.querySelectorAll("section");
 
-            menuIcon.onclick = () => {
-                menuIcon.classList.toggle("fa-times");
-                navbar.classList.toggle("active");
-            };
+				menuIcon.onclick = () => {
+					menuIcon.classList.toggle("fa-times");
+					navbar.classList.toggle("active");
+				};
 
-            // Typed.js initialization
-            var typed = new Typed(".typing", {
-                strings: ["Projects", "Assignments", "Works"],
-                typeSpeed: 100,
-                backSpeed: 60,
-                backDelay: 1000,
-                loop: true,
-            });
+				// Typed.js initialization
+				var typed = new Typed(".typing", {
+					strings: ["Projects", "Assignments", "Works"],
+					typeSpeed: 100,
+					backSpeed: 60,
+					backDelay: 1000,
+					loop: true,
+				});
 
-            // Scroll Reveal initialization on sxreen animation
-            ScrollReveal({
-                reset: true,
-                distance: "80px",
-                duration: 2000,
-                delay: 200,
-            });
+				// Scroll Reveal initialization on sxreen animation
+				ScrollReveal({
+					reset: true,
+					distance: "80px",
+					duration: 2000,
+					delay: 200,
+				});
 
-            ScrollReveal().reveal(".home-content, .heading", { origin: "top" });
-            ScrollReveal().reveal(
-                ".home-img, .services-container",
-                { origin: "bottom" }
-            );
-            ScrollReveal().reveal(".home-content h1, .about-img", {
-                origin: "left",
-            });
-            // Preloader hide on window load
-            window.onload = () => {
-                document.querySelector(".preloader").style.display = "none";
-            };
-        });
-        //--------------------------------------------------------------------------------------------------------------------
-    </script>
-</body>
-
+				ScrollReveal().reveal(".home-content, .heading", { origin: "top" });
+				ScrollReveal().reveal(".home-img, .services-container", { origin: "bottom" });
+				ScrollReveal().reveal(".home-content h1, .about-img", {
+					origin: "left",
+				});
+				// Preloader hide on window load
+				window.onload = () => {
+					document.querySelector(".preloader").style.display = "none";
+				};
+			});
+			//--------------------------------------------------------------------------------------------------------------------
+		</script>
+	</body>
 </html>

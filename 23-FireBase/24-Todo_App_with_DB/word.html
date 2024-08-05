@@ -135,10 +135,10 @@
 
 		<div class="display hidden">
 			<h1>Display User</h1>
-			<p>Name: <span id="display_name"></span></p>
-			<p>Email: <span id="display_email"></span></p>
-			<p>Password: <span id="display_password"></span></p>
-			<p>Address: <span id="display_address"></span></p>
+			<p>Name: <span class="userDisplay" id="display_name"></span></p>
+			<p>Email: <span class="userDisplay" id="display_email"></span></p>
+			<p>Password: <span class="userDisplay" id="display_password"></span></p>
+			<p>Address: <span class="userDisplay" id="display_address"></span></p>
 			<button id="back">Back</button>
 		</div>
 	</body>
@@ -167,7 +167,9 @@
 		const analytics = getAnalytics(app);
 		const db = getFirestore(app);
 
+		// apply validation for all inputs in the form when the form is submitted
 		const validateInputs = () => {
+			// by using destructuring we can select multiple elements at once
 			const [name, email, password, address] = document.querySelectorAll(".userValues");
 			if (!name.value || !email.value || !password.value || !address.value) {
 				alert("Please fill all the fields");
@@ -220,9 +222,11 @@
 
 		const insertData = async () => {
 			const [name, email, password, address] = document.querySelectorAll(".userValues");
+			// make object from the input values and store it in a variable called userData
 			const userData = { name: name.value, email: email.value, password: password.value, address: address.value };
 
 			try {
+				// add document to the collection named "userData" in the database
 				await addDoc(collection(db, "userData"), userData);
 				console.log("Document successfully written!");
 			} catch (error) {
@@ -234,31 +238,21 @@
 
 		const displayData = async () => {
 			try {
+				// get documents from the collection named "userData" in the database
 				const querySnapshot = await getDocs(collection(db, "userData"));
-				const [displayName, displayEmail, displayPassword, displayAddress] = document.querySelectorAll(
-					"#display_name, #display_email, #display_password, #display_address"
-				);
+				console.log("querySnapshot ", querySnapshot);
+				// by using querySelectorAll we can select multiple elements to be displayed
+				const [displayName, displayEmail, displayPassword, displayAddress] = document.querySelectorAll(".userDisplay");
 
-				// Clear display elements before updating
-				displayName.textContent = "";
-				displayEmail.textContent = "";
-				displayPassword.textContent = "";
-				displayAddress.textContent = "";
-
+				// by using querySnapshot.forEach we can get all the documents in the collection
 				querySnapshot.forEach((doc) => {
+					// data() returns the document data as an object
 					const { name, email, password, address } = doc.data();
 					displayName.textContent = name;
 					displayEmail.textContent = email;
 					displayPassword.textContent = password;
 					displayAddress.textContent = address;
 				});
-				// querySnapshot.forEach(doc => {
-				//     const data = doc.data();
-				//     displaySpans[0].innerText = data.name;
-				//     displaySpans[1].innerText = data.email;
-				//     displaySpans[2].innerText = data.password;
-				//     displaySpans[3].innerText = data.address;
-				// });
 			} catch (error) {
 				console.error("Error retrieving document: ", error);
 			}
