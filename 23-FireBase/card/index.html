@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>CRUD Operation</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			body {
+				background: #c2c2c2;
+			}
+			#displayContainer {
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 class="text-center font-xxl bg-gray-600 text-white p-4 m-2 rounded-xl">All your Uploaded Cards</h1>
+		<a href="create.html" class="text-center font-xxl bg-gray-600 text-white p-4 m-2 rounded-xl">back to create</a>
+		<div id="displayContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4"></div>
+
+		<!-- Edit Modal -->
+		<div id="editModal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+			<div class="flex items-center justify-center min-h-screen">
+				<div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-lg">
+					<h2 class="text-2xl font-semibold mb-4">Edit Card</h2>
+					<form id="editCardForm">
+						<div class="mb-4">
+							<label for="editTitle" class="block text-sm font-medium text-gray-700">Title</label>
+							<input
+								type="text"
+								id="editTitle"
+								class="inputFields mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3"
+							/>
+						</div>
+						<div class="mb-4">
+							<label for="editDescription" class="block text-sm font-medium text-gray-700">Description</label>
+							<textarea
+								id="editDescription"
+								class="inputFields mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3"
+							></textarea>
+						</div>
+						<div class="mb-4">
+							<label for="editPrice" class="block text-sm font-medium text-gray-700">Price</label>
+							<input
+								type="text"
+								id="editPrice"
+								class="inputFields mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3"
+							/>
+						</div>
+						<div class="flex justify-end">
+							<button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg mr-2">Save</button>
+							<button type="button" id="cancelEdit" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg">Cancel</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script src="./app.js" type="module"></script>
+	</body>
+</html>

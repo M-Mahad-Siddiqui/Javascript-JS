@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			.card {
+				max-width: 100%;
+			}
+
+			.card-img {
+				height: 200px;
+				object-fit: cover;
+			}
+
+			.modal {
+				display: none;
+				position: fixed;
+				z-index: 50;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: auto;
+				background-color: rgba(0, 0, 0, 0.5);
+			}
+
+			.modal-content {
+				background-color: #fff;
+				margin: 15% auto;
+				padding: 20px;
+				border: 1px solid #888;
+				width: 80%;
+				max-width: 500px;
+			}
+		</style>
+	</head>
+
+	<body class="bg-gray-100">
+		<h1 class="text-center font-xxl bg-gray-600 text-white p-4 m-2 rounded-xl">All your Uploaded Cards</h1>
+		<a href="create.html" class="text-center font-xxl bg-gray-600 text-white p-4 m-2 rounded-xl">back to create</a>
+		<!-- -----------------------------------------dynamically card show--------------------------------------------------- -->
+
+		<div class="flex justify-center items-center">
+			<div
+				id="displayContainer"
+				class="p-6 mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
+			>
+				<!--  cards will be appended here -->
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div id="editModal" class="modal">
+			<div class="modal-content">
+				<span id="closeModal" class="absolute top-2 right-2 text-gray-600 cursor-pointer">&times;</span>
+				<h2 class="text-lg font-semibold text-gray-900">Edit Card</h2>
+				<form id="editCardForm">
+					<!-- title update -->
+					<div class="mb-4">
+						<label for="editTitle" class="block text-sm font-medium text-gray-900">Card Title</label>
+						<input
+							type="text"
+							id="editTitle"
+							name="cardTitle"
+							class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+							required
+						/>
+					</div>
+					<!-- description update -->
+					<div class="mb-4">
+						<label for="editDescription" class="block text-sm font-medium text-gray-900">card Description</label>
+						<textarea
+							id="editDescription"
+							name="description"
+							rows="3"
+							class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+							required
+						></textarea>
+					</div>
+					<!-- price update -->
+					<div class="mb-4">
+						<label for="editPrice" class="block text-sm font-medium text-gray-900">Price</label>
+						<input
+							type="text"
+							id="editPrice"
+							name="cardPrice"
+							class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+							required
+						/>
+					</div>
+
+					<div class="flex justify-end">
+						<button type="button" id="cancelEdit" class="bg-gray-300 px-4 py-2 rounded-md text-white">Cancel</button>
+						<button type="submit" id="saveEdit" class="ml-2 bg-indigo-600 px-4 py-2 rounded-md text-white">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<script type="module" src="app.js"></script>
+	</body>
+</html>

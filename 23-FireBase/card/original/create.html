@@ -1,0 +1,98 @@
+.<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			#createForm {
+				margin-top: 20px;
+			}
+
+			#createForm .relative {
+				margin-top: 20px;
+			}
+
+			#createForm h1 {
+				text-shadow: rgb(128, 0, 36) 0px 0px 5px;
+			}
+			body {
+				background: #c2c2c2;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- new design form -->
+		<form id="createForm" class="max-w-4xl mx-auto bg-white shadow-lg p-10 rounded-lg">
+			<h1 class="text-4xl width-full bg-blue-500 text-center text-white p-2 mb-4 rounded-lg w-full font-semibold white">
+				Welcome to Create Product Center
+			</h1>
+
+			<!-- sign up images input -->
+			<div class="relative z-0 w-full mb-2 group">
+				<label for="fileUpload" class="inputFields block mb-2 font-medium text-gray-900 dark:text-red">Upload file</label>
+				<input
+					type="file"
+					id="fileUpload"
+					class="block w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+				/>
+			</div>
+			<!-- email input -->
+			<div class="relative z-0 w-full mb-6 group">
+				<input
+					type="email"
+					name="inputTitle"
+					id="inputTitle"
+					class="inputFields block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-red dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+					placeholder=" "
+				/>
+				<label
+					for="inputTitle"
+					class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+					>Enter the Title</label
+				>
+			</div>
+			<div class="relative z-0 w-full mb-6 group">
+				<input
+					type="text"
+					name="description"
+					id="description"
+					class="inputFields block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-red dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+					placeholder=" "
+				/>
+				<label
+					for="description"
+					class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+					>Enter the Description</label
+				>
+			</div>
+			<div class="relative z-0 w-full mb-6 group">
+				<input
+					type="text"
+					name="price"
+					id="price"
+					class="inputFields block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none text-red dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+					placeholder=" "
+				/>
+				<label
+					for="price"
+					class="peer-focus:font-medium absolute text-lg text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+					>Enter the Price</label
+				>
+			</div>
+
+			<button
+				type="submit"
+				id="submitBtn"
+				class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+			>
+				Submit
+			</button>
+			<span class="text-gray-700 w-full text-lg sm:px-8 py-24 text-center"><a href="index.html"> see all users</a></span>
+			<p id="signUpError" class="text-red-500 text-sm mt-2 text-center"></p>
+		</form>
+	</body>
+	<script type="module" src="app.js"></script>
+</html>
