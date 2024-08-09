@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body></body>
+	<script>
+		const url = "https://example.com/api";
+
+		const postData = async () => {
+			try {
+				let response = await fetch(url, {
+					method: "POST", // Specify the request method
+					headers: {
+						"Content-Type": "application/json", // Set the request headers
+					},
+					body: JSON.stringify({ key: "value" }), // Convert the data to a JSON string
+				});
+				console.log(response); // Response is a Response object
+				console.log(response.status); // Logs the HTTP status code
+				let data = await response.json(); // Parses the JSON data from the response
+				console.log(data); // Logs the parsed JSON data
+			} catch (error) {
+				console.error("Error sending data:", error); // Logs any errors
+			}
+		};
+		postData();
+
+		//or
+		//same but by using promise chaining
+		// const postData = () => {
+		//     fetch(url, {
+		//         method: 'POST', // Specify the request method
+		//         headers: {
+		//             'Content-Type': 'application/json' // Set the request headers
+		//         },
+		//         body: JSON.stringify({ key: 'value' }) // Convert the data to a JSON string
+		//     })
+		//     .then(response => {
+		//         console.log(response); // Response is a Response object
+		//         console.log(response.status); // Logs the HTTP status code
+		//         return response.json(); // Returns a Promise that resolves with the JSON data
+		//     })
+		//     .then(data => {
+		//         console.log(data); // Logs the parsed JSON data
+		//     })
+		//     .catch(error => {
+		//         console.error("Error sending data:", error); // Logs any errors
+		//     });
+		// };
+	</script>
+</html>
