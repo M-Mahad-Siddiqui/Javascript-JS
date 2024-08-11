@@ -1,0 +1,379 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Currency Converter App</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			background: #f4e4ba;
+		}
+		.container {
+			background-color: white;
+			padding: 2rem;
+			border-radius: 1rem;
+			min-height: 45vw;
+			width: 40vh;
+		}
+		form {
+			margin: 2rem 0 1rem 0;
+		}
+		form select,
+		button,
+		input {
+			width: 100%;
+			border: none;
+			outline: none;
+			border-radius: 0.75rem;
+		}
+		form input {
+			border: 1px solid lightgray;
+			font-size: 1rem;
+			height: 3rem;
+			padding-left: 0.5rem;
+		}
+		.dropDown {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 2rem;
+		}
+		.dropDown i {
+			font-size: 1.5rem;
+			margin-top: 2rem;
+		}
+		.select-container img {
+			max-width: 2rem;
+		}
+		.select-container {
+			display: flex;
+			width: 6rem;
+			justify-content: center;
+			align-items: center;
+			border-radius: 0.5rem;
+			border: 1px solid lightgray;
+		}
+		.select-container select {
+			font-size: 1rem;
+			width: auto;
+		}
+		.msg {
+			margin: 2rem 0 2rem 0;
+		}
+		form button {
+			height: 3rem;
+			background-color: #af4d98;
+			/* background-color: #f4e; */
+			color: #fff;
+			font-size: 1.15rem;
+			cursor: pointer;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<h2>Currency Converter</h2>
+			<form action="">
+				<div class="amount">
+					<label for="amount">Enter Amount</label>
+					<input id="amount" type="text" value="100" />
+				</div>
+				<div class="dropDown">
+					<div class="From">
+						<label for="from">From</label>
+						<div class="select-container">
+							<img src="https://flagsapi.com/PKR/flat/64.png" alt="PKR flag" />
+							<select id="from" name="from">
+								<option value="USD">USD</option>
+								<option value="PKR">PKR</option>
+								<option value="EUR">EUR</option>
+								<option value="AUD">AUD</option>
+							</select>
+						</div>
+					</div>
+					<i class="fa-solid fa-arrow-right-arrow-left"></i>
+					<div class="to">
+						<label for="to">To</label>
+						<div class="select-container">
+							<img src="https://flagsapi.com/USD/flat/64.png" alt="USD flag" />
+							<select id="to" name="to">
+								<option value="USD">USD</option>
+								<option value="PKR" selected>PKR</option>
+								<option value="EUR">EUR</option>
+								<option value="AUD">AUD</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="msg">1 USD = 80 INR</div>
+				<button type="submit">Get Exchange Rate</button>
+			</form>
+		</div>
+	</body>
+	<script>
+		const BASE_URL = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd/inr.json";
+		const dropDown = document.querySelector(".dropDown select");
+
+		for (let select of dropDown) {
+			for (currCode in countryList) {
+				let newOption = document.createElement("option");
+				newOption.innerText = currCode;
+				newOption.value = currCode;
+				if (select.name === "from" && currCode === "USD") {
+					newOption.selected = "selected";
+				} else if (select.name === "to" && currCode === "PKR") {
+					newOption.selected = "selected";
+				}
+				select.append(newOption);
+			}
+		}
+
+		select.addEventListener("change", (evt) => {
+			updateFlag(evt.target);
+		});
+
+		const updateFlag = (element) => {
+			let currCode = element.value;
+			let countryCode = countryList[currCode];
+			let newSrc = `https://flagsapi.com/${countryCode}/flat/64.png`;
+			element.parentElement.querySelector("img");
+			img.src = newSrc;
+		};
+		const btn = document.querySelector("from button");
+		const fromCurr = document.querySelector(".From select").value.toLowerCase();
+		const toCurr = document.querySelector(".to select").value.toLowerCase();
+		let msg = document.querySelector(".msg");
+
+		window.addEventListener("load", updateExchangeRate);
+
+		btn.addEventListener("click", (evt) => {
+			evt.preventDefault();
+			updateExchangeRate();
+		});
+		const updateExchangeRate = async (data) => {
+			let Amount = document.querySelector(".amount input");
+			let amountValue = amount.value;
+			if (amountValue == "" || amountValue < 1) {
+				amountValue = 1;
+				Amount.value = "1";
+			}
+			const URL = `${BASE_URL}/${fromCurr}/${toCurr}.json`;
+			let response = await fetch(URL);
+			let data = await response.json();
+			let rate = data[toCurr];
+			let convertedAmount = amountValue * rate;
+			msg.innerText = `${amountValue} ${fromCurr} = ${rate}${toCurr}`;
+			alert(`${amountValue} ${fromCurr} = ${convertedAmount} ${toCurr}`);
+		};
+	</script>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Currency Converter App</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			background: #f4e4ba;
+		}
+		.container {
+			background-color: white;
+			padding: 2rem;
+			border-radius: 1rem;
+			min-height: 45vw;
+			width: 40vh;
+		}
+		form {
+			margin: 2rem 0 1rem 0;
+		}
+		form select,
+		button,
+		input {
+			width: 100%;
+			border: none;
+			outline: none;
+			border-radius: 0.75rem;
+		}
+		form input {
+			border: 1px solid lightgray;
+			font-size: 1rem;
+			height: 3rem;
+			padding-left: 0.5rem;
+		}
+		.dropDown {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 2rem;
+		}
+		.dropDown i {
+			font-size: 1.5rem;
+			margin-top: 2rem;
+		}
+		.select-container img {
+			max-width: 2rem;
+		}
+		.select-container {
+			display: flex;
+			width: 6rem;
+			justify-content: center;
+			align-items: center;
+			border-radius: 0.5rem;
+			border: 1px solid lightgray;
+		}
+		.select-container select {
+			font-size: 1rem;
+			width: auto;
+		}
+		.msg {
+			margin: 2rem 0 2rem 0;
+		}
+		form button {
+			height: 3rem;
+			background-color: #af4d98;
+			color: #fff;
+			font-size: 1.15rem;
+			cursor: pointer;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<h2>Currency Converter</h2>
+			<form>
+				<div class="amount">
+					<label for="amount">Enter Amount</label>
+					<input id="amount" type="text" value="100" />
+				</div>
+				<div class="dropDown">
+					<div class="From">
+						<label for="from">From</label>
+						<div class="select-container">
+							<img id="from-flag" src="https://flagsapi.com/USD/flat/64.png" alt="From Currency flag" />
+							<select id="from" name="from">
+								<!-- Options will be populated by JavaScript -->
+							</select>
+						</div>
+					</div>
+					<i class="fa-solid fa-arrow-right-arrow-left"></i>
+					<div class="to">
+						<label for="to">To</label>
+						<div class="select-container">
+							<img id="to-flag" src="https://flagsapi.com/PKR/flat/64.png" alt="To Currency flag" />
+							<select id="to" name="to">
+								<!-- Options will be populated by JavaScript -->
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="msg">1 USD = 80 INR</div>
+				<button type="submit">Get Exchange Rate</button>
+			</form>
+		</div>
+	</body>
+	<script>
+		const BASE_URL = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies";
+		const countryList = {
+			USD: "us",
+			PKR: "pk",
+			EUR: "eu",
+			AUD: "au",
+		};
+
+		const fromSelect = document.querySelector("#from");
+		const toSelect = document.querySelector("#to");
+		const fromFlag = document.querySelector("#from-flag");
+		const toFlag = document.querySelector("#to-flag");
+		const amountInput = document.querySelector("#amount");
+		const msg = document.querySelector(".msg");
+
+		// Populate the select options
+		const populateOptions = () => {
+			for (const [currCode, countryCode] of Object.entries(countryList)) {
+				const newOptionFrom = document.createElement("option");
+				newOptionFrom.innerText = currCode;
+				newOptionFrom.value = currCode;
+				fromSelect.append(newOptionFrom);
+
+				const newOptionTo = document.createElement("option");
+				newOptionTo.innerText = currCode;
+				newOptionTo.value = currCode;
+				toSelect.append(newOptionTo);
+			}
+
+			// Set default selected values
+			fromSelect.value = "USD";
+			toSelect.value = "PKR";
+		};
+
+		const updateFlag = (element) => {
+			const currCode = element.value;
+			const countryCode = countryList[currCode];
+			const newSrc = `https://flagsapi.com/${countryCode}/flat/64.png`;
+
+			if (element.id === "from") {
+				fromFlag.src = newSrc;
+			} else if (element.id === "to") {
+				toFlag.src = newSrc;
+			}
+		};
+
+		const updateExchangeRate = async () => {
+			const fromCurr = fromSelect.value.toLowerCase();
+			const toCurr = toSelect.value.toLowerCase();
+			const amountValue = parseFloat(amountInput.value) || 1;
+
+			const URL = `${BASE_URL}/${fromCurr}/${toCurr}.json`;
+			try {
+				const response = await fetch(URL);
+				const data = await response.json();
+				const rate = data[toCurr];
+				const convertedAmount = amountValue * rate;
+				msg.innerText = `${amountValue} ${fromCurr.toUpperCase()} = ${convertedAmount.toFixed(2)} ${toCurr.toUpperCase()}`;
+				alert(`${amountValue} ${fromCurr.toUpperCase()} = ${convertedAmount.toFixed(2)} ${toCurr.toUpperCase()}`);
+			} catch (error) {
+				msg.innerText = "Error fetching exchange rate.";
+				console.error("Error:", error);
+			}
+		};
+
+		// Initialize options and event listeners
+		window.addEventListener("load", () => {
+			populateOptions();
+			updateFlag(fromSelect);
+			updateFlag(toSelect);
+		});
+
+		fromSelect.addEventListener("change", () => {
+			updateFlag(fromSelect);
+		});
+
+		toSelect.addEventListener("change", () => {
+			updateFlag(toSelect);
+		});
+
+		document.querySelector("form").addEventListener("submit", (evt) => {
+			evt.preventDefault();
+			updateExchangeRate();
+		});
+	</script>
+</html>

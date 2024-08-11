@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>DOM Manipulation</title>
+	</head>
+	<body>
+		<h2>DOM Manipulation</h2>
+		<ul>
+			<li><b>TagName:</b> Returns the tag name of the element nodes</li>
+			<li><b>innerText:</b> Returns the text content of the element and all its children</li>
+			<li><b>innerHTML:</b> Returns the plain text or HTML content in the element</li>
+			<li><b>textContent:</b> Returns the textual content even for hidden elements</li>
+			<li><b>getAttribute:</b> Returns the value of the attribute of the element</li>
+		</ul>
+
+		<h3><b>DOM Tree :</b>Three types of Nodes are created during DOM manipulation Tree</h3>
+		<ul id="list">
+			<li>.textNode</li>
+			<li>.commentNode</li>
+			<li>.elementNode</li>
+			<!-- only this is important for DOM  -->
+		</ul>
+		<h3>DOM Traversal Important Methods</h3>
+		<ul>
+			<li>.firstChild</li>
+			<li>.lastChild</li>
+			<li>.nextSibling</li>
+			<li>.previousSibling</li>
+			<li>.parentNode</li>
+			<li>.childNodes</li>
+			<li>.children</li>
+			<li>.parentElement</li>
+			<li>.firstElementChild</li>
+			<li>.lastElementChild</li>
+			<li>.nextElementSibling</li>
+			<li>.previousElementSibling</li>
+		</ul>
+	</body>
+	<script>
+		console.log("-----------------------DOM Manipulation----------------------");
+		const list = document.querySelector("#list");
+		console.log("list.innerText :", list.innerText); // its return the text content of the element and all its children
+		console.log("list.innerHTML :", list.innerHTML); // its return the plain text or HTML content in the element
+		console.log("list.textContent :", list.textContent); // its return the textual content even for hidden elements
+
+		console.log("list.children[0] :", list.children[0]); // its return the first child of the element
+		console.log("list.children[0].innerText :", list.children[0].innerText); // its return the text content of the first child of the element
+		console.log("list.children[0].innerHTML :", list.children[0].innerHTML); // its return the HTML content of the first child of the element
+		console.log("list.children[0].textContent :", list.children[0].textContent); // its return the textual content of the first child of the element
+		console.log("list.children[0].style.color='blue' :", (list.children[0].style.color = "blue")); // its return the color of the first child of the element
+		console.log("list.children[0].getAttribute('class') :", list.children[0].getAttribute("class")); // its return the value of the attribute of the element
+	</script>
+</html>

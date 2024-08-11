@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>JavaScript Functions Example</title>
+	</head>
+	<body>
+		<h1>JavaScript Functions Examples</h1>
+		<p>block od code that performs a particular task, can be invoked() whenever needed.</p>
+		<ol>
+			<li>Function Declaration</li>
+			<li>Function Expression</li>
+			<li>Anonymous Function</li>
+			<li>Arrow Function</li>
+			<li>Immediately Invoked Function Expression (IIFE)</li>
+		</ol>
+
+		<button onclick="showFunctionResults()">Show Function Results</button>
+		<div id="output"></div>
+
+		<script>
+			// Function Declaration
+			// This is a named function defined using the function keyword.
+			// It can be called before or after its definition in the code.
+			function add(a, b) {
+				return a + b;
+			}
+
+			// Function Expression
+			// This function is defined and assigned to a variable.
+			// It can only be called after its definition in the code.
+			const subtract = function (a, b) {
+				return a - b;
+			};
+
+			// Anonymous Function
+			// This function is defined without a name and is often used as an argument to other functions.
+			// Here, it is used directly as an argument to the setTimeout function.
+			setTimeout(function () {
+				console.log("This is an anonymous function.");
+			}, 1000);
+
+			// Arrow Function
+			// Arrow functions provide a more concise syntax for writing functions.
+			// They are often used for inline functions and do not have their own 'this' context.
+			const multiply = (a, b) => a * b;
+
+			// Immediately Invoked Function Expression (IIFE)
+			// This function is defined and immediately executed.
+			// It is commonly used to create a private scope for variables.
+			(function () {
+				const message = "This is an IIFE!";
+				console.log(message);
+			})();
+
+			// Function to display results
+			function showFunctionResults() {
+				const resultsDiv = document.getElementById("output");
+				resultsDiv.innerHTML = `
+                <h2>Function Results</h2>
+                <p><strong>Function Declaration:</strong> add(5, 3) = ${add(5, 3)}</p>
+                <p><strong>Function Expression:</strong> subtract(10, 4) = ${subtract(10, 4)}</p>
+                <p><strong>Arrow Function:</strong> multiply(2, 6) = ${multiply(2, 6)}</p>
+                <p><strong>Anonymous Function:</strong> This function is executed after 1 second.</p>
+                <p><strong>IIFE:</strong> The message is logged in the console.</p>
+            `;
+			}
+		</script>
+	</body>
+</html>

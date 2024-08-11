@@ -1,126 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>JavaScript Concepts Example</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Concepts Example</title>
-</head>
+	<body>
+		<!-- Displaying a date -->
+		<p>27th June Thursday 2024</p>
 
-<body>
+		<!-- List of JavaScript concepts -->
+		<ol>
+			<li>
+				<h3>destructuring</h3>
+			</li>
+			<li>
+				<h3>Object Destructuring</h3>
+			</li>
+			<li>
+				<h3>Array Destructuring</h3>
+			</li>
+			<li>
+				<h3>Spread Operator</h3>
+			</li>
+			<li>
+				<h3>Rest Operator</h3>
+			</li>
+			<li>
+				<h3>Template Literals</h3>
+			</li>
+			<li>
+				<h3>Default Parameters</h3>
+			</li>
+			<li>
+				<h3>Rest Parameters</h3>
+			</li>
+			<li>
+				<h3>Ternary Operator</h3>
+			</li>
+		</ol>
 
-    <!-- Displaying a date -->
-    <p>27th June Thursday 2024</p>
+		<!-- Container for dynamically generated content -->
+		<div id="list"></div>
 
-    <!-- List of JavaScript concepts -->
-    <ol>
-        <li>
-            <h3>destructuring</h3>
-        </li>
-        <li>
-            <h3>Object Destructuring</h3>
-        </li>
-        <li>
-            <h3>Array Destructuring</h3>
-        </li>
-        <li>
-            <h3>Spread Operator</h3>
-        </li>
-        <li>
-            <h3>Rest Operator</h3>
-        </li>
-        <li>
-            <h3>Template Literals</h3>
-        </li>
-        <li>
-            <h3>Default Parameters</h3>
-        </li>
-        <li>
-            <h3>Rest Parameters</h3>
-        </li>
-        <li>
-            <h3>Ternary Operator</h3>
-        </li>
-    </ol>
+		<script>
+			//------------------------------- Object Destructuring ------------------------------
+			let batch_11 = {
+				students: 50,
+				startDate: "01-01-2024",
+				endDate: "31-11-2024",
+				isClassesContinue: true,
+			};
 
-    <!-- Container for dynamically generated content -->
-    <div id="list"></div>
+			// Destructuring assignment
+			let { startDate: batchStartDate, endDate } = batch_11;
 
-    <script>
-        //------------------------------- Object Destructuring ------------------------------
-        let batch_11 = {
-            students: 50,
-            startDate: "01-01-2024",
-            endDate: "31-11-2024",
-            isClassesContinue: true,
-        };
+			console.log("startDate =>", batchStartDate); // Output: 01-01-2024
+			console.log("endDate =>", endDate); // Output: 31-11-2024
 
-        // Destructuring assignment
-        let { startDate: batchStartDate, endDate } = batch_11;
+			//------------------------------- Array Destructuring ------------------------------
+			let abc = ["12", "32", "34", "45"];
+			let [a, , b] = abc;
+			console.log(a); // Output: 12
+			console.log(b); // Output: 34
 
-        console.log("startDate =>", batchStartDate); // Output: 01-01-2024
-        console.log("endDate =>", endDate); // Output: 31-11-2024
+			//------------------------------- Spread Operator ------------------------------
+			// Spread operator in arrays
+			var arr = [1, 2, 3, 4, 5, 6, 7];
+			var arr1 = [8, 9, 10];
+			var combinedArr = [...arr, ...arr1];
+			console.log(combinedArr); // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-        //------------------------------- Array Destructuring ------------------------------
-        let abc = ["12", "32", "34", "45"];
-        let [a, , b] = abc;
-        console.log(a); // Output: 12
-        console.log(b); // Output: 34
+			// Spread operator in objects
+			let batch__11 = {
+				...batch_11,
+				currentTopic: "Firebase",
+			};
 
-        //------------------------------- Spread Operator ------------------------------
-        // Spread operator in arrays
-        var arr = [1, 2, 3, 4, 5, 6, 7];
-        var arr1 = [8, 9, 10];
-        var combinedArr = [...arr, ...arr1];
-        console.log(combinedArr); // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+			console.log(batch__11);
 
-        // Spread operator in objects
-        let batch__11 = {
-            ...batch_11,
-            currentTopic: "Firebase",
-        };
+			//------------------------------- Rest Operator ------------------------------
+			// Default Parameters and Rest Parameters
+			function sum(a = 0, b = 0) {
+				return a + b;
+			}
+			console.log(sum(20, 20)); // Output: 40
 
-        console.log(batch__11);
+			// Rest Operator in object Destructuring
+			let batch11 = {
+				students: 50,
+				startDate: "01-01-2024",
+				endDate: "31-11-2024",
+				isClassesContinue: true,
+				currentTopic: "es6",
+				noOfQuiz: 12,
+			};
 
-        //------------------------------- Rest Operator ------------------------------
-        // Default Parameters and Rest Parameters
-        function sum(a = 0, b = 0) {
-            return a + b;
-        }
-        console.log(sum(20, 20)); // Output: 40
+			let { noOfQuiz = 3, students, ...rest } = batch11;
+			console.log(rest); // Output: {startDate: "01-01-2024", endDate: "31-11-2024", isClassesContinue: true, currentTopic: "es6"}
 
-        // Rest Operator in object Destructuring
-        let batch11 = {
-            students: 50,
-            startDate: "01-01-2024",
-            endDate: "31-11-2024",
-            isClassesContinue: true,
-            currentTopic: "es6",
-            noOfQuiz: 12,
-        };
+			//------------------------------- Ternary Operator ------------------------------
+			// Example using ternary operator to dynamically set background color based on status
+			let array = [
+				{ task: "ABC", status: "done" },
+				{ task: "ABC", status: "pending" },
+				{ task: "ABC", status: "rejected" },
+			];
 
-        let { noOfQuiz = 3, students, ...rest } = batch11;
-        console.log(rest); // Output: {startDate: "01-01-2024", endDate: "31-11-2024", isClassesContinue: true, currentTopic: "es6"}
-
-        //------------------------------- Ternary Operator ------------------------------
-        // Example using ternary operator to dynamically set background color based on status
-        let array = [
-            { task: "ABC", status: "done" },
-            { task: "ABC", status: "pending" },
-            { task: "ABC", status: "rejected" },
-        ];
-
-        array.forEach((data) => {
-            let { task, status } = data;
-            var ele = `  <div style="height: 200px;margin: 20px;background-color : ${status === "done" ? "green" : status === "pending" ? "yellow" : "red"}">
+			array.forEach((data) => {
+				let { task, status } = data;
+				var ele = `  <div style="height: 200px;margin: 20px;background-color : ${
+					status === "done" ? "green" : status === "pending" ? "yellow" : "red"
+				}">
               <h1>${task}</h1>
             </div>`;
 
-            list.innerHTML += ele;
-        });
-
-    </script>
-</body>
-
+				list.innerHTML += ele;
+			});
+		</script>
+	</body>
 </html>

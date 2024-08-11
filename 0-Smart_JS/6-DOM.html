@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document Object Model</title>
+	</head>
+	<body>
+           <h1 class="h1">Window Object</h1>
+    <p id="para">
+        The window object represents an open window in a browser. It is the browser's global object (not JavaScript) and is
+        automatically created when a new window is opened by the browser. It is a global object with lots of properties
+        and methods. `alert`, `console`, `clearInterval`, and etc., are parts of the window object.
+    </p>
+
+    <h1>DOM (Document Object Model)</h1>
+    <ul>
+        <li>When a web page is loaded, the browser creates a document object of the page.</li>
+        <li>DOM is a programming interface for HTML and XML documents.</li>
+        <li>DOM creates a tree of objects of HTML elements.</li>
+        <li>All the HTML elements are represented by nodes in the tree.</li>
+        <li>All the HTML code is present in the document object of the page, which is part of the window object.</li>
+    </ul>
+
+    <button>Show Images</button>
+    <div id="image-container" style="display: none; flex: 1; justify-content: space-around; flex-wrap: wrap;">
+        <img src="chart.png" alt="Chart" width="600px" />
+        <img src="dom.png" alt="DOM" width="600px" />
+    </div>
+
+   
+
+	</body>
+
+
+		<script>
+			console.log("window : ", window);
+			console.dir(window.document); // its show all the properties and methods of document
+			console.log("window.document ", window.document); // its show all the html code as a object
+			console.log("window.document.body ", window.document.body); // its show the body of the html code as a Model object
+			console.log("document.body.children ", document.body.children); // its show the children of the body
+			console.log("document.body.children[0] ", document.body.children[0]); // its show the first child of the body
+			console.log("document.body.childNodes[1] ", document.body.childNodes[1]); // its show the first child of the body wether it comment or not
+           document.body.childNodes[1].innerText = 'Window Object Model';//dynamically change the text of the second child(h1) of the body
+
+           console.log("--------------------Methods to excess the element in DOM-------------------------")
+           console.log("document.getElementById('para') :", document.getElementById('para'));// its return the element with the given id
+           console.log("document.getElementsByClassName('h1')[0] :", document.getElementsByClassName('h1')[0]);// its return the array of element with the given class
+           console.log("document.getElementsByTagName('h1') :", document.getElementsByTagName('h1').innerText="liza");// its return the list of element with the given tag
+           console.log("document.getElementsByName('h1') :", document.getElementsByName('h1'));// its return the list of element with the given name
+
+         console.log('-----------------Query Selector(myId/ myClass/ myTag/ myAttribute)-----------------')
+           console.log("document.querySelector('h1') :", document.querySelector('h1'));// its return the first element with the given selector name
+           console.log("document.querySelectorAll('h1') :", document.querySelectorAll('h1'));// its return the Node list of element with the given selector name
+
+
+// Show and hide images
+ const butt = document.querySelector('button');
+butt.addEventListener('click', () => {
+    // Select the div that contains the images
+    const imageContainer = document.querySelector('#image-container');
+    // Check the current display property and toggle it
+    if (imageContainer.style.display === 'none' || imageContainer.style.display === '') {
+        butt.innerText = 'Hide Images';
+        imageContainer.style.display = 'flex'; // Show the images
+    } else {
+        butt.innerText = 'Show Images';
+        imageContainer.style.display = 'none'; // Hide the images
+    }
+});
+
+		</script>
+</html
+
+

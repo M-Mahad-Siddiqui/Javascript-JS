@@ -1,176 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    
-</head>
-
-<body>
-
-     <p>27th june thusrday 2024</p>
-    <!-- <p>
+	<body>
+		<p>27th june thusrday 2024</p>
+		<!-- <p>
         The <b>destructuring assignment</b>  syntax is a JavaScript expression that makes it possible to unpack values 
         from arrays, or properties from objects, into distinct variables.
     </p> -->
-    <ol>
-        <li>
-            <h3>destructuring</h3>
-        </li>
-        <li>
-            <h3>Object Destructuring</h3>
-        </li>
-        <li>
-            <h3>Array Destructuring</h3>
-        </li>
-        <li>
-            <h3>Spread Operator</h3>
-        </li>
-        <li>
-            <h3>Rest Operator</h3>
-        </li>
-        <li>
-            <h3>Template Literals</h3>
-        </li>
-        <li>
-            <h3>Default Parameters</h3>
-        </li>
-        <li>
-            <h3>Rest Parameters</h3>
-        </li>
-        <li>
-            <h3>Tinary Operator</h3>
-        </li>
-    </ol>
+		<ol>
+			<li>
+				<h3>destructuring</h3>
+			</li>
+			<li>
+				<h3>Object Destructuring</h3>
+			</li>
+			<li>
+				<h3>Array Destructuring</h3>
+			</li>
+			<li>
+				<h3>Spread Operator</h3>
+			</li>
+			<li>
+				<h3>Rest Operator</h3>
+			</li>
+			<li>
+				<h3>Template Literals</h3>
+			</li>
+			<li>
+				<h3>Default Parameters</h3>
+			</li>
+			<li>
+				<h3>Rest Parameters</h3>
+			</li>
+			<li>
+				<h3>Tinary Operator</h3>
+			</li>
+		</ol>
 
-    <div id="list">
+		<div id="list"></div>
+		<script>
+			//-------------------------------Destructuring in object ------------------------------
+			let batch_11 = {
+				students: 50,
+				startDate: "01-01-2024",
+				endDate: "31-11-2024",
+				isClassesContinue: true,
+			};
+			let startDate = batch_11.startDate; //old way to access object properties
 
-    </div>
-    <script>
-        //-------------------------------Destructuring in object ------------------------------
-        let batch_11 = {
-            students: 50,
-            startDate: "01-01-2024",
-            endDate: "31-11-2024",
-            isClassesContinue: true,
-        };
-        let startDate = batch_11.startDate;   //old way to access object properties
+			// let {students, startDate, endDate, isClassesContinue} = batch_11;  // destructuring in new way to access object properties by i
 
-        // let {students, startDate, endDate, isClassesContinue} = batch_11;  // destructuring in new way to access object properties by i
+			let { startDate: batchStartDate, endDate } = batch_11; // renamed object properties
+			// var endDate = batch_11.endDate;
 
-        let { startDate: batchStartDate, endDate } = batch_11; // renamed object properties
-        // var endDate = batch_11.endDate;
+			console.log("startDate=>", batchStartDate); // object properties renamed
+			console.log("endDate=>", endDate);
 
-        console.log("startDate=>", batchStartDate);  // object properties renamed
-        console.log("endDate=>", endDate);
+			// -----------------------destructuring in array --------------------------------------
 
-        // -----------------------destructuring in array --------------------------------------
+			let abc = ["12", "32", "34", "45"]; // array destructuring
 
-        let abc = ["12", "32", "34", "45"];  // array destructuring
+			let [a, , b] = abc; // a=12, b=34
+			// console.log(a);
+			// console.log(b);
 
-        let [a, , b] = abc; // a=12, b=34 
-        // console.log(a);
-        // console.log(b);
+			//---------------------------- Spread Operator ----------------------------------------
+			// ...
+			//-----------spread operator in array ------------
+			var arr = [1, 2, 3, 4, 5, 6, 7];
+			var arr1 = [8, 9, 10];
 
-        //---------------------------- Spread Operator ----------------------------------------
-        // ...
-        //-----------spread operator in array ------------
-        var arr = [1, 2, 3, 4, 5, 6, 7];
-        var arr1 = [8, 9, 10];
+			var combinedArr = [...arr, ...arr1]; // spread operator combining two arrays
+			console.log(combinedArr); // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-        var combinedArr = [...arr, ...arr1];  // spread operator combining two arrays   
-        console.log(combinedArr)
+			// -----------spread operator in object ------------
+			let batch__11 = {
+				students: 50,
+				startDate: "01-01-2024",
+				endDate: "31-11-2024",
+				isClassesContinue: true,
+				currentTopic: "es6",
+			};
 
-        // -----------spread operator in object ------------
-        let batch__11 = {
-          students: 50,
-          startDate: "01-01-2024",
-          endDate: "31-11-2024",
-          isClassesContinue: true,
-          currentTopic: "es6",
-        };
+			let betch11MWF = {
+				...batch__11,
+				currentTopic: "Firebase",
+			};
 
-        let betch11MWF = {
-          ...batch__11,
-          currentTopic: "Firebase",
-        };
+			// console.log(batch__11); // output: { students: 50, startDate: '01-01-2024', endDate: '31-11-2024', isClassesContinue: true, currentTopic: 'es6' }
+			// console.log(betch11MWF); // output: { students: 50, startDate: '01-01-2024', endDate: '31-11-2024', isClassesContinue: true, currentTopic: 'Firebase' }
 
-        // console.log(batch__11); // output: { students: 50, startDate: '01-01-2024', endDate: '31-11-2024', isClassesContinue: true, currentTopic: 'es6' }
-        // console.log(betch11MWF); // output: { students: 50, startDate: '01-01-2024', endDate: '31-11-2024', isClassesContinue: true, currentTopic: 'Firebase' }
+			// ------------------------------Rest Operator ----------------------------------------
 
+			// Default Parameters and Rest Parameters
 
+			function sum(a = 0, b = 0) {
+				// default parameters is called rest parameters if we did not give any parameter its run
+				console.log("a=>", a);
+				console.log("b=>", b);
+				return a + b;
+			}
+			console.log(sum(20, 20));
 
-        // ------------------------------Rest Operator ----------------------------------------
+			// Rest Operator in object Destructuring
 
-        // Default Parameters and Rest Parameters
+			let batch11 = {
+				students: 50,
+				startDate: "01-01-2024",
+				endDate: "31-11-2024",
+				isClassesContinue: true,
+				currentTopic: "es6",
+				noOfQuiz: 12,
+			};
 
-        function sum(a = 0, b = 0) {  // default parameters is called rest parameters if we did not give any parameter its run
-          console.log("a=>", a);
-          console.log("b=>", b);
-          return a + b;
-        }
-        console.log(sum(20, 20));
+			let { noOfQuiz = 3, students, ...rest } = batch11;
+			console.log(rest);
 
-        // Rest Operator in object Destructuring
+			//------------------------------- conditional (ternary) operator ------------------------------------
 
-        let batch11 = {
-          students: 50,
-          startDate: "01-01-2024",
-          endDate: "31-11-2024",
-          isClassesContinue: true,
-          currentTopic: "es6",
-          noOfQuiz: 12,
-        };
+			// condition ? true  : false
 
-        let { noOfQuiz = 3, students, ...rest } = batch11;
-        console.log(rest);
+			// example 1
+			var age = 15;
+			var gender = "male";
 
-        //------------------------------- conditional (ternary) operator ------------------------------------
+			let isEligible = age >= 18 && gender === "male" ? true : false;
 
-        // condition ? true  : false
+			// example 2
+			console.log(isEligible);
 
-        // example 1
-        var age = 15;
-        var gender = "male";
+			let array = [
+				{ task: "ABC", status: "done" },
+				{ task: "ABC", status: "pending" },
+				{ task: "ABC", status: "rejected" },
+			];
 
-        let isEligible = age >= 18 && gender === "male" ? true : false;
-
-        // example 2
-        console.log(isEligible)
-
-                 let array = [
-                    { task: "ABC", status: "done" },
-                    { task: "ABC", status: "pending" },
-                    { task: "ABC", status: "rejected" },
-                ];
-                
-                   // updste the color by using ternary operator
-                    array.forEach((data) => {
-                        let { task, status } = data;
-                        var ele = `  <div style="height: 200px;margin: 20px;background-color : ${status === "done" ? "green" : status === "pending" ? "yellow" : "red"
-                            }">
+			// updste the color by using ternary operator
+			array.forEach((data) => {
+				let { task, status } = data;
+				var ele = `  <div style="height: 200px;margin: 20px;background-color : ${
+					status === "done" ? "green" : status === "pending" ? "yellow" : "red"
+				}">
           <h1>${task}</h1>
                 </div>`;
 
-                        list.innerHTML += ele;
-                    });
+				list.innerHTML += ele;
+			});
 
-                //--------------old way used if else----------------
-                // function getColor(status) {
-                //     if (status == "done") {
-                //         return "green";
-                //     } else if (status === "pending") {
-                //         return "yellow";
-                //     } else {
-                //         return "red";
-                //     }
-                // }
-
-    </script>
-</body>
-
+			//--------------old way used if else----------------
+			// function getColor(status) {
+			//     if (status == "done") {
+			//         return "green";
+			//     } else if (status === "pending") {
+			//         return "yellow";
+			//     } else {
+			//         return "red";
+			//     }
+			// }
+		</script>
+	</body>
 </html>
