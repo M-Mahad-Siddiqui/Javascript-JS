@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dynamically create update, style or changes content of HTML</title>
+		<style>
+			.container {
+				width: 500px;
+				height: auto;
+				background-color: antiquewhite;
+				padding: 20px;
+				border-radius: 8px;
+			}
+			.newClass {
+				color: white;
+				text-shadow: 0px 0px 8px black;
+				display: flex;
+				text-align: center;
+				justify-content: center;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>DOM Manipulation</h2>
+		<h3 id="attr">Attributes</h3>
+		<ol>
+			<li>getAttribute(attr) : to get the attribute value</li>
+			<li>setAttribute(attr, value) : to set the attribute value</li>
+		</ol>
+		<h3>For Style</h3>
+		<ol>
+			<li>node.style : to set the style</li>
+		</ol>
+
+		<div class="container">
+			<h3>Insert Elements</h3>
+			<ol>
+				<li><b>node.append( el ) : </b>adds at the end of nodes (inside)</li>
+				<li><b>node.prepend( el ) : </b>adds at the start of nodes (inside)</li>
+				<li><b>node.before( el ) : </b>adds before the node (outside)</li>
+				<li><b>node.after( el ) : </b>adds after the node (outside)</li>
+			</ol>
+			<h3>Delete Elements</h3>
+			<ol>
+				<li><b>node.remove() : </b> removes the node</li>
+			</ol>
+		</div>
+	</body>
+	<script>
+		let h3 = document.querySelector("h3");
+		console.log(h3);
+		let id = h3.getAttribute("id");
+		console.log("the id attributes values oh h3 is : ", id);
+
+		// change the attributes values
+		h3.setAttribute("id", "heading");
+
+		// to set the the style of html
+		console.log("the new attributes values of h3 is :", h3.getAttribute("id"));
+		console.log(h3.style);
+		h3.style.color = "blue";
+
+		console.log("------------------ insert Elements Dynamically ---------------------");
+		let newBtn = document.createElement("button");
+		newBtn.innerText = "click me! ";
+		newBtn.style.cssText =
+			"background-color: blue; padding: 8px 12px; border: none; color: white; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold;";
+		let container = document.querySelector("div");
+		container.append(newBtn);
+		let h2 = document.createElement("h2");
+		h2.innerText = "Dynamically create and add Elements ";
+		h2.classList.add("newClass");
+		console.log(h2);
+		container.prepend(h2);
+		// h2.remove();   for removed h2 Heading from screen
+
+		//------------------ chat gpt --------------------
+		// Using a single string for cssText:
+		// newBtn.style.cssText = "background-color: blue; padding: 3px 4px; border: none;";
+
+		// Using individual property assignments of cssText:
+		// newBtn.style.backgroundColor = "blue";
+		// newBtn.style.padding = "3px 4px";
+		// newBtn.style.border = "none";
+	</script>
+</html>

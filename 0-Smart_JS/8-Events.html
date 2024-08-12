@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<style>
+		.container {
+			max-width: 700px;
+			height: auto;
+			background-color: blanchedalmond;
+			padding: 10px;
+			border: none;
+			box-shadow: 0px 0px 5px;
+			margin: 10px;
+		}
+		.container:hover {
+			cursor: pointer;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<h2>Events in JS</h2>
+			The change in the state of an object in know as event. Events are fired to notify code of "interesting changes" that
+			may affect code excution.
+			<ul>
+				<li><b>Mouse Events : </b> (click, double click etc.)</li>
+				<li><b>Keyboard Events : </b> (keypress,keyUp keydown etc.)</li>
+				<li><b>Form Events : </b> (Submit etc)</li>
+				<li>Print events & many more Events are available in JS</li>
+			</ul>
+			<h3>Event Object :</h3>
+			<span
+				>Its is a special object that has details about the event. All the handlers have access to the event object's
+				properties and methods.</span
+			>
+			<h3>Types of Event to be apply on element</h3>
+			<ol>
+				<li><b>inline Event : </b> <i>syntax </i> "onclick = 'myFunction' "</li>
+				<li><b>External Event : </b><i>syntax </i> node.event = "myFunction"</li>
+				<li><b>Using EventListener() :</b><i>syntax </i>node.addEventListener("click", myCallbackFunction)</li>
+				<ul>
+					<li>addEventListener('click', 'myCallBackFunction')</li>
+					<li>removeEventListener('click', 'myCallBackFunction')</li>
+					<li>
+						<b>**Note**</b> the callBack reference should be same to remove (used variable to store function instead of
+						directly create in parameter)
+					</li>
+				</ul>
+			</ol>
+		</div>
+		<div class="work">
+			<button id="btn1" onclick="console.log('button was clicked show by inline code'); ">Click me!</button>
+			<button ondblclick="console.log('button was clicked 2 times'); alert('you just pressed a button 2 times'); ">
+				Click me 2 times!
+			</button>
+			<button id="toggle">Change the theme</button>
+		</div>
+	</body>
+	<script>
+		let container = document.getElementsByClassName("container")[0];
+		// 2 external events
+		container.onmouseover = () => {
+			console.log("You just moved the mouse over the container");
+			container.style.backgroundColor = "rgb(229, 236, 176)";
+		};
+
+		// 3 using eventListener
+		container.addEventListener("mouseleave", function () {
+			container.style.backgroundColor = "blanchedalmond";
+		});
+
+		// event is returned  a event object
+		let btn1 = document.getElementById("btn1");
+		btn1.addEventListener("click", function (event) {
+			console.log("this messages is by js code when display event ", event);
+			console.log("event.types -> ", event.type);
+			console.log("even.target -> ", event.target);
+		});
+
+		// toggle theme
+		let flag = true;
+		document.getElementById("toggle").addEventListener("click", function () {
+			if (flag) {
+				container.style.cssText = "background-color: gray; color: skyblue;"; // Set dark theme
+				flag = false;
+			} else {
+				container.style.cssText = "background-color: white; color: black;"; // Set light theme
+				flag = true;
+			}
+		});
+	</script>
+</html>
