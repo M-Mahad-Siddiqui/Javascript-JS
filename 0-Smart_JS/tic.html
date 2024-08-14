@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<style>
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			background-color: beige;
+			margin: 0 auto;
+		}
+		.boxes {
+			margin: 0 auto;
+			margin-top: 100px;
+			margin-bottom: 30px;
+			border-radius: 1rem;
+			display: grid;
+			grid-template-columns: repeat(3, 130px); /* 3 columns, each 100px wide */
+			grid-template-rows: repeat(3, 130px); /* 3 rows, each 100px high */
+			gap: 4px;
+		}
+		.box {
+			border-radius: 1rem;
+			border: none;
+			box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+			font-size: 4rem;
+			background-color: white;
+		}
+		.reset {
+			border-radius: 0.2rem;
+			border: none;
+			background-color: #08b1ff;
+			color: white;
+			padding: 10px 15px;
+			box-shadow: 0 0px 10px rgba(7, 226, 178, 0.9);
+			transition: transform 0.3s, box-shadow 0.3s;
+			font-size: 1.5rem;
+			cursor: pointer;
+			align-items: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
+
+		.win {
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 1.7rem;
+		}
+		.hide {
+			display: none;
+		}
+	</style>
+
+	<body>
+		<div class="win hide">
+			<h1>Congratulations the winner is <b class="con">w</b></h1>
+		</div>
+		<div class="container">
+			<div class="boxes">
+				<button class="box"></button>
+				<button class="box"></button>
+				<button class="box"></button>
+				<button class="box"></button>
+				<button class="box"></button>
+				<button class="box"></button>
+				<button class="box"></button>
+				<button class="box"></button>
+				<button class="box"></button>
+			</div>
+			<div class="info">
+				<h2>Now It turn is : <span class="player"></span></h2>
+				<button class="reset">Reset</button>
+			</div>
+		</div>
+		<script>
+			const boxes = document.querySelectorAll(".box");
+			const reset = document.querySelector(".reset");
+			const player = document.querySelector(".player");
+			player.innerText = "X";
+			let TurnX = true;
+			let count = 0;
+			const win = [
+				[0, 1, 2],
+				[3, 4, 5],
+				[6, 7, 8],
+				[0, 3, 6],
+				[1, 4, 7],
+				[2, 5, 8],
+				[0, 4, 8],
+				[2, 4, 6],
+			];
+
+			function checkWin() {
+				for (let wins of win) {
+					let value1 = boxes[wins[0]].innerText;
+					let value2 = boxes[wins[1]].innerText;
+					let value3 = boxes[wins[2]].innerText;
+
+					if (value1 != "" && value2 != "" && value3 != "") {
+						if (value1 === value2 && value3 === value1) {
+							console.log(value1);
+							showWindow(value1);
+						}
+					}
+				}
+			}
+
+			function showWindow(val) {
+				let con = document.getElementsByClassName("con")[0];
+				con.innerText = val;
+
+				for (box of boxes) {
+					box.disabled = true;
+				}
+			}
+			boxes.forEach((box) => {
+				box.addEventListener("click", () => {
+					if (TurnX) {
+						box.innerText = "X";
+						player.innerText = "O";
+						TurnX = false;
+						count++;
+						box.disabled = true;
+					} else {
+						box.innerText = "O";
+						TurnX = true;
+						player.innerText = "X";
+						count++;
+						box.disabled = true;
+					}
+					checkWin();
+				});
+			});
+		</script>
+	</body>
+</html>

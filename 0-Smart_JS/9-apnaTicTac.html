@@ -86,8 +86,10 @@
 			<p id="msg">Winner</p>
 			<button id="new-btn">New Game</button>
 		</div>
+
 		<main>
 			<h1>Tic Tac Toe</h1>
+
 			<div class="container">
 				<div class="game">
 					<button class="box"></button>
@@ -103,6 +105,7 @@
 			</div>
 			<button id="reset-btn">Reset Game</button>
 		</main>
+
 		<script>
 			let boxes = document.querySelectorAll(".box");
 			let resetBtn = document.querySelector("#reset-btn");
@@ -115,13 +118,13 @@
 
 			const winPatterns = [
 				[0, 1, 2],
-				[0, 3, 6],
-				[0, 4, 8],
-				[1, 4, 7],
-				[2, 5, 8],
-				[2, 4, 6],
 				[3, 4, 5],
 				[6, 7, 8],
+				[0, 3, 6],
+				[1, 4, 7],
+				[2, 5, 8],
+				[0, 4, 8],
+				[2, 4, 6],
 			];
 
 			const resetGame = () => {
