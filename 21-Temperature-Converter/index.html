@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Temperature Converter</title>
+		<style>
+			body {
+				background: linear-gradient(to left, #87d639, #b5c10c) !important;
+				background-size: cover;
+				background-repeat: no-repeat;
+				margin: 0;
+				font-family: "Courier New", Courier, monospace;
+			}
+
+			.container {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				background-color: rgb(43, 177, 56);
+				max-width: 28rem;
+				padding: 2.2rem;
+				border-radius: 1rem;
+				margin: 4rem auto;
+				box-shadow: 0px 0px 10px rgb(9, 219, 234);
+				color: white;
+				box-sizing: border-box;
+			}
+
+			h1 {
+				margin: 0;
+				font-size: 1.7rem;
+			}
+
+			label,
+			h3 {
+				font-size: 1rem;
+				margin-bottom: 0.5rem;
+			}
+
+			#userInput,
+			#first,
+			#second,
+			#display {
+				width: 100%;
+				padding: 0.5rem;
+				font-size: 1rem;
+				margin-bottom: 1rem;
+				border: none;
+				border-radius: 3px;
+			}
+
+			#btn {
+				width: 100%;
+				font-size: 1rem;
+				padding: 0.5rem;
+				border-radius: 4px;
+				color: white;
+				background-color: rgb(18, 204, 142);
+				font-weight: bold;
+				border: none;
+				cursor: pointer;
+			}
+
+			#btn:hover {
+				background-color: rgb(15, 180, 120);
+				box-shadow: 0 4px 8px rgba(138, 166, 25, 0.5);
+				border-radius: 100px;
+			}
+
+			@media (max-width: 600px) {
+				h1 {
+					font-size: 1.25rem;
+				}
+
+				label,
+				h3 {
+					font-size: 0.9rem;
+				}
+
+				#userInput,
+				#first,
+				#second,
+				#display,
+				#btn {
+					font-size: 0.9rem;
+					padding: 0.4rem;
+				}
+
+				.container {
+					width: 100%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Temperature Converter</h1>
+			<label for="number">Enter the Temperature :</label>
+			<input type="number" placeholder="Enter the Temperature" id="userInput" />
+			<h3>From :</h3>
+			<select name="first" id="first">
+				<option value="Celsius">Celsius</option>
+				<option value="Fahrenheit">Fahrenheit</option>
+				<option value="Kelvin">Kelvin</option>
+			</select>
+			<h3>To :</h3>
+			<select name="second" id="second">
+				<option value="Celsius">Celsius</option>
+				<option value="Fahrenheit">Fahrenheit</option>
+				<option value="Kelvin">Kelvin</option>
+			</select>
+			<h3>The Converted Temperature is :</h3>
+			<input type="text" placeholder="The converted temperature" readonly id="display" />
+			<button id="btn">Convert</button>
+		</div>
+		<script>
+			document.getElementById("btn").addEventListener("click", function () {
+				let input = parseFloat(document.getElementById("userInput").value);
+				let fromUnit = document.getElementById("first").value;
+				let toUnit = document.getElementById("second").value;
+				let display = document.getElementById("display");
+
+				if (isNaN(input)) {
+					display.value = "Please enter a number";
+					return;
+				}
+
+				let convertedTemp;
+
+				if (fromUnit === toUnit) {
+					convertedTemp = input;
+				} else if (fromUnit === "Celsius" && toUnit === "Fahrenheit") {
+					convertedTemp = (input * 9) / 5 + 32;
+				} else if (fromUnit === "Celsius" && toUnit === "Kelvin") {
+					convertedTemp = input + 273.15;
+				} else if (fromUnit === "Fahrenheit" && toUnit === "Celsius") {
+					convertedTemp = ((input - 32) * 5) / 9;
+				} else if (fromUnit === "Fahrenheit" && toUnit === "Kelvin") {
+					convertedTemp = ((input - 32) * 5) / 9 + 273.15;
+				} else if (fromUnit === "Kelvin" && toUnit === "Celsius") {
+					convertedTemp = input - 273.15;
+				} else if (fromUnit === "Kelvin" && toUnit === "Fahrenheit") {
+					convertedTemp = ((input - 273.15) * 9) / 5 + 32;
+				}
+
+				display.value = `${convertedTemp.toFixed(2)} ${toUnit}`;
+			});
+		</script>
+	</body>
+</html>

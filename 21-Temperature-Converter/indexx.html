@@ -1,0 +1,289 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color:beige;
+            flex-direction: column;
+            width: 28rem;
+            padding: 3rem;
+            border-radius: 1rem;
+            margin: 0 auto;
+            margin-top: 5rem;
+            box-shadow: 0px 0px 10px black;
+        }
+        #userInput, #first, #second, #display{
+            width: 100%;
+            padding: 0.3rem;
+            font-size: larger;
+        }
+        label{
+            font-size: larger;
+            margin-bottom: 10px;
+            text-align: left!important;
+        }
+        #btn{
+            width: 100%;
+            font-size: larger;
+            margin-top: 20px;
+            border-radius: 3px;
+            color: white;
+            background-color:rgb(18, 204, 142);
+            font-weight: bold;
+        border: none;
+        padding: 5px 230px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        <label for="number" >Enter the Temperature :</label>
+        <input type="number" placeholder="Enter the Temperature " id="userInput">
+        <h3>From :</h3>
+        <select name="first" id="first" onchange="">
+            <option value="Celsius">Celsius</option>
+            <option  value="Fahrenheit">Fahrenheit</option>
+            <option value="Kelvin">Kelvin</option>
+        </select>
+        <h3>To :</h3>
+        <select name="second" id="second">
+            <option value="Celsius" >Celsius</option>
+            <option value="Fahrenheit" >Fahrenheit</option>
+            <option value="Kelvin" >Kelvin</option>
+        </select>
+        <h3>The Converted Temperature is :</h3>
+        <input type="text" placeholder="the converted temperature" readonly id="display">
+   <button id="btn">Convert</button>
+    </div>
+</body>
+<script>
+    // let input = document.getElementById('userInput')
+    // let first = document.getElementById('first')
+    // let second = document.getElementById('second')
+    // let display = document.getElementById('display')
+    // let btn = document.getElementById('btn')
+    // btn.addEventListener('click', function () {
+    //     // if (first.value == "first" && second.value == "first") {
+    //     //     display.value = input.value
+    //     // } else if (first.value == "first" && second.value == "second") {
+    //     //     display.value = (input.value * 9 / 5) + 32
+    //     // } else if (first.value == "first" && second.value == "third") {
+    //     //     display.value = input.value + 273.15
+    //     // } else if (first.value == "second" && second.value == "first") {
+    //     //     display.value = (input.value - 32) * 5 / 9
+    //     // } else if (first.value == "second" && second.value == "second") {
+    //     //     display.value = input.value
+    //     // } else if (first.value == "second" && second.value == "third") {
+  
+    //     // }
+    //     console.log(second)
+    // })
+
+
+    document.getElementById('first').addEventListener('change', function() {
+        document.getElementById('first').innerHTML = this.value;
+        console.log()
+
+    });
+    document.getElementById('second').addEventListener('change', function(){
+        document.getElementById('second').innerHTML =this.value;
+    });
+
+    document.getElementById('btn').addEventListener('click', function() {
+        let input = document.getElementById('userInput').value;
+        let first = document.getElementById('first').value;
+        let second = document.getElementById('second').value;
+        let display = document.getElementById('display');
+        let result;
+        switch (first) {
+            case "Celsius":
+                switch (second) {
+                    case "Celsius":
+                        result = input;
+                        break;
+                    case "Fahrenheit":
+                        result = (input * 9 / 5) + 32;
+                        break;
+                    case "Kelvin":
+                        result = input + 273.15;
+                        break;
+                }
+                break;
+            case "Fahrenheit":
+                switch (second) {
+                    case "Celsius":
+                        result = (input - 32) * 5 / 9;
+                        break;
+                    case "Fahrenheit":
+                        result = input;
+                        break;
+                    case "Kelvin":
+                        result = (input - 32) * 5 / 9 + 273.15;
+                        break;
+                }
+                break;
+            case "Kelvin":
+
+                switch (second) {
+                    case "Celsius":
+                        result = input - 273.15;
+                        break;
+                    case "Fahrenheit":
+                        result = (input - 273.15) * 9 / 5 + 32;
+                        break;
+                    case "Kelvin":
+                        result = input;
+                        break;
+                }
+                break;
+        }
+        display.value = result;
+
+      })
+    
+
+
+
+
+</script>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Temperature Converter</title>
+		<style>
+			.container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: beige;
+				flex-direction: column;
+				width: 28rem;
+				padding: 3rem;
+				border-radius: 1rem;
+				margin: 5rem auto;
+				box-shadow: 0px 0px 10px black;
+			}
+			#userInput,
+			#first,
+			#second,
+			#display {
+				width: 100%;
+				padding: 0.3rem;
+				font-size: larger;
+				margin-bottom: 1rem;
+			}
+			label {
+				font-size: larger;
+				margin-bottom: 10px;
+				display: block;
+			}
+			#btn {
+				width: 100%;
+				font-size: larger;
+				margin-top: 20px;
+				border-radius: 3px;
+				color: white;
+				background-color: rgb(18, 204, 142);
+				font-weight: bold;
+				border: none;
+				padding: 10px;
+				cursor: pointer;
+			}
+			#btn:hover {
+				background-color: rgb(15, 170, 120);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Temperature Converter</h1>
+			<label for="number">Enter the Temperature :</label>
+			<input type="number" placeholder="Enter the Temperature" id="userInput" />
+			<h3>From :</h3>
+			<select name="first" id="first">
+				<option value="Celsius">Celsius</option>
+				<option value="Fahrenheit">Fahrenheit</option>
+				<option value="Kelvin">Kelvin</option>
+			</select>
+			<h3>To :</h3>
+			<select name="second" id="second">
+				<option value="Celsius">Celsius</option>
+				<option value="Fahrenheit">Fahrenheit</option>
+				<option value="Kelvin">Kelvin</option>
+			</select>
+			<h3>The Converted Temperature is :</h3>
+			<input type="text" placeholder="The converted temperature" readonly id="display" />
+			<button id="btn">Convert</button>
+		</div>
+		<script>
+			document.getElementById("btn").addEventListener("click", function () {
+				let input = parseFloat(document.getElementById("userInput").value);
+				let first = document.getElementById("first").value;
+				let second = document.getElementById("second").value;
+				let display = document.getElementById("display");
+				let result;
+
+				if (isNaN(input)) {
+					display.value = "Invalid input";
+					return;
+				}
+
+				switch (first) {
+					case "Celsius":
+						switch (second) {
+							case "Celsius":
+								result = input;
+								break;
+							case "Fahrenheit":
+								result = (input * 9) / 5 + 32;
+								break;
+							case "Kelvin":
+								result = input + 273.15;
+								break;
+						}
+						break;
+					case "Fahrenheit":
+						switch (second) {
+							case "Celsius":
+								result = ((input - 32) * 5) / 9;
+								break;
+							case "Fahrenheit":
+								result = input;
+								break;
+							case "Kelvin":
+								result = ((input - 32) * 5) / 9 + 273.15;
+								break;
+						}
+						break;
+					case "Kelvin":
+						switch (second) {
+							case "Celsius":
+								result = input - 273.15;
+								break;
+							case "Fahrenheit":
+								result = ((input - 273.15) * 9) / 5 + 32;
+								break;
+							case "Kelvin":
+								result = input;
+								break;
+						}
+						break;
+				}
+				display.value = result.toFixed(2); // Limit result to 2 decimal places
+			});
+		</script>
+	</body>
+</html>
