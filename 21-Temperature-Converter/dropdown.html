@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dropdown Example</title>
+	</head>
+	<body>
+		<select id="myDropdown">
+			<option value="1">Option 1</option>
+			<option value="2">Option 2</option>
+			<option value="3">Option 3</option>
+		</select>
+
+		<button onclick="getSelectedValue()">Get Selected Value</button>
+
+		<script>
+			function getSelectedValue() {
+				var dropdown = document.getElementById("myDropdown");
+				var selectedValue = dropdown.value;
+				alert("Selected value: " + selectedValue);
+			}
+		</script>
+	</body>
+</html>
