@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>R P S</title>
+		<style>
+			* {
+				font-family: monospace;
+				margin: 20px;
+			}
+
+			.container {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				margin: 30px auto;
+				font-size: 8rem;
+				/* background-color: #bb5757; */
+			}
+
+			.Scours {
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				font-size: 3rem;
+				font-weight: bold;
+				text-align: center;
+			}
+
+			.msgContainer {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: gray;
+				color: aliceblue;
+				font-size: 2rem;
+				font-weight: bold;
+				max-width: 660px;
+				border-radius: 22px;
+				margin: 0% auto;
+			}
+
+			.choices:hover {
+				filter: drop-shadow(1px 1px 9px rgb(184, 218, 82));
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="choices" id="rock">🪨</div>
+			<div class="choices" id="paper">📄</div>
+			<div class="choices" id="scissors">✂️</div>
+		</div>
+
+		<div class="Scours">
+			<div>
+				<p class="userScore">0</p>
+				<p>You</p>
+			</div>
+			<div>
+				<p class="CompScore">0</p>
+				<p>Computer</p>
+			</div>
+		</div>
+
+		<div class="msgContainer">
+			<p class="msg">Take your first Move</p>
+		</div>
+	</body>
+	<script>
+		let us = 0;
+		let cs = 0;
+		let userChoices = document.querySelectorAll(".choices");
+		let pus = document.querySelector(".userScore");
+		let pcs = document.querySelector(".CompScore");
+		let msg = document.getElementsByClassName("msg")[0];
+
+		let select;
+		userChoices.forEach((choice) => {
+			choice.addEventListener("click", () => {
+				select = choice.getAttribute("id");
+				let compSelect = getComp();
+				playRound(select, compSelect);
+			});
+		});
+
+		let userWin = true;
+		function playRound(select, compSelect) {
+			if (select === compSelect) {
+				msg.innerText = "Draw! both choice the same ";
+				msg.parentElement.style.background = "gray";
+				return;
+			}
+			if (select == "rock") {
+				userWin = compSelect == "paper" ? false : true;
+			} else if (select == "paper") {
+				userWin = compSelect == "scissors" ? false : true;
+			} else {
+				userWin = compSelect == "rock" ? false : true;
+			}
+			showWin(select, compSelect, userWin);
+		}
+
+		function showWin(select, compSelect, userWin) {
+			if (userWin) {
+				msg.innerText = `You win ${select} beat the ${compSelect}`;
+				us++;
+				pus.innerText = us;
+				msg.parentElement.style.background = "green";
+			} else {
+				msg.innerText = `Computer win ${compSelect} beat the ${select}`;
+				cs++;
+				pcs.innerText = cs;
+				msg.parentNode.style.background = "red";
+			}
+		}
+
+		function getComp() {
+			let arr = ["rock", "paper", "scissors"];
+			return arr[Math.floor(Math.random() * 3)];
+		}
+	</script>
+</html>
