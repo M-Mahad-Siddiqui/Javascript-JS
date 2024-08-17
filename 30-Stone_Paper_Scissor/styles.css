@@ -1,0 +1,132 @@
+body {
+				margin: 0;
+				padding: 0;
+				background-image: url("bv.jpeg");
+				background-repeat: no-repeat;
+				background-size: cover;
+				/* background-position: center; */
+				overflow: hidden;
+				background-color: #e8cd58;
+			}
+			h1 {
+				text-align: center;
+				font-size: 50px;
+				font-family: "Courier New", Courier, monospace;
+				color: white;
+				text-shadow: 0px 0px 8px rgb(201, 61, 10);
+			}
+			.choices img {
+				width: 180px;
+			}
+			.container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.choices {
+				margin: 0 45px;
+			}
+			.choices:hover {
+				transition: 0.5s;
+				transform: scale(1.09);
+				filter: drop-shadow(2px 1px 8px rgb(211, 20, 52));
+			}
+
+			.scoreBoard {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 0 60px;
+				color: white;
+				font-size: 40px;
+				font-weight: bold;
+				/* background-color: rgba(223, 134, 123, 0.5); */
+				border-radius: 10px;
+			}
+
+			.score {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				margin: 0 50px;
+				background-color: rgba(128, 120, 2, 0.9);
+				border-radius: 100px;
+				padding: 20px 30px;
+				text-shadow: 0px 0px 12px rgb(16, 24, 176);
+			}
+
+			.score p {
+				margin: 0;
+				padding: 0;
+			}
+
+			.msgContainer {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+			}
+
+			#msg {
+				color: white;
+				font-size: 45px;
+				font-weight: bold;
+				text-shadow: 0px 0px 8px rgb(10, 23, 201);
+				background-color: rgba(30, 41, 29, 0.9);
+				border-radius: 10px;
+				padding: 10px 20px;
+				border: none;
+				margin: 20px;
+				text-align: center;
+			}
+			#statusImage {
+				width: 140px;
+				border-radius: 100px;
+				display: block;
+			}
+
+			@media (max-width: 800px) {
+				.choices {
+					margin: 0 20px;
+				}
+				.choices img {
+					width: 160px;
+				}
+				.scoreBoard {
+					margin: 20px 10px;
+					font-size: 50px;
+				}
+
+				.score {
+					margin: 0 10px;
+					font-size: 40px;
+				}
+
+				#msg {
+					font-size: 38px;
+				}
+			}
+			@media (max-width: 500px) {
+				.choices {
+					margin: 0 10px;
+				}
+				.choices img {
+					width: 90px;
+				}
+				.scoreBoard {
+					margin: 20px 10px;
+					font-size: 40px;
+				}
+
+				.score {
+					margin: 0 10px;
+					font-size: 25px;
+				}
+
+				#msg {
+					font-size: 30px;
+				}
+			}
+             
