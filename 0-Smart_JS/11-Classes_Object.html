@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Classes and Objects</title>
+	</head>
+
+	<body>
+		<div class="container">
+			<h2>Prototypes in JS</h2>
+			<ul>
+				<li>A JavaScript object is an entity having state and behavior (properties and methods).</li>
+				<li>JS objects have a special property called prototype.</li>
+				<li>We can set prototype using __proto__</li>
+				<li>prptoTypes is a object which automatically create when an object is create insides of object.</li>
+				<li>we can also create own defined prototype</li>
+				<li>*If object & prototype have same methods, object methods will be used.</li>
+			</ul>
+			<h2>Classes in JS</h2>
+			<span>
+				Class in a program-code template for creating objects. Those object will have some state(variable) &
+				behavior(methods) inside it.class just like blueprint or template for creating objects. </span
+			><br />
+			<ol>
+				<span>
+					<li><b>Constructor: </b></li>
+					-is a method that automatically create(new keyword) and invoked when a new object is create.
+				</span>
+				<span>
+					<li>
+						<b>inheritance in JS: </b>
+					</li>
+					-inheritance is passing down the properties and methods from parent class to child class.<br />
+					-*if parent class and child class have same method, child class method will be used
+					<i>(Method Overriding). </i><br />
+					-for inheritance we use <b>extends</b> keyword. <br />
+					- whenever we ceate a child class constructor we must call super constructor in that class by using super keyword.
+				</span>
+				<span>
+					<li><b>Supe Keyword: </b></li>
+					-The super keyword is used to call the constructor of its parent class to access the parent's properties and
+					methods. <br />
+					- super.parentMethod(args)
+				</span>
+			</ol>
+		</div>
+	</body>
+	<script>
+		const student = {
+			name: "John",
+			age: 30,
+			course: "MERN",
+			// getDetails: function () {
+			// 	return this.name + " " + this.age + " " + this.course;
+			// },
+			getDetails1() {
+				//short way to create methods
+				return `Name : ${this.name} Age : ${this.age} Course : ${this.course}`;
+			},
+		};
+		console.log("-------------------- what is prototype ------------------------");
+		console.log(student);
+		console.log("Name : ", student.name);
+
+		let arr = ["apple", "mango", "banana", "litchi"];
+		arr.push("grapes"); //this push methods is come from array object prototype, which is create by default when an object is create.
+		console.log(arr);
+
+		console.log("---------------- how to create own prototype ------------------");
+		const employee = {
+			calcTax() {
+				console.log("Tax is 10% of salary");
+			},
+		};
+		const zahid = {
+			salary: 1000,
+			calcTax() {
+				console.log("Tax is 20% of salary");
+			},
+		};
+		zahid.__proto__ = employee; // we add new prototypes in zahid object just like inheritance
+		zahid.calcTax();
+
+		console.log("---------------------- classes in js --------------------------");
+		class ToyotaCar {
+			constructor(brand) {
+				console.log("Car created");
+				this.brand = brand;
+			}
+			start() {
+				console.log("Car started");
+			}
+			stop() {
+				console.log("Car stopped");
+			}
+			// setBrand(brand) {
+			// 	this.brand = brand;
+			// }
+		}
+		let fortuner = new ToyotaCar("fortuner");
+		console.log(fortuner);
+		let lexus = new ToyotaCar();
+		// lexus.setBrand("Lexus");
+
+		console.log("------------- inhertances and super keyword --------------------");
+		class person {
+			constructor(name) {
+				this.name = name;
+				this.species = "homo sapiens";
+			}
+			eat() {
+				console.log("I am eating");
+			}
+			code() {
+				console.log("do nothing at all");
+			}
+		}
+
+		class engineer extends person {
+			constructor(branch, name) {
+				super(name); //ReferenceError: Must call super constructor in derived class before accessing 'this'
+				this.branch = branch;
+			}
+			code() {
+				// method overriding because both class have same name of method
+				super.code(); // call parent class method
+				console.log("solve problem, build something");
+			}
+		}
+
+		let engObj = new engineer("CSE", "mahad");
+		engObj.code();
+		engObj.eat(); //this methods is inherit from parent class
+		console.log(engObj); // its has all  prperties and methods of parent class
+	</script>
+</html>
