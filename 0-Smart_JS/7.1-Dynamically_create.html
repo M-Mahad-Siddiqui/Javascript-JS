@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dynamically Create Card with JS</title>
+		<style>
+			body {
+				background: #dfdbdb;
+			}
+
+			.container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				flex-wrap: wrap;
+			}
+
+			.card {
+				width: 300px;
+				border: 1px solid #ddd;
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 4px 8px rgba(219, 126, 13, 0.8);
+				font-family: Arial, sans-serif;
+				margin: 20px;
+				background-color: #fff;
+			}
+
+			.card img {
+				width: 100%;
+				height: auto;
+			}
+
+			.card-body {
+				padding: 15px;
+			}
+
+			.card-title {
+				font-size: 1.5em;
+				margin: 0;
+				color: #333;
+			}
+
+			.card-text {
+				font-size: 1em;
+				color: #666;
+				margin-top: 10px;
+			}
+
+			.card-footer {
+				padding: 10px 15px;
+				background: #f4f4f4;
+				text-align: center;
+				border-top: 1px solid #ddd;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<!-- Dynamically created card will be inserted here -->
+			<div class="card">
+				<!-- Card image -->
+				<img src="https://via.placeholder.com/300x200" alt="Card image" />
+
+				<!-- Card body -->
+				<div class="card-body">
+					<h2 class="card-title">Card Title</h2>
+					<p class="card-text">
+						This is a brief description of the card content. It can be longer and provide more detail.
+					</p>
+				</div>
+
+				<!-- Card footer -->
+				<div class="card-footer">Footer Content</div>
+			</div>
+		</div>
+
+		<script>
+			  //  METHODS--1   ----------------- Define the card HTML structure using a template literal   --------------
+			  // const container = document.querySelector(".container");
+			  // const cardHTML = `
+			  //     <div class="card">
+			  //         <!-- Card image -->
+			  //         <img src="https://via.placeholder.com/300x200" alt="Card image" />
+
+			//         <!-- Card body -->
+			//         <div class="card-body">
+			//             <h2 class="card-title">Card Title -1- </h2>
+			//             <p class="card-text">
+			//                 This is a brief description of the card content. It can be longer and provide more detail.
+			//             </p>
+			//         </div>
+
+			//         <!-- Card footer -->
+			//         <div class="card-footer">Footer Content -1- </div>
+			//     </div>
+			// `;
+			// // Create a new div element and set its innerHTML to the cardHTML
+			// const cardDiv = document.createElement("div");
+			// cardDiv.innerHTML = cardHTML;
+			// // Append the card to the container
+			// container.appendChild(cardDiv.firstElementChild);
+
+			//--------------------------------------------------------------------------------------------------------------------------------
+
+			//  METHODS--2   ----------------- Define the card HTML structure using a function   ----------------------
+
+			const container = document.querySelector(".container");
+			// Create the card element
+			const card = document.createElement("div");
+			card.className = "card";
+
+			// Create the card image
+			const img = document.createElement("img");
+			img.src = "https://via.placeholder.com/300x200";
+			img.alt = "Card image";
+			card.appendChild(img);
+
+			// Create the card body
+			const cardBody = document.createElement("div");
+			cardBody.className = "card-body";
+			card.appendChild(cardBody);
+
+			// Create the card title
+			const cardTitle = document.createElement("h2");
+			cardTitle.className = "card-title";
+			cardTitle.textContent = "Card Title-2- ";
+			cardBody.appendChild(cardTitle);
+
+			// Create the card text
+			const cardText = document.createElement("p");
+			cardText.className = "card-text";
+			cardText.textContent = "This is a brief description of the card content. It can be longer and provide more detail.";
+			cardBody.appendChild(cardText);
+
+			// Create the card footer
+			const cardFooter = document.createElement("div");
+			cardFooter.className = "card-footer";
+			cardFooter.textContent = "Footer Content -2- ";
+			card.appendChild(cardFooter);
+
+			// Append the card to the container
+			container.appendChild(card);
+		</script>
+	</body>
+</html>

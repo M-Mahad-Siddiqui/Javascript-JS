@@ -1,0 +1,231 @@
+<!-- Organized by M. Mahad Siddiqui -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dynamically Create Content Practice</title>
+		<style>
+			body {
+				background-color: #c8e6b4;
+				margin: 20px;
+			}
+			.container {
+				display: flex;
+				flex-wrap: wrap;
+			}
+			.card img {
+				border-radius: 7px 7px 0 0;
+				max-width: 300px;
+			}
+			.card {
+				background-color: #fff;
+				max-width: 300px;
+				border-radius: 7px;
+				margin: 6px;
+			}
+			.card-body {
+				padding: 10px;
+			}
+			.card-body h2 {
+				margin: 0px;
+			}
+			.card-body p {
+				text-align: center;
+			}
+			.card-body h3 {
+				font-size: large;
+				color: rgb(44, 7, 209);
+			}
+			.footer {
+				display: flex;
+				justify-content: center;
+				border-radius: 6px;
+				padding: 5px;
+				font-style: italic;
+				font-size: large;
+				background-color: hsl(63, 68%, 53%);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="card">
+				<img src="https://via.placeholder.com/300x200" alt="Card image" />
+				<div class="card-body">
+					<h2 class="title">JavaScript Card</h2>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam accusamus architecto distinctio reiciendis,
+						facere
+					</p>
+					<h3>View Project</h3>
+					<div class="footer">
+						<footer>I am a footer</footer>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			const container = document.querySelector(".container");
+
+			const cardElement = document.createElement("div");
+			cardElement.className = "card";
+
+			const cardImage = document.createElement("img");
+			cardImage.src = "https://via.placeholder.com/300x200";
+			cardImage.alt = "Card image";
+
+			const cardBody = document.createElement("div");
+			cardBody.className = "card-body";
+
+			const cardTitle = document.createElement("h2");
+			cardTitle.className = "title";
+			cardTitle.textContent = "Dynamic Card";
+
+			const cardText = document.createElement("p");
+			cardText.textContent =
+				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam accusamus architecto distinctio reiciendis, facere";
+
+			const projectLink = document.createElement("h3");
+			projectLink.innerText = "See My Project";
+
+			const footerWrapper = document.createElement("div");
+			footerWrapper.className = "footer";
+
+			const footerContent = document.createElement("footer");
+			footerContent.textContent = "I am a dynamic footer";
+
+			footerWrapper.append(footerContent);
+			cardBody.append(cardTitle, cardText, projectLink, footerWrapper);
+			cardElement.append(cardImage, cardBody);
+			container.append(cardElement);
+
+			console.log(cardElement);
+		</script>
+	</body>
+</html> -->
+
+<!-- chatgpt smart version -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dynamically Create Content Practice</title>
+		<style>
+			body {
+				background-color: #c8e6b4;
+				margin: 20px;
+			}
+
+			.container {
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			img {
+				border-radius: 7px 7px 0 0;
+				max-width: 300px;
+			}
+
+			.card {
+				background-color: #fff;
+				max-width: 300px;
+				border-radius: 7px;
+				margin: 6px;
+			}
+
+			.cardBody {
+				padding: 10px;
+			}
+
+			.cardBody h2 {
+				margin: 0;
+			}
+
+			.cardBody p {
+				text-align: center;
+			}
+
+			.cardBody h3 {
+				font-size: large;
+				color: rgb(44, 7, 209);
+			}
+
+			.footer {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border: none;
+				border-radius: 6px;
+				padding: 5px;
+				font-style: italic;
+				font-size: large;
+				background-color: hsl(63, 68%, 53%);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container" id="container">
+			<!-- Dynamic content will be added here -->
+		</div>
+
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const container = document.getElementById("container");
+
+				const createCard = ({ title, description, footerText, imgSrc, imgAlt, h3Text }) => {
+					// Create card elements
+					const card = document.createElement("div");
+					card.className = "card";
+
+					const img = document.createElement("img");
+					img.src = imgSrc;
+					img.alt = imgAlt;
+
+					const cardBody = document.createElement("div");
+					cardBody.className = "cardBody";
+
+					const h2 = document.createElement("h2");
+					h2.className = "title";
+					h2.textContent = title;
+
+					const p = document.createElement("p");
+					p.textContent = description;
+
+					const h3 = document.createElement("h3");
+					h3.textContent = h3Text;
+
+					const footer = document.createElement("div");
+					footer.className = "footer";
+
+					const footerContent = document.createElement("footer");
+					footerContent.textContent = footerText;
+					footer.appendChild(footerContent);
+
+					// Assemble card
+					cardBody.append(h2, p, h3, footer);
+					card.append(img, cardBody);
+					container.appendChild(card);
+				};
+
+				// Data for the card
+				const cardData = {
+					title: "Dynamic Card",
+					description:
+						"Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam accusamus architecto distinctio reiciendis, facere",
+					footerText: "I am a dynamic footer",
+					imgSrc: "https://via.placeholder.com/300x200",
+					imgAlt: "Dynamic card image",
+					h3Text: "See My Project",
+				};
+
+				createCard(cardData);
+
+				console.log("Card created and added to the DOM");
+			});
+		</script>
+	</body>
+</html>
