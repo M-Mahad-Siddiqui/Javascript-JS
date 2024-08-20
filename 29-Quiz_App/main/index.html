@@ -1,0 +1,497 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Quiz App using TypeScript</title>
+		<style>
+			body {
+				background-color: #d6d6d6;
+			}
+			.head {
+				text-align: center;
+				font-size: 4.5rem;
+				background: #22a9d1;
+				font-weight: bold;
+				color: aliceblue;
+				text-shadow: #2a035d 0 0px 10px;
+				padding: 10px 0px;
+				margin: 20px 0px 10px 0px;
+				border-radius: 3px;
+				font-family: monospace;
+				position: relative;
+			}
+			#timer {
+				background: white;
+				border-radius: 100px;
+				padding: 10px;
+				margin: 10px 5px;
+				font-size: 3rem;
+				position: absolute;
+				color: rgb(17, 231, 17);
+				font-weight: bold;
+				text-shadow: #5d1e03 0 0px 4px;
+				box-shadow: 1px 1px 7px #2a035d;
+				top: 10;
+				right: 30px;
+			}
+
+			.container {
+				display: flex;
+				flex-direction: column;
+				border-radius: 7px;
+				background: white;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+				max-width: 55rem;
+				padding: 25px;
+				font-size: 2rem;
+				margin: 0 auto;
+				margin-top: 30px;
+				box-shadow: 1px 1px 7px #b5046b;
+			}
+
+			button {
+				font-size: 2rem;
+				background-color: #22a9d1;
+				color: aliceblue;
+				padding: 10px;
+				border-radius: 5px;
+				font-family: monospace;
+				border: none;
+				font-weight: bold;
+				letter-spacing: 3px;
+				cursor: pointer;
+				margin-top: 10px;
+				box-shadow: 1px 1px 7px #2a035d;
+			}
+
+			button:hover {
+				background: #0056b3; /* Darker blue on hover */
+				transform: translateY(-2px);
+				box-shadow: 1px 1px 10px #2a035d;
+			}
+			.container > span {
+				font-size: 2rem;
+				font-weight: bold;
+				color: rgb(8, 31, 50);
+				text-align: center;
+			}
+
+  /* ------------------ */
+  /* Hide the radio buttons */
+  /* Hide the radio buttons */
+.radio-label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Style labels to look like selectable items */
+.radio-label {
+    display: block;
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    box-shadow: 4px 1px 6px #2a035d;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+/* Change background color when a label is selected */
+.radio-label.selected {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* Additional styling for better appearance */
+.radio-label:hover {
+    background-color: #855c5c;
+}
+
+
+			
+		</style>
+	</head>
+	<body>
+    <div class="head">Simple TypeScript Quiz App <span id="timer">30</span></div>
+    <div class="container">
+        <span id="question">Your first question is: What is the full form of HTML and CSS?</span>
+
+        <label for="option1" class="radio-label">
+            <input type="radio" name="question1" id="option1" value="HTML" />
+            <span>Option 1</span>
+        </label>
+
+        <label for="option2" class="radio-label">
+            <input type="radio" name="question1" id="option2" value="CSS" />
+            <span>Option 2</span>
+        </label>
+
+        <label for="option3" class="radio-label">
+            <input type="radio" name="question1" id="option3" value="HTML" />
+            <span>Option 3</span>
+        </label>
+
+        <label for="option4" class="radio-label">
+            <input type="radio" name="question1" id="option4" value="CSS" />
+            <span>Option 4</span>
+        </label>
+
+        <button id="next">Next</button>
+    </div>
+
+    <script>
+	const questions = [
+    {
+        question: "Q1) How can you access the length of an array in JavaScript?",
+        options: ["array.count", "array.length", "array.size()", "array.size"],
+        correctAnswer: "array.length"
+    },
+    {
+        question: "Q2) How to write an IF statement in JavaScript?",
+        options: ["if (i == 5) { }", "(i == 5)", "if i == 5 { }", "if (i = 5) { }"],
+        correctAnswer: "if (i == 5) { }"
+    },
+    {
+        question: "Q3) What is the result of the following nested loop?\n\nfor (let i = 1; i <= 3; i++) {\n    for (let j = 1; j <= 2; j++) {\n        console.log(i * j);\n    }\n}",
+        options: ["1 2 3 4 5 6", "1 4 9", "1 2 2 4 3 6", "2 4 6"],
+        correctAnswer: "1 2 2 4 3 6"
+    },
+    {
+        question: "Q4) What is the correct syntax for referring to an external script called 'app.js'?",
+        options: ['<script href="app.js">', '<script name="app.js">', '<script src="app.js">'],
+        correctAnswer: '<script src="app.js">'
+    },
+
+];
+
+let quest   = document.querySelector('#question');
+let options = document.querySelectorAll('.radio-label');
+let next    = document.querySelector('#next');  
+
+let currentQuestionIndex = 0;
+
+
+function displayQuestion() {
+    const { question, options: opts,  correctAnswer } = questions[currentQuestionIndex];
+    
+    quest.innerHTML = question;
+    
+    // Ensure that we have the right number of options to display
+    options.forEach((label, index) => {
+        if (opts[index]) {
+            label.querySelector('span').innerHTML = `${index + 1}: ${opts[index]}`;
+            // Set value or additional attributes if needed
+            label.querySelector('input').setAttribute('value', opts[index]);
+        }
+    });
+}
+
+// Initial display of the first question
+displayQuestion();
+
+next.addEventListener('click', function () {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        displayQuestion();
+    } else {
+        // Optionally reset the quiz or hide questions after completing all questions
+        currentQuestionIndex = 0;
+        displayResult();
+        displayQuestion();
+    }
+});
+
+   
+document.addEventListener('DOMContentLoaded', function () {
+    // Get all the labels
+    let labels = document.querySelectorAll('.radio-label');
+
+    // Attach click event listeners to all labels
+    labels.forEach(label => {
+        label.addEventListener('click', function () {
+            // Remove the 'selected' class from all labels
+            labels.forEach(l => l.classList.remove('selected'));
+
+            // Add the 'selected' class to the clicked label
+            this.classList.add('selected');
+        });
+    });
+});
+
+
+
+
+//counter for timer
+let count           = 10;
+let times           = document.querySelector('#timer');
+    times.innerText = count;
+function startQuiz() {
+    displayQuestion();
+
+          // Timer countdown logic
+    setInterval(function () {
+        count--;
+        times.innerHTML = count;
+
+        if (count < 10) {
+            times.innerHTML = "0" + count;
+            times.style.color = "red";
+        } else {
+            times.style.color = "green";
+        }
+
+        
+        if (count <= 0) {
+            count           = 10;     // Reset the countdown
+            times.innerHTML = count;
+            
+                  // Move to the next question
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                alert("Quiz complete!");
+                currentQuestionIndex = 0;  // Reset for replay or additional handling
+                displayQuestion      ();   // Optionally display the first question again
+            }
+        }
+    }, 1000);
+}
+  // document.addEventListener('DOMContentLoaded', startQuiz);</script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App using TypeScript</title>
+    <style>
+        body {
+            background-color: #d6d6d6;
+        }
+        .head {
+            text-align: center;
+            font-size: 4.5rem;
+            background: #22a9d1;
+            font-weight: bold;
+            color: aliceblue;
+            text-shadow: #2a035d 0 0px 10px;
+            padding: 10px 0px;
+            margin: 20px 0px 10px 0px;
+            border-radius: 3px;
+            font-family: monospace;
+            position: relative;
+        }
+        #timer {
+            background: white;
+            border-radius: 100px;
+            padding: 10px;
+            margin: 10px 5px;
+            font-size: 3rem;
+            position: absolute;
+            color: rgb(17, 231, 17);
+            font-weight: bold;
+            text-shadow: #5d1e03 0 0px 4px;
+            box-shadow: 1px 1px 7px #2a035d;
+            top: 10;
+            right: 30px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            border-radius: 7px;
+            background: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            max-width: 55rem;
+            padding: 25px;
+            font-size: 2rem;
+            margin: 0 auto;
+            margin-top: 30px;
+            box-shadow: 1px 1px 7px #b5046b;
+        }
+        button {
+            font-size: 2rem;
+            background-color: #22a9d1;
+            color: aliceblue;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            border: none;
+            font-weight: bold;
+            letter-spacing: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 1px 1px 7px #2a035d;
+        }
+        button:hover {
+            background: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px);
+            box-shadow: 1px 1px 10px #2a035d;
+        }
+        .container > span {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(8, 31, 50);
+            text-align: center;
+        }
+        /* Hide the radio buttons */
+        .radio-label input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        /* Style labels to look like selectable items */
+        .radio-label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            box-shadow: 4px 1px 6px #2a035d;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+        }
+        /* Change background color when a label is selected */
+        .radio-label.selected {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        /* Additional styling for better appearance */
+        .radio-label:hover {
+            background-color: #855c5c;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">Simple TypeScript Quiz App <span id="timer">30</span></div>
+    <div class="container">
+        <span id="question">Your first question is: What is the full form of HTML and CSS?</span>
+        <label for="option1" class="radio-label">
+            <input type="radio" name="question1" id="option1" value="HTML" />
+            <span>Option 1</span>
+        </label>
+        <label for="option2" class="radio-label">
+            <input type="radio" name="question1" id="option2" value="CSS" />
+            <span>Option 2</span>
+        </label>
+        <label for="option3" class="radio-label">
+            <input type="radio" name="question1" id="option3" value="HTML" />
+            <span>Option 3</span>
+        </label>
+        <label for="option4" class="radio-label">
+            <input type="radio" name="question1" id="option4" value="CSS" />
+            <span>Option 4</span>
+        </label>
+        <button id="next">Next</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Q1) How can you access the length of an array in JavaScript?",
+                options: ["array.count", "array.length", "array.size()", "array.size"],
+                correctAnswer: "array.length"
+            },
+            {
+                question: "Q2) How to write an IF statement in JavaScript?",
+                options: ["if (i == 5) { }", "(i == 5)", "if i == 5 { }", "if (i = 5) { }"],
+                correctAnswer: "if (i == 5) { }"
+            },
+            {
+                question: "Q3) What is the result of the following nested loop?\n\nfor (let i = 1; i <= 3; i++) {\n    for (let j = 1; j <= 2; j++) {\n        console.log(i * j);\n    }\n}",
+                options: ["1 2 3 4 5 6", "1 4 9", "1 2 2 4 3 6", "2 4 6"],
+                correctAnswer: "1 2 2 4 3 6"
+            },
+            {
+                question: "Q4) What is the correct syntax for referring to an external script called 'app.js'?",
+                options: ['<script href="app.js">', '<script name="app.js">', '<script src="app.js">'],
+                correctAnswer: '<script src="app.js">'
+            },
+        ];
+
+        let quest = document.querySelector('#question');
+        let options = document.querySelectorAll('.radio-label');
+        let next = document.querySelector('#next');  
+        let timerElement = document.querySelector('#timer');
+        let currentQuestionIndex = 0;
+        let timerInterval;
+        let count = 10;
+
+        function displayQuestion() {
+            const { question, options: opts } = questions[currentQuestionIndex];
+            quest.innerHTML = question;
+
+            options.forEach((label, index) => {
+                if (opts[index]) {
+                    label.querySelector('span').innerHTML = `${index + 1}: ${opts[index]}`;
+                    label.querySelector('input').setAttribute('value', opts[index]);
+                }
+                // Clear 'selected' class and unchecked state for each label
+                label.classList.remove('selected');
+                label.querySelector('input').checked = false;
+            });
+        }
+
+        function resetTimer() {
+            count = 10;
+            timerElement.innerText = count;
+            timerElement.style.color = "green";
+        }
+
+        function startTimer() {
+            resetTimer();
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                count--;
+                timerElement.innerText = count;
+
+                if (count < 10) {
+                    timerElement.innerText = "0" + count;
+                    timerElement.style.color = "red";
+                } else {
+                    timerElement.style.color = "green";
+                }
+
+                if (count <= 0) {
+                    clearInterval(timerInterval);
+                    nextQuestion();
+                }
+            }, 1000);
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+                startTimer();
+            } else {
+                alert("Quiz complete!");
+                currentQuestionIndex = 0;
+                displayQuestion();
+                startTimer();
+            }
+        }
+
+        next.addEventListener('click', nextQuestion);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let labels = document.querySelectorAll('.radio-label');
+
+            labels.forEach(label => {
+                label.addEventListener('click', function () {
+                    labels.forEach(l => l.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+
+            startTimer(); // Start timer when the DOM is loaded
+        });
+    </script>
+</body>
+</html>
