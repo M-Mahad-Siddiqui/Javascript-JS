@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: Geneva, Tahoma, sans-serif;
+      background: #a0dada;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 13vh;
+      margin: 10px;
+    }
+
+    .search {
+      width: 500px;
+      height: 50px;
+      border-radius: 5px;
+      border: 1px dotted rgb(28, 38, 225);
+      padding: 7px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .category {
+      width: 200px;
+      height: 50px;
+      border-radius: 5px;
+      border: 1px dotted rgb(26, 8, 196);
+      padding: 5px;
+      font-size: 16px;
+      outline: none;
+      margin: 0px 20px;
+    }
+
+    .ShowContainer {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      gap: 20px;
+      width: 100%;
+      flex-wrap: wrap;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 222px;
+      max-height: 200px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 0 10px rgba(115, 12, 211, 0.6);
+      padding: 5px;
+      font-size: 16px;
+      outline: none;
+      margin-left: 10px;
+      background-color: #9dcbdb;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      background-color: #7cc3ed;
+      cursor: pointer;
+      box-shadow: 0px 0px 7px rgba(12, 211, 131, 0.6);
+      transform: scale(1.1);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card h5 {
+      margin-left: 10px;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+
+    .card p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .card p:first-of-type {
+      color: rgb(9, 165, 66);
+    }
+
+    .card p:last-of-type {
+      color: rgb(255, 136, 0);
+    }
+
+    .card a {
+      margin-left: 10px;
+      margin-right: 10px;
+      color: #c56115;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <input oninput="search()"
+           name="search"
+           type="text"
+           id="search"
+           placeholder="Search"
+           class="search" />
+    <select onchange="search()"
+            name="category"
+            id="category"
+            class="category">
+      <option value="">Select categories</option>
+      <option value="Astronomy">Astronomy</option>
+      <option value="Chemistry">Chemistry</option>
+      <option value="Biology">Biology</option>
+      <option value="Physics">Physics</option>
+      <option value="Geography">Geography</option>
+      <option value="Ecology">Ecology</option>
+      <option value="Paleontology">Paleontology</option>
+      <option value="Landmarks">Landmarks</option>
+      <option value="Art">Art</option>
+      <option value="Mathematics">Mathematics</option>
+    </select>
+  </div>
+  <div class="ShowContainer"></div>
+
+  <script>
+    const data = [
+      {
+        fact: "The Earth orbits the Sun.",
+        category: "Astronomy",
+        importance: "High",
+      },
+      {
+        fact: "Water boils at 100°C at sea level.",
+        category: "Chemistry",
+        importance: "High",
+      },
+      {
+        fact: "Humans have 206 bones in their adult skeleton.",
+        category: "Biology",
+        importance: "High",
+      },
+      {
+        fact: "The speed of light is approximately 299,792 kilometers per second.",
+        category: "Physics",
+        importance: "High",
+      },
+      {
+        fact: "The Pacific Ocean is the largest ocean on Earth.",
+        category: "Geography",
+        importance: "High",
+      },
+      {
+        fact: "An atom consists of protons, neutrons, and electrons.",
+        category: "Chemistry",
+        importance: "High",
+      },
+      {
+        fact: "The Great Wall of China is over 13,000 miles long.",
+        category: "History",
+        importance: "Medium",
+      },
+      {
+        fact: "Humans share about 60% of their DNA with bananas.",
+        category: "Biology",
+        importance: "Medium",
+      },
+      {
+        fact: "The Amazon Rainforest produces about 20% of the world's oxygen.",
+        category: "Ecology",
+        importance: "High",
+      },
+      {
+        fact: "Sharks have existed for more than 400 million years.",
+        category: "Paleontology",
+        importance: "Medium",
+      },
+      {
+        fact: "The Eiffel Tower is approximately 324 meters tall.",
+        category: "Landmarks",
+        importance: "Medium",
+      },
+      {
+        fact: "The human body is made up of about 60% water.",
+        category: "Biology",
+        importance: "High",
+      },
+      {
+        fact: "Venus is the hottest planet in our solar system.",
+        category: "Astronomy",
+        importance: "High",
+      },
+      {
+        fact: "Lightning strikes the Earth around 100 times per second.",
+        category: "Meteorology",
+        importance: "Medium",
+      },
+      {
+        fact: "The Himalayas are home to the world's highest peak, Mount Everest.",
+        category: "Geography",
+        importance: "High",
+      },
+      {
+        fact: "Oxygen is the third most abundant element in the universe.",
+        category: "Chemistry",
+        importance: "High",
+      },
+      {
+        fact: "The human brain has about 86 billion neurons.",
+        category: "Biology",
+        importance: "High",
+      },
+      {
+        fact: "The Nile River is the longest river in the world.",
+        category: "Geography",
+        importance: "Medium",
+      },
+      {
+        fact: "The Mona Lisa was painted by Leonardo da Vinci.",
+        category: "Art",
+        importance: "Medium",
+      },
+      {
+        fact: "The chemical symbol for gold is Au.",
+        category: "Chemistry",
+        importance: "Medium",
+      },
+      {
+        fact: "The Hubble Space Telescope orbits the Earth.",
+        category: "Astronomy",
+        importance: "High",
+      },
+      {
+        fact: "Jupiter is the largest planet in our solar system.",
+        category: "Astronomy",
+        importance: "High",
+      },
+      {
+        fact: "Cheetahs are the fastest land animals, reaching speeds up to 60 miles per hour.",
+        category: "Biology",
+        importance: "Medium",
+      },
+      {
+        fact: "The Great Barrier Reef is the largest coral reef system in the world.",
+        category: "Ecology",
+        importance: "High",
+      },
+      {
+        fact: "Mount Kilimanjaro is the highest peak in Africa.",
+        category: "Geography",
+        importance: "Medium",
+      },
+      {
+        fact: "The formula for calculating the area of a circle is πr².",
+        category: "Mathematics",
+        importance: "Medium",
+      },
+      {
+        fact: "Sound travels faster in water than in air.",
+        category: "Physics",
+        importance: "Medium",
+      },
+      {
+        fact: "Pluto was reclassified as a dwarf planet in 2006.",
+        category: "Astronomy",
+        importance: "Low",
+      },
+    ];
+
+    function search() {
+      const searchValue   = document.getElementById("search").value.toLowerCase();
+      const categoryValue = document.getElementById("category").value.toLowerCase();
+
+      const filteredFacts = data.filter((item) => {
+        return (
+          item.fact.toLowerCase().includes(searchValue) &&
+          (categoryValue === "" || item.category.toLowerCase() === categoryValue)
+        );
+      });
+
+      show(filteredFacts);
+    }
+    show(data);  // show all the data when the page loads
+
+    function show(data) {
+      const container = document.querySelector(".ShowContainer");
+
+      container.innerHTML = "";
+
+      // covert array of  Object to array of cards
+      const allData = data.map((item) => {
+        return `
+          <div class="card">
+            <h5 class="card-title">${item.fact}</h5>
+            <p>${item.category}</p>
+            <p>${item.importance}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>`;
+      })
+        .join("");
+
+      container.innerHTML = allData;
+    }
+
+  </script>
+</body>
+
+</html>

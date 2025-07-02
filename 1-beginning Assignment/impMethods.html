@@ -1,0 +1,892 @@
+<!-- <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name    = "viewport" content = "width=device-width, initial-scale=1.0">
+        <title>important methods which widely used in react js</title>
+        <style>
+            body{
+                font-family: Geneva, Tahoma, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <ol>
+
+            <li><b>.forEach()    : </b> Purpose: Executes a provided function once for each array element.</li>
+            <ul><li><b>Syntax    : </b> <button class="toggle" data-method="foreach">See Example</button> <span class="res"></span> </li>Array.forEach(function(currentValue, index, arr), thisValue)</li></ul>
+            <li><b>.filter()     : </b> Purpose: Creates a new array with all elements that pass the test implemented by the provided function.</li>
+            <ul><li><b>Syntax    : </b></li>Array.filter(function(currentValue, index, arr), thisValue)</li></ul>
+            <li><b>.map()        : </b> Purpose: Creates a new array with the results of calling a provided function on every element in the calling array.</li>
+            <ul><li><b>Syntax    : </b></li>Array.map(function(currentValue, index, arr), thisValue)</li></ul>
+            <li><b>.includes()   : </b> Purpose: Returns true if an array has a numeric value equal to the provided value.</li>
+            <ul><li><b>Syntax    : </b></li>Array.includes(value)</li></ul>
+            <li><b>.find()       : </b> Purpose: Returns the value of the first element in the provided array that satisfies the provided testing function.</li>
+            <ul><li><b>Syntax    : </b></li>Array.find(function(currentValue, index, arr), thisValue)</li></ul>
+            <li><b>.indexOf()    : </b> Purpose: Returns the first index at which a given element can be found in the array, or -1 if it is not present.</li>
+            <ul><li><b>Syntax    : </b></li>Array.indexOf(value)</li></ul>
+            <li><b>.findIndex()  : </b> Purpose: Returns the index of the first element in the provided array that satisfies the provided testing function.</li>
+            <ul><li><b>Syntax    : </b></li>Array.findIndex(function(currentValue, index, arr), thisValue)</li></ul>
+            <li><b>.lastIndexOf(): </b> Purpose: Returns the last index at which a given element can be found in the array,  or -1 if it is not present.</li>
+            <ul><li><b>Syntax    : </b></li>Array.lastIndexOf(value)</li></ul>
+            <li><b>.reduce()     : </b> Purpose: Applies a function against an accumulator and each value of the array (from left-to-right) as to reduce it to a single value.</li>
+            <ul><li><b>Syntax    : </b></li>Array.reduce(function(total, currentValue, index, arr), initialValue)</li></ul>
+            <li><b>.reduceRight(): </b> Purpose: Applies a function against an accumulator and each value of the array (from right-to-left) as to reduce it to a single value.</li>
+            <ul><li><b>Syntax    : </b></li>Array.reduceRight(function(total, currentValue, index, arr), initialValue)</li></ul>
+            <li><b>.slice()      : </b> Purpose: Returns a shallow copy of a portion of an array into a new array object selected from start to end (end not included).</li>
+            <ul><li><b>Syntax    : </b></li>Array.slice(start, end)</li></ul>
+            <li><b>.splice()     : </b> Purpose: Removes elements from an array and,                                         if necessary,                       inserts new elements in their place, returning the deleted elements.</li>
+            <ul><li><b>Syntax    : </b></li>Array.splice(start, deleteCount, item1, item2, ...)</li></ul>
+            <li><b>.flat()       : </b> Purpose: Creates a new array with all sub-array elements concatenated.</li>
+            <ul><li><b>Syntax    : </b></li>Array.flat([depth])</li></ul>
+            <li><b>.flatMap()    : </b> Purpose: Creates a new array with the results of calling a provided function on every element in the calling array.</li>
+            <ul><li><b>Syntax    : </b></li>Array.flatMap(function(currentValue, index, arr), thisValue)</li></ul>
+            <li><b>.some()       : </b> Purpose: Tests whether at least one element in the array passes the test implemented by the provided function.</li>
+            <ul><li><b>Syntax    : </b></li>Array.some(function(currentValue, index, arr), thisValue)</li></ul>
+            <li><b>.every()      : </b> Purpose: Tests whether all elements in the array pass the test implemented by the provided function.</li>
+            <ul><li><b>Syntax    : </b></li>Array.every(function(currentValue, index, arr), thisValue)</li></ul>
+            <li><b>.fill()       : </b> Purpose: Changes all elements in an array to a static value,                         from a start index (default 0) to an end index (default array.length).</li>
+            <ul><li><b>Syntax    : </b></li>Array.fill(value, start, end)</li></ul>
+            <li><b>.reverse()    : </b> Purpose: Reverses the elements in an array in place.</li>
+            <ul><li><b>Syntax    : </b></li>Array.reverse()</li></ul>
+            <li><b>.sort()       : </b> Purpose: Sorts the elements of an array in place and returns the sorted array.</li>
+            <ul><li><b>Syntax    : </b></li>Array.sort([compareFunction])</li></ul>
+            <li><b>.copyWithin() : </b> Purpose: Copies the elements of an array within another array.</li>
+            <ul><li><b>Syntax    : </b></li>Array.copyWithin(target, start, end)</li></ul>
+            <li><b>.join()       : </b> Purpose: Joins all elements of an array into a string.</li>
+            <ul><li><b>Syntax    : </b></li>Array.join([separator])</li></ul>
+            <li><b>.toString()   : </b> Purpose: Returns a string representation of an array.</li>
+            <ul><li><b>Syntax    : </b></li>Array.toString()</li></ul>
+            <li><b>.valueOf()    : </b> Purpose: Returns the primitive value of an array.</li>
+            <ul><li><b>Syntax    : </b></li>Array.valueOf()</li></ul>
+            
+        </ol>
+        
+    </body>
+    <script>
+        let foreachBtn = document.querySelector(".foreach");
+        let foreachRes = document.querySelector(".res");
+        foreachBtn.addEventListener("click", () => {
+            let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            let res = "";
+            arr.forEach((value) => {
+                res += value + " ";
+            });
+            let div = document.createElement("div");
+            let code = ` let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; \n
+            let res = "";\n
+            arr.forEach((value) => { \n
+                res += value + " "; \n
+            });\n
+            Output : ${res}`;
+            div.innerHTML = code;
+            foreachRes.appendChild(div);
+            foreachBtn.Disabled;
+
+        });
+        
+
+        mahad write code
+    </script>
+    </html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Important Methods Widely Used in React.js</title>
+		<link rel="stylesheet" href="methods.css" />
+	</head>
+
+	<body>
+		<h1 class="heading">Important Methods Widely Used in JavaScript</h1>
+		<ol>
+			<li>
+				<b>.forEach() :</b> Executes a provided function once for each array element.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="foreach">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.filter() :</b> Creates a new array with all elements that pass the test implemented by the provided function.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="filter">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.map() :</b> Creates a new array with the results of calling a provided function on every element in the calling
+				array.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="map">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.includes() :</b> Returns true if an array has a numeric value equal to the provided value.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="includes">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.find() :</b> Returns the value of the first element in the provided array that satisfies the provided testing
+				function.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="find">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.indexOf() :</b> Returns the first index at which a given element can be found in the array, or -1 if it is not
+				present.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="indexOf">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.findIndex() :</b> Returns the index of the first element in the provided array that satisfies the provided
+				testing function.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="findIndex">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.lastIndexOf() :</b> Returns the last index at which a given element can be found in the array, or -1 if it is not
+				present.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="lastIndexOf">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.reduce() :</b> Applies a function against an accumulator and each value of the array (from left-to-right) as to
+				reduce it to a single value.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="reduce">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.reduceRight() :</b> Applies a function against an accumulator and each value of the array (from right-to-left) as
+				to reduce it to a single value.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="reduceRight">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.slice() :</b> Returns a shallow copy of a portion of an array into a new array object selected from start to end
+				(end not included).
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="slice">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.splice() :</b> Removes elements from an array and, if necessary, inserts new elements in their place, returning
+				the deleted elements.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="splice">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.flat() :</b> Creates a new array with all sub-array elements concatenated.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="flat">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.flatMap() :</b> Creates a new array with the results of calling a provided function on every element in the
+				calling array.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="flatMap">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.some() :</b> Tests whether at least one element in the array passes the test implemented by the provided
+				function.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="some">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.every() :</b> Tests whether all elements in the array pass the test implemented by the provided function.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="every">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.fill() :</b> Changes all elements in an array to a static value, from a start index (default 0) to an end index
+				(default array.length).
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="fill">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.reverse() :</b> Reverses the elements in an array in place.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="reverse">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.sort() :</b> Sorts the elements of an array in place and returns the sorted array.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="sort">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.copyWithin() :</b> Copies the elements of an array within another array.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="copyWithin">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.join() :</b> Joins all elements of an array into a string.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="join">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.toString(): </b> Returns a string representation of an array.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="toString">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<b>.valueOf() :</b> Returns the primitive value of an array.
+				<ul>
+					<li>
+						<b>Syntax :</b> <button class="toggle" data-method="valueOf">See Example</button>
+						<pre class="example"></pre>
+					</li>
+				</ul>
+			</li>
+		</ol>
+
+		<script>
+			// Example codes
+			const examples = {
+				foreach: `
+let arr = [1, 2, 3, 4, 5];
+let res = "";
+arr.forEach(value => { res += value + " "; });
+console.log(res);  // Output: 1 2 3 4 5
+            `,
+
+				filter: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.filter(value => value > 2);
+console.log(result);  // Output: [3, 4, 5]
+            `,
+
+				map: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.map(value => value * 2);
+console.log(result);  // Output: [2, 4, 6, 8, 10]
+            `,
+
+				includes: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.includes(3);
+console.log(result);  // Output: true
+            `,
+
+				find: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.find(value => value > 3);
+console.log(result);  // Output: 4
+            `,
+
+				indexOf: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.indexOf(4);
+console.log(result);  // Output: 3
+            `,
+
+				findIndex: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.findIndex(value => value > 3);
+console.log(result);  // Output: 3
+            `,
+
+				lastIndexOf: `
+let arr = [1, 2, 3, 4, 5, 4];
+let result = arr.lastIndexOf(4);
+console.log(result);  // Output: 5
+            `,
+
+				reduce: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.reduce((total, value) => total + value, 0);
+console.log(result);  // Output: 15
+            `,
+
+				reduceRight: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.reduceRight((total, value) => total - value, 0);
+console.log(result);  // Output: -15
+            `,
+
+				slice: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.slice(1, 4);
+console.log(result);  // Output: [2, 3, 4]
+            `,
+
+				splice: `
+let arr = [1, 2, 3, 4, 5];
+let removed = arr.splice(2, 2, 6, 7);
+console.log(arr);     // Output: [1, 2, 6, 7, 5] (Modified array)
+console.log(removed); // Output: [3, 4]
+            `,
+
+				flat: `
+let arr = [1, [2, [3, 4]]];
+let result = arr.flat(2);
+console.log(result);  // Output: [1, 2, 3, 4]
+            `,
+
+				flatMap: `
+let arr = [1, 2, 3];
+let result = arr.flatMap(value => [value, value * 2]);
+console.log(result);  // Output: [1, 2, 2, 4, 3, 6]
+            `,
+
+				some: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.some(value => value > 4);
+console.log(result);  // Output: true
+            `,
+
+				every: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.every(value => value < 6);
+console.log(result);  // Output: true
+            `,
+
+				fill: `
+let arr = [1, 2, 3, 4, 5];
+arr.fill(0, 2, 4);
+console.log(arr);     // Output: [1, 2, 0, 0, 5]
+            `,
+
+				reverse: `
+let arr = [1, 2, 3, 4, 5];
+arr.reverse();
+console.log(arr);     // Output: [5, 4, 3, 2, 1]
+            `,
+
+				sort: `
+let arr = [5, 3, 1, 4, 2];
+arr.sort((a, b) => a - b);
+console.log(arr);     // Output: [1, 2, 3, 4, 5]
+            `,
+
+				copyWithin: `
+let arr = [1, 2, 3, 4, 5];
+arr.copyWithin(1, 3, 5);
+console.log(arr);     // Output: [1, 4, 5, 4, 5]
+            `,
+
+				join: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.join('-');
+console.log(result);  // Output: 1-2-3-4-5
+            `,
+
+				toString: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.toString();
+console.log(result);  // Output: 1,2,3,4,5
+            `,
+
+				valueOf: `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.valueOf();
+console.log(result);  // Output: [1, 2, 3, 4, 5]
+            `,
+			};
+
+            let n =1;
+			document.querySelectorAll(".toggle").forEach((button) => {
+				button.addEventListener("click", function () {
+					const method = this.getAttribute("data-method");
+					const exampleElement = this.nextElementSibling;  //pre
+
+					if (this.textContent === "See Example") {
+						this.textContent           = "Close Example";
+						exampleElement.textContent = examples[method];  //to show code Object in pre tag
+					} else {
+						exampleElement.textContent = "";    
+						this.textContent = "See Example";
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
+
+
+  <!---------------------- first version of code(BlWi) ---------------------------------->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Methods Widely Used in React.js</title>
+    <style>
+        body {
+            font-family: Geneva, Tahoma, sans-serif;
+            margin: 20px;
+        }
+        ol {
+            margin: 0;
+            padding: 0;
+            list-style-type: decimal;
+        }
+        ul {
+            margin: 0;
+            padding-left: 20px;
+            list-style-type: none;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .example {
+            margin: 5px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+        button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Important Methods Widely Used in JavaScript</h1>
+    <ol>
+        <li>
+            <b>.forEach() :</b> Executes a provided function once for each array element.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="foreach">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.filter() :</b> Creates a new array with all elements that pass the test implemented by the provided function.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="filter">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.map() :</b> Creates a new array with the results of calling a provided function on every element in the calling array.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="map">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.includes() :</b> Returns true if an array has a numeric value equal to the provided value.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="includes">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.find() :</b> Returns the value of the first element in the provided array that satisfies the provided testing function.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="find">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.indexOf() :</b> Returns the first index at which a given element can be found in the array, or -1 if it is not present.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="indexOf">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.findIndex() :</b> Returns the index of the first element in the provided array that satisfies the provided testing function.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="findIndex">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.lastIndexOf() :</b> Returns the last index at which a given element can be found in the array, or -1 if it is not present.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="lastIndexOf">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.reduce() :</b> Applies a function against an accumulator and each value of the array (from left-to-right) as to reduce it to a single value.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="reduce">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.reduceRight() :</b> Applies a function against an accumulator and each value of the array (from right-to-left) as to reduce it to a single value.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="reduceRight">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.slice() :</b> Returns a shallow copy of a portion of an array into a new array object selected from start to end (end not included).
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="slice">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.splice() :</b> Removes elements from an array and, if necessary, inserts new elements in their place, returning the deleted elements.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="splice">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.flat() :</b> Creates a new array with all sub-array elements concatenated.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="flat">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.flatMap() :</b> Creates a new array with the results of calling a provided function on every element in the calling array.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="flatMap">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.some() :</b> Tests whether at least one element in the array passes the test implemented by the provided function.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="some">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.every() :</b> Tests whether all elements in the array pass the test implemented by the provided function.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="every">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.fill() :</b> Changes all elements in an array to a static value, from a start index (default 0) to an end index (default array.length).
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="fill">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.reverse() :</b> Reverses the elements in an array in place.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="reverse">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.sort() :</b> Sorts the elements of an array in place and returns the sorted array.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="sort">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.copyWithin() :</b> Copies the elements of an array within another array.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="copyWithin">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.join() :</b> Joins all elements of an array into a string.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="join">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.toString() :</b> Returns a string representation of an array.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="toString">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b>.valueOf() :</b> Returns the primitive value of an array.
+            <ul>
+                <li>
+                    <b>Syntax :</b> <button class="valueOf">See Example</button>
+                    <pre class="example"></pre>
+                </li>
+            </ul>
+        </li>
+    </ol>
+
+    <script>
+        function showExample(buttonClass, exampleCode) {
+            document.querySelector(`.${buttonClass}`).addEventListener('click', function() {
+                const exampleElement = document.querySelector(`.${buttonClass} + .example`);
+                exampleElement.textContent = exampleCode;
+                this.disabled = true;
+            });
+        }
+
+        // Example codes
+        showExample('foreach', `
+let arr = [1, 2, 3, 4, 5];
+let res = "";
+arr.forEach(value => { res += value + " "; });
+Output: ${[1, 2, 3, 4, 5].join(' ')}
+        `);
+
+        showExample('filter', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.filter(value => value > 2);
+Output: ${[1, 2, 3, 4, 5].filter(value => value > 2).join(', ')}
+        `);
+
+        showExample('map', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.map(value => value * 2);
+Output: ${[1, 2, 3, 4, 5].map(value => value * 2).join(', ')}
+        `);
+
+        showExample('includes', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.includes(3);
+Output: ${[1, 2, 3, 4, 5].includes(3)}
+        `);
+
+        showExample('find', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.find(value => value > 3);
+Output: ${[1, 2, 3, 4, 5].find(value => value > 3)}
+        `);
+
+        showExample('indexOf', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.indexOf(4);
+Output: ${[1, 2, 3, 4, 5].indexOf(4)}
+        `);
+
+        showExample('findIndex', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.findIndex(value => value > 3);
+Output: ${[1, 2, 3, 4, 5].findIndex(value => value > 3)}
+        `);
+
+        showExample('lastIndexOf', `
+let arr = [1, 2, 3, 4, 5, 4];
+let result = arr.lastIndexOf(4);
+Output: ${[1, 2, 3, 4, 5, 4].lastIndexOf(4)}
+        `);
+
+        showExample('reduce', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.reduce((total, value) => total + value, 0);
+Output: ${[1, 2, 3, 4, 5].reduce((total, value) => total + value, 0)}
+        `);
+
+        showExample('reduceRight', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.reduceRight((total, value) => total - value, 0);
+Output: ${[1, 2, 3, 4, 5].reduceRight((total, value) => total - value, 0)}
+        `);
+
+        showExample('slice', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.slice(1, 4);
+Output: ${[1, 2, 3, 4, 5].slice(1, 4).join(', ')}
+        `);
+
+        showExample('splice', `
+let arr = [1, 2, 3, 4, 5];
+let removed = arr.splice(2, 2, 6, 7);
+Output: ${arr.join(', ')} (Modified array)
+Removed elements: ${removed.join(', ')}
+        `);
+
+        showExample('flat', `
+let arr = [1, [2, [3, 4]]];
+let result = arr.flat(2);
+Output: ${[1, [2, [3, 4]]].flat(2).join(', ')}
+        `);
+
+        showExample('flatMap', `
+let arr = [1, 2, 3];
+let result = arr.flatMap(value => [value, value * 2]);
+Output: ${[1, 2, 3].flatMap(value => [value, value * 2]).join(', ')}
+        `);
+
+        showExample('some', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.some(value => value > 4);
+Output: ${[1, 2, 3, 4, 5].some(value => value > 4)}
+        `);
+
+        showExample('every', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.every(value => value < 6);
+Output: ${[1, 2, 3, 4, 5].every(value => value < 6)}
+        `);
+
+        showExample('fill', `
+let arr = [1, 2, 3, 4, 5];
+arr.fill(0, 2, 4);
+Output: ${arr.join(', ')}
+        `);
+
+        showExample('reverse', `
+let arr = [1, 2, 3, 4, 5];
+arr.reverse();
+Output: ${arr.join(', ')}
+        `);
+
+        showExample('sort', `
+let arr = [5, 3, 1, 4, 2];
+arr.sort((a, b) => a - b);
+Output: ${arr.join(', ')}
+        `);
+
+        showExample('copyWithin', `
+let arr = [1, 2, 3, 4, 5];
+arr.copyWithin(1, 3, 5);
+Output: ${arr.join(', ')}
+        `);
+
+        showExample('join', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.join('-');
+Output: ${[1, 2, 3, 4, 5].join('-')}
+        `);
+
+        showExample('toString', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.toString();
+Output: ${[1, 2, 3, 4, 5].toString()}
+        `);
+
+        showExample('valueOf', `
+let arr = [1, 2, 3, 4, 5];
+let result = arr.valueOf();
+Output: ${arr.valueOf()}
+        `);
+    </script>
+</body>
+</html> -->

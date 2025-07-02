@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H.B Fabrics</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%; /* Ensure full viewport height */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container with background */
+        .container {
+            min-height: 100vh; /* Full viewport height */
+            background-image: url('https://www.thehbfabrics.com/wp-content/uploads/2024/11/concept2-page3.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Form container */
+        .form-container {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+        }
+
+        /* Form label styling */
+        .form-container label {
+            font-size: 1.2em;
+            color: #333;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Form select styling */
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        /* Button styling */
+        .form-container button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: goldenrod;
+        }
+
+        /* Media Queries for iPhones */
+        @media screen and (max-width: 480px) and (orientation: portrait) {
+            .container {
+                background-size: contain; /* Make sure image fits within viewport */
+                background-position: top; /* Adjust alignment for smaller screens */
+            }
+
+            .form-container {
+                width: 90%; /* Adjust form width for smaller devices */
+                font-size: 0.9em;
+            }
+        }
+
+        /* Media Queries for Android Devices */
+        @media screen and (min-width: 481px) and (max-width: 768px) {
+            .container {
+                background-size: contain;
+                background-position: top;
+            }
+
+            .form-container {
+                width: 80%;
+                font-size: 1em;
+            }
+        }
+
+        /* Media Query for Landscape Mode */
+        @media screen and (orientation: landscape) {
+            .container {
+                background-size: cover;
+                background-position: center;
+            }
+
+            .form-container {
+                width: 60%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Form -->
+        <div class="form-container">
+            <label for="province">Enter Your Province</label>
+            <select id="province" name="province">
+                <option value="sindh">Sindh</option>
+                <option value="punjab">Punjab</option>
+                <option value="balochistan">Balochistan</option>
+                <option value="kpk">KPK</option>
+            </select>
+            <button onclick="redirectToCategories()">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        function redirectToCategories() {
+            window.location.href = "https://www.thehbfabrics.com/h-b-fabrics-categories/";
+        }
+    </script>
+</body>
+</html>
+
+
+ s-> aSb|bSa|aSa|bSb|a
+
+        S
+     a  S  b
+     a  S  b 
+        a 

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang=\"en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+</body>
+<script>
+    let count = 0;
+    const outputDiv = document.getElementById('output'); 
+
+    for (let i = 0; i < 100; i++) {
+        count++;
+        
+        outputDiv.innerHTML += `${i} `;
+        
+        if (count === 10) {
+            outputDiv.innerHTML += '<br>'; 
+            count = 0; 
+        }
+    }
+
+</script>
+</html>

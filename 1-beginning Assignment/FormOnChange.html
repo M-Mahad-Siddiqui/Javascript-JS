@@ -1,0 +1,90 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Target Example</title>
+</head>
+<body>
+    <p>An event listener is attached to the document to handle clicks. <br>
+event.target is used to identify which button was clicked by checking its id.</p>
+    <button id="btn1">Button 1</button>
+    <button id="btn2">Button 2</button>
+    <button id="btn3">Button 3</button>
+
+    <script>
+        document.addEventListener('click', function(event) {
+            // Check if the event target is a button
+            if (event.target.tagName === 'BUTTON') {
+                console.log('Button clicked:', event.target.id);
+                console.log(event);
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Delegation Example</title>
+</head>
+<body>
+    <p>
+     <h3> Explanation: </h3>
+     <i>Event delegation allows you to handle events for multiple child elements using a single event handler on their parent element.<i/>
+An event listener is attached to the parent ul element.
+When any li element inside the ul is clicked, the event handler uses event.target to identify the specific li that was clicked.
+    </p>
+    <ul id="myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <script>
+        document.getElementById('myList').addEventListener('click', function(event) {
+            // event.target refers to the clicked <li> element
+            if (event.target.tagName === 'LI') {
+                console.log
+                ('List item clicked: ' + event.target.textContent);
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Form Event Target Example</title>
+	</head>
+
+	<body>
+		<h3>Explanation:</h3>
+		<i>Using event.target to handle form input changes.</i>
+		<p>
+			An event listener is attached to the form for the input event. <br />
+			event.target is used to determine which input field triggered the event and to log its name and value.
+		</p>
+		<form   id   = "myForm">
+		<label  for  = "username">Username:</label>
+		<input  type = "text" id  = "username" name = "username" /> <br />
+		<label  for  = "email">Email:</label>
+		<input  type = "email" id = "email" name    = "email" /> <br />
+		<button type = "submit">Submit</button>
+            
+		</form>
+
+		<script>
+			document.getElementById("myForm").addEventListener("input", function (event) {
+				// event.target refers to the input element that triggered the event
+				console.log("Input changed:", event.target.name, event.target.value);
+			});
+		</script>
+	</body>
+</html>
