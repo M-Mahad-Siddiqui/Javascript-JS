@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="py-16 bg-blue-100">
+
+        <div class="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
+
+            <!-- profile images -->
+            <div class=" hidden lg:block lg:w-1/2 bg-cover ">
+                <img class="userProfilePic"
+                     class="w-20 h-20 rounded-full"
+                     src=""
+                     alt="Profile Picture" />
+            </div>
+
+            <div class="w-full p-8 lg:w-1/2">
+                <h2 class="text-2xl font-semibold text-gray-700 text-center">Welcome to dashboard !</h2>
+                <p class="text-xl text-gray-600 text-center">User Information</p>
+
+                <div id="userInfo">
+
+                    <div class="mt-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Email Address :</label>
+                        <div
+                             class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none">
+                            <span class="userEmail"></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2"> first Name :</label>
+                        <div
+                             class=" bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none">
+                            <span class="userFirstName"></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2"> Last Name :</label>
+                        <div
+                             class=" bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none">
+                            <span class="userLastName"></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2"> Phone Number :</label>
+                        <div
+                             class=" bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none">
+                            <span class="userPhone"></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2"> Roll Number :</label>
+                        <div
+                             class=" bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none">
+                            <span class="userRollNo"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="mt-8">
+                    <a href="index.html">
+                        <button class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">go
+                            back to Home</button></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="module"
+            src="app.js"></script>
+</body>
+
+</html>

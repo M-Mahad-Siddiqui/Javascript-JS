@@ -92,6 +92,488 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .calculator-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .calculator-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #22a9d1 0%, #1e88e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 3px;
+        }
+
+        .calculator-subtitle {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .display {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: right;
+            width: 100%;
+            min-height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            color: #2c3e50;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .display.error {
+            color: #dc3545;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .button {
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .button:hover::before {
+            left: 100%;
+        }
+
+        .button.number {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            color: #2c3e50;
+            border: 2px solid #e9ecef;
+        }
+
+        .button.number:hover {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .button.operator {
+            background: linear-gradient(135deg, #22a9d1 0%, #1e88e5 100%);
+            color: white;
+            border: 2px solid #1e88e5;
+        }
+
+        .button.operator:hover {
+            background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(34, 169, 209, 0.4);
+        }
+
+        .button.clear {
+            background: linear-gradient(135deg, #ffc107 0%, #ff9500 100%);
+            color: white;
+            border: 2px solid #ff9500;
+        }
+
+        .button.clear:hover {
+            background: linear-gradient(135deg, #ff9500 0%, #e68900 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(255, 149, 0, 0.4);
+        }
+
+        .button.equal {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: 2px solid #20c997;
+            grid-row: span 2;
+        }
+
+        .button.equal:hover {
+            background: linear-gradient(135deg, #20c997 0%, #17a2b8 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .button.zero {
+            grid-column: span 2;
+        }
+
+        .button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .history {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(248, 249, 250, 0.8);
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .history-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .history-item {
+            font-size: 0.7rem;
+            color: #495057;
+            padding: 3px 0;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .clear-history {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            margin-top: 8px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .clear-history:hover {
+            background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .calculator-container {
+                padding: 15px;
+                margin: 5px;
+                max-width: 280px;
+            }
+
+            .display {
+                font-size: 1.4rem;
+                padding: 12px;
+                min-height: 50px;
+            }
+
+            .button {
+                padding: 12px;
+                font-size: 1rem;
+                min-height: 45px;
+            }
+
+            .calculator-title {
+                font-size: 1.2rem;
+            }
+
+            .calculator-subtitle {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .calculator-container {
+                max-width: 260px;
+                padding: 12px;
+            }
+
+            .button {
+                padding: 10px;
+                font-size: 0.9rem;
+                min-height: 40px;
+            }
+
+            .display {
+                font-size: 1.2rem;
+                min-height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator-header">
+            <h1 class="calculator-title">Modern Calculator</h1>
+            <p class="calculator-subtitle">Advanced Mathematical Operations</p>
+        </div>
+        
+        <div class="display" id="display">0</div>
+        
+        <div class="button-grid">
+            <button class="button clear" onclick="clearDisplay()">AC</button>
+            <button class="button clear" onclick="deleteLast()">⌫</button>
+            <button class="button operator" onclick="appendToDisplay('/')" title="Divide">÷</button>
+            <button class="button operator" onclick="appendToDisplay('*')" title="Multiply">×</button>
+            
+            <button class="button number" onclick="appendToDisplay('7')">7</button>
+            <button class="button number" onclick="appendToDisplay('8')">8</button>
+            <button class="button number" onclick="appendToDisplay('9')">9</button>
+            <button class="button operator" onclick="appendToDisplay('-')" title="Subtract">−</button>
+            
+            <button class="button number" onclick="appendToDisplay('4')">4</button>
+            <button class="button number" onclick="appendToDisplay('5')">5</button>
+            <button class="button number" onclick="appendToDisplay('6')">6</button>
+            <button class="button operator" onclick="appendToDisplay('+')" title="Add">+</button>
+            
+            <button class="button number" onclick="appendToDisplay('1')">1</button>
+            <button class="button number" onclick="appendToDisplay('2')">2</button>
+            <button class="button number" onclick="appendToDisplay('3')">3</button>
+            <button class="button equal" onclick="calculate()" title="Calculate">=</button>
+            
+            <button class="button number zero" onclick="appendToDisplay('0')">0</button>
+            <button class="button number" onclick="appendToDisplay('.')">.</button>
+        </div>
+
+        <div class="history" id="historyContainer" style="display: none;">
+            <div class="history-title">Recent Calculations</div>
+            <div id="historyList"></div>
+            <button class="clear-history" onclick="clearHistory()">Clear History</button>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '0';
+        let shouldResetDisplay = false;
+        let calculationHistory = [];
+
+        function updateDisplay() {
+            const display = document.getElementById('display');
+            display.textContent = currentInput;
+            display.classList.remove('error');
+        }
+
+        function appendToDisplay(value) {
+            const display = document.getElementById('display');
+            
+            if (shouldResetDisplay) {
+                currentInput = '';
+                shouldResetDisplay = false;
+            }
+            
+            if (currentInput === '0' && value !== '.') {
+                currentInput = value;
+            } else {
+                // Prevent multiple operators in a row
+                const lastChar = currentInput.slice(-1);
+                const operators = ['+', '-', '*', '/'];
+                
+                if (operators.includes(value) && operators.includes(lastChar)) {
+                    currentInput = currentInput.slice(0, -1) + value;
+                } else {
+                    currentInput += value;
+                }
+            }
+            
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            currentInput = '0';
+            shouldResetDisplay = false;
+            updateDisplay();
+        }
+
+        function deleteLast() {
+            if (currentInput.length > 1) {
+                currentInput = currentInput.slice(0, -1);
+            } else {
+                currentInput = '0';
+            }
+            updateDisplay();
+        }
+
+        function calculate() {
+            const display = document.getElementById('display');
+            
+            try {
+                // Replace display symbols with actual operators for calculation
+                let expression = currentInput
+                    .replace(/×/g, '*')
+                    .replace(/÷/g, '/')
+                    .replace(/−/g, '-');
+                
+                // Validate expression
+                if (!/^[0-9+\-*/.() ]+$/.test(expression)) {
+                    throw new Error('Invalid characters');
+                }
+                
+                const result = Function('"use strict"; return (' + expression + ')')();
+                
+                if (!isFinite(result)) {
+                    throw new Error('Invalid calculation');
+                }
+                
+                // Add to history
+                addToHistory(currentInput, result);
+                
+                currentInput = result.toString();
+                shouldResetDisplay = true;
+                updateDisplay();
+                
+            } catch (error) {
+                display.textContent = 'Error';
+                display.classList.add('error');
+                currentInput = '0';
+                shouldResetDisplay = true;
+                
+                setTimeout(() => {
+                    updateDisplay();
+                }, 1500);
+            }
+        }
+
+        function addToHistory(expression, result) {
+            calculationHistory.unshift({
+                expression: expression,
+                result: result,
+                timestamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            });
+            
+            // Keep only last 3 calculations for compact view
+            if (calculationHistory.length > 3) {
+                calculationHistory = calculationHistory.slice(0, 3);
+            }
+            
+            updateHistoryDisplay();
+        }
+
+        function updateHistoryDisplay() {
+            const historyContainer = document.getElementById('historyContainer');
+            const historyList = document.getElementById('historyList');
+            
+            if (calculationHistory.length > 0) {
+                historyContainer.style.display = 'block';
+                historyList.innerHTML = calculationHistory.map(item => 
+                    `<div class="history-item">
+                        <span>${item.expression} = ${item.result}</span>
+                        <span>${item.timestamp}</span>
+                    </div>`
+                ).join('');
+            } else {
+                historyContainer.style.display = 'none';
+            }
+        }
+
+        function clearHistory() {
+            calculationHistory = [];
+            updateHistoryDisplay();
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(event) {
+            const key = event.key;
+            
+            if (key >= '0' && key <= '9') {
+                appendToDisplay(key);
+            } else if (key === '.') {
+                appendToDisplay('.');
+            } else if (key === '+') {
+                appendToDisplay('+');
+            } else if (key === '-') {
+                appendToDisplay('-');
+            } else if (key === '*') {
+                appendToDisplay('*');
+            } else if (key === '/') {
+                event.preventDefault();
+                appendToDisplay('/');
+            } else if (key === 'Enter' || key === '=') {
+                event.preventDefault();
+                calculate();
+            } else if (key === 'Escape' || key === 'c' || key === 'C') {
+                clearDisplay();
+            } else if (key === 'Backspace') {
+                event.preventDefault();
+                deleteLast();
+            }
+        });
+
+        // Initialize display
+        updateDisplay();
+    </script>
+</body>
+</html>
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -266,4 +748,4 @@
     //   }
     </script>
   </body>
-</html>
+</html> -->

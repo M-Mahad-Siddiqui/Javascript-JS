@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title> sign in pages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #signInError {
+            color: red;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="py-16 bg-gray-200">
+        <div class="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
+            <div class="hidden lg:block lg:w-1/2 bg-cover"
+                 style="background-image:url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80')">
+
+            </div>
+            <div class="w-full p-8 lg:w-1/2">
+                <h2 class="text-2xl font-semibold text-gray-700 text-center">Brand</h2>
+                <p class="text-xl text-gray-600 text-center">Welcome back!</p>
+                <a href="#"
+                   class="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
+                    <div class="px-4 py-3">
+                        <svg class="h-6 w-6"
+                             viewBox="0 0 40 40">
+                            <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
+                                  fill="#FFC107" />
+                            <path d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z"
+                                  fill="#FF3D00" />
+                            <path d="M20 36.6667C24.305 36.6667 28.2167 35.0192 31.1742 32.34L26.0159 27.975C24.3425 29.2425 22.2625 30 20 30C15.665 30 11.9842 27.2359 10.5975 23.3784L5.16254 27.5659C7.92087 32.9634 13.5225 36.6667 20 36.6667Z"
+                                  fill="#4CAF50" />
+                            <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.7592 25.1975 27.56 26.805 26.0133 27.9758C26.0142 27.975 26.015 27.975 26.0158 27.9742L31.1742 32.3392C30.8092 32.6708 36.6667 28.3333 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z"
+                                  fill="#1976D2" />
+                        </svg>
+                    </div>
+                    <h1 class="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">Sign in with Google</h1>
+                </a>
+                <div class="mt-4 flex items-center justify-between">
+                    <span class="border-b w-1/5 lg:w-1/4"></span>
+                    <a href="#"
+                       class="text-xs text-center text-gray-500 uppercase">or login with email</a>
+                    <span class="border-b w-1/5 lg:w-1/4"></span>
+                </div>
+                <div class="mt-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Email Address</label>
+                    <input class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                           type="email"
+                           id="email-in" />
+                </div>
+                <div class="mt-4">
+                    <div class="flex justify-between">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                        <a href="#"
+                           class="text-xs text-gray-500">Forget Password?</a>
+                    </div>
+                    <input class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                           type="password"
+                           id="password-in" />
+                </div>
+                <div class="mt-8">
+                    <button id="signInBtn"
+                            class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">Login</button>
+                </div>
+                <div class="mt-4 flex items-center justify-between">
+                    <span class="border-b w-1/5 md:w-1/4"></span>
+                    <a href="signUp.html"
+                       class="text-xs text-gray-500 uppercase">or sign up</a>
+                    <span class="border-b w-1/5 md:w-1/4"></span>
+                </div>
+                <span id="signInError"></span>
+            </div>
+        </div>
+    </div>
+
+    <Script type="module">
+        import { auth, signInWithEmailAndPassword } from "../utils/utils.js"; // Adjust the path as needed
+
+        // Function to handle sign-in
+        const emailInput = document.getElementById("email-in");
+        const passwordInput = document.getElementById("password-in");
+        const signInError = document.getElementById("signInError");
+        const signInBtn = document.getElementById("signInBtn");
+
+        signInBtn.addEventListener("click", async (e) => {
+            e.preventDefault(); // Prevent default form submission
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!email || !password) {
+                signInError.innerText = "Please enter both email and password.";
+                emailInput.focus();
+                return;
+            }
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                console.log("User signed in:", userCredential.user);
+                window.location.href = '../index.html';
+            } catch (error) {
+                const errorMessage = error.message;
+                console.error("Sign-in error:", errorMessage);
+                signInError.innerText = "Failed to sign in. Please check your credentials and try again.";
+            }
+        });
+
+    </Script>
+
+
+
+    <!-- The primary difference between using async/await and .then() lies in the way asynchronous code is handled and written in
+    JavaScript. Both methods achieve similar outcomes, but they offer different styles and advantages. Here’s a detailed
+    comparison: -->
+
+    <!-- 1.......      async / await Syntax
+    Syntax: async / await allows you to write asynchronous code that looks more like synchronous code, which can be easier to read and maintain.
+    Error Handling: Use try/catch blocks to handle errors, making it look more like synchronous code error handling.
+        Example:  -->
+
+    <!--------------------------------  async / await Syntax  ------------------------------------------------- >
+            async function signIn() {
+                try {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    console.log("User signed in:", userCredential.user);
+                    //Handle successful sign-in
+                } catch (error) {
+                    console.error("Sign-in error:", error.message);
+                    signInError.innerText = "Failed to sign in. Please check your credentials and try again.";
+                }
+            }
+            signIn();-->
+            
+    <!---  2...............     .then() Syntax
+      Syntax: .then() chains promises and is the traditional way to handle asynchronous operations in JavaScript.It uses a callback - based approach.
+      Error Handling: Use.catch() to handle errors, which is similar to handling errors in a callback function.
+    Example: -->
+
+    <!--------------------------------------  .then() Syntax  ------------------------------------------------- >
+    <!--signInWithEmailAndPassword(auth, email, password) 
+               .then((userCredential) => {
+                    console.log("User signed in:", userCredential.user);
+                    // Handle successful sign-in
+                })
+                .catch((error) => {
+                    console.error("Sign-in error:", error.message);
+                    signInError.innerText = "Failed to sign in. Please check your credentials and try again.";
+                }); -->
+
+    <!--Key Differences Readability:Error Handling:Control Flow: Debugging: -->
+    <!--In summary, both methods are valid and can be used based on the context and your preference.Modern JavaScript development often favors async / await for its readability and ease of use,
+     but.then() is still widely used and effective, especially for simpler cases or existing codebases. -->
+
+
+
+
+</body>
+
+</html>
