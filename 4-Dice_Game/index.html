@@ -1,166 +1,1136 @@
-<!DOCTYPE html>
+    <!-- <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <style>
+        body {
+            padding: 0%;
+            margin: 0%;
+            text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 25px rgb(97, 21, 219), 0 0 5px rgb(12, 49, 232);
+            color: rgb(220, 225, 222);
+            background-image: url('dice.jpg');
+            font-family: sans-serif;
+            font-weight: bold;
+            text-align: center;
+            user-select: none;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        h1 {
+            font-size: 4rem;
+        }
+
+        p {
+            font-size: 2rem;
+        }
+
+        #text {
+            margin-top: 2rem;
+            font-size: 3rem;
+            font-weight: bold;
+            flex-wrap: wrap;
+            background-color: rgba(225, 225, 225, 0.7);
+            margin: 2rem 5rem;
+            border-radius: 20px;
+
+        }
+
+
+        .container {
+
+            grid-template-columns: repeat(3, 1fr);
+            display: grid;
+            gap: 1rem;
+            border: 8px solid rgba(145, 179, 238, 0.757);
+            padding: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 12px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            background-color: rgba(178, 204, 223, 0.5);
+            border: none;
+            transition: all 0.5s ease-in-out;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .box:hover {
+            background-color: rgba(26, 175, 198, 0.757);
+            transition: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {}
+
+        @media (max-width: 600px) {
+
+            body {
+                background-size: cover;
+                background-position: 50% 50%;
+                background-repeat: repeat;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .box {
+                font-size: 1rem;
+                width: 70px;
+                height: 70px;
+            }
+
+            .text {
+                font-size: 0.5rem;
+                font-weight: bold;
+                flex-wrap: wrap;
+                background-color: rgba(161, 198, 26, 0.5);
+                margin: 2rem 5rem;
+            }
+        }
+    </style>
+
+    <body>
+
+        <h1> <span id="count"></span> Welcome to the Dice Game!</h1>
+        <p>Take a chance, roll the dice, and let's begin the game!</p>
+        <span style="color: red; font-size: 2rem; ">Your score: <span id="score">0</span></span>
+
+        <div class="main">
+            <div class="container">
+                <div class="box"
+                    onclick="test(1)">ONE</div>
+                <div class="box"
+                    onclick="test(2)">TWO</div>
+                <div class="box"
+                    onclick="test(3)">THREE</div>
+                <div class="box"
+                    onclick="test(4)">FOUR</div>
+                <div class="box"
+                    onclick="test(5)">FIVE</div>
+                <div class="box"
+                    onclick="test(6)">SIX</div>
+            </div>
+            <div id="text"></div>
+        </div>
+    </body>
+
+    <script>
+        let count = 0, s = 0;
+
+        function test(num) {
+            let random = Math.floor(Math.random() * 6) + 1;
+            let score = document.getElementById("score");
+            count++;
+            if (num == random) {
+                document.getElementById("text").innerText = "Congratulations you won the game";
+                document.getElementById("text").style.color = "green";
+                s += 20;
+                score.innerText = s;
+            } else {
+                document.getElementById("text").innerText = `oops sorry you lost. the correct number is :${random}`;
+                document.getElementById("text").style.color = "red";
+            }
+            document.getElementById("count").innerText = count;
+            checkGameOver(); // Call function to check if the game is over after each play
+        }
+
+        function checkGameOver() {
+            if (count > 5) {
+                alert("you lost the game");
+                location.reload();
+            }
+        }
+    </script>
+
+    </html> -->
+
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-    body {
-        padding: 0%;
-        margin: 0%;
-        text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 25px rgb(97, 21, 219), 0 0 5px rgb(12, 49, 232);
-        color: rgb(220, 225, 222);
-        background-image: url('dice.jpg');
-        font-family: sans-serif;
-        font-weight: bold;
-        text-align: center;
-        user-select: none;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-    }
-
-    h1 {
-        font-size: 4rem;
-    }
-
-    p {
-        font-size: 2rem;
-    }
-
-    #text {
-        margin-top: 2rem;
-        font-size: 3rem;
-        font-weight: bold;
-        flex-wrap: wrap;
-        background-color: rgba(225, 225, 225, 0.7);
-        margin: 2rem 5rem;
-        border-radius: 20px;
-
-    }
-
-
-    .container {
-
-        grid-template-columns: repeat(3, 1fr);
-        display: grid;
-        gap: 1rem;
-        border: 8px solid rgba(145, 179, 238, 0.757);
-        padding: 1rem;
-        max-width: 400px;
-        margin: 0 auto;
-        margin-top: 12px;
-    }
-
-    .box {
-        width: 100px;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 20px;
-        background-color: rgba(178, 204, 223, 0.5);
-        border: none;
-        transition: all 0.5s ease-in-out;
-        cursor: pointer;
-        border-radius: 8px;
-    }
-
-    .box:hover {
-        background-color: rgba(26, 175, 198, 0.757);
-        transition: scale(1.1);
-        transform: scale(1.1);
-    }
-
-    @media (max-width: 600px) {}
-
-    @media (max-width: 600px) {
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Dice Game - Ultimate Challenge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            background-size: cover;
-            background-position: 50% 50%;
-            background-repeat: repeat;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            text-align: center;
+            user-select: none;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dice-pattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="5" cy="5" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="15" cy="15" r="1.5" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23dice-pattern)"/></svg>') repeat;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .game-header {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 800px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #fff, #e0e7ff, #c7d2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
         }
 
-        p {
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6)); }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .game-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px auto;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-label {
             font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
         }
 
-        .box {
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #60a5fa;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .dice-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .dice-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .dice-box {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             font-size: 1rem;
-            width: 70px;
-            height: 70px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            color: #4a5568;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
-        .text {
-            font-size: 0.5rem;
-            font-weight: bold;
+        .dice-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .dice-box:hover::before {
+            opacity: 1;
+        }
+
+        .dice-box:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #60a5fa;
+        }
+
+        .dice-box:active {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .dice-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .dice-word {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .result-area {
+            margin: 40px auto;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .result-message {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .result-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-message.win {
+            background: linear-gradient(135deg, #10b981, #059669);
+            animation: celebrate 0.6s ease;
+        }
+
+        .result-message.lose {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            animation: shake 0.6s ease;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.05) rotate(1deg); }
+            75% { transform: scale(1.05) rotate(-1deg); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .game-controls {
+            margin: 40px auto;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
             flex-wrap: wrap;
-            background-color: rgba(161, 198, 26, 0.5);
-            margin: 2rem 5rem;
         }
-    }
-</style>
+
+        .control-btn {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .control-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .control-btn:hover::before {
+            left: 100%;
+        }
+
+        .control-btn:hover {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 12px 35px rgba(239, 68, 68, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .control-btn.secondary {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            box-shadow: 0 8px 25px rgba(107, 114, 128, 0.3);
+        }
+
+        .control-btn.secondary:hover {
+            background: linear-gradient(135deg, #374151, #1f2937);
+            box-shadow: 0 12px 35px rgba(55, 65, 81, 0.4);
+        }
+
+        .difficulty-selector {
+            margin: 30px auto;
+            max-width: 500px;
+            padding: 0 20px;
+        }
+
+        .difficulty-options {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .difficulty-btn {
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .difficulty-btn:hover,
+        .difficulty-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-color: #60a5fa;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .progress-bar {
+            margin: 30px auto;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+
+        .progress-container {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 5px;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-fill {
+            height: 20px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 8px;
+            transition: width 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progressShine 2s ease infinite;
+        }
+
+        @keyframes progressShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .achievements {
+            margin: 40px auto;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .achievement {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .achievement.unlocked {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1f2937;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .achievement-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .achievement-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .dice-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .dice-box {
+                width: 100px;
+                height: 100px;
+            }
+
+            .dice-number {
+                font-size: 2rem;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+
+            .game-header {
+                margin: 10px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .dice-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .dice-box {
+                width: 80px;
+                height: 80px;
+            }
+
+            .dice-number {
+                font-size: 1.5rem;
+            }
+
+            .dice-word {
+                font-size: 0.7rem;
+            }
+
+            .control-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .control-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Particle effects */
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #60a5fa;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particle-float 3s ease-out forwards;
+        }
+
+        @keyframes particle-float {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0);
+            }
+        }
+
+        /* Sound wave animation */
+        .sound-wave {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .sound-wave span {
+            display: inline-block;
+            width: 3px;
+            height: 20px;
+            background: #60a5fa;
+            margin: 0 1px;
+            animation: sound-wave 1s ease-in-out infinite;
+        }
+
+        .sound-wave span:nth-child(2) { animation-delay: 0.1s; }
+        .sound-wave span:nth-child(3) { animation-delay: 0.2s; }
+        .sound-wave span:nth-child(4) { animation-delay: 0.3s; }
+
+        @keyframes sound-wave {
+            0%, 100% { height: 20px; }
+            50% { height: 5px; }
+        }
+    </style>
+</head>
 
 <body>
-
-    <h1> <span id="count"></span> Welcome to the Dice Game!</h1>
-    <p>Take a chance, roll the dice, and let's begin the game!</p>
-    <span style="color: red; font-size: 2rem; ">Your score: <span id="score">0</span></span>
-
-    <div class="main">
-        <div class="container">
-            <div class="box"
-                 onclick="test(1)">ONE</div>
-            <div class="box"
-                 onclick="test(2)">TWO</div>
-            <div class="box"
-                 onclick="test(3)">THREE</div>
-            <div class="box"
-                 onclick="test(4)">FOUR</div>
-            <div class="box"
-                 onclick="test(5)">FIVE</div>
-            <div class="box"
-                 onclick="test(6)">SIX</div>
-        </div>
-        <div id="text"></div>
+    <div class="game-header">
+        <h1>🎲 Ultimate Dice Challenge</h1>
+        <p class="subtitle">Test your luck and intuition in this thrilling dice prediction game!</p>
     </div>
+
+    <div class="game-stats">
+        <div class="stat-card">
+            <div class="stat-label">Round</div>
+            <div class="stat-value" id="round">1</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Score</div>
+            <div class="stat-value" id="score">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Wins</div>
+            <div class="stat-value" id="wins">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Streak</div>
+            <div class="stat-value" id="streak">0</div>
+        </div>
+    </div>
+
+    <div class="difficulty-selector">
+        <div class="difficulty-options">
+            <button class="difficulty-btn active" onclick="setDifficulty('easy')" data-difficulty="easy">
+                Easy (10 rounds)
+            </button>
+            <button class="difficulty-btn" onclick="setDifficulty('medium')" data-difficulty="medium">
+                Medium (7 rounds)
+            </button>
+            <button class="difficulty-btn" onclick="setDifficulty('hard')" data-difficulty="hard">
+                Hard (5 rounds)
+            </button>
+        </div>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-container">
+            <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <div class="dice-container">
+        <div class="dice-grid">
+            <div class="dice-box" onclick="makeGuess(1)">
+                <div class="dice-number">⚀</div>
+                <div class="dice-word">ONE</div>
+            </div>
+            <div class="dice-box" onclick="makeGuess(2)">
+                <div class="dice-number">⚁</div>
+                <div class="dice-word">TWO</div>
+            </div>
+            <div class="dice-box" onclick="makeGuess(3)">
+                <div class="dice-number">⚂</div>
+                <div class="dice-word">THREE</div>
+            </div>
+            <div class="dice-box" onclick="makeGuess(4)">
+                <div class="dice-number">⚃</div>
+                <div class="dice-word">FOUR</div>
+            </div>
+            <div class="dice-box" onclick="makeGuess(5)">
+                <div class="dice-number">⚄</div>
+                <div class="dice-word">FIVE</div>
+            </div>
+            <div class="dice-box" onclick="makeGuess(6)">
+                <div class="dice-number">⚅</div>
+                <div class="dice-word">SIX</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="result-area">
+        <div class="result-message" id="resultMessage">
+            Choose a number and test your luck! 🍀
+        </div>
+    </div>
+
+    <div class="game-controls">
+        <div class="control-buttons">
+            <button class="control-btn" onclick="newGame()">🎮 New Game</button>
+            <button class="control-btn secondary" onclick="showStats()">📊 Statistics</button>
+            <button class="control-btn secondary" onclick="toggleSound()">
+                🔊 Sound <span class="sound-wave" id="soundWave" style="display: none;">
+                    <span></span><span></span><span></span><span></span>
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div class="achievements">
+        <h3 style="margin-bottom: 20px; font-size: 1.5rem;">🏆 Achievements</h3>
+        <div class="achievement-grid">
+            <div class="achievement" id="achievement-first-win">
+                <div class="achievement-icon">🎯</div>
+                <div class="achievement-title">First Victory</div>
+                <div class="achievement-desc">Win your first round</div>
+            </div>
+            <div class="achievement" id="achievement-streak-3">
+                <div class="achievement-icon">🔥</div>
+                <div class="achievement-title">Hot Streak</div>
+                <div class="achievement-desc">Win 3 rounds in a row</div>
+            </div>
+            <div class="achievement" id="achievement-perfect-game">
+                <div class="achievement-icon">💎</div>
+                <div class="achievement-title">Perfect Game</div>
+                <div class="achievement-desc">Win all rounds in a game</div>
+            </div>
+            <div class="achievement" id="achievement-high-score">
+                <div class="achievement-icon">👑</div>
+                <div class="achievement-title">High Roller</div>
+                <div class="achievement-desc">Score 100+ points</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game state
+        let gameState = {
+            round: 1,
+            score: 0,
+            wins: 0,
+            streak: 0,
+            maxRounds: 10,
+            difficulty: 'easy',
+            soundEnabled: true,
+            achievements: new Set(),
+            gameHistory: []
+        };
+
+        // Dice symbols
+        const diceSymbols = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+
+        // Initialize game
+        function initGame() {
+            updateDisplay();
+            showMessage("Choose a number and test your luck! 🍀", "");
+            updateProgressBar();
+        }
+
+        // Make a guess
+        function makeGuess(playerGuess) {
+            if (gameState.round > gameState.maxRounds) {
+                return;
+            }
+
+            const actualRoll = Math.floor(Math.random() * 6) + 1;
+            const isWin = playerGuess === actualRoll;
+
+            // Create particle effect
+            createParticles(isWin);
+
+            // Play sound effect
+            if (gameState.soundEnabled) {
+                playSound(isWin ? 'win' : 'lose');
+            }
+
+            // Update game state
+            if (isWin) {
+                const points = calculatePoints();
+                gameState.score += points;
+                gameState.wins++;
+                gameState.streak++;
+                showMessage(
+                    `🎉 Congratulations! You guessed correctly! 
+                    <br>The dice rolled ${diceSymbols[actualRoll - 1]} (${actualRoll})
+                    <br>+${points} points!`, 
+                    "win"
+                );
+                checkAchievements();
+            } else {
+                gameState.streak = 0;
+                showMessage(
+                    `😔 Sorry! You guessed ${playerGuess} but the dice rolled ${diceSymbols[actualRoll - 1]} (${actualRoll})
+                    <br>Better luck next time!`, 
+                    "lose"
+                );
+            }
+
+            // Record the round
+            gameState.gameHistory.push({
+                round: gameState.round,
+                guess: playerGuess,
+                actual: actualRoll,
+                win: isWin
+            });
+
+            gameState.round++;
+            updateDisplay();
+            updateProgressBar();
+
+            // Check if game is over
+            setTimeout(() => {
+                if (gameState.round > gameState.maxRounds) {
+                    endGame();
+                }
+            }, 2000);
+        }
+
+        // Calculate points based on difficulty and streak
+        function calculatePoints() {
+            let basePoints = 20;
+            let difficultyMultiplier = gameState.difficulty === 'hard' ? 3 : gameState.difficulty === 'medium' ? 2 : 1;
+            let streakBonus = Math.min(gameState.streak * 5, 50);
+            return basePoints * difficultyMultiplier + streakBonus;
+        }
+
+        // Show message with animation
+        function showMessage(text, type) {
+            const messageEl = document.getElementById('resultMessage');
+            messageEl.classList.remove('show', 'win', 'lose');
+            
+            setTimeout(() => {
+                messageEl.innerHTML = text;
+                messageEl.classList.add('show');
+                if (type) {
+                    messageEl.classList.add(type);
+                }
+            }, 100);
+        }
+
+        // Update display
+        function updateDisplay() {
+            document.getElementById('round').textContent = Math.min(gameState.round, gameState.maxRounds);
+            document.getElementById('score').textContent = gameState.score;
+            document.getElementById('wins').textContent = gameState.wins;
+            document.getElementById('streak').textContent = gameState.streak;
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((gameState.round - 1) / gameState.maxRounds) * 100;
+            document.getElementById('progressBar').style.width = `${Math.min(progress, 100)}%`;
+        }
+
+        // Set difficulty
+        function setDifficulty(difficulty) {
+            gameState.difficulty = difficulty;
+            gameState.maxRounds = difficulty === 'hard' ? 5 : difficulty === 'medium' ? 7 : 10;
+            
+            // Update UI
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.difficulty === difficulty) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            updateProgressBar();
+        }
+
+        // End game
+        function endGame() {
+            const winRate = (gameState.wins / gameState.maxRounds * 100).toFixed(1);
+            let message = `🎮 Game Over!<br>`;
+            message += `Final Score: ${gameState.score}<br>`;
+            message += `Wins: ${gameState.wins}/${gameState.maxRounds} (${winRate}%)<br>`;
+            
+            if (gameState.wins === gameState.maxRounds) {
+                message += `🏆 Perfect Game! Amazing!`;
+                unlockAchievement('achievement-perfect-game');
+            } else if (gameState.wins >= gameState.maxRounds * 0.7) {
+                message += `🌟 Excellent performance!`;
+            } else if (gameState.wins >= gameState.maxRounds * 0.5) {
+                message += `👍 Good job!`;
+            } else {
+                message += `💪 Keep practicing!`;
+            }
+
+            showMessage(message, gameState.wins > gameState.maxRounds / 2 ? "win" : "lose");
+        }
+
+        // New game
+        function newGame() {
+            gameState.round = 1;
+            gameState.score = 0;
+            gameState.wins = 0;
+            gameState.streak = 0;
+            gameState.gameHistory = [];
+            updateDisplay();
+            updateProgressBar();
+            showMessage("Choose a number and test your luck! 🍀", "");
+        }
+
+        // Check achievements
+        function checkAchievements() {
+            if (gameState.wins === 1 && !gameState.achievements.has('first-win')) {
+                unlockAchievement('achievement-first-win');
+            }
+            
+            if (gameState.streak >= 3 && !gameState.achievements.has('streak-3')) {
+                unlockAchievement('achievement-streak-3');
+            }
+            
+            if (gameState.score >= 100 && !gameState.achievements.has('high-score')) {
+                unlockAchievement('achievement-high-score');
+            }
+        }
+
+        // Unlock achievement
+        function unlockAchievement(achievementId) {
+            const achievement = document.getElementById(achievementId);
+            if (achievement && !achievement.classList.contains('unlocked')) {
+                achievement.classList.add('unlocked');
+                gameState.achievements.add(achievementId.replace('achievement-', ''));
+                
+                // Show notification
+                setTimeout(() => {
+                    alert(`🏆 Achievement Unlocked: ${achievement.querySelector('.achievement-title').textContent}!`);
+                }, 500);
+            }
+        }
+
+        // Create particle effects
+        function createParticles(isWin) {
+            const colors = isWin ? ['#10b981', '#059669', '#34d399'] : ['#ef4444', '#dc2626', '#f87171'];
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * window.innerWidth + 'px';
+                    particle.style.top = Math.random() * window.innerHeight + 'px';
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    document.body.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 3000);
+                }, i * 100);
+            }
+        }
+
+        // Play sound effect (simulated)
+        function playSound(type) {
+            if (!gameState.soundEnabled) return;
+            
+            const soundWave = document.getElementById('soundWave');
+            soundWave.style.display = 'inline-block';
+            
+            setTimeout(() => {
+                soundWave.style.display = 'none';
+            }, 1000);
+        }
+
+        // Toggle sound
+        function toggleSound() {
+            gameState.soundEnabled = !gameState.soundEnabled;
+            const btn = event.target;
+            btn.innerHTML = gameState.soundEnabled ? 
+                '🔊 Sound <span class="sound-wave" id="soundWave" style="display: none;"><span></span><span></span><span></span><span></span></span>' : 
+                '🔇 Sound Off';
+        }
+
+        // Show statistics
+        function showStats() {
+            const totalGames = gameState.gameHistory.length;
+            const winRate = totalGames > 0 ? (gameState.wins / totalGames * 100).toFixed(1) : 0;
+            
+            let statsMessage = `📊 Game Statistics\n\n`;
+            statsMessage += `Current Score: ${gameState.score}\n`;
+            statsMessage += `Total Rounds: ${totalGames}\n`;
+            statsMessage += `Wins: ${gameState.wins}\n`;
+            statsMessage += `Win Rate: ${winRate}%\n`;
+            statsMessage += `Current Streak: ${gameState.streak}\n`;
+            statsMessage += `Achievements: ${gameState.achievements.size}/4`;
+            
+            alert(statsMessage);
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            const key = parseInt(e.key);
+            if (key >= 1 && key <= 6) {
+                makeGuess(key);
+            } else if (e.key === 'Enter' || e.key === ' ') {
+                newGame();
+            }
+        });
+
+        // Initialize game on load
+        window.addEventListener('load', initGame);
+    </script>
 </body>
-
-<script>
-    let count = 0, s = 0;
-
-    function test(num) {
-        let random = Math.floor(Math.random() * 6) + 1;
-        let score = document.getElementById("score");
-        count++;
-        if (num == random) {
-            document.getElementById("text").innerText = "Congratulations you won the game";
-            document.getElementById("text").style.color = "green";
-            s += 20;
-            score.innerText = s;
-        } else {
-            document.getElementById("text").innerText = `oops sorry you lost. the correct number is :${random}`;
-            document.getElementById("text").style.color = "red";
-        }
-        document.getElementById("count").innerText = count;
-        checkGameOver(); // Call function to check if the game is over after each play
-    }
-
-    function checkGameOver() {
-        if (count > 5) {
-            alert("you lost the game");
-            location.reload();
-        }
-    }
-</script>
 
 </html>

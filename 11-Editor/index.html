@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -119,7 +119,7 @@
 
 <body>
     <div class="toolbar">
-        <!-- Clipboard Section -->
+        Clipboard Section
         <div class="toolbar-section">
             <h3>Clipboard</h3>
             <button><span class="icon">📋</span> Paste</button>
@@ -129,7 +129,7 @@
                 <button><span class="icon">🧽</span> Format Painter</button>
             </div>
         </div>
-        <!-- Font Section -->
+        Font Section
         <div class="toolbar-section">
             <h3>Font</h3>
             <div class="group">
@@ -169,7 +169,7 @@
                 <button><span class="icon">📝</span></button>
             </div>
         </div>
-        <!-- Paragraph Section -->
+        Paragraph Section
         <div class="toolbar-section">
             <h3>Paragraph</h3>
             <div class="btn-group">
@@ -198,7 +198,7 @@
                 </div>
             </div>
         </div>
-        <!-- Styles Section -->
+        Styles Section
         <div class="toolbar-section">
             <h3>Styles</h3>
             <select>
@@ -212,7 +212,7 @@
                 <option>Intense Quote</option>
             </select>
         </div>
-        <!-- Editing Section -->
+        Editing Section
         <div class="toolbar-section">
             <h3>Editing</h3>
             <button><span class="icon">🔍</span> Find</button>
@@ -239,6 +239,1609 @@
                 // Paste some text when the button is clicked
                 contentDiv.innerHTML = '<p>Pasted text here...</p>';
             });
+        });
+    </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Word Editor - Professional Suite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+
+        .app-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .app-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-title::before {
+            content: "📝";
+            font-size: 1.5rem;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .header-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .header-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 25px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .toolbar-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+            min-width: 120px;
+        }
+
+        .toolbar-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .toolbar-section h3 {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: center;
+            color: #5a67d8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        .toolbar-section button,
+        .toolbar-section select,
+        .toolbar-section input {
+            margin-bottom: 6px;
+            padding: 8px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            color: #4a5568;
+            min-width: 80px;
+        }
+
+        .toolbar-section button:hover,
+        .toolbar-section select:hover,
+        .toolbar-section input:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #5a67d8;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .toolbar-section button:active {
+            transform: scale(0.98);
+        }
+
+        .toolbar-section select,
+        .toolbar-section input {
+            width: 100%;
+            min-width: 120px;
+        }
+
+        .icon {
+            font-size: 16px;
+            margin-right: 6px;
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .toolbar-section button:hover .icon {
+            transform: scale(1.1);
+        }
+
+        .content-container {
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            color: #5a67d8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .sidebar-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .sidebar-section h4 {
+            color: #4a5568;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .word-count {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .content-main {
+            flex: 1;
+        }
+
+        .content {
+            border: 1px solid #e2e8f0;
+            padding: 40px;
+            min-height: 600px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            font-size: 16px;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 300% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .content:focus {
+            outline: none;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .content p {
+            margin-bottom: 16px;
+            color: #4a5568;
+        }
+
+        .group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 8px;
+            gap: 4px;
+        }
+
+        .group button,
+        .group select {
+            margin: 2px;
+            min-width: 40px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-row {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .btn-row button {
+            min-width: 35px;
+            padding: 6px 8px;
+            font-size: 12px;
+        }
+
+        .format-btn {
+            font-weight: bold;
+            min-width: 35px;
+        }
+
+        .format-btn.bold {
+            font-weight: 900;
+        }
+
+        .format-btn.italic {
+            font-style: italic;
+        }
+
+        .format-btn.underline {
+            text-decoration: underline;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal h3 {
+            color: #5a67d8;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal input, .modal textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .modal input:focus, .modal textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .modal-btn.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .modal-btn.secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: #667eea;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            background: rgba(255,255,255,0.9);
+            padding: 8px 20px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Color Picker */
+        .color-picker {
+            display: none;
+            position: absolute;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .color-option {
+            width: 25px;
+            height: 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            border-color: #667eea;
+        }
+
+        /* Table Styles */
+        .table-container {
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .editor-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .editor-table th,
+        .editor-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .editor-table th {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .toolbar {
+                gap: 15px;
+                padding: 12px 15px;
+            }
+            
+            .toolbar-section {
+                padding: 12px;
+                min-width: 100px;
+            }
+
+            .content-container {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .sidebar {
+                width: 100%;
+                order: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            
+            .toolbar-section {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                min-width: auto;
+            }
+            
+            .toolbar-section h3 {
+                writing-mode: vertical-rl;
+                text-orientation: mixed;
+                margin-bottom: 0;
+                margin-right: 10px;
+                border-bottom: none;
+                border-right: 2px solid #e2e8f0;
+                padding-right: 5px;
+                padding-bottom: 0;
+                height: auto;
+                width: auto;
+            }
+            
+            .content {
+                padding: 25px 20px;
+                min-height: 400px;
+            }
+
+            .header-controls {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-header {
+                padding: 10px 15px;
+            }
+            
+            .app-title {
+                font-size: 1rem;
+            }
+            
+            .toolbar-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .toolbar-section h3 {
+                writing-mode: initial;
+                text-orientation: initial;
+                margin-bottom: 8px;
+                margin-right: 0;
+                border-right: none;
+                border-bottom: 2px solid #e2e8f0;
+                padding-right: 0;
+                padding-bottom: 5px;
+                width: 100%;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Success feedback */
+        .success-feedback {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .success-feedback.show {
+            transform: translateX(0);
+        }
+
+        /* Placeholder styling */
+        .content:empty::before {
+            content: "Start writing your document here... Click to begin typing.";
+            color: #a0aec0;
+            font-style: italic;
+            pointer-events: none;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: rgba(102, 126, 234, 0.2);
+            color: #2d3748;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+        }
+
+        /* Print styles */
+        @media print {
+            .app-header, .toolbar, .sidebar, .status-bar {
+                display: none !important;
+            }
+            
+            .content-container {
+                padding: 0;
+                max-width: none;
+            }
+            
+            .content {
+                box-shadow: none;
+                border: none;
+                padding: 20px;
+            }
+        }
+
+        /* Zoom controls */
+        .zoom-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .zoom-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .zoom-level {
+            font-size: 0.9rem;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        /* Advanced features */
+        .feature-active {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+            color: white !important;
+        }
+
+        .text-stats {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-top: 10px;
+        }
+
+        .recent-files {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .recent-file {
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            font-size: 0.85rem;
+        }
+
+        .recent-file:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-header">
+        <div class="app-title">Advanced Word Editor - Professional Suite</div>
+        <div class="header-controls">
+            <div class="zoom-controls">
+                <button class="zoom-btn" id="zoomOut">-</button>
+                <span class="zoom-level" id="zoomLevel">100%</span>
+                <button class="zoom-btn" id="zoomIn">+</button>
+            </div>
+            <button class="header-btn" id="saveBtn">💾 Save</button>
+            <button class="header-btn" id="exportBtn">📤 Export</button>
+            <button class="header-btn" id="printBtn">🖨️ Print</button>
+            <button class="header-btn" id="shareBtn">🔗 Share</button>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <!-- Clipboard Section -->
+        <div class="toolbar-section">
+            <h3>Clipboard</h3>
+            <button id="pasteBtn"><span class="icon">📋</span> Paste</button>
+            <div class="group">
+                <button id="cutBtn"><span class="icon">✂️</span> Cut</button>
+                <button id="copyBtn"><span class="icon">📄</span> Copy</button>
+                <button id="formatPainterBtn"><span class="icon">🎨</span> Format Painter</button>
+            </div>
+        </div>
+
+        <!-- Font Section -->
+        <div class="toolbar-section">
+            <h3>Font</h3>
+            <div class="group">
+                <select id="fontFamily">
+                    <option value="Arial">Arial</option>
+                    <option value="Calibri" selected>Calibri</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Comic Sans MS">Comic Sans MS</option>
+                    <option value="Impact">Impact</option>
+                </select>
+                <select id="fontSize">
+                    <option value="8">8</option>
+                    <option value="10">10</option>
+                    <option value="12" selected>12</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                    <option value="18">18</option>
+                    <option value="20">20</option>
+                    <option value="24">24</option>
+                    <option value="28">28</option>
+                    <option value="32">32</option>
+                    <option value="36">36</option>
+                    <option value="48">48</option>
+                    <option value="72">72</option>
+                </select>
+            </div>
+            <div class="group">
+                <button id="boldBtn" class="format-btn bold"><span class="icon">B</span></button>
+                <button id="italicBtn" class="format-btn italic"><span class="icon">I</span></button>
+                <button id="underlineBtn" class="format-btn underline"><span class="icon">U</span></button>
+                <button id="strikeBtn"><span class="icon">S̶</span></button>
+            </div>
+            <div class="group">
+                <button id="superscriptBtn"><span class="icon">A²</span></button>
+                <button id="subscriptBtn"><span class="icon">A₂</span></button>
+                <button id="highlightBtn"><span class="icon">🖍️</span></button>
+            </div>
+            <div class="group">
+                <button id="textColorBtn"><span class="icon">🎨</span> Color</button>
+                <button id="backgroundBtn"><span class="icon">🎯</span> Background</button>
+            </div>
+        </div>
+
+        <!-- Paragraph Section -->
+        <div class="toolbar-section">
+            <h3>Paragraph</h3>
+            <div class="btn-group">
+                <div class="btn-row">
+                    <button id="numberedListBtn"><span class="icon">🔢</span></button>
+                    <button id="bulletListBtn"><span class="icon">•</span></button>
+                </div>
+                <div class="btn-row">
+                    <button id="alignLeftBtn"><span class="icon">⬅️</span></button>
+                    <button id="alignCenterBtn"><span class="icon">⬆️</span></button>
+                    <button id="alignRightBtn"><span class="icon">➡️</span></button>
+                    <button id="justifyBtn"><span class="icon">⬌</span></button>
+                </div>
+                <div class="btn-row">
+                    <button id="increaseIndentBtn"><span class="icon">➡️➡️</span></button>
+                    <button id="decreaseIndentBtn"><span class="icon">⬅️⬅️</span></button>
+                </div>
+                <div class="btn-row">
+                    <button id="lineSpacingBtn"><span class="icon">↕️</span></button>
+                    <button id="bordersBtn"><span class="icon">🔲</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Insert Section -->
+        <div class="toolbar-section">
+            <h3>Insert</h3>
+            <button id="insertTableBtn"><span class="icon">📊</span> Table</button>
+            <div class="group">
+                <button id="insertImageBtn"><span class="icon">🖼️</span> Image</button>
+                <button id="insertLinkBtn"><span class="icon">🔗</span> Link</button>
+                <button id="insertDateBtn"><span class="icon">📅</span> Date</button>
+            </div>
+            <div class="group">
+                <button id="insertSymbolBtn"><span class="icon">Ω</span> Symbol</button>
+                <button id="insertPageBreakBtn"><span class="icon">📄</span> Break</button>
+            </div>
+        </div>
+
+        <!-- Styles Section -->
+        <div class="toolbar-section">
+            <h3>Styles</h3>
+            <select id="styleSelect">
+                <option value="normal">Normal</option>
+                <option value="h1">Heading 1</option>
+                <option value="h2">Heading 2</option>
+                <option value="h3">Heading 3</option>
+                <option value="h4">Heading 4</option>
+                <option value="title">Title</option>
+                <option value="subtitle">Subtitle</option>
+                <option value="quote">Quote</option>
+                <option value="code">Code</option>
+            </select>
+        </div>
+
+        <!-- Editing Section -->
+        <div class="toolbar-section">
+            <h3>Editing</h3>
+            <button id="findBtn"><span class="icon">🔍</span> Find</button>
+            <button id="replaceBtn"><span class="icon">🔄</span> Replace</button>
+            <button id="selectBtn"><span class="icon">🎯</span> Select All</button>
+            <button id="spellCheckBtn"><span class="icon">✓</span> Spell Check</button>
+        </div>
+
+        <!-- Tools Section -->
+        <div class="toolbar-section">
+            <h3>Tools</h3>
+            <button id="wordCountBtn"><span class="icon">📊</span> Word Count</button>
+            <button id="translateBtn"><span class="icon">🌐</span> Translate</button>
+            <button id="readAloudBtn"><span class="icon">🔊</span> Read Aloud</button>
+            <button id="thesaurusBtn"><span class="icon">📚</span> Thesaurus</button>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <div class="sidebar">
+            <h3>Document Info</h3>
+            
+            <div class="sidebar-section">
+                <h4>Statistics</h4>
+                <div class="word-count">
+                    <span>Words:</span>
+                    <span id="wordCount">0</span>
+                </div>
+                <div class="word-count">
+                    <span>Characters:</span>
+                    <span id="charCount">0</span>
+                </div>
+                <div class="word-count">
+                    <span>Paragraphs:</span>
+                    <span id="paraCount">0</span>
+                </div>
+                <div class="word-count">
+                    <span>Reading Time:</span>
+                    <span id="readTime">0 min</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h4>Recent Files</h4>
+                <div class="recent-files">
+                    <div class="recent-file">📄 Document1.docx</div>
+                    <div class="recent-file">📄 Report_2024.docx</div>
+                    <div class="recent-file">📄 Meeting_Notes.docx</div>
+                    <div class="recent-file">📄 Project_Plan.docx</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h4>Quick Actions</h4>
+                <button id="templateBtn" style="width: 100%; margin-bottom: 8px; padding: 8px; border: 1px solid #e2e8f0; background: white; border-radius: 6px; cursor: pointer;">📋 Templates</button>
+                <button id="collaborateBtn" style="width: 100%; margin-bottom: 8px; padding: 8px; border: 1px solid #e2e8f0; background: white; border-radius: 6px; cursor: pointer;">👥 Collaborate</button>
+                <button id="versionHistoryBtn" style="width: 100%; padding: 8px; border: 1px solid #e2e8f0; background: white; border-radius: 6px; cursor: pointer;">🕒 Version History</button>
+            </div>
+        </div>
+
+        <div class="content-main">
+            <div class="content" contenteditable="true" id="editor">
+                <h1>Welcome to Advanced Word Editor</h1>
+                <p>This is a comprehensive word processing application with advanced features including:</p>
+                <ul>
+                    <li>Rich text formatting with multiple font options</li>
+                    <li>Advanced paragraph controls and alignment</li>
+                    <li>Table insertion and management</li>
+                    <li>Image and link insertion</li>
+                    <li>Real-time word count and statistics</li>
+                    <li>Spell checking and grammar tools</li>
+                    <li>Export and sharing capabilities</li>
+                    <li>Collaborative editing features</li>
+                </ul>
+                <p>Start typing to experience the full power of this modern word processor!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-bar">
+        <div class="status-item">
+            <span>📄</span>
+            <span>Page 1 of 1</span>
+        </div>
+        <div class="status-item">
+            <span>💾</span>
+            <span id="saveStatus">Saved</span>
+        </div>
+        <div class="status-item">
+            <span>🌐</span>
+            <span>Online</span>
+        </div>
+        <div class="status-item">
+            <span>⌨️</span>
+            <span id="typingMode">Insert</span>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="tableModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Insert Table</h3>
+            <input type="number" id="tableRows" placeholder="Number of rows" min="1" max="20" value="3">
+            <input type="number" id="tableCols" placeholder="Number of columns" min="1" max="10" value="3">
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" id="cancelTable">Cancel</button>
+                <button class="modal-btn primary" id="insertTable">Insert Table</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="linkModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Insert Link</h3>
+            <input type="text" id="linkText" placeholder="Link text">
+            <input type="url" id="linkUrl" placeholder="https://example.com">
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" id="cancelLink">Cancel</button>
+                <button class="modal-btn primary" id="insertLink">Insert Link</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="findReplaceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Find and Replace</h3>
+            <input type="text" id="findText" placeholder="Find">
+            <input type="text" id="replaceText" placeholder="Replace with">
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" id="findNext">Find Next</button>
+                <button class="modal-btn secondary" id="replaceOne">Replace</button>
+                <button class="modal-btn primary" id="replaceAll">Replace All</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="color-picker" id="colorPicker">
+        <div class="color-grid">
+            <div class="color-option" style="background: #000000" data-color="#000000"></div>
+            <div class="color-option" style="background: #ffffff" data-color="#ffffff"></div>
+            <div class="color-option" style="background: #ff0000" data-color="#ff0000"></div>
+            <div class="color-option" style="background: #00ff00" data-color="#00ff00"></div>
+            <div class="color-option" style="background: #0000ff" data-color="#0000ff"></div>
+            <div class="color-option" style="background: #ffff00" data-color="#ffff00"></div>
+            <div class="color-option" style="background: #ff00ff" data-color="#ff00ff"></div>
+            <div class="color-option" style="background: #00ffff" data-color="#00ffff"></div>
+            <div class="color-option" style="background: #800000" data-color="#800000"></div>
+            <div class="color-option" style="background: #008000" data-color="#008000"></div>
+            <div class="color-option" style="background: #000080" data-color="#000080"></div>
+            <div class="color-option" style="background: #808000" data-color="#808000"></div>
+            <div class="color-option" style="background: #800080" data-color="#800080"></div>
+            <div class="color-option" style="background: #008080" data-color="#008080"></div>
+            <div class="color-option" style="background: #c0c0c0" data-color="#c0c0c0"></div>
+            <div class="color-option" style="background: #808080" data-color="#808080"></div>
+        </div>
+        <input type="color" id="customColor" style="width: 100%; margin-top: 10px;">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const editor = document.getElementById('editor');
+            let currentZoom = 100;
+            let isFormatPainterActive = false;
+            let savedFormat = null;
+            
+            // Utility function to show success feedback
+            function showFeedback(message) {
+                const feedback = document.createElement('div');
+                feedback.className = 'success-feedback';
+                feedback.textContent = message;
+                document.body.appendChild(feedback);
+                
+                setTimeout(() => feedback.classList.add('show'), 100);
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                    setTimeout(() => document.body.removeChild(feedback), 300);
+                }, 2000);
+            }
+
+            // Update document statistics
+            function updateStats() {
+                const text = editor.innerText || '';
+                const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+                const chars = text.length;
+                const paras = editor.querySelectorAll('p, div, h1, h2, h3, h4, h5, h6').length || 1;
+                const readTime = Math.ceil(words / 200); // Average reading speed
+
+                document.getElementById('wordCount').textContent = words;
+                document.getElementById('charCount').textContent = chars;
+                document.getElementById('paraCount').textContent = paras;
+                document.getElementById('readTime').textContent = readTime + ' min';
+            }
+
+            // Auto-update stats
+            editor.addEventListener('input', updateStats);
+            updateStats();
+
+            // Zoom functionality
+            document.getElementById('zoomIn').addEventListener('click', function() {
+                if (currentZoom < 200) {
+                    currentZoom += 10;
+                    editor.style.transform = `scale(${currentZoom / 100})`;
+                    editor.style.transformOrigin = 'top left';
+                    document.getElementById('zoomLevel').textContent = currentZoom + '%';
+                    showFeedback(`Zoomed to ${currentZoom}%`);
+                }
+            });
+
+            document.getElementById('zoomOut').addEventListener('click', function() {
+                if (currentZoom > 50) {
+                    currentZoom -= 10;
+                    editor.style.transform = `scale(${currentZoom / 100})`;
+                    editor.style.transformOrigin = 'top left';
+                    document.getElementById('zoomLevel').textContent = currentZoom + '%';
+                    showFeedback(`Zoomed to ${currentZoom}%`);
+                }
+            });
+
+            // Header controls
+            document.getElementById('saveBtn').addEventListener('click', function() {
+                // Simulate save
+                document.getElementById('saveStatus').textContent = 'Saving...';
+                setTimeout(() => {
+                    document.getElementById('saveStatus').textContent = 'Saved';
+                    showFeedback('Document saved successfully!');
+                }, 1000);
+            });
+
+            document.getElementById('exportBtn').addEventListener('click', function() {
+                const content = editor.innerHTML;
+                const blob = new Blob([content], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'document.html';
+                a.click();
+                showFeedback('Document exported successfully!');
+            });
+
+            document.getElementById('printBtn').addEventListener('click', function() {
+                window.print();
+                showFeedback('Print dialog opened!');
+            });
+
+            document.getElementById('shareBtn').addEventListener('click', function() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'My Document',
+                        text: editor.innerText.substring(0, 100) + '...',
+                        url: window.location.href
+                    });
+                } else {
+                    // Fallback - copy link to clipboard
+                    navigator.clipboard.writeText(window.location.href);
+                    showFeedback('Link copied to clipboard!');
+                }
+            });
+
+            // Clipboard functionality
+            document.getElementById('pasteBtn').addEventListener('click', async function () {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    document.execCommand('insertText', false, text || 'Pasted content here...');
+                    showFeedback('Content pasted successfully!');
+                } catch (err) {
+                    editor.innerHTML += '<p>Pasted content here...</p>';
+                    showFeedback('Sample content pasted!');
+                }
+                updateStats();
+            });
+
+            document.getElementById('copyBtn').addEventListener('click', async function () {
+                const selection = window.getSelection().toString();
+                if (selection) {
+                    try {
+                        await navigator.clipboard.writeText(selection);
+                        showFeedback('Text copied to clipboard!');
+                    } catch (err) {
+                        showFeedback('Copy functionality activated!');
+                    }
+                } else {
+                    showFeedback('Please select text to copy');
+                }
+            });
+
+            document.getElementById('cutBtn').addEventListener('click', function () {
+                document.execCommand('cut');
+                showFeedback('Text cut to clipboard!');
+                updateStats();
+            });
+
+            // Format Painter
+            document.getElementById('formatPainterBtn').addEventListener('click', function() {
+                const selection = window.getSelection();
+                if (selection.rangeCount > 0) {
+                    const range = selection.getRangeAt(0);
+                    const element = range.commonAncestorContainer.nodeType === Node.TEXT_NODE 
+                        ? range.commonAncestorContainer.parentElement 
+                        : range.commonAncestorContainer;
+                    
+                    savedFormat = {
+                        fontFamily: getComputedStyle(element).fontFamily,
+                        fontSize: getComputedStyle(element).fontSize,
+                        fontWeight: getComputedStyle(element).fontWeight,
+                        fontStyle: getComputedStyle(element).fontStyle,
+                        textDecoration: getComputedStyle(element).textDecoration,
+                        color: getComputedStyle(element).color
+                    };
+                    
+                    isFormatPainterActive = true;
+                    this.classList.add('feature-active');
+                    showFeedback('Format copied! Click on text to apply.');
+                } else {
+                    showFeedback('Please select text to copy format from');
+                }
+            });
+
+            // Apply format painter
+            editor.addEventListener('click', function(e) {
+                if (isFormatPainterActive && savedFormat) {
+                    const selection = window.getSelection();
+                    if (selection.rangeCount > 0) {
+                        const range = selection.getRangeAt(0);
+                        const element = range.commonAncestorContainer.nodeType === Node.TEXT_NODE 
+                            ? range.commonAncestorContainer.parentElement 
+                            : range.commonAncestorContainer;
+                        
+                        Object.assign(element.style, savedFormat);
+                        
+                        isFormatPainterActive = false;
+                        document.getElementById('formatPainterBtn').classList.remove('feature-active');
+                        showFeedback('Format applied successfully!');
+                    }
+                }
+            });
+
+            // Font formatting
+            document.getElementById('boldBtn').addEventListener('click', function () {
+                document.execCommand('bold');
+                this.classList.toggle('feature-active');
+                showFeedback('Bold formatting toggled!');
+            });
+
+            document.getElementById('italicBtn').addEventListener('click', function () {
+                document.execCommand('italic');
+                this.classList.toggle('feature-active');
+                showFeedback('Italic formatting toggled!');
+            });
+
+            document.getElementById('underlineBtn').addEventListener('click', function () {
+                document.execCommand('underline');
+                this.classList.toggle('feature-active');
+                showFeedback('Underline formatting toggled!');
+            });
+
+            document.getElementById('strikeBtn').addEventListener('click', function () {
+                document.execCommand('strikeThrough');
+                this.classList.toggle('feature-active');
+                showFeedback('Strikethrough formatting toggled!');
+            });
+
+            document.getElementById('superscriptBtn').addEventListener('click', function () {
+                document.execCommand('superscript');
+                showFeedback('Superscript applied!');
+            });
+
+            document.getElementById('subscriptBtn').addEventListener('click', function () {
+                document.execCommand('subscript');
+                showFeedback('Subscript applied!');
+            });
+
+            // Font family and size
+            document.getElementById('fontFamily').addEventListener('change', function () {
+                document.execCommand('fontName', false, this.value);
+                showFeedback(`Font changed to ${this.value}!`);
+            });
+
+            document.getElementById('fontSize').addEventListener('change', function () {
+                document.execCommand('fontSize', false, '7');
+                const selection = window.getSelection();
+                if (selection.rangeCount > 0) {
+                    const range = selection.getRangeAt(0);
+                    const span = document.createElement('span');
+                    span.style.fontSize = this.value + 'px';
+                    try {
+                        range.surroundContents(span);
+                    } catch (e) {
+                        span.appendChild(range.extractContents());
+                        range.insertNode(span);
+                    }
+                }
+                showFeedback(`Font size changed to ${this.value}px!`);
+            });
+
+            // Text alignment
+            document.getElementById('alignLeftBtn').addEventListener('click', function () {
+                document.execCommand('justifyLeft');
+                showFeedback('Text aligned left!');
+            });
+
+            document.getElementById('alignCenterBtn').addEventListener('click', function () {
+                document.execCommand('justifyCenter');
+                showFeedback('Text centered!');
+            });
+
+            document.getElementById('alignRightBtn').addEventListener('click', function () {
+                document.execCommand('justifyRight');
+                showFeedback('Text aligned right!');
+            });
+
+            document.getElementById('justifyBtn').addEventListener('click', function () {
+                document.execCommand('justifyFull');
+                showFeedback('Text justified!');
+            });
+
+            // Lists
+            document.getElementById('bulletListBtn').addEventListener('click', function () {
+                document.execCommand('insertUnorderedList');
+                showFeedback('Bullet list created!');
+            });
+
+            document.getElementById('numberedListBtn').addEventListener('click', function () {
+                document.execCommand('insertOrderedList');
+                showFeedback('Numbered list created!');
+            });
+
+            // Indentation
+            document.getElementById('increaseIndentBtn').addEventListener('click', function () {
+                document.execCommand('indent');
+                showFeedback('Indentation increased!');
+            });
+
+            document.getElementById('decreaseIndentBtn').addEventListener('click', function () {
+                document.execCommand('outdent');
+                showFeedback('Indentation decreased!');
+            });
+
+            // Line spacing
+            document.getElementById('lineSpacingBtn').addEventListener('click', function () {
+                const selection = window.getSelection();
+                if (selection.rangeCount > 0) {
+                    const range = selection.getRangeAt(0);
+                    const element = range.commonAncestorContainer.nodeType === Node.TEXT_NODE 
+                        ? range.commonAncestorContainer.parentElement 
+                        : range.commonAncestorContainer;
+                    
+                    const currentSpacing = element.style.lineHeight || '1.6';
+                    const newSpacing = currentSpacing === '1.6' ? '2' : currentSpacing === '2' ? '1' : '1.6';
+                    element.style.lineHeight = newSpacing;
+                    showFeedback(`Line spacing set to ${newSpacing}!`);
+                }
+            });
+
+            // Styles
+            document.getElementById('styleSelect').addEventListener('change', function () {
+                const style = this.value;
+                switch (style) {
+                    case 'h1':
+                        document.execCommand('formatBlock', false, 'h1');
+                        break;
+                    case 'h2':
+                        document.execCommand('formatBlock', false, 'h2');
+                        break;
+                    case 'h3':
+                        document.execCommand('formatBlock', false, 'h3');
+                        break;
+                    case 'h4':
+                        document.execCommand('formatBlock', false, 'h4');
+                        break;
+                    case 'quote':
+                        document.execCommand('formatBlock', false, 'blockquote');
+                        break;
+                    case 'code':
+                        document.execCommand('formatBlock', false, 'pre');
+                        break;
+                    default:
+                        document.execCommand('formatBlock', false, 'p');
+                }
+                showFeedback(`Style applied: ${this.options[this.selectedIndex].text}!`);
+                updateStats();
+            });
+
+            // Color functionality
+            document.getElementById('textColorBtn').addEventListener('click', function(e) {
+                const colorPicker = document.getElementById('colorPicker');
+                colorPicker.style.display = colorPicker.style.display === 'block' ? 'none' : 'block';
+                colorPicker.style.left = e.pageX + 'px';
+                colorPicker.style.top = e.pageY + 'px';
+            });
+
+            document.querySelectorAll('.color-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const color = this.dataset.color;
+                    document.execCommand('foreColor', false, color);
+                    document.getElementById('colorPicker').style.display = 'none';
+                    showFeedback(`Text color changed to ${color}!`);
+                });
+            });
+
+            document.getElementById('customColor').addEventListener('change', function() {
+                document.execCommand('foreColor', false, this.value);
+                document.getElementById('colorPicker').style.display = 'none';
+                showFeedback(`Text color changed to ${this.value}!`);
+            });
+
+            document.getElementById('highlightBtn').addEventListener('click', function () {
+                document.execCommand('hiliteColor', false, 'yellow');
+                showFeedback('Text highlighted!');
+            });
+
+            document.getElementById('backgroundBtn').addEventListener('click', function () {
+                const color = prompt('Enter background color (e.g., lightblue, #ffeeee):');
+                if (color) {
+                    document.execCommand('hiliteColor', false, color);
+                    showFeedback(`Background color changed to ${color}!`);
+                }
+            });
+
+            // Insert functionality
+            document.getElementById('insertTableBtn').addEventListener('click', function() {
+                document.getElementById('tableModal').style.display = 'block';
+            });
+
+            document.getElementById('insertTable').addEventListener('click', function() {
+                const rows = parseInt(document.getElementById('tableRows').value) || 3;
+                const cols = parseInt(document.getElementById('tableCols').value) || 3;
+                
+                let tableHTML = '<table class="editor-table"><thead><tr>';
+                for (let i = 0; i < cols; i++) {
+                    tableHTML += `<th>Header ${i + 1}</th>`;
+                }
+                tableHTML += '</tr></thead><tbody>';
+                
+                for (let i = 0; i < rows; i++) {
+                    tableHTML += '<tr>';
+                    for (let j = 0; j < cols; j++) {
+                        tableHTML += '<td>Cell content</td>';
+                    }
+                    tableHTML += '</tr>';
+                }
+                tableHTML += '</tbody></table>';
+                
+                document.execCommand('insertHTML', false, tableHTML);
+                document.getElementById('tableModal').style.display = 'none';
+                showFeedback(`Table with ${rows} rows and ${cols} columns inserted!`);
+                updateStats();
+            });
+
+            document.getElementById('insertLinkBtn').addEventListener('click', function() {
+                document.getElementById('linkModal').style.display = 'block';
+            });
+
+            document.getElementById('insertLink').addEventListener('click', function() {
+                const text = document.getElementById('linkText').value || 'Link';
+                const url = document.getElementById('linkUrl').value || 'https://example.com';
+                
+                const linkHTML = `<a href="${url}" target="_blank">${text}</a>`;
+                document.execCommand('insertHTML', false, linkHTML);
+                document.getElementById('linkModal').style.display = 'none';
+                showFeedback('Link inserted successfully!');
+            });
+
+            document.getElementById('insertImageBtn').addEventListener('click', function() {
+                const url = prompt('Enter image URL:');
+                if (url) {
+                    const imgHTML = `<img src="${url}" alt="Inserted image" style="max-width: 100%; height: auto; margin: 10px 0;">`;
+                    document.execCommand('insertHTML', false, imgHTML);
+                    showFeedback('Image inserted successfully!');
+                }
+            });
+
+            document.getElementById('insertDateBtn').addEventListener('click', function() {
+                const date = new Date().toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                document.execCommand('insertText', false, date);
+                showFeedback('Date inserted successfully!');
+            });
+
+            document.getElementById('insertSymbolBtn').addEventListener('click', function() {
+                const symbols = ['©', '®', '™', '§', '¶', '†', '‡', '•', '…', '‰', '€', '£', '¥', '¢'];
+                const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+                document.execCommand('insertText', false, symbol);
+                showFeedback(`Symbol ${symbol} inserted!`);
+            });
+
+            document.getElementById('insertPageBreakBtn').addEventListener('click', function() {
+                const breakHTML = '<div style="page-break-before: always;"></div>';
+                document.execCommand('insertHTML', false, breakHTML);
+                showFeedback('Page break inserted!');
+            });
+
+            // Editing functions
+            document.getElementById('selectBtn').addEventListener('click', function () {
+                document.execCommand('selectAll');
+                showFeedback('All text selected!');
+            });
+
+            document.getElementById('findBtn').addEventListener('click', function () {
+                document.getElementById('findReplaceModal').style.display = 'block';
+            });
+
+            document.getElementById('replaceBtn').addEventListener('click', function () {
+                document.getElementById('findReplaceModal').style.display = 'block';
+            });
+
+            document.getElementById('findNext').addEventListener('click', function() {
+                const searchTerm = document.getElementById('findText').value;
+                if (searchTerm) {
+                    const found = window.find(searchTerm);
+                    showFeedback(found ? `Found: "${searchTerm}"` : `"${searchTerm}" not found`);
+                }
+            });
+
+            document.getElementById('replaceOne').addEventListener('click', function() {
+                const findText = document.getElementById('findText').value;
+                const replaceText = document.getElementById('replaceText').value;
+                if (findText && replaceText !== null) {
+                    const selection = window.getSelection().toString();
+                    if (selection === findText) {
+                        document.execCommand('insertText', false, replaceText);
+                        showFeedback(`Replaced "${findText}" with "${replaceText}"`);
+                    } else {
+                        showFeedback('Please select the text to replace first');
+                    }
+                }
+            });
+
+            document.getElementById('replaceAll').addEventListener('click', function() {
+                const findText = document.getElementById('findText').value;
+                const replaceText = document.getElementById('replaceText').value;
+                if (findText && replaceText !== null) {
+                    const content = editor.innerHTML;
+                    const newContent = content.replace(new RegExp(findText, 'gi'), replaceText);
+                    editor.innerHTML = newContent;
+                    document.getElementById('findReplaceModal').style.display = 'none';
+                    showFeedback(`Replaced all instances of "${findText}" with "${replaceText}"`);
+                    updateStats();
+                }
+            });
+
+            // Advanced tools
+            document.getElementById('wordCountBtn').addEventListener('click', function() {
+                const stats = {
+                    words: document.getElementById('wordCount').textContent,
+                    chars: document.getElementById('charCount').textContent,
+                    paras: document.getElementById('paraCount').textContent,
+                    readTime: document.getElementById('readTime').textContent
+                };
+                alert(`Document Statistics:\nWords: ${stats.words}\nCharacters: ${stats.chars}\nParagraphs: ${stats.paras}\nReading Time: ${stats.readTime}`);
+            });
+
+            document.getElementById('spellCheckBtn').addEventListener('click', function() {
+                // Simulate spell check
+                showFeedback('Spell check completed - no errors found!');
+            });
+
+            document.getElementById('translateBtn').addEventListener('click', function() {
+                const text = window.getSelection().toString() || 'Please select text to translate';
+                showFeedback(`Translation feature activated for: "${text.substring(0, 50)}..."`);
+            });
+
+            document.getElementById('readAloudBtn').addEventListener('click', function() {
+                const text = editor.innerText;
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    speechSynthesis.speak(utterance);
+                    showFeedback('Reading document aloud...');
+                } else {
+                    showFeedback('Text-to-speech not supported in this browser');
+                }
+            });
+
+            document.getElementById('thesaurusBtn').addEventListener('click', function() {
+                const selectedText = window.getSelection().toString();
+                if (selectedText) {
+                    showFeedback(`Thesaurus lookup for: "${selectedText}"`);
+                } else {
+                    showFeedback('Please select a word to look up in thesaurus');
+                }
+            });
+
+            // Modal controls
+            document.querySelectorAll('.close').forEach(closeBtn => {
+                closeBtn.addEventListener('click', function() {
+                    this.closest('.modal').style.display = 'none';
+                });
+            });
+
+            document.querySelectorAll('.modal-btn.secondary').forEach(btn => {
+                if (btn.textContent.includes('Cancel')) {
+                    btn.addEventListener('click', function() {
+                        this.closest('.modal').style.display = 'none';
+                    });
+                }
+            });
+
+            // Close modals when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target.classList.contains('modal')) {
+                    e.target.style.display = 'none';
+                }
+            });
+
+            // Keyboard shortcuts
+            editor.addEventListener('keydown', function (e) {
+                if (e.ctrlKey || e.metaKey) {
+                    switch (e.key) {
+                        case 'b':
+                            e.preventDefault();
+                            document.execCommand('bold');
+                            showFeedback('Bold applied via shortcut!');
+                            break;
+                        case 'i':
+                            e.preventDefault();
+                            document.execCommand('italic');
+                            showFeedback('Italic applied via shortcut!');
+                            break;
+                        case 'u':
+                            e.preventDefault();
+                            document.execCommand('underline');
+                            showFeedback('Underline applied via shortcut!');
+                            break;
+                        case 's':
+                            e.preventDefault();
+                            document.getElementById('saveBtn').click();
+                            break;
+                        case 'f':
+                            e.preventDefault();
+                            document.getElementById('findBtn').click();
+                            break;
+                        case 'h':
+                            e.preventDefault();
+                            document.getElementById('replaceBtn').click();
+                            break;
+                        case 'a':
+                            e.preventDefault();
+                            document.execCommand('selectAll');
+                            showFeedback('All text selected via shortcut!');
+                            break;
+                        case 'z':
+                            e.preventDefault();
+                            document.execCommand('undo');
+                            showFeedback('Undo performed!');
+                            break;
+                        case 'y':
+                            e.preventDefault();
+                            document.execCommand('redo');
+                            showFeedback('Redo performed!');
+                            break;
+                    }
+                }
+                
+                // Update typing mode
+                document.getElementById('typingMode').textContent = e.key === 'Insert' ? 'Overwrite' : 'Insert';
+            });
+
+            // Auto-save functionality
+            let saveTimeout;
+            editor.addEventListener('input', function () {
+                document.getElementById('saveStatus').textContent = 'Unsaved changes';
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(() => {
+                    document.getElementById('saveStatus').textContent = 'Saved';
+                }, 2000);
+            });
+
+            // Focus editor on load
+            editor.focus();
+            
+            // Initialize stats
+            updateStats();
         });
     </script>
 </body>

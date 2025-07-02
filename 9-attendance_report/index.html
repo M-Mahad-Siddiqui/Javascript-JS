@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -199,4 +199,551 @@
 			}
 		</script>
 	</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Attendance Checker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.08)"/><circle cx="10" cy="90" r="0.8" fill="rgba(255,255,255,0.06)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            margin: 50px auto 30px;
+            width: min(500px, 90vw);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 15px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 20px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .input-group {
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        input {
+            width: 100%;
+            height: 50px;
+            font-size: 1rem;
+            padding: 0 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #60a5fa;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+            transform: scale(1.02);
+        }
+
+        button {
+            width: 100%;
+            height: 55px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 12px 35px rgba(239, 68, 68, 0.4);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .attendance-section h1 {
+            font-size: 2rem;
+            margin: 40px 0 20px;
+            text-align: center;
+        }
+
+        #attendanceList {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        .attendance-header {
+            display: grid;
+            grid-template-columns: 80px 1fr 120px 120px 120px;
+            gap: 20px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+
+        .attendance-header span {
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .attendance-item {
+            display: grid;
+            grid-template-columns: 80px 1fr 120px 120px 120px;
+            gap: 20px;
+            padding: 20px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideIn 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .attendance-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .attendance-item span {
+            color: white;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+
+        .status-on-time {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+            border-radius: 20px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .status-late {
+            background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+            border-radius: 20px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+
+        .empty-state svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #container {
+                padding: 30px 20px;
+                margin: 20px auto;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .attendance-header,
+            .attendance-item {
+                grid-template-columns: 60px 1fr 80px 80px 100px;
+                gap: 10px;
+                padding: 15px 10px;
+                font-size: 0.8rem;
+            }
+
+            .attendance-header {
+                font-size: 0.75rem;
+            }
+
+            #attendanceList {
+                padding: 20px 10px;
+                margin: 20px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .attendance-header,
+            .attendance-item {
+                grid-template-columns: 1fr;
+                gap: 5px;
+                text-align: left;
+            }
+
+            .attendance-header span,
+            .attendance-item span {
+                text-align: left;
+                justify-content: flex-start;
+                padding: 8px 15px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 8px;
+                margin: 2px 0;
+            }
+
+            .attendance-header span::before,
+            .attendance-item span::before {
+                content: attr(data-label) ': ';
+                font-weight: 700;
+                margin-right: 10px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading button {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            cursor: not-allowed;
+        }
+
+        /* Success Animation */
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .success-animation {
+            animation: successPulse 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>🕐 Attendance Checker</h1>
+        
+        <div class="input-group">
+            <label for="name">Enter your name:</label>
+            <input type="text" id="name" placeholder="Enter your full name" required>
+        </div>
+        
+        <div class="input-group">
+            <label for="time">Enter your arrival time:</label>
+            <input type="time" id="time" required>
+        </div>
+        
+        <button id="submit" onclick="checkAttendance()">
+            Check Attendance
+        </button>
+    </div>
+
+    <div class="attendance-section">
+        <h1>📋 Attendance Records</h1>
+        <div id="attendanceList">
+            <div class="attendance-header">
+                <span>S.No</span>
+                <span>Name</span>
+                <span>Time</span>
+                <span>Status</span>
+                <span>Date</span>
+            </div>
+            <div class="empty-state" id="emptyState">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                <p>No attendance records yet.<br>Add your first entry above!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let count = 0;
+        const attendanceData = [];
+
+        function checkAttendance() {
+            const nameInput = document.getElementById("name");
+            const timeInput = document.getElementById("time");
+            const name = nameInput.value.trim();
+            const time = timeInput.value;
+            const container = document.getElementById("container");
+            const submitButton = document.getElementById("submit");
+
+            // Validation
+            if (!name || !time) {
+                showAlert("Please enter both name and arrival time", "error");
+                return;
+            }
+
+            if (name.length < 2) {
+                showAlert("Please enter a valid name (at least 2 characters)", "error");
+                return;
+            }
+
+            // Add loading state
+            container.classList.add("loading");
+            submitButton.textContent = "Processing...";
+
+            setTimeout(() => {
+                const currentTime = new Date();
+                const inputTime = new Date();
+                const [hour, minute] = time.split(":");
+                inputTime.setHours(parseInt(hour), parseInt(minute), 0, 0);
+
+                // Time validation - allow past times for flexibility
+                const currentHour = currentTime.getHours();
+                const currentMinute = currentTime.getMinutes();
+                const inputHour = parseInt(hour);
+                const inputMinute = parseInt(minute);
+
+                count++;
+
+                // Status calculation (9:00 AM office time)
+                const officeTime = new Date();
+                officeTime.setHours(9, 0, 0, 0);
+                const status = inputTime <= officeTime ? "On Time" : "Late";
+
+                // Create attendance record
+                const record = {
+                    id: count,
+                    name: name,
+                    time: time,
+                    status: status,
+                    date: currentTime.toLocaleDateString('en-US', {
+                        weekday: 'short',
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                    })
+                };
+
+                attendanceData.push(record);
+                addAttendanceItem(record);
+
+                // Success feedback
+                showAlert(`Attendance recorded successfully for ${name}!`, "success");
+                container.classList.add("success-animation");
+
+                // Clear inputs and focus
+                nameInput.value = "";
+                timeInput.value = "";
+                nameInput.focus();
+
+                // Remove loading and animation states
+                setTimeout(() => {
+                    container.classList.remove("loading", "success-animation");
+                    submitButton.textContent = "Check Attendance";
+                }, 300);
+            }, 800);
+        }
+
+        function addAttendanceItem(record) {
+            const attendanceList = document.getElementById("attendanceList");
+            const emptyState = document.getElementById("emptyState");
+            
+            // Hide empty state
+            if (emptyState) {
+                emptyState.style.display = "none";
+            }
+
+            const attendanceItem = document.createElement("div");
+            attendanceItem.classList.add("attendance-item");
+            
+            attendanceItem.innerHTML = `
+                <span data-label="S.No">${record.id}</span>
+                <span data-label="Name">${record.name}</span>
+                <span data-label="Time">${record.time}</span>
+                <span data-label="Status" class="${record.status === 'On Time' ? 'status-on-time' : 'status-late'}">
+                    ${record.status === 'On Time' ? '✅ ' + record.status : '⚠️ ' + record.status}
+                </span>
+                <span data-label="Date">${record.date}</span>
+            `;
+
+            attendanceList.appendChild(attendanceItem);
+
+            // Trigger animation
+            setTimeout(() => {
+                attendanceItem.style.animationDelay = '0s';
+            }, 100);
+        }
+
+        function showAlert(message, type) {
+            // Create custom alert
+            const alertDiv = document.createElement('div');
+            alertDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 25px;
+                border-radius: 10px;
+                color: white;
+                font-weight: 500;
+                z-index: 1000;
+                min-width: 300px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255,255,255,0.2);
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                ${type === 'success' 
+                    ? 'background: linear-gradient(135deg, #10b981, #059669);' 
+                    : 'background: linear-gradient(135deg, #ef4444, #dc2626);'
+                }
+            `;
+            alertDiv.textContent = message;
+            document.body.appendChild(alertDiv);
+
+            // Animate in
+            setTimeout(() => {
+                alertDiv.style.transform = 'translateX(0)';
+            }, 100);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                alertDiv.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    document.body.removeChild(alertDiv);
+                }, 300);
+            }, 3000);
+        }
+
+        // Enter key support
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkAttendance();
+            }
+        });
+
+        // Auto-focus name input on load
+        window.addEventListener('load', function() {
+            document.getElementById('name').focus();
+        });
+
+        // Auto-format name input (title case)
+        document.getElementById('name').addEventListener('blur', function() {
+            const name = this.value.trim();
+            if (name) {
+                this.value = name.replace(/\w\S*/g, (txt) => 
+                    txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+                );
+            }
+        });
+    </script>
+</body>
 </html>
